@@ -1,0 +1,16 @@
+name: firebase-ios-sdk, nameSpecified: , owner: firebase, version: , source: https://github.com/firebase/firebase-ios-sdk
+
+name: firebase-ios-sdk, nameSpecified: , owner: firebase, version: , source: https://github.com/firebase/firebase-ios-sdk
+
+name: RxSwift, nameSpecified: , owner: ReactiveX, version: , source: https://github.com/ReactiveX/RxSwift
+
+name: RxSwift, nameSpecified: , owner: ReactiveX, version: , source: https://github.com/ReactiveX/RxSwift
+
+name: LicensePlist, nameSpecified: , version: 
+body: MIT License
+
+Copyrig…
+
+add-version-numbers: false
+
+LicensePlist Version: 3.23.4
