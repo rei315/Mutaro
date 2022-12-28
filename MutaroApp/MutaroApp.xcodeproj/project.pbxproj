@@ -16,9 +16,9 @@
 		715E95AA295CC20A00AD6331 /* MutaroAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E95A9295CC20A00AD6331 /* MutaroAppUITestsLaunchTests.swift */; };
 		715E95B8295CC29F00AD6331 /* AppModule in Frameworks */ = {isa = PBXBuildFile; productRef = 715E95B7295CC29F00AD6331 /* AppModule */; };
 		715E95BC295CC29F00AD6331 /* FirebaseSetupModule in Frameworks */ = {isa = PBXBuildFile; productRef = 715E95BB295CC29F00AD6331 /* FirebaseSetupModule */; };
-		715E95C4295CCECB00AD6331 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C3295CCECB00AD6331 /* GoogleService-Info.plist */; };
 		715E95C6295CD16400AD6331 /* license_plist.yml in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C5295CD16400AD6331 /* license_plist.yml */; };
 		715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 715E95CA295CD74D00AD6331 /* Settings.bundle */; };
+		71F5BC46295CE91300CCC3F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BC45295CE91300CCC3F8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +50,9 @@
 		715E95A3295CC20A00AD6331 /* MutaroAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E95A7295CC20A00AD6331 /* MutaroAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroAppUITests.swift; sourceTree = "<group>"; };
 		715E95A9295CC20A00AD6331 /* MutaroAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		715E95C3295CCECB00AD6331 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		715E95C5295CD16400AD6331 /* license_plist.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = license_plist.yml; sourceTree = "<group>"; };
 		715E95CA295CD74D00AD6331 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		71F5BC45295CE91300CCC3F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 			children = (
 				715E95CA295CD74D00AD6331 /* Settings.bundle */,
 				715E95C5295CD16400AD6331 /* license_plist.yml */,
-				715E95C3295CCECB00AD6331 /* GoogleService-Info.plist */,
+				71F5BC45295CE91300CCC3F8 /* GoogleService-Info.plist */,
 				715E958F295CC20A00AD6331 /* Assets.xcassets */,
 				715E9594295CC20A00AD6331 /* Info.plist */,
 				715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */,
@@ -264,8 +264,8 @@
 			files = (
 				715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */,
 				715E9590295CC20A00AD6331 /* Assets.xcassets in Resources */,
+				71F5BC46295CE91300CCC3F8 /* GoogleService-Info.plist in Resources */,
 				715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */,
-				715E95C4295CCECB00AD6331 /* GoogleService-Info.plist in Resources */,
 				715E95C6295CD16400AD6331 /* license_plist.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
