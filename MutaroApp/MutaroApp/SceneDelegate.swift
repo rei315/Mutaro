@@ -5,22 +5,25 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
-import UIKit
 import AppModule
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var coordinator: MutaroListCoordinator?
-    
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+
+    func scene(
+        _ scene: UIScene, willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
         let navController = UINavigationController()
         coordinator = MutaroListCoordinator(navigationController: navController)
         coordinator?.start()
-        
+
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
         window?.rootViewController = navController
@@ -54,6 +57,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
 }
-

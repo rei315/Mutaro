@@ -1,6 +1,6 @@
 //
 //  MutaroListViewController.swift
-//  
+//
 //
 //  Created by minguk-kim on 2022/12/29.
 //
@@ -12,6 +12,6 @@ class MutaroListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .green
+        self.view.backgroundColor = .blue
     }
 }

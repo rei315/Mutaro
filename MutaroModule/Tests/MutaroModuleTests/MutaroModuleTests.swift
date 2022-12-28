@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import MutaroModule
 
 final class MutaroModuleTests: XCTestCase {

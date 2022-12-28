@@ -313,6 +313,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"../.swift-format",
 			);
 			name = "Run SwiftFormat";
 			outputFileListPaths = (
@@ -321,7 +322,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ $CONFIGURATION = \"Debug\" ]]; then\n    xcrun --sdk macosx swift build -c release --package-path ../MutaroModule/Sources/BuildModule --product swift-format\n    #git diff --name-only | grep .swift | grep -v \"Package.swift\" | xargs ../MutaroModule/.build/release/swift-format format -i -r --ignore-unparsable-files -p\nfi\n";
+			shellScript = "if [[ $CONFIGURATION = \"Debug\" ]]; then\n    xcrun --sdk macosx swift build -c release --package-path ../MutaroModule/Sources/BuildModule --product swift-format\n    find MutaroApp ../MutaroModule -name \"*.swift\" -not -name \"Package.swift\" -not -path \"*/XCFrameworks/*\" -not -path \"*/.build/*\" | xargs ../MutaroModule/.build/release/swift-format format -i -r --ignore-unparsable-files -p --configuration ../.swift-format\nfi\n";
 		};
 		715E95C9295CD26500AD6331 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -331,6 +332,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"../.swift-format",
 			);
 			name = "Run SwiftLint";
 			outputFileListPaths = (
@@ -339,7 +341,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ $CONFIGURATION = \"Debug\" ]]; then\n    xcrun --sdk macosx swift build -c release --package-path ../MutaroModule/Sources/BuildModule --product swift-format\n    # find MutaroApp -name \"*.swift\" -not -name \"Package.swift\" | xargs env -i PATH=\\\"$PATH\\\" ../MutaroModule/.build/release/swift-format lint -r -s -p\nfi\n";
+			shellScript = "if [[ $CONFIGURATION = \"Debug\" ]]; then\n    xcrun --sdk macosx swift build -c release --package-path ../MutaroModule/Sources/BuildModule --product swift-format\n        find MutaroApp ../MutaroModule -name \"*.swift\" -not -name \"Package.swift\" -not -path \"*/XCFrameworks/*\" -not -path \"*/.build/*\" | xargs ../MutaroModule/.build/release/swift-format lint -r -s -p --configuration ../.swift-format\nfi\n";
 		};
 		715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -349,6 +351,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/$(PRODUCT_NAME)/Resources/Info.plist",
 			);
 			name = "Run FirebaseCrashlytics";
 			outputFileListPaths = (
@@ -357,7 +360,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# ../MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
+			shellScript = "../MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
