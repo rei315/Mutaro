@@ -8,5 +8,5 @@
 - Xcode 14.1 (Swift 5)
 
 ## Configuration
-- UI Imp: Rrogrammatically UI
+- UI Imp: Programmatically UI
 - Architecture: MVVM
