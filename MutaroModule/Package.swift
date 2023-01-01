@@ -21,13 +21,6 @@ let firebaseAnalyticsDependencies: [Target.Dependency] = [
     "nanopb",
 ]
 
-let rxSwiftDependencies: [Target.Dependency] = [
-    "RxBlocking",
-    "RxCocoa",
-    "RxRelay",
-    "RxSwift",
-]
-
 let package = Package(
     name: "MutaroModule",
     platforms: [
@@ -47,12 +40,12 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-format", branch: "main")
+        .package(url: "https://github.com/apple/swift-format", branch: "main"),
     ],
     targets: [
         .target(
             name: "AppModule",
-            dependencies: rxSwiftDependencies
+            dependencies: []
         ),
         .target(
             name: "BuildModule",
@@ -112,22 +105,6 @@ let package = Package(
         .binaryTarget(
             name: "nanopb",
             path: "XCFrameworks/Firebase/FirebaseAnalytics/nanopb.xcframework"
-        ),                
-        .binaryTarget(
-            name: "RxSwift",
-            path: "XCFrameworks/RxSwift/RxSwift.xcframework"
         ),
-        .binaryTarget(
-            name: "RxCocoa",
-            path: "XCFrameworks/RxSwift/RxCocoa.xcframework"
-        ),
-        .binaryTarget(
-            name: "RxRelay",
-            path: "XCFrameworks/RxSwift/RxRelay.xcframework"
-        ),
-        .binaryTarget(
-            name: "RxBlocking",
-            path: "XCFrameworks/RxSwift/RxBlocking.xcframework"
-        ),        
     ]
 )

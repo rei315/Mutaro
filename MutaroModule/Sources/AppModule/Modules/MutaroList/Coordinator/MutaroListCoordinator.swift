@@ -9,15 +9,21 @@ import UIKit
 
 @MainActor
 public final class MutaroListCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    var childCoordinators: [Coordinator]
 
-    public init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        childCoordinators = []
     }
 
     public func start() {
         let vc = MutaroListViewController()
+        vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
+    }
+
+    public func tapMutaroPhoto() {
+
     }
 }

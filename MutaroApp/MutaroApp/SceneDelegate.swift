@@ -11,7 +11,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var coordinator: MutaroListCoordinator?
+    var coordinator: AppCoordinator?
 
     func scene(
         _ scene: UIScene, willConnectTo session: UISceneSession,
@@ -20,12 +20,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
-        let navController = UINavigationController()
-        coordinator = MutaroListCoordinator(navigationController: navController)
-        coordinator?.start()
+        setupNavigationBarStyle()
 
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
+
+        let navController = UINavigationController()
+        navController.isNavigationBarHidden = true
+        coordinator = AppCoordinator(navigationController: navController)
+        coordinator?.start()
+
         window?.rootViewController = navController
     }
 
@@ -57,4 +61,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+}
+
+extension SceneDelegate {
+    func setupNavigationBarStyle() {
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+                        UINavigationBar.appearance().standardAppearance = appearance
+                        UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
+    }
 }
