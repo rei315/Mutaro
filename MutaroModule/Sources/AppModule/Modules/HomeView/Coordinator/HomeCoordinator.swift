@@ -67,7 +67,9 @@ final class HomeCoordinator: NSObject, Coordinator {
             image: nil,
             selectedImage: nil
         )
-        navController.setNavigationBarHidden(false, animated: false)
+        navController.navigationBar.tintColor = AppColor.darkGrey.toColor()
+        navController.navigationBar.prefersLargeTitles = true
+        navController.navigationItem.largeTitleDisplayMode = .always
         return navController
     }
 
@@ -76,16 +78,16 @@ final class HomeCoordinator: NSObject, Coordinator {
             let itemAppearance = UITabBarItemAppearance().apply {
                 $0.normal.iconColor = .brown
                 $0.normal.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor: UIColor.black
+                    NSAttributedString.Key.foregroundColor: AppColor.navy.toColor()
                 ]
-                $0.selected.iconColor = UIColor.blue
+                $0.selected.iconColor = AppColor.black.toColor()
                 $0.selected.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor: UIColor.blue
+                    NSAttributedString.Key.foregroundColor: AppColor.black.toColor()
                 ]
             }
             let barAppearance = UITabBarAppearance().apply {
                 $0.configureWithOpaqueBackground()
-                $0.backgroundColor = UIColor.white
+                $0.backgroundColor = AppColor.white.toColor()
                 $0.inlineLayoutAppearance = itemAppearance
                 $0.stackedLayoutAppearance = itemAppearance
                 $0.compactInlineLayoutAppearance = itemAppearance
