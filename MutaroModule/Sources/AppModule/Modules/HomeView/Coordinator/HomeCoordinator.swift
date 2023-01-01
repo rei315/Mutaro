@@ -35,12 +35,16 @@ final class HomeCoordinator: NSObject, Coordinator {
     }
 
     func start() {
-        let pages: [HomeTabPage] = [.mutaroList, .setting]
-        let controllers: [UINavigationController] = pages.map {
-            createController($0)
+        Task { @MainActor in
+            let mutaroController = await createController(.mutaroList)
+            let settingController = await createController(.setting)
+            let controllers: [UINavigationController] = [
+                mutaroController,
+                settingController,
+            ]
+            createHomeTabController(controllers)
+            setupTabBar()
         }
-        createHomeTabController(controllers)
-        setupTabBar()
     }
 
     private func createHomeTabController(_ tabControllers: [UIViewController]) {
@@ -51,23 +55,58 @@ final class HomeCoordinator: NSObject, Coordinator {
         navigationController.viewControllers = [tabBarController]
     }
 
-    private func createController(_ page: HomeTabPage) -> UINavigationController {
+    private func createController(_ page: HomeTabPage) async -> UINavigationController {
         let navController: UINavigationController
+        let tabBarItem: UITabBarItem
+
+        let normalTabImageColor = AppColor.navy.toColor()
+        let normalImageConfiguration = UIImage.SymbolConfiguration(
+            hierarchicalColor: normalTabImageColor
+        )
+
+        let selectedTabImageColor = AppColor.turquoise.toColor()
+        let selectedImageConfiguration = UIImage.SymbolConfiguration(
+            hierarchicalColor: selectedTabImageColor
+        )
 
         switch page {
         case .mutaroList:
             let mutaroListVC = MutaroListViewController()
             navController = UINavigationController(rootViewController: mutaroListVC)
+            let imageName = "text.below.photo"
+            let tabImage = UIImage(
+                systemName: imageName,
+                withConfiguration: normalImageConfiguration
+            )
+            let selectedTabImage = UIImage(
+                systemName: imageName,
+                withConfiguration: selectedImageConfiguration
+            )
+            tabBarItem = UITabBarItem(
+                title: page.title,
+                image: tabImage,
+                selectedImage: selectedTabImage
+            )
         case .setting:
             let settingVC = SettingViewController()
+            settingVC.title = page.title
             navController = UINavigationController(rootViewController: settingVC)
+            let imageName = "gear"
+            let tabImage = UIImage(
+                systemName: imageName,
+                withConfiguration: normalImageConfiguration
+            )
+            let selectedTabImage = UIImage(
+                systemName: imageName,
+                withConfiguration: selectedImageConfiguration
+            )
+            tabBarItem = UITabBarItem(
+                title: page.title,
+                image: tabImage,
+                selectedImage: selectedTabImage
+            )
         }
-        navController.tabBarItem = UITabBarItem(
-            title: page.title,
-            image: nil,
-            selectedImage: nil
-        )
-        navController.navigationBar.tintColor = AppColor.darkGrey.toColor()
+        navController.tabBarItem = tabBarItem
         navController.navigationBar.prefersLargeTitles = true
         navController.navigationItem.largeTitleDisplayMode = .always
         return navController

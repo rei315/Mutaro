@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let navController = UINavigationController().apply {
             $0.isNavigationBarHidden = true
-            $0.navigationBar.tintColor = AppColor.darkGrey.toColor()
         }
         coordinator = AppCoordinator(navigationController: navController)
         coordinator?.start()

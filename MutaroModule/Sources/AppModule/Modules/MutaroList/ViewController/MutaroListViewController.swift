@@ -34,7 +34,7 @@ public class MutaroListViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "mutaro-title"
+        title = HomeTabPage.mutaroList.title
 
         setupCollectionView()
         setupDefaultSnapshot()
