@@ -9,7 +9,6 @@ import AppModule
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
     var coordinator: AppCoordinator?
 
@@ -25,8 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
 
-        let navController = UINavigationController()
-        navController.isNavigationBarHidden = true
+        let navController = UINavigationController().apply {
+            $0.isNavigationBarHidden = true
+            $0.navigationBar.tintColor = AppColor.darkGrey.toColor()
+        }
         coordinator = AppCoordinator(navigationController: navController)
         coordinator?.start()
 
@@ -65,12 +66,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func setupNavigationBarStyle() {
-        if #available(iOS 15, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithDefaultBackground()
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().compactAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        let titleColor = AppColor.black.toColor()
+        let appearance = UINavigationBarAppearance().apply {
+            $0.largeTitleTextAttributes = [
+                .foregroundColor: titleColor,
+                .font: UIFont.systemFont(ofSize: 32, weight: .bold),
+            ]
+            $0.backgroundColor = AppColor.white.toColor()
+            $0.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: titleColor
+            ]
         }
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 }

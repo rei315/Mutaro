@@ -9,15 +9,15 @@ import CoreLocation
 import Foundation
 import UIKit
 
-protocol Applicable {}
+public protocol Applicable {}
 extension Applicable {
     @discardableResult
-    func apply(block: (Self) -> Void) -> Self {
+    public func apply(block: (Self) -> Void) -> Self {
         block(self)
         return self
     }
 
-    func lets<R>(block: (Self) -> R) -> R {
+    public func lets<R>(block: (Self) -> R) -> R {
         return block(self)
     }
 }

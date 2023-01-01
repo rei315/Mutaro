@@ -34,7 +34,8 @@ public class MutaroListViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationItem.title = "mutaro"
+        title = "mutaro-title"
+
         setupCollectionView()
         setupDefaultSnapshot()
         setupSubscription()
@@ -62,7 +63,7 @@ extension MutaroListViewController {
             $0.registerClass(withType: MutaroListCollectionViewCell.self)
             view.addSubview($0)
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
