@@ -13,11 +13,11 @@ protocol MutaroListViewModelProtocol {
 }
 
 final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
-    let mutaroItems = CurrentValueSubject<[String], Never>([])
+    @Published var mutaroItems: [String] = []
 
     var cancellables: Set<AnyCancellable> = []
 
     func fetchMutaroItems() {
-        mutaroItems.send(["mu", "mutaro", "mumu", "mu?", "nyaong"])
+        mutaroItems = ["mu", "mutaro", "mumu", "mu?", "nyaong"]
     }
 }

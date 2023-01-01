@@ -44,7 +44,7 @@ public class MutaroListViewController: UIViewController {
     }
 
     private func setupSubscription() {
-        viewModel.mutaroItems
+        viewModel.$mutaroItems
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.updateSnapshot($0)
@@ -60,7 +60,7 @@ extension MutaroListViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.dataSource = dataSource
             $0.delegate = self
-            $0.registerClass(withType: MutaroListCollectionViewCell.self)
+            $0.registerClass(withType: MutaroListHorizontalPhotoCell.self)
             view.addSubview($0)
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
@@ -80,9 +80,9 @@ extension MutaroListViewController {
     private func updateSnapshot(_ items: [String]) {
         var snapshot = dataSource.snapshot()
         let mutaroRows: [MutaroListRow] = items.indices.map {
-            MutaroListRow.mutaroPhotos(index: $0)
+            MutaroListRow.mutaroHorizontalPhoto(index: $0)
         }
-        snapshot.appendItems(mutaroRows, toSection: .mutaroHorizontalView)
+        snapshot.appendItems(mutaroRows, toSection: .mutaroHorizontalPhotos)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -93,7 +93,7 @@ extension MutaroListViewController {
             }
             let section = self.dataSource.sectionIdentifier(for: sectionIndex)
             switch section {
-            case .mutaroHorizontalView:
+            case .mutaroHorizontalPhotos:
                 let item = NSCollectionLayoutItem(
                     layoutSize: .init(
                         widthDimension: .fractionalWidth(1),
@@ -134,23 +134,23 @@ extension MutaroListViewController: UICollectionViewDelegate {
 
 extension MutaroListViewController {
     enum MutaroListSection: Hashable, CaseIterable {
-        case mutaroHorizontalView
+        case mutaroHorizontalPhotos
         case mutaroInfo
         case mutaroVerticalPhotos
     }
 
     enum MutaroListRow: Hashable {
-        case mutaroHorizontalView
+        case mutaroHorizontalPhoto(index: Int)
         case mutaroInfo
-        case mutaroPhotos(index: Int)
+        case mutaroPhoto(index: Int)
     }
 
     func cellProvider(collectionView: UICollectionView, indexPath: IndexPath, item: MutaroListRow)
         -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(
-            withType: MutaroListCollectionViewCell.self, for: indexPath)
-        cell.backgroundColor = .blue.withAlphaComponent(0.2)
+            withType: MutaroListHorizontalPhotoCell.self, for: indexPath)
+        cell.configureCell(imageType: .mutaro0)
         return cell
     }
 }

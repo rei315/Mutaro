@@ -52,6 +52,25 @@ public final actor ImageCacheManager {
         return image.downsample(imageAt: fileUrl, to: size)
     }
 
+    public func loadImage(for fileType: ImageContentPathProvider.ContentFileType, size: CGSize)
+        -> UIImage?
+    {
+        guard let fileUrl = ImageContentPathProvider.url(type: fileType) else {
+            return nil
+        }
+        if let imageFromCache = imageCache.object(forKey: fileUrl as AnyObject) as? UIImage {
+            return imageFromCache
+        }
+
+        guard let image = loadImageFromResource(for: fileUrl) else {
+            return nil
+        }
+        insertImage(image, for: fileUrl)
+
+        //        return image.downsample(imageAt: fileUrl, to: size)
+        return image
+    }
+
     private func loadImageFromResource(for url: URL) -> UIImage? {
         do {
             let data = try Data(contentsOf: url)
