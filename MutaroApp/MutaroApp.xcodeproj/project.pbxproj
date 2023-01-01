@@ -146,12 +146,12 @@
 			buildConfigurationList = 715E95AD295CC20A00AD6331 /* Build configuration list for PBXNativeTarget "MutaroApp" */;
 			buildPhases = (
 				715E957F295CC20800AD6331 /* Sources */,
+				715E9580295CC20800AD6331 /* Frameworks */,
+				715E9581295CC20800AD6331 /* Resources */,
 				715E95C8295CD25000AD6331 /* Run SwiftFormat */,
 				715E95C9295CD26500AD6331 /* Run SwiftLint */,
-				715E9580295CC20800AD6331 /* Frameworks */,
 				715E95C7295CD1AC00AD6331 /* Run LicensePlist */,
 				715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */,
-				715E9581295CC20800AD6331 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -352,7 +352,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#../MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
+			shellScript = "../MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -530,9 +530,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PN7XF377XF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MutaroApp/Info.plist;
+				INFOPLIST_FILE = MutaroApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
@@ -552,6 +553,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -567,7 +569,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PN7XF377XF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MutaroApp/Info.plist;
+				INFOPLIST_FILE = MutaroApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
@@ -587,6 +589,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

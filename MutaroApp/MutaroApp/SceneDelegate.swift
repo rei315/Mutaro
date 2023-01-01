@@ -68,8 +68,8 @@ extension SceneDelegate {
         if #available(iOS 15, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithDefaultBackground()
-                        UINavigationBar.appearance().standardAppearance = appearance
-                        UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
     }

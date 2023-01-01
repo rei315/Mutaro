@@ -8,26 +8,10 @@
 import UIKit
 
 public class MutaroListViewController: UIViewController {
-    private let compositionalLayout: UICollectionViewCompositionalLayout = {
-        let fraction: CGFloat = 1 / 3
-
-        // Item
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(fraction), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        // Group
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(fraction))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-
-        // Section
-        let section = NSCollectionLayoutSection(group: group)
-        return UICollectionViewCompositionalLayout(section: section)
-    }()
-
     private lazy var collectionView: UICollectionView = .init(
-        frame: .zero, collectionViewLayout: compositionalLayout)
+        frame: .zero,
+        collectionViewLayout: createLayout()
+    )
 
     private lazy var dataSource:
         UICollectionViewDiffableDataSource<MutaroListSection, MutaroListRow> = .init(
@@ -54,6 +38,8 @@ public class MutaroListViewController: UIViewController {
         setupCollectionView()
         setupDefaultSnapshot()
         setupSubscription()
+
+        viewModel.fetchMutaroItems()
     }
 
     private func setupSubscription() {
@@ -93,10 +79,47 @@ extension MutaroListViewController {
     private func updateSnapshot(_ items: [String]) {
         var snapshot = dataSource.snapshot()
         let mutaroRows: [MutaroListRow] = items.indices.map {
-            MutaroListRow.mutaroPhoto(index: $0)
+            MutaroListRow.mutaroPhotos(index: $0)
         }
-        snapshot.appendItems(mutaroRows, toSection: .mutaroPhotos)
+        snapshot.appendItems(mutaroRows, toSection: .mutaroHorizontalView)
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
+            guard let self = self else {
+                return nil
+            }
+            let section = self.dataSource.sectionIdentifier(for: sectionIndex)
+            switch section {
+            case .mutaroHorizontalView:
+                let item = NSCollectionLayoutItem(
+                    layoutSize: .init(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .fractionalHeight(1)
+                    )
+                )
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: .init(
+                        widthDimension: .absolute(70),
+                        heightDimension: .absolute(70)
+                    ),
+                    subitems: [item]
+                )
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
+                section.interGroupSpacing = 10
+                section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+                return section
+            case .mutaroInfo:
+                return nil
+            case .mutaroVerticalPhotos:
+                return nil
+            case .none:
+                return nil
+            }
+        }
     }
 }
 
@@ -110,13 +133,15 @@ extension MutaroListViewController: UICollectionViewDelegate {
 
 extension MutaroListViewController {
     enum MutaroListSection: Hashable, CaseIterable {
+        case mutaroHorizontalView
         case mutaroInfo
-        case mutaroPhotos
+        case mutaroVerticalPhotos
     }
 
     enum MutaroListRow: Hashable {
+        case mutaroHorizontalView
         case mutaroInfo
-        case mutaroPhoto(index: Int)
+        case mutaroPhotos(index: Int)
     }
 
     func cellProvider(collectionView: UICollectionView, indexPath: IndexPath, item: MutaroListRow)
