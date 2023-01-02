@@ -5,6 +5,7 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
+import ImageModule
 import UIKit
 
 public class MutaroListViewController: UIViewController {
@@ -77,7 +78,7 @@ extension MutaroListViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
-    private func updateSnapshot(_ items: [String]) {
+    private func updateSnapshot(_ items: [Int]) {
         var snapshot = dataSource.snapshot()
         let mutaroRows: [MutaroListRow] = items.indices.map {
             MutaroListRow.mutaroHorizontalPhoto(index: $0)
@@ -94,6 +95,7 @@ extension MutaroListViewController {
             let section = self.dataSource.sectionIdentifier(for: sectionIndex)
             switch section {
             case .mutaroHorizontalPhotos:
+                let fraction: CGFloat = 1 / 5
                 let item = NSCollectionLayoutItem(
                     layoutSize: .init(
                         widthDimension: .fractionalWidth(1),
@@ -102,8 +104,8 @@ extension MutaroListViewController {
                 )
                 let group = NSCollectionLayoutGroup.horizontal(
                     layoutSize: .init(
-                        widthDimension: .absolute(70),
-                        heightDimension: .absolute(70)
+                        widthDimension: .fractionalWidth(fraction),
+                        heightDimension: .fractionalWidth(fraction)
                     ),
                     subitems: [item]
                 )
@@ -148,9 +150,18 @@ extension MutaroListViewController {
     func cellProvider(collectionView: UICollectionView, indexPath: IndexPath, item: MutaroListRow)
         -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(
-            withType: MutaroListHorizontalPhotoCell.self, for: indexPath)
-        cell.configureCell(imageType: .mutaro0)
-        return cell
+        switch item {
+        case let .mutaroHorizontalPhoto(index):
+            let cell = collectionView.dequeueReusableCell(
+                withType: MutaroListHorizontalPhotoCell.self, for: indexPath)
+            if let image = ImageContentPathProvider.ContentFileType(rawValue: index) {
+                cell.configureCell(imageType: image)
+            }
+            return cell
+        case .mutaroInfo:
+            return UICollectionViewCell()
+        case let .mutaroPhoto(index):
+            return UICollectionViewCell()
+        }
     }
 }

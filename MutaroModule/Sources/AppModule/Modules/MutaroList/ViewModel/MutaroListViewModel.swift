@@ -7,17 +7,20 @@
 
 import Combine
 import Foundation
+import ImageModule
 
 protocol MutaroListViewModelProtocol {
 
 }
 
 final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
-    @Published var mutaroItems: [String] = []
+    @Published var mutaroItems: [Int] = []
 
     var cancellables: Set<AnyCancellable> = []
 
     func fetchMutaroItems() {
-        mutaroItems = ["mu", "mutaro", "mumu", "mu?", "nyaong"]
+        let indexes = ImageContentPathProvider.ContentFileType.allCases.indices.map { $0 }
+
+        mutaroItems = indexes
     }
 }

@@ -67,8 +67,7 @@ public final actor ImageCacheManager {
         }
         insertImage(image, for: fileUrl)
 
-        //        return image.downsample(imageAt: fileUrl, to: size)
-        return image
+        return image.downsample(imageAt: fileUrl, to: size)
     }
 
     private func loadImageFromResource(for url: URL) -> UIImage? {

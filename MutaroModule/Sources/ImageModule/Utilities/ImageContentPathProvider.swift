@@ -8,22 +8,17 @@
 import Foundation
 
 public struct ImageContentPathProvider {
-    public enum ContentFileType {
-        case mutaroTab0
-        case mutaroTab1
-
+    public enum ContentFileType: Int, CaseIterable {
         case mutaro0
         case mutaro1
         case mutaro2
         case mutaro3
         case mutaro4
+        case mutaro5
+        case mutaro6
 
         var resourcePath: String {
             switch self {
-            case .mutaroTab0:
-                return "mutaro_tab_0"
-            case .mutaroTab1:
-                return "mutaro_tab_1"
             case .mutaro0:
                 return "mutaro_0"
             case .mutaro1:
@@ -34,6 +29,10 @@ public struct ImageContentPathProvider {
                 return "mutaro_3"
             case .mutaro4:
                 return "mutaro_4"
+            case .mutaro5:
+                return "mutaro_5"
+            case .mutaro6:
+                return "mutaro_6"
             }
         }
     }
