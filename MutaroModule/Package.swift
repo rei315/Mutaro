@@ -37,7 +37,11 @@ let package = Package(
         .library(
             name: "FirebaseSetupModule",
             targets: ["FirebaseSetupModule"]
-        )
+        ),
+        .library(
+            name: "ImageModule",
+            targets: ["ImageModule"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-format", branch: "main"),
@@ -45,7 +49,7 @@ let package = Package(
     targets: [
         .target(
             name: "AppModule",
-            dependencies: []
+            dependencies: ["ImageModule"]
         ),
         .target(
             name: "BuildModule",
@@ -57,6 +61,10 @@ let package = Package(
             linkerSettings: [
                 .unsafeFlags(["-ObjC"]),
             ]
+        ),
+        .target(
+            name: "ImageModule",
+            dependencies: []
         ),
         .binaryTarget(
             name: "FirebaseCrashlytics",

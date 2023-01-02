@@ -19,6 +19,13 @@
 		71F5BC4A2961236D00CCC3F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BC45295CE91300CCC3F8 /* GoogleService-Info.plist */; };
 		71F5BC4B2961236E00CCC3F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BC45295CE91300CCC3F8 /* GoogleService-Info.plist */; };
 		71F5BC4D29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */; };
+		71F5BD0D2961FB2A00CCC3F8 /* mutaro_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */; };
+		71F5BD0F2961FB2A00CCC3F8 /* mutaro_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */; };
+		71F5BD102961FB2A00CCC3F8 /* mutaro_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */; };
+		71F5BD112961FB2A00CCC3F8 /* mutaro_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0A2961FB2A00CCC3F8 /* mutaro_0.png */; };
+		71F5BD122961FB2A00CCC3F8 /* mutaro_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */; };
+		71F5BD132961FB2A00CCC3F8 /* mutaro_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */; };
+		71F5BD152961FE4600CCC3F8 /* mutaro_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD142961FE4600CCC3F8 /* mutaro_5.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,13 @@
 		715E95CA295CD74D00AD6331 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		71F5BC45295CE91300CCC3F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroListViewControllerTests.swift; sourceTree = "<group>"; };
+		71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_6.png; sourceTree = "<group>"; };
+		71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_4.png; sourceTree = "<group>"; };
+		71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_1.png; sourceTree = "<group>"; };
+		71F5BD0A2961FB2A00CCC3F8 /* mutaro_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_0.png; sourceTree = "<group>"; };
+		71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_2.png; sourceTree = "<group>"; };
+		71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_3.png; sourceTree = "<group>"; };
+		71F5BD142961FE4600CCC3F8 /* mutaro_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_5.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +142,7 @@
 		715E95BF295CC35E00AD6331 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */,
 				715E95CA295CD74D00AD6331 /* Settings.bundle */,
 				715E95C5295CD16400AD6331 /* license_plist.yml */,
 				71F5BC45295CE91300CCC3F8 /* GoogleService-Info.plist */,
@@ -136,6 +151,20 @@
 				715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				71F5BD142961FE4600CCC3F8 /* mutaro_5.png */,
+				71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */,
+				71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */,
+				71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */,
+				71F5BD0A2961FB2A00CCC3F8 /* mutaro_0.png */,
+				71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */,
+				71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */,
+			);
+			path = MutaroPhotos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,9 +281,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */,
+				71F5BD0F2961FB2A00CCC3F8 /* mutaro_4.png in Resources */,
+				71F5BD102961FB2A00CCC3F8 /* mutaro_1.png in Resources */,
+				71F5BD122961FB2A00CCC3F8 /* mutaro_2.png in Resources */,
+				71F5BD152961FE4600CCC3F8 /* mutaro_5.png in Resources */,
+				71F5BD0D2961FB2A00CCC3F8 /* mutaro_6.png in Resources */,
 				715E9590295CC20A00AD6331 /* Assets.xcassets in Resources */,
 				71F5BC46295CE91300CCC3F8 /* GoogleService-Info.plist in Resources */,
 				715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */,
+				71F5BD132961FB2A00CCC3F8 /* mutaro_3.png in Resources */,
+				71F5BD112961FB2A00CCC3F8 /* mutaro_0.png in Resources */,
 				715E95C6295CD16400AD6331 /* license_plist.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
