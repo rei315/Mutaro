@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    func fillConstraint(to view: UIView) {
+    public func fillConstraint(to view: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true

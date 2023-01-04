@@ -117,6 +117,7 @@
 		715E9585295CC20800AD6331 /* MutaroApp */ = {
 			isa = PBXGroup;
 			children = (
+				71E191AD2965AC6A0059BB1F /* Common */,
 				715E95BF295CC35E00AD6331 /* Resources */,
 				715E9586295CC20800AD6331 /* AppDelegate.swift */,
 				715E9588295CC20800AD6331 /* SceneDelegate.swift */,
@@ -151,6 +152,13 @@
 				715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		71E191AD2965AC6A0059BB1F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */ = {

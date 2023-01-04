@@ -5,6 +5,7 @@
 //  Created by minguk-kim on 2023/01/01.
 //
 
+import CommonAppModule
 import UIKit
 
 class AppIntroductionViewController: UIViewController {
