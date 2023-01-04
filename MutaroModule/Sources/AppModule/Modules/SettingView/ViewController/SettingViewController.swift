@@ -29,7 +29,7 @@ class SettingViewController: UIViewController {
 
     private func setupTest() {
         Task { @MainActor in
-            await testImageView.loadImage(with: .mutaro0, size: testImageView.frame.size)
+            //            await testImageView.loadImage(with: .mutaro0, size: testImageView.frame.size)
         }
     }
 }

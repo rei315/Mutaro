@@ -9,6 +9,7 @@ import Combine
 import CommonAppModule
 import Foundation
 import ImageModule
+import MutaroApiModule
 import UIKit
 
 protocol MutaroListViewModelProtocol {
@@ -16,38 +17,26 @@ protocol MutaroListViewModelProtocol {
 }
 
 final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
-    @Published var mutaroItems: [Int] = []
+    @Published var mutaroItems: [MutaroModel] = []
 
     var cancellables: Set<AnyCancellable> = []
-    private let networkStatusManager: NetworkStatusManagerProtocol
 
-    init(networkStatusManager: NetworkStatusManagerProtocol = NetworkStatusManager()) {
-        self.networkStatusManager = networkStatusManager
-    }
-
-    func fetchMutaroItems() {
-        Task {
-            // TODO: - MutaroResourceで処理する
-            if await networkStatusManager.isOnline {
-                
-            } else {
-                let indexes = ImageContentPathProvider.ContentFileType.allCases.indices.map { $0 }
-                mutaroItems = indexes
-            }
+    func fetchMutaroItems() async {
+        do {
+            let mutaroDTOs = try await MutaroClient.shared.getMutaros()
+            let mutaroModels = mutaroDTOs.map { MutaroModel(dto: $0) }
+            mutaroItems = mutaroModels
+        } catch {
+            mutaroItems = []
         }
     }
 
     func prefetchHorizontalSectionItem(row: Int) {
         Task {
-            // TODO: - MutaroResourceで処理する
-            if await networkStatusManager.isOnline {
-                
-            } else {
-                guard let type = ImageContentPathProvider.ContentFileType(rawValue: row) else {
-                    return
-                }
-                await UIImage.loadImage(with: type, size: .zero)
-            }
+            //            guard let type = ImageContentPathProvider.ContentFileType(rawValue: row) else {
+            //                return
+            //            }
+            //            await UIImage.loadImage(with: type, size: .zero)
         }
     }
 }
