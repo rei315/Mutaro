@@ -61,6 +61,7 @@ extension MutaroListViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.dataSource = dataSource
             $0.delegate = self
+            $0.prefetchDataSource = self
             $0.registerClass(withType: MutaroListHorizontalPhotoCell.self)
             view.addSubview($0)
             NSLayoutConstraint.activate([
@@ -163,5 +164,27 @@ extension MutaroListViewController {
         case let .mutaroPhoto(index):
             return UICollectionViewCell()
         }
+    }
+}
+
+extension MutaroListViewController: UICollectionViewDataSourcePrefetching {
+    public func collectionView(
+        _ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]
+    ) {
+        indexPaths.forEach {
+            let item = dataSource.itemIdentifier(for: $0)
+            switch item {
+            case let .mutaroHorizontalPhoto(index):
+                viewModel.prefetchHorizontalSectionItem(row: index)
+                break
+            case .mutaroInfo:
+                break
+            case let .mutaroPhoto(index):
+                break
+            case .none:
+                break
+            }
+        }
+
     }
 }

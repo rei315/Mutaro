@@ -10,6 +10,10 @@ import UIKit
 
 extension UIImage {
     public func downsample(imageAt imageURL: URL, to pointSize: CGSize) -> UIImage? {
+        guard pointSize != .zero else {
+            return nil
+        }
+
         let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
         guard
             let imageSource = CGImageSourceCreateWithURL(
