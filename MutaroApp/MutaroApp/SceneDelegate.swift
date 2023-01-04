@@ -6,6 +6,7 @@
 //
 
 import AppModule
+import CommonAppModule
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

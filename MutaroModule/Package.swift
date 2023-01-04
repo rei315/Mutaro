@@ -32,6 +32,9 @@ let package = Package(
             name: "AppModule",
             targets: ["AppModule"]),
         .library(
+            name: "CommonAppModule",
+            targets: ["CommonAppModule"]),
+        .library(
             name: "BuildModule",
             targets: ["BuildModule"]),
         .library(
@@ -49,7 +52,11 @@ let package = Package(
     targets: [
         .target(
             name: "AppModule",
-            dependencies: ["ImageModule"]
+            dependencies: ["ImageModule", "CommonAppModule"]
+        ),
+        .target(
+            name: "CommonAppModule",
+            dependencies: []
         ),
         .target(
             name: "BuildModule",

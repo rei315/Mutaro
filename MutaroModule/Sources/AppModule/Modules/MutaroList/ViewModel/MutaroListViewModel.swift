@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CommonAppModule
 import Foundation
 import ImageModule
 import UIKit

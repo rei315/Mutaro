@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIButton {
-    func updateAction(_ targetEvent: UIControl.Event, action: @escaping () -> Void) {
+    public func updateAction(_ targetEvent: UIControl.Event, action: @escaping () -> Void) {
         enumerateEventHandlers { action, targetAction, event, stop in
             guard targetEvent == event else {
                 return

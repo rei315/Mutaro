@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum UserDefaultsKey: String {
+public enum UserDefaultsKey: String {
     case notFirstAppLaunching = "Mutaro_Not_First_App_Launching"
 }
