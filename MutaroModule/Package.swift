@@ -45,6 +45,10 @@ let package = Package(
             name: "ImageModule",
             targets: ["ImageModule"]
         ),
+        .library(
+            name: "MutaroApiModule",
+            targets: ["MutaroApiModule"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-format", branch: "main"),
@@ -52,10 +56,14 @@ let package = Package(
     targets: [
         .target(
             name: "AppModule",
-            dependencies: ["ImageModule", "CommonAppModule"]
+            dependencies: ["ImageModule", "CommonAppModule", "MutaroApiModule"]
         ),
         .target(
             name: "CommonAppModule",
+            dependencies: []
+        ),
+        .target(
+            name: "MutaroApiModule",
             dependencies: []
         ),
         .target(

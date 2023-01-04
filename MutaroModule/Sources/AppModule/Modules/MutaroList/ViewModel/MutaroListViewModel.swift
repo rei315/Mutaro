@@ -19,19 +19,35 @@ final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
     @Published var mutaroItems: [Int] = []
 
     var cancellables: Set<AnyCancellable> = []
+    private let networkStatusManager: NetworkStatusManagerProtocol
+
+    init(networkStatusManager: NetworkStatusManagerProtocol = NetworkStatusManager()) {
+        self.networkStatusManager = networkStatusManager
+    }
 
     func fetchMutaroItems() {
-        let indexes = ImageContentPathProvider.ContentFileType.allCases.indices.map { $0 }
-
-        mutaroItems = indexes
+        Task {
+            // TODO: - MutaroResourceで処理する
+            if await networkStatusManager.isOnline {
+                
+            } else {
+                let indexes = ImageContentPathProvider.ContentFileType.allCases.indices.map { $0 }
+                mutaroItems = indexes
+            }
+        }
     }
 
     func prefetchHorizontalSectionItem(row: Int) {
         Task {
-            guard let type = ImageContentPathProvider.ContentFileType(rawValue: row) else {
-                return
+            // TODO: - MutaroResourceで処理する
+            if await networkStatusManager.isOnline {
+                
+            } else {
+                guard let type = ImageContentPathProvider.ContentFileType(rawValue: row) else {
+                    return
+                }
+                await UIImage.loadImage(with: type, size: .zero)
             }
-            await UIImage.loadImage(with: type, size: .zero)
         }
     }
 }
