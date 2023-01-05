@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import MutaroApiModule
+import MutaroClientModule
 
 public struct MutaroModel {
     public let id: Int

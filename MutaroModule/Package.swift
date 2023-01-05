@@ -59,8 +59,8 @@ let package = Package(
             targets: ["ImageModule"]
         ),
         .library(
-            name: "MutaroApiModule",
-            targets: ["MutaroApiModule"]
+            name: "MutaroClientModule",
+            targets: ["MutaroClientModule"]
         ),
     ],
     dependencies: [
@@ -69,14 +69,14 @@ let package = Package(
     targets: [
         .target(
             name: "AppModule",
-            dependencies: ["ImageModule", "CommonAppModule", "MutaroApiModule"]
+            dependencies: ["ImageModule", "CommonAppModule", "MutaroClientModule"]
         ),
         .target(
             name: "CommonAppModule",
             dependencies: ["ImageModule"]
         ),
         .target(
-            name: "MutaroApiModule",
+            name: "MutaroClientModule",
             dependencies: firebaseFirestoreDependencies + firebaseAnalyticsDependencies + ["CommonAppModule"],
             linkerSettings: [
                 .unsafeFlags(["-ObjC"]),

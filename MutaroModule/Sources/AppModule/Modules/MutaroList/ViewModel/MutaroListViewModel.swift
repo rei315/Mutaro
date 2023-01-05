@@ -9,21 +9,21 @@ import Combine
 import CommonAppModule
 import Foundation
 import ImageModule
-import MutaroApiModule
+import MutaroClientModule
 import UIKit
 
 protocol MutaroListViewModelProtocol {
-
+    func fetchMutaroItems() async
 }
 
-final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
+public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
     @Published var mutaroItems: [MutaroModel] = []
 
     var cancellables: Set<AnyCancellable> = []
 
     func fetchMutaroItems() async {
         do {
-            let mutaroDTOs = try await MutaroClient.shared.getMutaros()
+            let mutaroDTOs = try await MutaroClient.MutaroDetailResource.getMutaros()
             let mutaroModels = mutaroDTOs.map { MutaroModel(dto: $0) }
             mutaroItems = mutaroModels
         } catch {

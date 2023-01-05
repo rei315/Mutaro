@@ -16,10 +16,6 @@ public enum MutaroContentType: Int, CaseIterable, ContentFileType {
     case mutaro5
     case mutaro6
 
-    public var allCases: Int {
-        self.allCases
-    }
-
     public var resourcePath: String {
         switch self {
         case .mutaro0:
