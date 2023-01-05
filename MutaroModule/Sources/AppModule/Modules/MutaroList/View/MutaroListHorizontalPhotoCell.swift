@@ -13,8 +13,8 @@ class MutaroListHorizontalPhotoCell: UICollectionViewCell {
     private let imageView: UIImageView = .init()
 
     private let rectSubject = CurrentValueSubject<CGSize?, Never>(nil)
-    private let imageSubject = CurrentValueSubject<
-        String?, Never
+    private let mutaroDetailSubject = CurrentValueSubject<
+        MutaroModel?, Never
     >(nil)
 
     private var cancellables: Set<AnyCancellable> = []
@@ -39,10 +39,10 @@ class MutaroListHorizontalPhotoCell: UICollectionViewCell {
     private func setupSubscription() {
         rectSubject
             .compactMap { $0 }
-            .zip(imageSubject.compactMap { $0 })
+            .zip(mutaroDetailSubject.compactMap { $0 })
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] (size, path) in
-                self?.setupImage(size, path)
+            .sink { [weak self] (size, detail) in
+                self?.setupImage(size, detail.imageUrl)
             }
             .store(in: &cancellables)
     }
@@ -56,13 +56,13 @@ class MutaroListHorizontalPhotoCell: UICollectionViewCell {
         }
     }
 
-    func configureCell(imagePath: String) {
-        imageSubject.send(imagePath)
+    func configureCell(mutaroDetail: MutaroModel) {
+        mutaroDetailSubject.send(mutaroDetail)
     }
 
     private func setupImage(_ size: CGSize, _ path: String) {
         Task { @MainActor in
-            await imageView.loadImage(with: path, size: size)
+            await imageView.loadImage(urlString: path, size: size)
         }
     }
 }

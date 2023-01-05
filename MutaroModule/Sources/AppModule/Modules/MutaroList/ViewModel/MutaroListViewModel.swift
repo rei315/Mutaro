@@ -33,10 +33,8 @@ public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
 
     func prefetchHorizontalSectionItem(row: Int) {
         Task {
-            //            guard let type = ImageContentPathProvider.ContentFileType(rawValue: row) else {
-            //                return
-            //            }
-            //            await UIImage.loadImage(with: type, size: .zero)
+            let imageUrl = mutaroItems[row].imageUrl
+            await UIImage.loadImage(urlString: imageUrl, size: .zero)
         }
     }
 }
