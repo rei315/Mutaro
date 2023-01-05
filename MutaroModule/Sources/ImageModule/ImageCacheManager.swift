@@ -32,51 +32,15 @@ public final actor ImageCacheManager {
         self.config = config
     }
 
-    private func insertImage(_ image: UIImage, for url: URL) {
+    public func insertImage(_ image: UIImage, for url: URL) {
         imageCache.setObject(image, forKey: url as AnyObject)
     }
 
-    public func loadImage(for fileName: String, size: CGSize) -> UIImage? {
-        guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
+    public func getCachedImage(fileUrl: URL) -> UIImage? {
+        guard let imageFromCache = imageCache.object(forKey: fileUrl as AnyObject) as? UIImage
+        else {
             return nil
         }
-        if let imageFromCache = imageCache.object(forKey: fileUrl as AnyObject) as? UIImage {
-            return imageFromCache
-        }
-
-        guard let image = loadImageFromResource(for: fileUrl) else {
-            return nil
-        }
-        insertImage(image, for: fileUrl)
-
-        return image.downsample(imageAt: fileUrl, to: size)
-    }
-
-    public func loadImage(for fileType: ImageContentPathProvider.ContentFileType, size: CGSize)
-        -> UIImage?
-    {
-        guard let fileUrl = ImageContentPathProvider.url(type: fileType) else {
-            return nil
-        }
-        if let imageFromCache = imageCache.object(forKey: fileUrl as AnyObject) as? UIImage {
-            return imageFromCache
-        }
-
-        guard let image = loadImageFromResource(for: fileUrl) else {
-            return nil
-        }
-        insertImage(image, for: fileUrl)
-
-        return image.downsample(imageAt: fileUrl, to: size)
-    }
-
-    private func loadImageFromResource(for url: URL) -> UIImage? {
-        do {
-            let data = try Data(contentsOf: url)
-            let image = UIImage(data: data)
-            return image
-        } catch {
-            return nil
-        }
+        return imageFromCache
     }
 }

@@ -10,16 +10,12 @@ import UIKit
 
 extension UIImage {
     @discardableResult
-    public static func loadImage(with fileName: String, size: CGSize) async -> UIImage? {
-        await ImageCacheManager.shared.loadImage(for: fileName, size: size)
+    public static func loadImage(fileName: String, size: CGSize) async -> UIImage? {
+        await ImageLoadManager.shared.loadImage(for: fileName, size: size)
     }
 
     @discardableResult
-    public static func loadImage(
-        with fileType: ImageContentPathProvider.ContentFileType, size: CGSize
-    )
-        async -> UIImage?
-    {
-        await ImageCacheManager.shared.loadImage(for: fileType, size: size)
+    public static func loadImage(urlString: String, size: CGSize) async -> UIImage? {
+        await ImageLoadManager.shared.downloadImage(with: urlString, size: size)
     }
 }

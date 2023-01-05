@@ -21,6 +21,19 @@ let firebaseAnalyticsDependencies: [Target.Dependency] = [
     "nanopb",
 ]
 
+let firebaseFirestoreDependencies: [Target.Dependency] = [
+    "BoringSSL-GRPC",
+    "FirebaseCoreExtension",
+    "FirebaseFirestore",
+    "FirebaseFirestoreSwift",
+    "FirebaseSharedSwift",
+    "Libuv-gRPC",
+    "abseil",
+    "gRPC-C++",
+    "gRPC-Core",
+    "leveldb-library",
+]
+
 let package = Package(
     name: "MutaroModule",
     platforms: [
@@ -45,6 +58,10 @@ let package = Package(
             name: "ImageModule",
             targets: ["ImageModule"]
         ),
+        .library(
+            name: "MutaroClientModule",
+            targets: ["MutaroClientModule"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-format", branch: "main"),
@@ -52,11 +69,18 @@ let package = Package(
     targets: [
         .target(
             name: "AppModule",
-            dependencies: ["ImageModule", "CommonAppModule"]
+            dependencies: ["ImageModule", "CommonAppModule", "MutaroClientModule"]
         ),
         .target(
             name: "CommonAppModule",
-            dependencies: []
+            dependencies: ["ImageModule"]
+        ),
+        .target(
+            name: "MutaroClientModule",
+            dependencies: firebaseFirestoreDependencies + firebaseAnalyticsDependencies + ["CommonAppModule"],
+            linkerSettings: [
+                .unsafeFlags(["-ObjC"]),
+            ]
         ),
         .target(
             name: "BuildModule",
@@ -120,6 +144,46 @@ let package = Package(
         .binaryTarget(
             name: "nanopb",
             path: "XCFrameworks/Firebase/FirebaseAnalytics/nanopb.xcframework"
+        ),
+        .binaryTarget(
+            name: "BoringSSL-GRPC",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/BoringSSL-GRPC.xcframework"
+        ),
+        .binaryTarget(
+            name: "FirebaseCoreExtension",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/FirebaseCoreExtension.xcframework"
+        ),
+        .binaryTarget(
+            name: "FirebaseFirestore",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/FirebaseFirestore.xcframework"
+        ),
+        .binaryTarget(
+            name: "FirebaseFirestoreSwift",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/FirebaseFirestoreSwift.xcframework"
+        ),
+        .binaryTarget(
+            name: "FirebaseSharedSwift",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/FirebaseSharedSwift.xcframework"
+        ),
+        .binaryTarget(
+            name: "Libuv-gRPC",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/Libuv-gRPC.xcframework"
+        ),
+        .binaryTarget(
+            name: "abseil",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/abseil.xcframework"
+        ),
+        .binaryTarget(
+            name: "gRPC-C++",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/gRPC-C++.xcframework"
+        ),
+        .binaryTarget(
+            name: "gRPC-Core",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/gRPC-Core.xcframework"
+        ),
+        .binaryTarget(
+            name: "leveldb-library",
+            path: "XCFrameworks/Firebase/FirebaseFirestore/leveldb-library.xcframework"
         ),
     ]
 )

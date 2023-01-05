@@ -9,29 +9,32 @@ import Combine
 import CommonAppModule
 import Foundation
 import ImageModule
+import MutaroClientModule
 import UIKit
 
 protocol MutaroListViewModelProtocol {
-
+    func fetchMutaroItems() async
 }
 
-final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
-    @Published var mutaroItems: [Int] = []
+public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
+    @Published var mutaroItems: [MutaroModel] = []
 
     var cancellables: Set<AnyCancellable> = []
 
-    func fetchMutaroItems() {
-        let indexes = ImageContentPathProvider.ContentFileType.allCases.indices.map { $0 }
-
-        mutaroItems = indexes
+    func fetchMutaroItems() async {
+        do {
+            let mutaroDTOs = try await MutaroClient.MutaroDetailResource.getMutaros()
+            let mutaroModels = mutaroDTOs.map { MutaroModel(dto: $0) }
+            mutaroItems = mutaroModels
+        } catch {
+            mutaroItems = []
+        }
     }
 
     func prefetchHorizontalSectionItem(row: Int) {
         Task {
-            guard let type = ImageContentPathProvider.ContentFileType(rawValue: row) else {
-                return
-            }
-            await UIImage.loadImage(with: type, size: .zero)
+            let imageUrl = mutaroItems[row].imageUrl
+            await UIImage.loadImage(urlString: imageUrl, size: .zero)
         }
     }
 }

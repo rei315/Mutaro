@@ -42,7 +42,9 @@ public class MutaroListViewController: UIViewController {
         setupDefaultSnapshot()
         setupSubscription()
 
-        viewModel.fetchMutaroItems()
+        Task {
+            await viewModel.fetchMutaroItems()
+        }
     }
 
     private func setupSubscription() {
@@ -80,7 +82,7 @@ extension MutaroListViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
-    private func updateSnapshot(_ items: [Int]) {
+    private func updateSnapshot(_ items: [MutaroModel]) {
         var snapshot = dataSource.snapshot()
         let mutaroRows: [MutaroListRow] = items.indices.map {
             MutaroListRow.mutaroHorizontalPhoto(index: $0)
@@ -156,8 +158,8 @@ extension MutaroListViewController {
         case let .mutaroHorizontalPhoto(index):
             let cell = collectionView.dequeueReusableCell(
                 withType: MutaroListHorizontalPhotoCell.self, for: indexPath)
-            if let image = ImageContentPathProvider.ContentFileType(rawValue: index) {
-                cell.configureCell(imageType: image)
+            if let detail = viewModel.mutaroItems[getOrNil: index] {
+                cell.configureCell(mutaroDetail: detail)
             }
             return cell
         case .mutaroInfo:
@@ -186,6 +188,5 @@ extension MutaroListViewController: UICollectionViewDataSourcePrefetching {
                 break
             }
         }
-
     }
 }
