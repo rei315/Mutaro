@@ -188,6 +188,5 @@ extension MutaroListViewController: UICollectionViewDataSourcePrefetching {
                 break
             }
         }
-
     }
 }
