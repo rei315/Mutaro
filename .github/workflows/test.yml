@@ -1,0 +1,9 @@
+name: Self-hosted runner job
+
+on: [workflow_dispatch]
+
+jobs:
+  Build:
+    runs-on: self-hosted
+    steps:
+    - run: echo 'This job is running on self-hosted runner!!'
