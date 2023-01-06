@@ -53,7 +53,6 @@
 		715E95A3295CC20A00AD6331 /* MutaroAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E95C5295CD16400AD6331 /* license_plist.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = license_plist.yml; sourceTree = "<group>"; };
 		715E95CA295CD74D00AD6331 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		71F5BC45295CE91300CCC3F8 /* GoogleService-Info-prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-prod.plist"; sourceTree = "<group>"; };
 		71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroListViewControllerTests.swift; sourceTree = "<group>"; };
 		71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_6.png; sourceTree = "<group>"; };
 		71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_4.png; sourceTree = "<group>"; };
@@ -62,12 +61,13 @@
 		71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_2.png; sourceTree = "<group>"; };
 		71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_3.png; sourceTree = "<group>"; };
 		71F5BD142961FE4600CCC3F8 /* mutaro_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_5.png; sourceTree = "<group>"; };
-		71FDC927296860D3006861E8 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
 		71FDC929296861A7006861E8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		71FDC92A296861AD006861E8 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		71FDC93429686A8D006861E8 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 		71FDC93529686A8D006861E8 /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
 		71FDC93629686A8D006861E8 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		71FDC93829688337006861E8 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
+		71FDC939296883AB006861E8 /* GoogleService-Info-prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-prod.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,8 +192,8 @@
 		71FDC926296860AA006861E8 /* GoogleServicePlists */ = {
 			isa = PBXGroup;
 			children = (
-				71F5BC45295CE91300CCC3F8 /* GoogleService-Info-prod.plist */,
-				71FDC927296860D3006861E8 /* GoogleService-Info-dev.plist */,
+				71FDC939296883AB006861E8 /* GoogleService-Info-prod.plist */,
+				71FDC93829688337006861E8 /* GoogleService-Info-dev.plist */,
 			);
 			path = GoogleServicePlists;
 			sourceTree = "<group>";
