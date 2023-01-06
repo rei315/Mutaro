@@ -1,0 +1,59 @@
+name: Distribute to Testflight
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  distribute:
+    if: contains(github.event.comment.html_url, '/pull/') && startsWith(github.event.comment.body, '/testflight')
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: get pull request info
+        uses: octokit/request-action@v2.x
+        id: pull_request
+        with:
+          route: GET /repos/{owner}/{repo}/pulls/{pull_number}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          pull_number: ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: "install pip and dependencies"
+        id: "install-pip"
+        run: |
+          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          python3 get-pip.py
+          pip3 install requests
+          
+      - name: "create jwt token"
+        id: "create-jwt-token"
+        env:
+          ISSUER_ID: ${{secrets.JWT_ISSUER_ID}}
+          KEY_ID: ${{secrets.JWT_KEY_ID}}
+          PRIVATE_KEY_CODE: ${{secrets.JWT_PRIVATE_KEY_CODE}}
+        run: |
+          echo "jwtToken=$(ruby ./.github/workflows/create-jwt-token.rb ${ISSUER_ID} ${KEY_ID} "${PRIVATE_KEY_CODE}")" >> $GITHUB_OUTPUT
+          
+      - name: "distribute to testflight"
+        id: "distribute-to-testflight"
+        env:
+          JWT_TOKEN: ${{steps.create-jwt-token.outputs.jwtToken}}
+          BRANCH: ${{ fromJSON(steps.pull_request.outputs.data).head.ref }}
+          WORKFLOW_NAME: "Archive-For-Testflight-Develop"
+          TARGET_PRODUCT_NAME: "MutaroApp"
+        run: |
+          statusCode=$(JWT_TOKEN=${JWT_TOKEN} BRANCH_NAME=${BRANCH} WORKFLOW_NAME=${WORKFLOW_NAME} TARGET_PRODUCT_NAME=${TARGET_PRODUCT_NAME} python3 ./.github/workflows/distribute-appstore.py)
+          echo "statusCode=${statusCode}" >> $GITHUB_OUTPUT
+      - name: "comment result code"
+        id: "result-status-code"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          PR_URL: ${{ fromJSON(steps.pull_request.outputs.data).html_url }}
+          BODY: ${{ steps.distribute-to-testflight.outputs.statusCode }}
+        run: |
+          gh pr comment -b "request status code: ${BODY}" "${PR_URL}"
+      

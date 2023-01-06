@@ -1,0 +1,42 @@
+name: Add Comment To TestFlight
+
+on:
+  workflow_dispatch:
+    inputs:
+      CFBundleVersion:
+        required: true
+      Message:
+        required: true
+        
+jobs:
+  comment:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: "install pip and dependencies"
+        id: "install-pip"
+        run: |
+          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          python3 get-pip.py
+          pip3 install requests
+          
+      - name: "create jwt token"
+        id: "create-jwt-token"
+        env:
+          ISSUER_ID: ${{secrets.JWT_ISSUER_ID}}
+          KEY_ID: ${{secrets.JWT_KEY_ID}}
+          PRIVATE_KEY_CODE: ${{secrets.JWT_PRIVATE_KEY_CODE}}
+        run: |
+          echo "jwtToken=$(ruby ./.github/workflows/create-jwt-token.rb ${ISSUER_ID} ${KEY_ID} "${PRIVATE_KEY_CODE}")" >> $GITHUB_OUTPUT
+          
+      - name: "add comment to testflight"
+        id: "add-comment-to-testflight"
+        env:
+          JWT_TOKEN: ${{steps.create-jwt-token.outputs.jwtToken}}
+          CF_BUNDLE_VERSION: ${{ github.event.inputs.CFBundleVersion }}
+          MESSAGE: ${{ github.event.inputs.Message }}
+        run: |
+          statusCode=$(CF_BUNDLE_VERSION=${CF_BUNDLE_VERSION} JWT_TOKEN=${JWT_TOKEN} MESSAGE=${MESSAGE} python3 ./.github/workflows/add-comment-testflight.py)
+          echo "statusCode=${statusCode}" >> $GITHUB_OUTPUT

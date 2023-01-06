@@ -1,0 +1,67 @@
+name: Create Release PR
+on:
+  workflow_dispatch:
+    inputs:
+      should_skip_update_version:
+        type: boolean
+        required: true
+        default: false
+        
+jobs:
+  make_pull_request:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: "update version"
+        id: "update_version"
+        env:
+          SKIP_UPDATE: ${{ github.event.inputs.should_skip_update_version }}
+        run: |
+          nextVersion=$(should_skip=${SKIP_UPDATE} python3 ./.github/workflows/apply-info-version.py)
+          echo "nextVersion=${nextVersion}" >> $GITHUB_OUTPUT
+      - name: "make pull request"
+        id: make_pull_request
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          VERSION: ${{ steps.update_version.outputs.nextVersion }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+                    
+          branchName="release/${VERSION}"
+          git branch $branchName
+          git stash
+          git switch $branchName
+          git stash pop
+          
+          git add --all
+          git commit -m "version up to ${VERSION}"
+          git push --set-upstream origin $branchName
+          
+          releasePrUrl=$(gh pr create --base master --title "release ${VERSION}" --body "")
+          gh pr create --base develop --title "version up to ${VERSION}" --body ""
+          echo "${releasePrUrl}"
+          echo "release_pr_url=${releasePrUrl}" >> $GITHUB_OUTPUT
+      - name: "Translate comment URL"
+        id: translate_comment_url
+        uses: actions/github-script@v6
+        env:
+          PR_URL: ${{ steps.make_pull_request.outputs.release_pr_url }}
+        with:
+          script: |
+            const {PR_URL} = process.env
+
+            var url = PR_URL.replace("https://github.com", "https://api.github.com/repos")
+                              .replace("/pull/", "/issues/")
+            url += "/comments";
+            console.log(PR_URL);
+            console.log(url);
+            core.setOutput("url",  url);
+      - name: Pull Request List Comment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          COMMENT_URL: ${{ steps.translate_comment_url.outputs.url }}
+        run: |
+          ./.github/workflows/master-merge-pr-list.main.kts
