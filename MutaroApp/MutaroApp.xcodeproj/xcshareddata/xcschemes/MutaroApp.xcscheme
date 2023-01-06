@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "715E9582295CC20800AD6331"
-               BuildableName = "MutaroApp.app"
+               BuildableName = "Mutaro.app"
                BlueprintName = "MutaroApp"
                ReferencedContainer = "container:MutaroApp.xcodeproj">
             </BuildableReference>
@@ -67,7 +67,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "715E9582295CC20800AD6331"
-            BuildableName = "MutaroApp.app"
+            BuildableName = "Mutaro.app"
             BlueprintName = "MutaroApp"
             ReferencedContainer = "container:MutaroApp.xcodeproj">
          </BuildableReference>
@@ -84,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "715E9582295CC20800AD6331"
-            BuildableName = "MutaroApp.app"
+            BuildableName = "Mutaro.app"
             BlueprintName = "MutaroApp"
             ReferencedContainer = "container:MutaroApp.xcodeproj">
          </BuildableReference>
