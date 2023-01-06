@@ -19,10 +19,10 @@ DerivedData
 *.xcuserstate
 .DS_Store
 
-GoogleService-Info.plist
-
 # Environment variables
 env-vars.sh
+
+**/GoogleServicePlists/*.plist
 
 # Bundle
 .bundle
