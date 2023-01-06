@@ -22,6 +22,10 @@ DerivedData
 # Environment variables
 env-vars.sh
 
+GoogleService-Info.plist
+GoogleService-Info-prod.plist
+GoogleService-Info-dev.plist
+
 # Bundle
 .bundle
 vendor
