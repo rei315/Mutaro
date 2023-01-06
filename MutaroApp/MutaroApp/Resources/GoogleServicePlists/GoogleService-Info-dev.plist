@@ -7,7 +7,7 @@
 	<key>BUNDLE_ID</key>
 	<string>Dev.MutaroApp.MGHouse.com</string>
 	<key>CLIENT_ID</key>
-	<string></string>
+	<string>1</string>
 	<key>GCM_SENDER_ID</key>
 	<string></string>
 	<key>GOOGLE_APP_ID</key>
