@@ -22,9 +22,7 @@ DerivedData
 # Environment variables
 env-vars.sh
 
-GoogleService-Info.plist
-GoogleService-Info-prod.plist
-GoogleService-Info-dev.plist
+MutaroApp/MutaroApp/Resources/GoogleServicePlists/
 
 # Bundle
 .bundle
