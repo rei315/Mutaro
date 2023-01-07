@@ -1,0 +1,13 @@
+name: Setup Ios
+
+runs
+  steps:
+    - name: set build system
+      run: defaults write com.apple.dt.XCBuild EnableSwiftBuildSystemIntegration 1
+      shell: zsh
+    
+    - name: cache spm
+      uses: actions/cache@v3
+      with:
+        path: SourcePackages
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
