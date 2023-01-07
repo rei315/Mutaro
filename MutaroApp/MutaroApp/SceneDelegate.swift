@@ -8,6 +8,7 @@
 import Features
 import Core
 import UIKit
+import AppResource
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -66,13 +67,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func setupNavigationBarStyle() {
-        let titleColor = AppColor.black.toColor()
+        let titleColor = Resources.Colors.black.color
         let appearance = UINavigationBarAppearance().apply {
             $0.largeTitleTextAttributes = [
                 .foregroundColor: titleColor,
                 .font: UIFont.systemFont(ofSize: 32, weight: .bold),
             ]
-            $0.backgroundColor = AppColor.white.toColor()
+            $0.backgroundColor = Resources.Colors.white.color
             $0.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: titleColor
             ]

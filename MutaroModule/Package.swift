@@ -74,7 +74,7 @@ let package = Package(
     targets: [
         .target(
             name: "Features",
-            dependencies: ["ImageLoader", "Core", "Repositories"]
+            dependencies: ["ImageLoader", "Core", "Repositories", "AppResource"]
         ),
         .target(
             name: "Core",
@@ -99,15 +99,16 @@ let package = Package(
             ]
         ),
         .target(
-            name: "ImageLoader",
-            dependencies: []
-        ),
-        .target(
             name: "AppResource",
             dependencies: [],
+            exclude: ["swiftgen.yml"],
             plugins: [
                 .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
             ]
+        ),
+        .target(
+            name: "ImageLoader",
+            dependencies: []
         ),
         .binaryTarget(
             name: "FirebaseCrashlytics",

@@ -7,6 +7,7 @@
 
 import Core
 import UIKit
+import AppResource
 
 enum HomeTabPage {
     case mutaroList
@@ -59,13 +60,13 @@ final class HomeCoordinator: NSObject, Coordinator {
     private func createController(_ page: HomeTabPage) async -> UINavigationController {
         let navController: UINavigationController
         let tabBarItem: UITabBarItem
-
-        let normalTabImageColor = AppColor.navy.toColor()
+        
+        let normalTabImageColor = Resources.Colors.navy.color
         let normalImageConfiguration = UIImage.SymbolConfiguration(
             hierarchicalColor: normalTabImageColor
         )
 
-        let selectedTabImageColor = AppColor.turquoise.toColor()
+        let selectedTabImageColor = Resources.Colors.turquoise.color
         let selectedImageConfiguration = UIImage.SymbolConfiguration(
             hierarchicalColor: selectedTabImageColor
         )
@@ -118,16 +119,16 @@ final class HomeCoordinator: NSObject, Coordinator {
             let itemAppearance = UITabBarItemAppearance().apply {
                 $0.normal.iconColor = .brown
                 $0.normal.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor: AppColor.navy.toColor()
+                    NSAttributedString.Key.foregroundColor: Resources.Colors.navy.color
                 ]
-                $0.selected.iconColor = AppColor.black.toColor()
+                $0.selected.iconColor = Resources.Colors.black.color
                 $0.selected.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor: AppColor.black.toColor()
+                    NSAttributedString.Key.foregroundColor: Resources.Colors.black.color
                 ]
             }
             let barAppearance = UITabBarAppearance().apply {
                 $0.configureWithOpaqueBackground()
-                $0.backgroundColor = AppColor.white.toColor()
+                $0.backgroundColor = Resources.Colors.white.color
                 $0.inlineLayoutAppearance = itemAppearance
                 $0.stackedLayoutAppearance = itemAppearance
                 $0.compactInlineLayoutAppearance = itemAppearance
