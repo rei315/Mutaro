@@ -2,22 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string></string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string></string>
 	<key>API_KEY</key>
-	<string></string>
-	<key>GCM_SENDER_ID</key>
-	<string></string>
-	<key>PLIST_VERSION</key>
-	<string>1</string>
+	<string>AIzaSyA8a9NpB1WDPNj_Fh1ttoMaORUS6mmhpBs</string>
 	<key>BUNDLE_ID</key>
 	<string>Dev.MutaroApp.MGHouse.com</string>
-	<key>PROJECT_ID</key>
-	<string>mutaro-2941f</string>
-	<key>STORAGE_BUCKET</key>
-	<string>mutaro-2941f.appspot.com</string>
+	<key>CLIENT_ID</key>
+	<string>623877494670-5211fh2a8bjvinvgmf5drhmlj3h8fr6u.apps.googleusercontent.com</string>
+	<key>GCM_SENDER_ID</key>
+	<string>623877494670</string>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:623877494670:ios:a93d4f5c63be0afc7076df</string>
 	<key>IS_ADS_ENABLED</key>
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -28,7 +22,13 @@
 	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
-	<key>GOOGLE_APP_ID</key>
-	<string></string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>PROJECT_ID</key>
+	<string>mutaro-2941f</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.623877494670-lgjvsvq0i9o6e42ai312ca266tsgmc4o</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mutaro-2941f.appspot.com</string>
 </dict>
 </plist>

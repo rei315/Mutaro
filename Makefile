@@ -2,8 +2,9 @@ RUBY_VERSION = 2.7.2
 
 DEVELOP_NAME := MutaroDev
 PRODUCTION_NAME := Mutaro
-WORKSPACE_NAME := MutaroApp.xcworkspace
+WORKSPACE_NAME := Mutaro.xcworkspace
 
+TEST_SCHEME := MutaroDev
 TEST_SDK := iphonesimulator
 TEST_CONFIGURATION := Debug(Development)
 TEST_PLATFORM := iOS Simulator
@@ -43,22 +44,24 @@ clean: # Clear Cache
 	xcodebuild clean --alltargets
 
 
-.PHONY: build-debug-develop
+.PHONY: build-debug-development
 build-debug-develop:
+	git update-index --assume-unchanged MutaroApp/MutaroApp/Resources/GoogleServicePlists/
 	$(MAKE) build-debug PROJECT_NAME=${DEVELOP_NAME}
 
 .PHONY: build-debug-production
 build-debug-production:
+	git update-index --assume-unchanged MutaroApp/MutaroApp/Resources/GoogleServicePlists/
 	$(MAKE) build-debug PROJECT_NAME=${PRODUCTION_NAME}
 
 .PHONY: build-debug
 build-debug:
 	set -o pipefail \
 && xcodebuild \
--sdk ${TEST_SDK} \
--configuration ${TEST_CONFIGURATION} \
--workspace ${WORKSPACE_NAME} \
--scheme '${PRODUCT_NAME} (${PROJECT_NAME} project)' \
+-sdk '${TEST_SDK}' \
+-configuration '${TEST_CONFIGURATION}' \
+-workspace '${WORKSPACE_NAME}' \
+-scheme '${TEST_SCHEME}' \
 -destination ${TEST_DESTINATION} \
 -clonedSourcePackagesDirPath './SourcePackages' \
 clean build
@@ -66,4 +69,3 @@ clean build
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?# .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":[^#]*? #| #"}; {printf "%-42s%s\n", $$1 $$3, $$2}'
-
