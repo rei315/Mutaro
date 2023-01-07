@@ -62,6 +62,7 @@ build-debug:
 -scheme '${TEST_SCHEME}' \
 -destination ${TEST_DESTINATION} \
 -clonedSourcePackagesDirPath './SourcePackages' \
+-skipPackagePluginValidation \
 clean build
 
 .PHONY: help

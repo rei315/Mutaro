@@ -42,59 +42,72 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "AppModule",
-            targets: ["AppModule"]),
+            name: "Features",
+            targets: ["Features"]),
         .library(
-            name: "CommonAppModule",
-            targets: ["CommonAppModule"]),
+            name: "Core",
+            targets: ["Core"]),
         .library(
-            name: "BuildModule",
-            targets: ["BuildModule"]),
+            name: "BuildTools",
+            targets: ["BuildTools"]),
         .library(
-            name: "FirebaseSetupModule",
-            targets: ["FirebaseSetupModule"]
+            name: "FirebaseSetup",
+            targets: ["FirebaseSetup"]
         ),
         .library(
-            name: "ImageModule",
-            targets: ["ImageModule"]
+            name: "ImageLoader",
+            targets: ["ImageLoader"]
         ),
         .library(
-            name: "MutaroClientModule",
-            targets: ["MutaroClientModule"]
+            name: "Repositories",
+            targets: ["Repositories"]
         ),
+        .library(
+            name: "AppResource",
+            targets: ["AppResource"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-format", branch: "main"),
+        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
     ],
     targets: [
         .target(
-            name: "AppModule",
-            dependencies: ["ImageModule", "CommonAppModule", "MutaroClientModule"]
+            name: "Features",
+            dependencies: ["ImageLoader", "Core", "Repositories", "AppResource"]
         ),
         .target(
-            name: "CommonAppModule",
-            dependencies: ["ImageModule"]
+            name: "Core",
+            dependencies: ["ImageLoader"]
         ),
         .target(
-            name: "MutaroClientModule",
-            dependencies: firebaseFirestoreDependencies + firebaseAnalyticsDependencies + ["CommonAppModule"],
+            name: "Repositories",
+            dependencies: firebaseFirestoreDependencies + firebaseAnalyticsDependencies + ["Core"],
             linkerSettings: [
                 .unsafeFlags(["-ObjC"]),
             ]
         ),
         .target(
-            name: "BuildModule",
+            name: "BuildTools",
             dependencies: ["swift-format"]
         ),
         .target(
-            name: "FirebaseSetupModule",
+            name: "FirebaseSetup",
             dependencies: firebaseCrashlyticsDependencies + firebaseAnalyticsDependencies,
             linkerSettings: [
                 .unsafeFlags(["-ObjC"]),
             ]
         ),
         .target(
-            name: "ImageModule",
+            name: "AppResource",
+            dependencies: [],
+            exclude: ["swiftgen.yml"],
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            ]
+        ),
+        .target(
+            name: "ImageLoader",
             dependencies: []
         ),
         .binaryTarget(
