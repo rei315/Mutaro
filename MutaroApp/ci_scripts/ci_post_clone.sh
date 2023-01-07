@@ -9,12 +9,12 @@
 if [[ $CI_WORKFLOW = "Test-CI" || $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
     SOURCE_BRANCH=$CI_BRANCH
     RELEASE_BRANCH='release/'
-    MASTER_BRANCH='master'
+    MASTER_BRANCH='main/'
     HOTFIX_BRANCH='hotfix/'
 
     if [[ $SOURCE_BRANCH != $RELEASE_BRANCH* || $SOURCE_BRANCH != $MASTER_BRANCH* || $SOURCE_BRANCH != $HOTFIX_BRANCH* ]]; then
-        git fetch origin main
-        lines=$(git diff remotes/origin/main..$CI_BRANCH -G ".*[0-9]+\.[0-9]+[0-9]+.*" ${CI_WORKSPACE}/MutaroApp/Resources/Info.plist | wc -l)
+        git fetch origin develop
+        lines=$(git diff remotes/origin/develop..$CI_BRANCH -G ".*[0-9]+\.[0-9]+[0-9]+.*" ${CI_WORKSPACE}/MutaroApp/Resources/Info.plist | wc -l)
         if [ $lines -gt 0 ]; then
             echo "Mutaro: Version is not updated"
             exit 1
