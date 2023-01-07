@@ -5,7 +5,7 @@ runs:
   steps:
     - name: set build system
       run: defaults write com.apple.dt.XCBuild EnableSwiftBuildSystemIntegration 1
-      shell: zsh
+      shell: bash
     
     - name: cache spm
       uses: actions/cache@v3
