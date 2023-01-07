@@ -1,6 +1,6 @@
 name: Setup Ios
 
-runs
+runs:
   steps:
     - name: set build system
       run: defaults write com.apple.dt.XCBuild EnableSwiftBuildSystemIntegration 1
