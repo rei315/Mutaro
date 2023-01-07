@@ -1,0 +1,12 @@
+input_dir: Resources
+output_dir: Generated
+xcassets:
+  inputs:
+    - Images.xcassets
+    - Colors.xcassets
+  outputs:
+    - templatePath: MutaroModule/Sources/Resources/.build/checkouts/SwiftGen/Sources/SwiftGenCLI/templates/xcassets/swift5.stencil
+      output: Assets.swift
+      params:
+        enumName: Resources
+        publicAccess: true

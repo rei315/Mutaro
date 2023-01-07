@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
-		715E9590295CC20A00AD6331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 715E958F295CC20A00AD6331 /* Assets.xcassets */; };
 		715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */; };
 		715E95C6295CD16400AD6331 /* license_plist.yml in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C5295CD16400AD6331 /* license_plist.yml */; };
 		715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 715E95CA295CD74D00AD6331 /* Settings.bundle */; };
@@ -46,7 +45,6 @@
 		715E9583295CC20800AD6331 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E9586295CC20800AD6331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		715E958F295CC20A00AD6331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		715E9592295CC20A00AD6331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		715E9594295CC20A00AD6331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		715E9599295CC20A00AD6331 /* MutaroAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +66,7 @@
 		71FDC93629686A8D006861E8 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		71FDC93829688337006861E8 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
 		71FDC939296883AB006861E8 /* GoogleService-Info-prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-prod.plist"; sourceTree = "<group>"; };
+		71FDC94A2969D2C0006861E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,8 +152,8 @@
 				71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */,
 				715E95CA295CD74D00AD6331 /* Settings.bundle */,
 				715E95C5295CD16400AD6331 /* license_plist.yml */,
-				715E958F295CC20A00AD6331 /* Assets.xcassets */,
 				715E9594295CC20A00AD6331 /* Info.plist */,
+				71FDC94A2969D2C0006861E8 /* Assets.xcassets */,
 				715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -337,7 +336,6 @@
 				71F5BD122961FB2A00CCC3F8 /* mutaro_2.png in Resources */,
 				71F5BD152961FE4600CCC3F8 /* mutaro_5.png in Resources */,
 				71F5BD0D2961FB2A00CCC3F8 /* mutaro_6.png in Resources */,
-				715E9590295CC20A00AD6331 /* Assets.xcassets in Resources */,
 				715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */,
 				71F5BD132961FB2A00CCC3F8 /* mutaro_3.png in Resources */,
 				71F5BD112961FB2A00CCC3F8 /* mutaro_0.png in Resources */,

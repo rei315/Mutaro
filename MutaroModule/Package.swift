@@ -62,6 +62,10 @@ let package = Package(
             name: "Repositories",
             targets: ["Repositories"]
         ),
+        .library(
+            name: "AppResource",
+            targets: ["AppResource"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-format", branch: "main"),
@@ -97,6 +101,13 @@ let package = Package(
         .target(
             name: "ImageLoader",
             dependencies: []
+        ),
+        .target(
+            name: "AppResource",
+            dependencies: [],
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            ]
         ),
         .binaryTarget(
             name: "FirebaseCrashlytics",
