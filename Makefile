@@ -45,13 +45,11 @@ clean: # Clear Cache
 
 
 .PHONY: build-debug-development
-build-debug-develop:
-	git update-index --assume-unchanged MutaroApp/MutaroApp/Resources/GoogleServicePlists/
+build-debug-develop:	
 	$(MAKE) build-debug PROJECT_NAME=${DEVELOP_NAME}
 
 .PHONY: build-debug-production
 build-debug-production:
-	git update-index --assume-unchanged MutaroApp/MutaroApp/Resources/GoogleServicePlists/
 	$(MAKE) build-debug PROJECT_NAME=${PRODUCTION_NAME}
 
 .PHONY: build-debug
