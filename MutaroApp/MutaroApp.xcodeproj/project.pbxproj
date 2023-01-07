@@ -420,7 +420,7 @@
 		};
 		715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -434,7 +434,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "echo ${SRCROOT}/MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
 		};
@@ -458,7 +458,7 @@
 		};
 		71FDC93729686DEE006861E8 /* [NEED FIRST RUN] register env */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -470,9 +470,9 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f \"../env-vars.sh\" ]; then       \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\necho \"Mutaro: - ${G_DEV_CLIENT_ID}\"\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nelse    \n    ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\nfi\n\n";
+			shellScript = "if [ -f \"../env-vars.sh\" ]; then       \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nelse    \n    ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
