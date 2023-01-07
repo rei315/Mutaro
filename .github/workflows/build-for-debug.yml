@@ -1,0 +1,27 @@
+name: Build For Debug
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_14.1.app
+
+jobs:
+  distribute:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Cache libraries managed by SwiftPM
+        uses: actions/cache@v3
+        with:
+        path: SourcePackages
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+      - name: "build debug"
+        run: |
+          make build-debug-development
