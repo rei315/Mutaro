@@ -5,8 +5,8 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
-import AppModule
-import CommonAppModule
+import Features
+import Core
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
