@@ -45,7 +45,7 @@ clean: # Clear Cache
 
 
 .PHONY: build-debug-development
-build-debug-develop:
+build-debug-development:
 	$(MAKE) build-debug PROJECT_NAME=${DEVELOP_NAME}
 
 .PHONY: build-debug-production
