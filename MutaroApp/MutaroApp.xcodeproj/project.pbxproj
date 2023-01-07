@@ -12,7 +12,6 @@
 		715E9590295CC20A00AD6331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 715E958F295CC20A00AD6331 /* Assets.xcassets */; };
 		715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */; };
 		715E95B8295CC29F00AD6331 /* AppModule in Frameworks */ = {isa = PBXBuildFile; productRef = 715E95B7295CC29F00AD6331 /* AppModule */; };
-		715E95BC295CC29F00AD6331 /* FirebaseSetupModule in Frameworks */ = {isa = PBXBuildFile; productRef = 715E95BB295CC29F00AD6331 /* FirebaseSetupModule */; };
 		715E95C6295CD16400AD6331 /* license_plist.yml in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C5295CD16400AD6331 /* license_plist.yml */; };
 		715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 715E95CA295CD74D00AD6331 /* Settings.bundle */; };
 		71F5BC4D29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */; };
@@ -23,6 +22,7 @@
 		71F5BD122961FB2A00CCC3F8 /* mutaro_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */; };
 		71F5BD132961FB2A00CCC3F8 /* mutaro_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */; };
 		71F5BD152961FE4600CCC3F8 /* mutaro_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD142961FE4600CCC3F8 /* mutaro_5.png */; };
+		71FDC94229692C3B006861E8 /* FirebaseSetupModule in Frameworks */ = {isa = PBXBuildFile; productRef = 71FDC94129692C3B006861E8 /* FirebaseSetupModule */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				715E95B8295CC29F00AD6331 /* AppModule in Frameworks */,
-				715E95BC295CC29F00AD6331 /* FirebaseSetupModule in Frameworks */,
+				71FDC94229692C3B006861E8 /* FirebaseSetupModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +105,7 @@
 				715E959C295CC20A00AD6331 /* MutaroAppTests */,
 				715E95A6295CC20A00AD6331 /* MutaroAppUITests */,
 				715E9584295CC20800AD6331 /* Products */,
+				71FDC94029692C3B006861E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,6 +209,13 @@
 			path = ci_scripts;
 			sourceTree = "<group>";
 		};
+		71FDC94029692C3B006861E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -232,7 +240,7 @@
 			name = MutaroApp;
 			packageProductDependencies = (
 				715E95B7295CC29F00AD6331 /* AppModule */,
-				715E95BB295CC29F00AD6331 /* FirebaseSetupModule */,
+				71FDC94129692C3B006861E8 /* FirebaseSetupModule */,
 			);
 			productName = MutaroApp;
 			productReference = 715E9583295CC20800AD6331 /* Mutaro.app */;
@@ -1150,7 +1158,7 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = AppModule;
 		};
-		715E95BB295CC29F00AD6331 /* FirebaseSetupModule */ = {
+		71FDC94129692C3B006861E8 /* FirebaseSetupModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseSetupModule;
 		};
