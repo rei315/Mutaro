@@ -11,7 +11,7 @@ upload_dsym() {
     if [[ -n $CI_ARCHIVE_PATH ]]; then
         echo "Found valid archive path, trying to upload dSYMs."
         echo "Start uploading dSYMs"
-        basePath="${CI_WORKSPACE}/MutaroApp/Resources/GoogleServicePlists"
+        basePath="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/GoogleServicePlists"
         if [[ $CI_XCODE_SCHEME == *"Development"* ]]; then
             googleInfoPlistPath="$basePath/GoogleService-Info-dev.plist"
         else
