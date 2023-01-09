@@ -27,7 +27,5 @@ manual:
         SOFTWARE.
 
 github:
-  - owner: ReactiveX
-    name: RxSwift
   - owner: firebase
     name: firebase-ios-sdk
