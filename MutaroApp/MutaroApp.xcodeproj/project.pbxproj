@@ -726,6 +726,7 @@
 		};
 		715E95B1295CC20A00AD6331 /* Debug(Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FDC92A296861AD006861E8 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -747,6 +748,7 @@
 		};
 		715E95B2295CC20A00AD6331 /* Release(Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FDC92A296861AD006861E8 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -768,6 +770,7 @@
 		};
 		715E95B4295CC20A00AD6331 /* Debug(Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FDC92A296861AD006861E8 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -794,6 +797,7 @@
 		};
 		715E95B5295CC20A00AD6331 /* Release(Production) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FDC92A296861AD006861E8 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -920,6 +924,7 @@
 		};
 		71FDC92D296861DF006861E8 /* Debug(Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FDC929296861A7006861E8 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -941,6 +946,7 @@
 		};
 		71FDC92E296861DF006861E8 /* Debug(Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FDC929296861A7006861E8 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1061,6 +1067,7 @@
 		};
 		71FDC931296861F5006861E8 /* Release(Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FDC929296861A7006861E8 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1082,6 +1089,7 @@
 		};
 		71FDC932296861F5006861E8 /* Release(Development) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FDC929296861A7006861E8 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
