@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		710C3567296C3AB900ED034F /* testabc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C3566296C3AB900ED034F /* testabc.swift */; };
+		710C3569296C516900ED034F /* MutaroListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C3568296C516900ED034F /* MutaroListTests.swift */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
 		715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */; };
 		715E95C6295CD16400AD6331 /* license_plist.yml in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C5295CD16400AD6331 /* license_plist.yml */; };
 		715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 715E95CA295CD74D00AD6331 /* Settings.bundle */; };
-		71F5BC4D29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */; };
 		71F5BD0D2961FB2A00CCC3F8 /* mutaro_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */; };
 		71F5BD0F2961FB2A00CCC3F8 /* mutaro_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */; };
 		71F5BD102961FB2A00CCC3F8 /* mutaro_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */; };
@@ -46,6 +46,7 @@
 /* Begin PBXFileReference section */
 		710C3565296C3AB900ED034F /* MutaroAppTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MutaroAppTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		710C3566296C3AB900ED034F /* testabc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testabc.swift; sourceTree = "<group>"; };
+		710C3568296C516900ED034F /* MutaroListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroListTests.swift; sourceTree = "<group>"; };
 		715E9583295CC20800AD6331 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E9586295CC20800AD6331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		715E95A3295CC20A00AD6331 /* MutaroAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E95C5295CD16400AD6331 /* license_plist.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = license_plist.yml; sourceTree = "<group>"; };
 		715E95CA295CD74D00AD6331 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroListViewControllerTests.swift; sourceTree = "<group>"; };
 		71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_6.png; sourceTree = "<group>"; };
 		71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_4.png; sourceTree = "<group>"; };
 		71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_1.png; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		715E95A6295CC20A00AD6331 /* MutaroAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */,
+				710C3568296C516900ED034F /* MutaroListTests.swift */,
 			);
 			path = MutaroAppUITests;
 			sourceTree = "<group>";
@@ -491,7 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71F5BC4D29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift in Sources */,
+				710C3569296C516900ED034F /* MutaroListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
