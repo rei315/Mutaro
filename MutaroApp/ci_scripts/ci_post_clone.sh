@@ -24,3 +24,4 @@ fi
 
 pip3 install requests
 brew install licenseplist
+defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
