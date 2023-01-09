@@ -18,6 +18,8 @@ public final class SettingCoordinator: Coordinator {
     }
 
     public func start() {
-
+        let vc = SettingViewController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
     }
 }

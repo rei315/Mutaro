@@ -74,7 +74,10 @@ let package = Package(
     targets: [
         .target(
             name: "Features",
-            dependencies: ["ImageLoader", "Core", "Repositories", "AppResource"]
+            dependencies: ["ImageLoader", "Core", "Repositories", "AppResource"],
+            swiftSettings: [
+                .define("DEV", .when(configuration: .debug)),
+            ]
         ),
         .target(
             name: "Core",
