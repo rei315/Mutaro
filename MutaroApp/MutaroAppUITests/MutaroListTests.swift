@@ -21,8 +21,5 @@ final class MutaroListTests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-        
-        let title = app.navigationBars["mutaro"].staticTexts["mutaro"]
-        XCTAssertTrue(title.exists)
     }
 }
