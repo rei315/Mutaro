@@ -10,3 +10,7 @@
 ## Configuration
 - UI Imp: Programmatically UI
 - Architecture: MVVM
+- Dependencies: SPM + XCFramework
+- CI/CD:
+  - Github Actions(self host runner)
+  - XcodeCloud
