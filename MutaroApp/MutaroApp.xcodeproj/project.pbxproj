@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		710C359E296C58AC00ED034F /* MutaroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C359D296C58AC00ED034F /* MutaroUITests.swift */; };
 		710C35A0296C58AC00ED034F /* MutaroUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */; };
+		710C35A9296C5B7A00ED034F /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35A8296C5B7A00ED034F /* Core */; };
+		710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35AA296C5B7A00ED034F /* FirebaseSetup */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
 		715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */; };
@@ -66,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710C35A9296C5B7A00ED034F /* Core in Frameworks */,
+				710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +203,10 @@
 				710C35A2296C58AC00ED034F /* PBXTargetDependency */,
 			);
 			name = MutaroUITests;
+			packageProductDependencies = (
+				710C35A8296C5B7A00ED034F /* Core */,
+				710C35AA296C5B7A00ED034F /* FirebaseSetup */,
+			);
 			productName = MutaroUITests;
 			productReference = 710C359B296C58AB00ED034F /* MutaroUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -507,6 +515,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -578,6 +591,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -643,6 +661,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -708,6 +731,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1153,6 +1181,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		710C35A8296C5B7A00ED034F /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		710C35AA296C5B7A00ED034F /* FirebaseSetup */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseSetup;
+		};
 		71FDC9462969CEEE006861E8 /* Features */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Features;
