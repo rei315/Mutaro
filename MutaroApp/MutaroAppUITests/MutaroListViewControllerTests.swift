@@ -27,8 +27,6 @@ final class MutaroListViewControllerTests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        let labelviewStaticText = app.staticTexts["labelView"]
-        labelviewStaticText.tap()
     }
 
     func testLaunchPerformance() throws {

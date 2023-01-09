@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710C3567296C3AB900ED034F /* testabc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C3566296C3AB900ED034F /* testabc.swift */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
 		715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		710C3565296C3AB900ED034F /* MutaroAppTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MutaroAppTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		710C3566296C3AB900ED034F /* testabc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testabc.swift; sourceTree = "<group>"; };
 		715E9583295CC20800AD6331 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E9586295CC20800AD6331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,12 +98,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		710C3564296C3AA900ED034F /* MutaroAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				710C3566296C3AB900ED034F /* testabc.swift */,
+				710C3565296C3AB900ED034F /* MutaroAppTests-Bridging-Header.h */,
+			);
+			path = MutaroAppTests;
+			sourceTree = "<group>";
+		};
 		715E957A295CC20800AD6331 = {
 			isa = PBXGroup;
 			children = (
 				715E9585295CC20800AD6331 /* MutaroApp */,
-				715E959C295CC20A00AD6331 /* MutaroAppTests */,
 				715E95A6295CC20A00AD6331 /* MutaroAppUITests */,
+				710C3564296C3AA900ED034F /* MutaroAppTests */,
 				715E9584295CC20800AD6331 /* Products */,
 				71FDC94029692C3B006861E8 /* Frameworks */,
 			);
@@ -125,13 +137,6 @@
 				715E9588295CC20800AD6331 /* SceneDelegate.swift */,
 			);
 			path = MutaroApp;
-			sourceTree = "<group>";
-		};
-		715E959C295CC20A00AD6331 /* MutaroAppTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MutaroAppTests;
 			sourceTree = "<group>";
 		};
 		715E95A6295CC20A00AD6331 /* MutaroAppUITests */ = {
@@ -285,6 +290,7 @@
 					};
 					715E9598295CC20A00AD6331 = {
 						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
 						TestTargetID = 715E9582295CC20800AD6331;
 					};
 					715E95A2295CC20A00AD6331 = {
@@ -477,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710C3567296C3AB900ED034F /* testabc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,16 +723,24 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MMB9V9594R;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "MutaroAppTests/MutaroAppTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mutaro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mutaro";
@@ -738,16 +753,23 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MMB9V9594R;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "MutaroAppTests/MutaroAppTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mutaro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mutaro";
@@ -914,19 +936,27 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MMB9V9594R;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "MutaroAppTests/MutaroAppTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mutaro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mutaro";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MutaroDev.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MutaroDev";
 			};
 			name = "Debug(Development)";
 		};
@@ -1057,19 +1087,26 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MMB9V9594R;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "MutaroAppTests/MutaroAppTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mutaro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mutaro";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MutaroDev.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MutaroDev";
 			};
 			name = "Release(Development)";
 		};
