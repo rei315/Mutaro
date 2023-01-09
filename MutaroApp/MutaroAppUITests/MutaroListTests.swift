@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Foundation
 
 final class MutaroListTests: XCTestCase {
 

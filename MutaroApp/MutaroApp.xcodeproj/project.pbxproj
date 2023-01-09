@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		710C3567296C3AB900ED034F /* testabc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C3566296C3AB900ED034F /* testabc.swift */; };
 		710C3569296C516900ED034F /* MutaroListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C3568296C516900ED034F /* MutaroListTests.swift */; };
+		710C356B296C560900ED034F /* AppResource in Frameworks */ = {isa = PBXBuildFile; productRef = 710C356A296C560900ED034F /* AppResource */; };
+		710C356D296C560900ED034F /* BuildTools in Frameworks */ = {isa = PBXBuildFile; productRef = 710C356C296C560900ED034F /* BuildTools */; };
+		710C356F296C560900ED034F /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 710C356E296C560900ED034F /* Core */; };
+		710C3571296C560900ED034F /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = 710C3570296C560900ED034F /* Features */; };
+		710C3573296C560900ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C3572296C560900ED034F /* FirebaseSetup */; };
+		710C3575296C560900ED034F /* ImageLoader in Frameworks */ = {isa = PBXBuildFile; productRef = 710C3574296C560900ED034F /* ImageLoader */; };
+		710C3577296C560900ED034F /* Repositories in Frameworks */ = {isa = PBXBuildFile; productRef = 710C3576296C560900ED034F /* Repositories */; };
+		710C3579296C561500ED034F /* AppResource in Frameworks */ = {isa = PBXBuildFile; productRef = 710C3578296C561500ED034F /* AppResource */; };
+		710C357B296C561500ED034F /* BuildTools in Frameworks */ = {isa = PBXBuildFile; productRef = 710C357A296C561500ED034F /* BuildTools */; };
+		710C357D296C561500ED034F /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 710C357C296C561500ED034F /* Core */; };
+		710C357F296C561500ED034F /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = 710C357E296C561500ED034F /* Features */; };
+		710C3581296C561500ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C3580296C561500ED034F /* FirebaseSetup */; };
+		710C3583296C561500ED034F /* ImageLoader in Frameworks */ = {isa = PBXBuildFile; productRef = 710C3582296C561500ED034F /* ImageLoader */; };
+		710C3585296C561500ED034F /* Repositories in Frameworks */ = {isa = PBXBuildFile; productRef = 710C3584296C561500ED034F /* Repositories */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
 		715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */; };
@@ -85,6 +99,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710C3577296C560900ED034F /* Repositories in Frameworks */,
+				710C3573296C560900ED034F /* FirebaseSetup in Frameworks */,
+				710C3575296C560900ED034F /* ImageLoader in Frameworks */,
+				710C356B296C560900ED034F /* AppResource in Frameworks */,
+				710C356D296C560900ED034F /* BuildTools in Frameworks */,
+				710C356F296C560900ED034F /* Core in Frameworks */,
+				710C3571296C560900ED034F /* Features in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +113,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710C3585296C561500ED034F /* Repositories in Frameworks */,
+				710C3581296C561500ED034F /* FirebaseSetup in Frameworks */,
+				710C3583296C561500ED034F /* ImageLoader in Frameworks */,
+				710C3579296C561500ED034F /* AppResource in Frameworks */,
+				710C357B296C561500ED034F /* BuildTools in Frameworks */,
+				710C357D296C561500ED034F /* Core in Frameworks */,
+				710C357F296C561500ED034F /* Features in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +281,15 @@
 				715E959B295CC20A00AD6331 /* PBXTargetDependency */,
 			);
 			name = MutaroAppTests;
+			packageProductDependencies = (
+				710C356A296C560900ED034F /* AppResource */,
+				710C356C296C560900ED034F /* BuildTools */,
+				710C356E296C560900ED034F /* Core */,
+				710C3570296C560900ED034F /* Features */,
+				710C3572296C560900ED034F /* FirebaseSetup */,
+				710C3574296C560900ED034F /* ImageLoader */,
+				710C3576296C560900ED034F /* Repositories */,
+			);
 			productName = MutaroAppTests;
 			productReference = 715E9599295CC20A00AD6331 /* MutaroAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -271,6 +308,15 @@
 				715E95A5295CC20A00AD6331 /* PBXTargetDependency */,
 			);
 			name = MutaroAppUITests;
+			packageProductDependencies = (
+				710C3578296C561500ED034F /* AppResource */,
+				710C357A296C561500ED034F /* BuildTools */,
+				710C357C296C561500ED034F /* Core */,
+				710C357E296C561500ED034F /* Features */,
+				710C3580296C561500ED034F /* FirebaseSetup */,
+				710C3582296C561500ED034F /* ImageLoader */,
+				710C3584296C561500ED034F /* Repositories */,
+			);
 			productName = MutaroAppUITests;
 			productReference = 715E95A3295CC20A00AD6331 /* MutaroAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -733,6 +779,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -763,6 +810,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -790,6 +838,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -818,6 +867,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -948,6 +998,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -976,6 +1027,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1100,6 +1152,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1127,6 +1180,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1190,6 +1244,62 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		710C356A296C560900ED034F /* AppResource */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppResource;
+		};
+		710C356C296C560900ED034F /* BuildTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuildTools;
+		};
+		710C356E296C560900ED034F /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		710C3570296C560900ED034F /* Features */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Features;
+		};
+		710C3572296C560900ED034F /* FirebaseSetup */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseSetup;
+		};
+		710C3574296C560900ED034F /* ImageLoader */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ImageLoader;
+		};
+		710C3576296C560900ED034F /* Repositories */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Repositories;
+		};
+		710C3578296C561500ED034F /* AppResource */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppResource;
+		};
+		710C357A296C561500ED034F /* BuildTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuildTools;
+		};
+		710C357C296C561500ED034F /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		710C357E296C561500ED034F /* Features */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Features;
+		};
+		710C3580296C561500ED034F /* FirebaseSetup */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseSetup;
+		};
+		710C3582296C561500ED034F /* ImageLoader */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ImageLoader;
+		};
+		710C3584296C561500ED034F /* Repositories */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Repositories;
+		};
 		71FDC9462969CEEE006861E8 /* Features */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Features;
