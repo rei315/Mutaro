@@ -62,9 +62,6 @@
 		71F5BD142961FE4600CCC3F8 /* mutaro_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_5.png; sourceTree = "<group>"; };
 		71FDC929296861A7006861E8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		71FDC92A296861AD006861E8 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
-		71FDC93429686A8D006861E8 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
-		71FDC93529686A8D006861E8 /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
-		71FDC93629686A8D006861E8 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		71FDC93829688337006861E8 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
 		71FDC939296883AB006861E8 /* GoogleService-Info-prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-prod.plist"; sourceTree = "<group>"; };
 		71FDC94A2969D2C0006861E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,7 +98,6 @@
 		715E957A295CC20800AD6331 = {
 			isa = PBXGroup;
 			children = (
-				71FDC93329686A21006861E8 /* ci_scripts */,
 				715E9585295CC20800AD6331 /* MutaroApp */,
 				715E959C295CC20A00AD6331 /* MutaroAppTests */,
 				715E95A6295CC20A00AD6331 /* MutaroAppUITests */,
@@ -198,16 +194,6 @@
 				71FDC93829688337006861E8 /* GoogleService-Info-dev.plist */,
 			);
 			path = GoogleServicePlists;
-			sourceTree = "<group>";
-		};
-		71FDC93329686A21006861E8 /* ci_scripts */ = {
-			isa = PBXGroup;
-			children = (
-				71FDC93629686A8D006861E8 /* ci_post_clone.sh */,
-				71FDC93429686A8D006861E8 /* ci_post_xcodebuild.sh */,
-				71FDC93529686A8D006861E8 /* ci_pre_xcodebuild.sh */,
-			);
-			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 		71FDC94029692C3B006861E8 /* Frameworks */ = {
