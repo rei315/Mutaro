@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710C359E296C58AC00ED034F /* MutaroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C359D296C58AC00ED034F /* MutaroUITests.swift */; };
+		710C35A0296C58AC00ED034F /* MutaroUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */; };
+		710C35A9296C5B7A00ED034F /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35A8296C5B7A00ED034F /* Core */; };
+		710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35AA296C5B7A00ED034F /* FirebaseSetup */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
 		715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */; };
 		715E95C6295CD16400AD6331 /* license_plist.yml in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C5295CD16400AD6331 /* license_plist.yml */; };
 		715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 715E95CA295CD74D00AD6331 /* Settings.bundle */; };
-		71F5BC4D29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */; };
 		71F5BD0D2961FB2A00CCC3F8 /* mutaro_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */; };
 		71F5BD0F2961FB2A00CCC3F8 /* mutaro_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */; };
 		71F5BD102961FB2A00CCC3F8 /* mutaro_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */; };
@@ -26,14 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		715E959A295CC20A00AD6331 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 715E957B295CC20800AD6331 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 715E9582295CC20800AD6331;
-			remoteInfo = MutaroApp;
-		};
-		715E95A4295CC20A00AD6331 /* PBXContainerItemProxy */ = {
+		710C35A1296C58AC00ED034F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 715E957B295CC20800AD6331 /* Project object */;
 			proxyType = 1;
@@ -43,16 +39,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		710C359B296C58AB00ED034F /* MutaroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		710C359D296C58AC00ED034F /* MutaroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroUITests.swift; sourceTree = "<group>"; };
+		710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		715E9583295CC20800AD6331 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E9586295CC20800AD6331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		715E9592295CC20A00AD6331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		715E9594295CC20A00AD6331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		715E9599295CC20A00AD6331 /* MutaroAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		715E95A3295CC20A00AD6331 /* MutaroAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E95C5295CD16400AD6331 /* license_plist.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = license_plist.yml; sourceTree = "<group>"; };
 		715E95CA295CD74D00AD6331 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroListViewControllerTests.swift; sourceTree = "<group>"; };
 		71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_6.png; sourceTree = "<group>"; };
 		71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_4.png; sourceTree = "<group>"; };
 		71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_1.png; sourceTree = "<group>"; };
@@ -62,15 +58,21 @@
 		71F5BD142961FE4600CCC3F8 /* mutaro_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_5.png; sourceTree = "<group>"; };
 		71FDC929296861A7006861E8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		71FDC92A296861AD006861E8 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
-		71FDC93429686A8D006861E8 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
-		71FDC93529686A8D006861E8 /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
-		71FDC93629686A8D006861E8 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		71FDC93829688337006861E8 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
 		71FDC939296883AB006861E8 /* GoogleService-Info-prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-prod.plist"; sourceTree = "<group>"; };
 		71FDC94A2969D2C0006861E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		710C3598296C58AB00ED034F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				710C35A9296C5B7A00ED034F /* Core in Frameworks */,
+				710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		715E9580295CC20800AD6331 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,30 +83,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		715E9596295CC20A00AD6331 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		715E95A0295CC20A00AD6331 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		710C359C296C58AC00ED034F /* MutaroUITests */ = {
+			isa = PBXGroup;
+			children = (
+				710C359D296C58AC00ED034F /* MutaroUITests.swift */,
+				710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */,
+			);
+			path = MutaroUITests;
+			sourceTree = "<group>";
+		};
 		715E957A295CC20800AD6331 = {
 			isa = PBXGroup;
 			children = (
-				71FDC93329686A21006861E8 /* ci_scripts */,
 				715E9585295CC20800AD6331 /* MutaroApp */,
-				715E959C295CC20A00AD6331 /* MutaroAppTests */,
-				715E95A6295CC20A00AD6331 /* MutaroAppUITests */,
+				710C359C296C58AC00ED034F /* MutaroUITests */,
 				715E9584295CC20800AD6331 /* Products */,
 				71FDC94029692C3B006861E8 /* Frameworks */,
 			);
@@ -114,8 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				715E9583295CC20800AD6331 /* Mutaro.app */,
-				715E9599295CC20A00AD6331 /* MutaroAppTests.xctest */,
-				715E95A3295CC20A00AD6331 /* MutaroAppUITests.xctest */,
+				710C359B296C58AB00ED034F /* MutaroUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,21 +123,6 @@
 				715E9588295CC20800AD6331 /* SceneDelegate.swift */,
 			);
 			path = MutaroApp;
-			sourceTree = "<group>";
-		};
-		715E959C295CC20A00AD6331 /* MutaroAppTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MutaroAppTests;
-			sourceTree = "<group>";
-		};
-		715E95A6295CC20A00AD6331 /* MutaroAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				71F5BC4C29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift */,
-			);
-			path = MutaroAppUITests;
 			sourceTree = "<group>";
 		};
 		715E95BF295CC35E00AD6331 /* Resources */ = {
@@ -200,16 +179,6 @@
 			path = GoogleServicePlists;
 			sourceTree = "<group>";
 		};
-		71FDC93329686A21006861E8 /* ci_scripts */ = {
-			isa = PBXGroup;
-			children = (
-				71FDC93629686A8D006861E8 /* ci_post_clone.sh */,
-				71FDC93429686A8D006861E8 /* ci_post_xcodebuild.sh */,
-				71FDC93529686A8D006861E8 /* ci_pre_xcodebuild.sh */,
-			);
-			path = ci_scripts;
-			sourceTree = "<group>";
-		};
 		71FDC94029692C3B006861E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +189,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		710C359A296C58AB00ED034F /* MutaroUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 710C35A3296C58AC00ED034F /* Build configuration list for PBXNativeTarget "MutaroUITests" */;
+			buildPhases = (
+				710C3597296C58AB00ED034F /* Sources */,
+				710C3598296C58AB00ED034F /* Frameworks */,
+				710C3599296C58AB00ED034F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				710C35A2296C58AC00ED034F /* PBXTargetDependency */,
+			);
+			name = MutaroUITests;
+			packageProductDependencies = (
+				710C35A8296C5B7A00ED034F /* Core */,
+				710C35AA296C5B7A00ED034F /* FirebaseSetup */,
+			);
+			productName = MutaroUITests;
+			productReference = 710C359B296C58AB00ED034F /* MutaroUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		715E9582295CC20800AD6331 /* MutaroApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 715E95AD295CC20A00AD6331 /* Build configuration list for PBXNativeTarget "MutaroApp" */;
@@ -248,42 +239,6 @@
 			productReference = 715E9583295CC20800AD6331 /* Mutaro.app */;
 			productType = "com.apple.product-type.application";
 		};
-		715E9598295CC20A00AD6331 /* MutaroAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 715E95B0295CC20A00AD6331 /* Build configuration list for PBXNativeTarget "MutaroAppTests" */;
-			buildPhases = (
-				715E9595295CC20A00AD6331 /* Sources */,
-				715E9596295CC20A00AD6331 /* Frameworks */,
-				715E9597295CC20A00AD6331 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				715E959B295CC20A00AD6331 /* PBXTargetDependency */,
-			);
-			name = MutaroAppTests;
-			productName = MutaroAppTests;
-			productReference = 715E9599295CC20A00AD6331 /* MutaroAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		715E95A2295CC20A00AD6331 /* MutaroAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 715E95B3295CC20A00AD6331 /* Build configuration list for PBXNativeTarget "MutaroAppUITests" */;
-			buildPhases = (
-				715E959F295CC20A00AD6331 /* Sources */,
-				715E95A0295CC20A00AD6331 /* Frameworks */,
-				715E95A1295CC20A00AD6331 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				715E95A5295CC20A00AD6331 /* PBXTargetDependency */,
-			);
-			name = MutaroAppUITests;
-			productName = MutaroAppUITests;
-			productReference = 715E95A3295CC20A00AD6331 /* MutaroAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -294,17 +249,12 @@
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					710C359A296C58AB00ED034F = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 715E9582295CC20800AD6331;
+					};
 					715E9582295CC20800AD6331 = {
 						CreatedOnToolsVersion = 14.1;
-					};
-					715E9598295CC20A00AD6331 = {
-						CreatedOnToolsVersion = 14.1;
-						TestTargetID = 715E9582295CC20800AD6331;
-					};
-					715E95A2295CC20A00AD6331 = {
-						CreatedOnToolsVersion = 14.1;
-						LastSwiftMigration = 1410;
-						TestTargetID = 715E9582295CC20800AD6331;
 					};
 				};
 			};
@@ -322,13 +272,19 @@
 			projectRoot = "";
 			targets = (
 				715E9582295CC20800AD6331 /* MutaroApp */,
-				715E9598295CC20A00AD6331 /* MutaroAppTests */,
-				715E95A2295CC20A00AD6331 /* MutaroAppUITests */,
+				710C359A296C58AB00ED034F /* MutaroUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		710C3599296C58AB00ED034F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		715E9581295CC20800AD6331 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -343,20 +299,6 @@
 				71F5BD132961FB2A00CCC3F8 /* mutaro_3.png in Resources */,
 				71F5BD112961FB2A00CCC3F8 /* mutaro_0.png in Resources */,
 				715E95C6295CD16400AD6331 /* license_plist.yml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		715E9597295CC20A00AD6331 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		715E95A1295CC20A00AD6331 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +397,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    PATH_GOOGLE_SERVICE_INFO=\"${CI_WORKSPACE}/MutaroApp/Resources/GoogleServicePlists\"    \nelse\n    PATH_GOOGLE_SERVICE_INFO=\"${PROJECT_DIR}/MutaroApp/Resources/GoogleServicePlists\"    \nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        PATH_DESTINATION=\"${BUILT_PRODUCTS_DIR}/Mutaro.app\"\n    cp -r \"$PATH_GOOGLE_SERVICE_INFO/GoogleService-Info-prod.plist\" \"${PATH_DESTINATION}/GoogleService-Info.plist\" ;;\n    \"Debug(Development)\" )\n        PATH_DESTINATION=\"${BUILT_PRODUCTS_DIR}/MutaroDev.app\"\n        cp -r \"$PATH_GOOGLE_SERVICE_INFO/GoogleService-Info-dev.plist\" \"${PATH_DESTINATION}/GoogleService-Info.plist\" ;;\n    \"Release(Production)\" )\n        PATH_DESTINATION=\"${BUILT_PRODUCTS_DIR}/Mutaro.app\"\n        cp -r \"$PATH_GOOGLE_SERVICE_INFO/GoogleService-Info-prod.plist\" \"${PATH_DESTINATION}/GoogleService-Info.plist\" ;;\n    \"Release(Development)\" )\n        PATH_DESTINATION=\"${BUILT_PRODUCTS_DIR}/MutaroDev.app\"\n        cp -r \"$PATH_GOOGLE_SERVICE_INFO/GoogleService-Info-dev.plist\" \"${PATH_DESTINATION}/GoogleService-Info.plist\" ;;\n esac\n";
+			shellScript = "if [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    PATH_GOOGLE_SERVICE_INFO=\"${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/GoogleServicePlists\"    \nelse\n    PATH_GOOGLE_SERVICE_INFO=\"${PROJECT_DIR}/MutaroApp/Resources/GoogleServicePlists\"    \nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        PATH_DESTINATION=\"${BUILT_PRODUCTS_DIR}/Mutaro.app\"\n    cp -r \"$PATH_GOOGLE_SERVICE_INFO/GoogleService-Info-prod.plist\" \"${PATH_DESTINATION}/GoogleService-Info.plist\" ;;\n    \"Debug(Development)\" )\n        PATH_DESTINATION=\"${BUILT_PRODUCTS_DIR}/MutaroDev.app\"\n        cp -r \"$PATH_GOOGLE_SERVICE_INFO/GoogleService-Info-dev.plist\" \"${PATH_DESTINATION}/GoogleService-Info.plist\" ;;\n    \"Release(Production)\" )\n        PATH_DESTINATION=\"${BUILT_PRODUCTS_DIR}/Mutaro.app\"\n        cp -r \"$PATH_GOOGLE_SERVICE_INFO/GoogleService-Info-prod.plist\" \"${PATH_DESTINATION}/GoogleService-Info.plist\" ;;\n    \"Release(Development)\" )\n        PATH_DESTINATION=\"${BUILT_PRODUCTS_DIR}/MutaroDev.app\"\n        cp -r \"$PATH_GOOGLE_SERVICE_INFO/GoogleService-Info-dev.plist\" \"${PATH_DESTINATION}/GoogleService-Info.plist\" ;;\n esac\n";
 		};
 		71FDC93729686DEE006861E8 /* [NEED FIRST RUN] register env */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -473,11 +415,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f \"../env-vars.sh\" ]; then       \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nelse    \n    ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\nfi\n";
+			shellScript = "if [ -f \"../env-vars.sh\" ]; then       \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    if [ $IS_DEV ]; then\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nelse\n    if [ $IS_DEV ]; then\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		710C3597296C58AB00ED034F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				710C35A0296C58AC00ED034F /* MutaroUITestsLaunchTests.swift in Sources */,
+				710C359E296C58AC00ED034F /* MutaroUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		715E957F295CC20800AD6331 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,33 +438,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		715E9595295CC20A00AD6331 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		715E959F295CC20A00AD6331 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71F5BC4D29612C1C00CCC3F8 /* MutaroListViewControllerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		715E959B295CC20A00AD6331 /* PBXTargetDependency */ = {
+		710C35A2296C58AC00ED034F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 715E9582295CC20800AD6331 /* MutaroApp */;
-			targetProxy = 715E959A295CC20A00AD6331 /* PBXContainerItemProxy */;
-		};
-		715E95A5295CC20A00AD6331 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 715E9582295CC20800AD6331 /* MutaroApp */;
-			targetProxy = 715E95A4295CC20A00AD6331 /* PBXContainerItemProxy */;
+			targetProxy = 710C35A1296C58AC00ED034F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -529,6 +460,298 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		710C35A4296C58AC00ED034F /* Debug(Production) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PN7XF377XF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MutaroApp;
+			};
+			name = "Debug(Production)";
+		};
+		710C35A5296C58AC00ED034F /* Debug(Development) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PN7XF377XF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MutaroApp;
+			};
+			name = "Debug(Development)";
+		};
+		710C35A6296C58AC00ED034F /* Release(Production) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PN7XF377XF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MutaroApp;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release(Production)";
+		};
+		710C35A7296C58AC00ED034F /* Release(Development) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PN7XF377XF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LD_RUNPATH_SEARCH_PATHS_SHALLOW_BUNDLE_$(SHALLOW_BUNDLE))",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MutaroApp;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release(Development)";
+		};
 		715E95AB295CC20A00AD6331 /* Debug(Production) */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71FDC92A296861AD006861E8 /* Production.xcconfig */;
@@ -724,99 +947,6 @@
 			};
 			name = "Release(Production)";
 		};
-		715E95B1295CC20A00AD6331 /* Debug(Production) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MutaroApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MutaroApp";
-			};
-			name = "Debug(Production)";
-		};
-		715E95B2295CC20A00AD6331 /* Release(Production) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MutaroApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MutaroApp";
-			};
-			name = "Release(Production)";
-		};
-		715E95B4295CC20A00AD6331 /* Debug(Production) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MutaroApp;
-			};
-			name = "Debug(Production)";
-		};
-		715E95B5295CC20A00AD6331 /* Release(Production) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MutaroApp;
-			};
-			name = "Release(Production)";
-		};
 		71FDC92B296861DF006861E8 /* Debug(Development) */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71FDC929296861A7006861E8 /* Development.xcconfig */;
@@ -918,53 +1048,6 @@
 			};
 			name = "Debug(Development)";
 		};
-		71FDC92D296861DF006861E8 /* Debug(Development) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MutaroApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MutaroApp";
-			};
-			name = "Debug(Development)";
-		};
-		71FDC92E296861DF006861E8 /* Debug(Development) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MutaroApp;
-			};
-			name = "Debug(Development)";
-		};
 		71FDC92F296861F5006861E8 /* Release(Development) */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71FDC929296861A7006861E8 /* Development.xcconfig */;
@@ -1059,55 +1142,20 @@
 			};
 			name = "Release(Development)";
 		};
-		71FDC931296861F5006861E8 /* Release(Development) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MutaroApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MutaroApp";
-			};
-			name = "Release(Development)";
-		};
-		71FDC932296861F5006861E8 /* Release(Development) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.MutaroAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MutaroApp;
-			};
-			name = "Release(Development)";
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		710C35A3296C58AC00ED034F /* Build configuration list for PBXNativeTarget "MutaroUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				710C35A4296C58AC00ED034F /* Debug(Production) */,
+				710C35A5296C58AC00ED034F /* Debug(Development) */,
+				710C35A6296C58AC00ED034F /* Release(Production) */,
+				710C35A7296C58AC00ED034F /* Release(Development) */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release(Production)";
+		};
 		715E957E295CC20800AD6331 /* Build configuration list for PBXProject "MutaroApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1130,31 +1178,17 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release(Production)";
 		};
-		715E95B0295CC20A00AD6331 /* Build configuration list for PBXNativeTarget "MutaroAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				715E95B1295CC20A00AD6331 /* Debug(Production) */,
-				71FDC92D296861DF006861E8 /* Debug(Development) */,
-				715E95B2295CC20A00AD6331 /* Release(Production) */,
-				71FDC931296861F5006861E8 /* Release(Development) */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release(Production)";
-		};
-		715E95B3295CC20A00AD6331 /* Build configuration list for PBXNativeTarget "MutaroAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				715E95B4295CC20A00AD6331 /* Debug(Production) */,
-				71FDC92E296861DF006861E8 /* Debug(Development) */,
-				715E95B5295CC20A00AD6331 /* Release(Production) */,
-				71FDC932296861F5006861E8 /* Release(Development) */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release(Production)";
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		710C35A8296C5B7A00ED034F /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		710C35AA296C5B7A00ED034F /* FirebaseSetup */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseSetup;
+		};
 		71FDC9462969CEEE006861E8 /* Features */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Features;

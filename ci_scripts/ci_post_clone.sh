@@ -14,7 +14,7 @@ if [[ $CI_WORKFLOW = "Test-CI" || $CI_WORKFLOW = "Archive-For-Testflight-Develop
 
     if [[ $SOURCE_BRANCH != $RELEASE_BRANCH* || $SOURCE_BRANCH != $MASTER_BRANCH* || $SOURCE_BRANCH != $HOTFIX_BRANCH* ]]; then
         git fetch origin develop
-        lines=$(git diff remotes/origin/develop..$CI_BRANCH -G ".*[0-9]+\.[0-9]+[0-9]+.*" ${CI_WORKSPACE}/MutaroApp/Resources/Info.plist | wc -l)
+        lines=$(git diff remotes/origin/develop..$CI_BRANCH -G ".*[0-9]+\.[0-9]+[0-9]+.*" ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist | wc -l)
         if [ $lines -gt 0 ]; then
             echo "Mutaro: Version is not updated"
             exit 1
@@ -24,3 +24,4 @@ fi
 
 pip3 install requests
 brew install licenseplist
+defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES

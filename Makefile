@@ -43,6 +43,13 @@ clean: # Clear Cache
 	rm -rf ~/Library/Developer/Xcode/DerivedData/*;
 	xcodebuild clean --alltargets
 
+.PHONY: build-debug-development-without-build
+build-debug-development-without-build:
+	$(MAKE) build-debug-without-test PROJECT_NAME=${DEVELOP_NAME}
+
+.PHONY: build-debug-production-without-build
+build-debug-production-without-build:
+	$(MAKE) build-debug-without-test PROJECT_NAME=${PRODUCTION_NAME}
 
 .PHONY: build-debug-development
 build-debug-development:
@@ -56,6 +63,19 @@ build-debug-production:
 build-debug:
 	set -o pipefail \
 && xcodebuild \
+-sdk '${TEST_SDK}' \
+-configuration '${TEST_CONFIGURATION}' \
+-workspace '${WORKSPACE_NAME}' \
+-scheme '${TEST_SCHEME}' \
+-destination ${TEST_DESTINATION} \
+-clonedSourcePackagesDirPath './SourcePackages' \
+-skipPackagePluginValidation \
+clean build
+
+.PHONY: build-debug-without-test
+build-debug-without-test:
+	set -o pipefail \
+&& xcodebuild test-without-building \
 -sdk '${TEST_SDK}' \
 -configuration '${TEST_CONFIGURATION}' \
 -workspace '${WORKSPACE_NAME}' \

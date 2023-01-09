@@ -8,7 +8,7 @@
 
 if [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
     PATH=/usr/libexec:$PATH
-    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/Resources/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist"
     
     nextBuildNumber=$CI_BUILD_NUMBER
     originalVersion=$(PlistBuddy -c "print CFBundleShortVersionString" "${mainInfoPlist}")

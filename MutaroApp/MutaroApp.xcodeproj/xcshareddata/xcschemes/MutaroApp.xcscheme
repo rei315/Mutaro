@@ -33,20 +33,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "715E9598295CC20A00AD6331"
-               BuildableName = "MutaroAppTests.xctest"
-               BlueprintName = "MutaroAppTests"
-               ReferencedContainer = "container:MutaroApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "715E95A2295CC20A00AD6331"
-               BuildableName = "MutaroAppUITests.xctest"
-               BlueprintName = "MutaroAppUITests"
+               BlueprintIdentifier = "710C359A296C58AB00ED034F"
+               BuildableName = "MutaroUITests.xctest"
+               BlueprintName = "MutaroUITests"
                ReferencedContainer = "container:MutaroApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
