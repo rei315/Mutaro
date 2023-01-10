@@ -78,7 +78,7 @@ version_pr_comment() {
 }
 
 if [[ $CI_WORKFLOW = "Test-CI" ]]; then
-    if [[ -z $CI_RESULT_BUNDLE_PATH ]]; then
+    if [[ $CI_XCODEBUILD_ACTION -eq "build-for-testing" ]]; then
         git diff --exit-code
     fi
 elif [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
