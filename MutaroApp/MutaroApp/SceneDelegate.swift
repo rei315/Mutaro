@@ -12,8 +12,8 @@ import AppResource
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    var coordinator: AppCoordinator?
-
+    let mainRouter = DefaultRouter(rootTransition: EmptyTransition())
+    
     func scene(
         _ scene: UIScene, willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
@@ -26,16 +26,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
 
-        let navController = UINavigationController().apply {
-            $0.isNavigationBarHidden = true
+        let isNotFirstAppLaunching = UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
+                
+        let mainVC: UIViewController
+        if isNotFirstAppLaunching {
+            mainVC = createHomeTabViewController()
+        } else {
+            mainVC = createAppIntroductViewController()
         }
-        coordinator = AppCoordinator(navigationController: navController)
-        coordinator?.start()
-
+        
         sleep(1)
-        window?.rootViewController = navController
+        window?.rootViewController = mainVC
     }
 
+    private func createHomeTabViewController() -> UIViewController {
+        let tabs = [mainRouter.makeMutaroListTab(), mainRouter.makeSettingTab()]
+        return HomeTabViewController(viewControllers: tabs)
+    }
+    
+    private func createAppIntroductViewController() -> UIViewController {
+        mainRouter.makeAppIntroduct(self)
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -82,5 +94,12 @@ extension SceneDelegate {
 
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+}
+
+extension SceneDelegate: AppIntroductDelegate {
+    func onTapAgree() {
+        let vc = createHomeTabViewController()
+        window?.rootViewController = vc
     }
 }

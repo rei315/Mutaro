@@ -17,10 +17,16 @@ protocol MutaroListViewModelProtocol {
 }
 
 public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
+    typealias Routes = MutaroListRoute
+    private let router: Routes
     @Published var mutaroItems: [MutaroModel] = []
 
     var cancellables: Set<AnyCancellable> = []
 
+    init(router: Routes) {
+        self.router = router
+    }
+    
     func fetchMutaroItems() async {
         do {
             let mutaroDTOs = try await MutaroClient.MutaroDetailResource.getMutaros()
