@@ -7,6 +7,7 @@
 
 import Core
 import UIKit
+import AppResource
 
 class SettingViewController: UIViewController {
     private lazy var collectionView: UICollectionView = .init(
@@ -79,13 +80,21 @@ extension SettingViewController {
     private func setupDefaultSnapshot() {
         var snapshot = dataSource.snapshot()
         snapshot.appendSections(SettingListSection.allCases)
+        let settings: [SettingType] = [.info, .setting]
+        let rowItems: [SettingListRow] = settings.indices.map {
+            SettingListRow.defaultSetting($0)
+        }
+        snapshot.appendItems(rowItems, toSection: .setting)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func setupDevelopToolsSnapshot() {
         var snapshot = dataSource.snapshot()
-        let devTool1 = SettingListRow.developSetting(0)
-        snapshot.appendItems([devTool1], toSection: .developSetting)
+        let tools: [DevSettingType] = [.devToolDataUploader]
+        let rowItems: [SettingListRow] = tools.indices.map {
+            SettingListRow.developSetting($0)
+        }
+        snapshot.appendItems(rowItems, toSection: .developSetting)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
@@ -132,10 +141,28 @@ extension SettingViewController {
     
     func cellProvider(collectionView: UICollectionView, indexPath: IndexPath, item: SettingListRow) -> UICollectionViewCell {
         switch item {
-        case .defaultSetting:
-            return collectionView.dequeueReusableCell(withType: SettingDefaultCollectionViewCell.self, for: indexPath)
-        case .developSetting:
-            return collectionView.dequeueReusableCell(withType: SettingDefaultCollectionViewCell.self, for: indexPath)
+        case let .defaultSetting(index):
+            return collectionView.dequeueReusableCell(
+                withType: SettingDefaultCollectionViewCell.self,
+                for: indexPath
+            ).apply {
+                guard let type = SettingType(rawValue: index) else {
+                    return
+                }
+                
+                $0.bind(type: type)
+            }
+        case let .developSetting(index):
+            return collectionView.dequeueReusableCell(
+                withType: SettingDefaultCollectionViewCell.self,
+                for: indexPath
+            ).apply {
+                guard let type = DevSettingType(rawValue: index) else {
+                    return
+                }
+                
+                $0.bind(type: type)
+            }
         }
     }
 }
@@ -147,5 +174,52 @@ extension SettingViewController: UICollectionViewDelegate {
 extension SettingViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         
+    }
+}
+
+extension SettingViewController {
+    enum SettingType: Int {
+        case info
+        case setting
+        
+        var title: String {
+            switch self {
+            case .info:
+                return "アプリについて"
+            case .setting:
+                return "設定"
+            }
+        }
+        
+        var icon: UIImage {
+            let asset: ImageAsset
+            switch self {
+            case .info:
+                asset = Resources.Images.info
+            case .setting:
+                asset = Resources.Images.setting
+            }
+            return asset.image
+        }
+    }
+    
+    enum DevSettingType: Int {
+        case devToolDataUploader
+        
+        var title: String {
+            switch self {
+            case .devToolDataUploader:
+                return "開発ツール"
+            }
+        }
+        
+        var icon: UIImage {
+            let asset: ImageAsset
+            switch self {
+            case .devToolDataUploader:
+                asset = Resources.Images.devSetting
+            }
+            return asset.image
+        }
     }
 }

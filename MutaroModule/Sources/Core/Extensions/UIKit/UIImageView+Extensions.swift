@@ -21,10 +21,15 @@ extension UIImageView {
 
 @MainActor
 extension UIImageView {
-    public func clipToCircle() {
+    public func clipToCircle(with radius: CGFloat? = nil) {
         layer.masksToBounds = false
-        let radius: CGFloat = min(frame.width, frame.height) / 2.0
-        layer.cornerRadius = radius
+        let settingRadius: CGFloat
+        if let radius {
+            settingRadius = radius
+        } else {
+            settingRadius = min(frame.width, frame.height) / 2.0
+        }
+        layer.cornerRadius = settingRadius
         clipsToBounds = true
     }
 }
