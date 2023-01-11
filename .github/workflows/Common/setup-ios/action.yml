@@ -16,3 +16,4 @@ runs:
     - name: install dependencies
       run: |
         brew install license-plist
+      shell: bash
