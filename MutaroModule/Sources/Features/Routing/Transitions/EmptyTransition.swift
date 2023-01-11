@@ -1,6 +1,6 @@
 //
 //  EmptyTransition.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/01/12.
 //
@@ -16,6 +16,8 @@ public final class EmptyTransition {
 
 extension EmptyTransition: Transition {
     // MARK: - Transition
-    public func open(_ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?) {}
+    public func open(
+        _ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?
+    ) {}
     public func close(_ viewController: UIViewController, completion: (() -> Void)?) {}
 }

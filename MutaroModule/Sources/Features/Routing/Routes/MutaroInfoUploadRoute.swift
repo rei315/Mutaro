@@ -1,6 +1,6 @@
 //
 //  MutaroInfoUploadRoute.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/01/12.
 //
@@ -18,10 +18,10 @@ extension MutaroInfoUploadRoute where Self: Router {
         let viewModel = MutaroInfoUploadViewModel(router: router)
         let viewController = MutaroInfoUploadViewController(viewModel: viewModel)
         router.root = viewController
-        
-        route(to: viewController, as: push)        
+
+        route(to: viewController, as: push)
     }
 
 }
 
-extension DefaultRouter: MutaroInfoUploadRoute { }
+extension DefaultRouter: MutaroInfoUploadRoute {}

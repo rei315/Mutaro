@@ -5,21 +5,21 @@
 //  Created by minguk-kim on 2023/01/01.
 //
 
+import AppResource
 import Core
 import UIKit
-import AppResource
 
 final public class HomeTabViewController: UITabBarController {
-    
+
     public init(viewControllers: [UIViewController]) {
         super.init(nibName: nil, bundle: nil)
         self.viewControllers = viewControllers
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
@@ -64,7 +64,7 @@ enum HomeTabPage: Int {
             return "setting"
         }
     }
-    
+
     var iconName: String {
         switch self {
         case .mutaroList:
@@ -73,17 +73,17 @@ enum HomeTabPage: Int {
             return "gear"
         }
     }
-    
+
     var normalTabIconConfiguration: UIImage.SymbolConfiguration {
         let normalTabImageColor = Resources.Colors.navy.color
         return UIImage.SymbolConfiguration(hierarchicalColor: normalTabImageColor)
     }
-    
+
     var selectedTabIconConfiguration: UIImage.SymbolConfiguration {
         let normalTabImageColor = Resources.Colors.turquoise.color
         return UIImage.SymbolConfiguration(hierarchicalColor: normalTabImageColor)
     }
-    
+
     var item: UITabBarItem {
         return .init(
             title: self.title,

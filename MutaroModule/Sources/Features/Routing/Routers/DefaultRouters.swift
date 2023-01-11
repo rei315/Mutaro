@@ -1,6 +1,6 @@
 //
 //  DefaultRouters.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/01/12.
 //
@@ -20,7 +20,9 @@ public class DefaultRouter: NSObject, Router, Closable, Dismissable {
     }
 
     // MARK: - Routable
-    public func route(to viewController: UIViewController, as transition: Transition, completion: (() -> Void)?) {
+    public func route(
+        to viewController: UIViewController, as transition: Transition, completion: (() -> Void)?
+    ) {
         guard let root = root else { return }
         transition.open(viewController, from: root, completion: completion)
     }

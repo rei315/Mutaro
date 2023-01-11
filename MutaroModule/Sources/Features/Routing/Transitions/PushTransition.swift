@@ -1,6 +1,6 @@
 //
 //  PushTransition.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/01/12.
 //
@@ -15,7 +15,9 @@ final class PushTransition: NSObject {
     private var closeCompletionHandler: (() -> Void)?
 
     private var navigationController: UINavigationController? {
-        guard let navigation = from as? UINavigationController else { return from?.navigationController }
+        guard let navigation = from as? UINavigationController else {
+            return from?.navigationController
+        }
         return navigation
     }
 
@@ -26,8 +28,9 @@ final class PushTransition: NSObject {
 
 extension PushTransition: Transition {
     // MARK: - Transition
-    
-    func open(_ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?) {
+
+    func open(_ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?)
+    {
         self.from = from
         openCompletionHandler = completion
         navigationController?.delegate = self
@@ -42,10 +45,14 @@ extension PushTransition: Transition {
 
 extension PushTransition: UINavigationControllerDelegate {
     // MARK: - UINavigationControllerDelegate
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    func navigationController(
+        _ navigationController: UINavigationController, didShow viewController: UIViewController,
+        animated: Bool
+    ) {
         guard let transitionCoordinator = navigationController.transitionCoordinator,
             let fromVC = transitionCoordinator.viewController(forKey: .from),
-            let toVC = transitionCoordinator.viewController(forKey: .to) else { return }
+            let toVC = transitionCoordinator.viewController(forKey: .to)
+        else { return }
 
         if fromVC == from {
             openCompletionHandler?()

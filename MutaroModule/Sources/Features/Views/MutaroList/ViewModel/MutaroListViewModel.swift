@@ -26,7 +26,7 @@ public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
     init(router: Routes) {
         self.router = router
     }
-    
+
     func fetchMutaroItems() async {
         do {
             let mutaroDTOs = try await MutaroClient.MutaroDetailResource.getMutaros()

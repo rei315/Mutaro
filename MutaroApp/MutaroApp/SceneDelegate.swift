@@ -5,15 +5,15 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
-import Features
-import Core
-import UIKit
 import AppResource
+import Core
+import Features
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     let mainRouter = DefaultRouter(rootTransition: EmptyTransition())
-    
+
     func scene(
         _ scene: UIScene, willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
@@ -26,15 +26,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
 
-        let isNotFirstAppLaunching = UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
-                
+        let isNotFirstAppLaunching = UserDefaults.standard.bool(
+            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
+
         let mainVC: UIViewController
         if isNotFirstAppLaunching {
             mainVC = createHomeTabViewController()
         } else {
             mainVC = createAppIntroductViewController()
         }
-        
+
         sleep(1)
         window?.rootViewController = mainVC
     }
@@ -43,11 +44,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabs = [mainRouter.makeMutaroListTab(), mainRouter.makeSettingTab()]
         return HomeTabViewController(viewControllers: tabs)
     }
-    
+
     private func createAppIntroductViewController() -> UIViewController {
         mainRouter.makeAppIntroduct(self)
     }
-    
+
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

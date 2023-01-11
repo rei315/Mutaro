@@ -1,6 +1,6 @@
 //
 //  AppIntroductRoute.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/01/12.
 //
@@ -30,4 +30,4 @@ extension AppIntroductRoute where Self: Router {
     }
 }
 
-extension DefaultRouter: AppIntroductRoute { }
+extension DefaultRouter: AppIntroductRoute {}
