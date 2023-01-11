@@ -13,9 +13,9 @@
 		710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35AA296C5B7A00ED034F /* FirebaseSetup */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
-		715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */; };
 		715E95C6295CD16400AD6331 /* license_plist.yml in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C5295CD16400AD6331 /* license_plist.yml */; };
 		715E95CB295CD74D00AD6331 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 715E95CA295CD74D00AD6331 /* Settings.bundle */; };
+		718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC94A2969D2C0006861E8 /* Assets.xcassets */; };
 		71F5BD0D2961FB2A00CCC3F8 /* mutaro_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */; };
 		71F5BD0F2961FB2A00CCC3F8 /* mutaro_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */; };
 		71F5BD102961FB2A00CCC3F8 /* mutaro_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */; };
@@ -45,7 +45,6 @@
 		715E9583295CC20800AD6331 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E9586295CC20800AD6331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		715E9592295CC20A00AD6331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		715E9594295CC20A00AD6331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		715E95C5295CD16400AD6331 /* license_plist.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = license_plist.yml; sourceTree = "<group>"; };
 		715E95CA295CD74D00AD6331 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -117,7 +116,6 @@
 		715E9585295CC20800AD6331 /* MutaroApp */ = {
 			isa = PBXGroup;
 			children = (
-				71E191AD2965AC6A0059BB1F /* Common */,
 				715E95BF295CC35E00AD6331 /* Resources */,
 				715E9586295CC20800AD6331 /* AppDelegate.swift */,
 				715E9588295CC20800AD6331 /* SceneDelegate.swift */,
@@ -135,16 +133,8 @@
 				715E95C5295CD16400AD6331 /* license_plist.yml */,
 				715E9594295CC20A00AD6331 /* Info.plist */,
 				71FDC94A2969D2C0006861E8 /* Assets.xcassets */,
-				715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		71E191AD2965AC6A0059BB1F /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */ = {
@@ -289,8 +279,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				715E9593295CC20A00AD6331 /* LaunchScreen.storyboard in Resources */,
 				71F5BD0F2961FB2A00CCC3F8 /* mutaro_4.png in Resources */,
+				718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */,
 				71F5BD102961FB2A00CCC3F8 /* mutaro_1.png in Resources */,
 				71F5BD122961FB2A00CCC3F8 /* mutaro_2.png in Resources */,
 				71F5BD152961FE4600CCC3F8 /* mutaro_5.png in Resources */,
@@ -401,7 +391,7 @@
 		};
 		71FDC93729686DEE006861E8 /* [NEED FIRST RUN] register env */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -413,9 +403,9 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f \"../env-vars.sh\" ]; then       \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    if [ $IS_DEV ]; then\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nelse\n    if [ $IS_DEV ]; then\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nfi\n";
+			shellScript = "if [ -f \"../env-vars.sh\" ]; then       \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    if [ $IS_DEV ]; then\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else    \n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nelse    \n    if [ $IS_DEV ]; then\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -447,17 +437,6 @@
 			targetProxy = 710C35A1296C58AC00ED034F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		715E9591295CC20A00AD6331 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				715E9592295CC20A00AD6331 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		710C35A4296C58AC00ED034F /* Debug(Production) */ = {
@@ -886,7 +865,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MutaroApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -923,7 +901,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MutaroApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1014,7 +991,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71FDC929296861A7006861E8 /* Development.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1024,7 +1001,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MutaroApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1109,7 +1085,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71FDC929296861A7006861E8 /* Development.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1118,7 +1094,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MutaroApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
