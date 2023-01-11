@@ -12,3 +12,7 @@ runs:
       with:
         path: SourcePackages
         key: ${{ runner.os }}-spm-${{ hashFiles('**/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+        
+    - name: install dependencies
+      run: |
+        brew install license-plist
