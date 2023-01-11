@@ -6,7 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 final class SettingViewModel: NSObject {
-
+    @Published private(set) var shouldAddDeveloperSettingSubject = PassthroughSubject<Void, Never>()
+    
+    var cancellables: Set<AnyCancellable> = []
+    
+    func setupDeveloperSettings() {
+        shouldAddDeveloperSettingSubject.send(())
+    }
 }

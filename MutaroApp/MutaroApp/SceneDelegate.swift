@@ -72,7 +72,7 @@ extension SceneDelegate {
         let appearance = UINavigationBarAppearance().apply {
             $0.largeTitleTextAttributes = [
                 .foregroundColor: titleColor,
-                .font: UIFont.systemFont(ofSize: 32, weight: .bold),
+                .font: FontSize.plus5.ofBoldFont(),
             ]
             $0.backgroundColor = Resources.Colors.white.color
             $0.titleTextAttributes = [
