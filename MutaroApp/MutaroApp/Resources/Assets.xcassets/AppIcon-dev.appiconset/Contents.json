@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Dev-icon.png",
+      "filename" : "dev_app_icon.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator = AppCoordinator(navigationController: navController)
         coordinator?.start()
 
+        sleep(1)
         window?.rootViewController = navController
     }
 

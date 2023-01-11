@@ -41,7 +41,6 @@ public enum Resources {
   public enum Images {
     public static let devSetting = ImageAsset(name: "dev_setting")
     public static let info = ImageAsset(name: "info")
-    public static let launchScreen = ImageAsset(name: "launch_screen")
     public static let setting = ImageAsset(name: "setting")
   }
 }
