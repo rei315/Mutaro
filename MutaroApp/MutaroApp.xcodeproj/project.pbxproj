@@ -23,9 +23,8 @@
 		71F5BD122961FB2A00CCC3F8 /* mutaro_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */; };
 		71F5BD132961FB2A00CCC3F8 /* mutaro_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */; };
 		71F5BD152961FE4600CCC3F8 /* mutaro_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD142961FE4600CCC3F8 /* mutaro_5.png */; };
-		71FDC9472969CEEE006861E8 /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = 71FDC9462969CEEE006861E8 /* Features */; };
-		71FDC9492969CEEE006861E8 /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 71FDC9482969CEEE006861E8 /* FirebaseSetup */; };
-		71FDC94C2969DF59006861E8 /* AppResource in Frameworks */ = {isa = PBXBuildFile; productRef = 71FDC94B2969DF59006861E8 /* AppResource */; };
+		71FB3C8829707B5E008F843A /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB3C8729707B5E008F843A /* Features */; };
+		71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB3C8929707B5E008F843A /* FirebaseSetup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,9 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71FDC94C2969DF59006861E8 /* AppResource in Frameworks */,
-				71FDC9472969CEEE006861E8 /* Features in Frameworks */,
-				71FDC9492969CEEE006861E8 /* FirebaseSetup in Frameworks */,
+				71FB3C8829707B5E008F843A /* Features in Frameworks */,
+				71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,9 +219,8 @@
 			);
 			name = MutaroApp;
 			packageProductDependencies = (
-				71FDC9462969CEEE006861E8 /* Features */,
-				71FDC9482969CEEE006861E8 /* FirebaseSetup */,
-				71FDC94B2969DF59006861E8 /* AppResource */,
+				71FB3C8729707B5E008F843A /* Features */,
+				71FB3C8929707B5E008F843A /* FirebaseSetup */,
 			);
 			productName = MutaroApp;
 			productReference = 715E9583295CC20800AD6331 /* Mutaro.app */;
@@ -1166,17 +1163,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseSetup;
 		};
-		71FDC9462969CEEE006861E8 /* Features */ = {
+		71FB3C8729707B5E008F843A /* Features */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Features;
 		};
-		71FDC9482969CEEE006861E8 /* FirebaseSetup */ = {
+		71FB3C8929707B5E008F843A /* FirebaseSetup */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseSetup;
-		};
-		71FDC94B2969DF59006861E8 /* AppResource */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppResource;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
