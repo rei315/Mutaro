@@ -17,6 +17,7 @@ on:
         required: true
 
 runs:
+  runs-on: self-hosted
   using: "composite"
   steps:
     - name: set build system
