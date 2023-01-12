@@ -12,20 +12,25 @@ env:
   DEVELOPER_DIR: /Applications/Xcode-14.1.app
 
 jobs:
+  runs-on: self-hosted
+  
+  checkout:
+    uses: actions/checkout@v3
+    with:
+      fetch-depth: 0
+      
+  setupiOS:
+    uses: ./.github/workflows/Common/setup-ios
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      G_DEV_API_KEY: ${{ secrets.G_DEV_API_KEY }}
+      G_DEV_CLIENT_ID: ${{ secrets.G_DEV_CLIENT_ID }}
+      G_DEV_GCM_SENDER_ID: ${{ secrets.G_DEV_GCM_SENDER_ID }}
+      G_DEV_GOOGLE_APP_ID: ${{ secrets.G_DEV_GOOGLE_APP_ID }}
+      G_DEV_REVERSED_CLIENT_ID: ${{ secrets.G_DEV_REVERSED_CLIENT_ID }}
+        
   distribute:
-    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: ./.github/workflows/Common/setup-ios
-        secrets:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          G_DEV_API_KEY: ${{ secrets.G_DEV_API_KEY }}
-          G_DEV_CLIENT_ID: ${{ secrets.G_DEV_CLIENT_ID }}
-          G_DEV_GCM_SENDER_ID: ${{ secrets.G_DEV_GCM_SENDER_ID }}
-          G_DEV_GOOGLE_APP_ID: ${{ secrets.G_DEV_GOOGLE_APP_ID }}
-          G_DEV_REVERSED_CLIENT_ID: ${{ secrets.G_DEV_REVERSED_CLIENT_ID }}
       - name: "build debug"
         run: |
           make build-debug-development
