@@ -1,5 +1,21 @@
 name: Setup Ios
 
+on:
+  workflow_call:
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+      G_DEV_API_KEY:
+        required: true
+      G_DEV_CLIENT_ID:
+        required: true
+      G_DEV_GCM_SENDER_ID:
+        required: true
+      G_DEV_GOOGLE_APP_ID:
+        required: true
+      G_DEV_REVERSED_CLIENT_ID:
+        required: true
+
 runs:
   using: "composite"
   steps:
@@ -22,12 +38,12 @@ runs:
       
     - name: export variable
       with:
-        GITHUB_TOKEN: ${{ env.GH_TOKEN }}
-        G_DEV_API_KEY: ${{ env.G_DEV_API_KEY }}
-        G_DEV_CLIENT_ID: ${{ env.G_DEV_CLIENT_ID }}
-        G_DEV_GCM_SENDER_ID: ${{ env.G_DEV_GCM_SENDER_ID }}
-        G_DEV_GOOGLE_APP_ID: ${{ env.G_DEV_GOOGLE_APP_ID }}
-        G_DEV_REVERSED_CLIENT_ID: ${{ env.G_DEV_REVERSED_CLIENT_ID }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        G_DEV_API_KEY: ${{ secrets.G_DEV_API_KEY }}
+        G_DEV_CLIENT_ID: ${{ secrets.G_DEV_CLIENT_ID }}
+        G_DEV_GCM_SENDER_ID: ${{ secrets.G_DEV_GCM_SENDER_ID }}
+        G_DEV_GOOGLE_APP_ID: ${{ secrets.G_DEV_GOOGLE_APP_ID }}
+        G_DEV_REVERSED_CLIENT_ID: ${{ secrets.G_DEV_REVERSED_CLIENT_ID }}
       run: |
         ./scripts/apply-environment-variable.sh ${G_DEV_CLIENT_ID} ${G_DEV_API_KEY} ${G_DEV_REVERSED_CLIENT_ID} ${G_DEV_GCM_SENDER_ID} ${G_DEV_GOOGLE_APP_ID} ${GITHUB_TOKEN}
       shell: bash
