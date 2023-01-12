@@ -1,6 +1,6 @@
 //
 //  AnimatedTransition.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/01/12.
 //
@@ -19,7 +19,8 @@ final class AnimatedTransition: NSObject {
 
 extension AnimatedTransition: Transition {
     // MARK: - Transition
-    func open(_ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?) {
+    func open(_ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?)
+    {
         viewController.transitioningDelegate = self
         viewController.modalPresentationStyle = .custom
         from.present(viewController, animated: isAnimated, completion: completion)
@@ -31,14 +32,18 @@ extension AnimatedTransition: Transition {
 }
 
 extension AnimatedTransition: UIViewControllerTransitioningDelegate {
-    func animationController(forPresented presented: UIViewController,
-                             presenting: UIViewController,
-                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
         animatedTransition.isPresenting = true
         return animatedTransition
     }
 
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController)
+        -> UIViewControllerAnimatedTransitioning?
+    {
         animatedTransition.isPresenting = false
         return animatedTransition
     }

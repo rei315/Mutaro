@@ -19,6 +19,17 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/workflows/Common/setup-ios
+      - name: export variable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          G_DEV_API_KEY: ${{ secrets.G_DEV_API_KEY }}
+          G_DEV_CLIENT_ID: ${{ secrets.G_DEV_CLIENT_ID }}
+          G_DEV_GCM_SENDER_ID: ${{ secrets.G_DEV_GCM_SENDER_ID }}
+          G_DEV_GOOGLE_APP_ID: ${{ secrets.G_DEV_GOOGLE_APP_ID }}
+          G_DEV_REVERSED_CLIENT_ID: ${{ secrets.G_DEV_REVERSED_CLIENT_ID }}
+        run: |
+          ./scripts/apply-environment-variable.sh ${G_DEV_CLIENT_ID} ${G_DEV_API_KEY} ${G_DEV_REVERSED_CLIENT_ID} ${G_DEV_GCM_SENDER_ID} ${G_DEV_GOOGLE_APP_ID} ${GITHUB_TOKEN}
       - name: "build debug"
         run: |
           make build-debug-development
+        

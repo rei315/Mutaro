@@ -1,6 +1,6 @@
 //
 //  FadeAnimatedTransitioning.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/01/12.
 //
@@ -10,7 +10,9 @@ import UIKit
 final class FadeAnimatedTransitioning: NSObject, AnimatedTransitioning {
     var isPresenting: Bool = true
 
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?)
+        -> TimeInterval
+    {
         return 0.35
     }
 
@@ -29,20 +31,26 @@ final class FadeAnimatedTransitioning: NSObject, AnimatedTransitioning {
         toView.alpha = 0.0
         containerView.addSubview(toView)
 
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-            toView.alpha = 1.0
-        }, completion: { _ in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        })
+        UIView.animate(
+            withDuration: transitionDuration(using: transitionContext),
+            animations: {
+                toView.alpha = 1.0
+            },
+            completion: { _ in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            })
     }
 
     private func dismiss(using transitionContext: UIViewControllerContextTransitioning) {
         guard let fromView = transitionContext.view(forKey: .from) else { return }
 
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-            fromView.alpha = 0.0
-        }, completion: { _ in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        })
+        UIView.animate(
+            withDuration: transitionDuration(using: transitionContext),
+            animations: {
+                fromView.alpha = 0.0
+            },
+            completion: { _ in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            })
     }
 }
