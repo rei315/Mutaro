@@ -38,7 +38,7 @@ runs:
       
     - name: export variable
       with:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         G_DEV_API_KEY: ${{ secrets.G_DEV_API_KEY }}
         G_DEV_CLIENT_ID: ${{ secrets.G_DEV_CLIENT_ID }}
         G_DEV_GCM_SENDER_ID: ${{ secrets.G_DEV_GCM_SENDER_ID }}
