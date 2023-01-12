@@ -1,21 +1,5 @@
 name: Setup Ios
 
-on:
-  workflow_call:
-    secrets:
-      GITHUB_TOKEN:
-        required: true
-      G_DEV_API_KEY:
-        required: true
-      G_DEV_CLIENT_ID:
-        required: true
-      G_DEV_GCM_SENDER_ID:
-        required: true
-      G_DEV_GOOGLE_APP_ID:
-        required: true
-      G_DEV_REVERSED_CLIENT_ID:
-        required: true
-
 runs:
   runs-on: self-hosted
   using: "composite"
