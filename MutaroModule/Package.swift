@@ -37,8 +37,7 @@ let firebaseFirestoreDependencies: [Target.Dependency] = [
 let package = Package(
     name: "MutaroModule",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v10_15)
+        .iOS(.v15)
     ],
     products: [
         .library(
@@ -47,9 +46,6 @@ let package = Package(
         .library(
             name: "Core",
             targets: ["Core"]),
-        .library(
-            name: "BuildTools",
-            targets: ["BuildTools"]),
         .library(
             name: "FirebaseSetup",
             targets: ["FirebaseSetup"]
@@ -65,18 +61,18 @@ let package = Package(
         .library(
             name: "AppResource",
             targets: ["AppResource"]
-        )
+        ),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-format", branch: "main"),
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
+        .package(url: "https://github.com/apple/swift-format", branch: "main"),
     ],
     targets: [
         .target(
             name: "Features",
             dependencies: ["ImageLoader", "Core", "Repositories", "AppResource"],
             swiftSettings: [
-                .define("DEV", .when(configuration: .debug)),
+                .define("DEV", .when(configuration: .debug))
             ]
         ),
         .target(
@@ -87,27 +83,25 @@ let package = Package(
             name: "Repositories",
             dependencies: firebaseFirestoreDependencies + firebaseAnalyticsDependencies + ["Core"],
             linkerSettings: [
-                .unsafeFlags(["-ObjC"]),
+                .unsafeFlags(["-ObjC"])
             ]
-        ),
-        .target(
-            name: "BuildTools",
-            dependencies: ["swift-format"]
         ),
         .target(
             name: "FirebaseSetup",
             dependencies: firebaseCrashlyticsDependencies + firebaseAnalyticsDependencies,
             linkerSettings: [
-                .unsafeFlags(["-ObjC"]),
+                .unsafeFlags(["-ObjC"])
             ]
         ),
         .target(
             name: "AppResource",
             dependencies: [],
-            exclude: ["swiftgen.yml"],
-            plugins: [
-                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            exclude: [
+                "swiftgen.yml"
             ]
+            //            plugins: [
+            //                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            //            ]
         ),
         .target(
             name: "ImageLoader",
@@ -135,7 +129,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "GoogleAppMeasurementIdentitySupport",
-            path: "XCFrameworks/Firebase/FirebaseAnalytics/GoogleAppMeasurementIdentitySupport.xcframework"
+            path:
+                "XCFrameworks/Firebase/FirebaseAnalytics/GoogleAppMeasurementIdentitySupport.xcframework"
         ),
         .binaryTarget(
             name: "FirebaseCore",

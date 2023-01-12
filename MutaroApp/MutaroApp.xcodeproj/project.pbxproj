@@ -210,8 +210,8 @@
 				715E957F295CC20800AD6331 /* Sources */,
 				715E9580295CC20800AD6331 /* Frameworks */,
 				715E9581295CC20800AD6331 /* Resources */,
-				715E95C8295CD25000AD6331 /* Run SwiftFormat */,
-				716C000A296F33B800C3DDF4 /* Run SwiftLint */,
+				7131E87F2970696B006E1C9D /* Run Swift-Format */,
+				7131E88029707623006E1C9D /* Run Swift-Lint */,
 				715E95C7295CD1AC00AD6331 /* Run LicensePlist */,
 				715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */,
 			);
@@ -295,6 +295,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7131E87F2970696B006E1C9D /* Run Swift-Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Swift-Format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../MutaroModule\nls Sources | xargs xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory format-source-code --target\n";
+		};
+		7131E88029707623006E1C9D /* Run Swift-Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Swift-Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../MutaroModule\nls Sources | xargs xcrun --sdk macosx swift package --allow-writing-to-package-directory lint-source-code --target\n";
+		};
 		715E95C7295CD1AC00AD6331 /* Run LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,25 +348,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ $CONFIGURATION = \"Debug(Production)\" ]] || [[ $CONFIGURATION = \"Debug(Development)\" ]]; then    \n    if which /usr/local/bin/license-plist > /dev/null; then\n        if [ ! -z $LICENSE_PLIST_GITHUB_TOKEN ]; then\n            TOKEN=$LICENSE_PLIST_GITHUB_TOKEN\n        elif [ ! -z $GITHUB_TOKEN ]; then\n            TOKEN=$GITHUB_TOKEN\n        else\n            echo \"Mutaro: - licensePlistで使うためのLICENSE_PLIST_GITHUB_TOKENを設定してください\"                        \n            exit 1\n        fi\n        \n        /usr/local/bin/license-plist --output-path $PRODUCT_NAME/Resources/Settings.bundle --config-path $PRODUCT_NAME/Resources/license_plist.yml --package-path MutaroApp.xcworkspace/xcshareddata/swiftpm/Package.resolved --github-token ${TOKEN}\n    elif which /opt/homebrew/bin/license-plist > /dev/null; then\n        if [ -f \"../env-vars.sh\" ]; then       \n            source \"../env-vars.sh\"\n        fi        \n        \n        if [ ! -z $LICENSE_PLIST_GITHUB_TOKEN ]; then\n            TOKEN=$LICENSE_PLIST_GITHUB_TOKEN\n        elif [ ! -z $GITHUB_TOKEN ]; then\n            TOKEN=$GITHUB_TOKEN\n        else\n            echo \"Mutaro: - licensePlistで使うためのLICENSE_PLIST_GITHUB_TOKENを設定してください\"            \n            exit 1          \n        fi\n        \n        /opt/homebrew/bin/license-plist --output-path $PRODUCT_NAME/Resources/Settings.bundle --config-path $PRODUCT_NAME/Resources/license_plist.yml --package-path MutaroApp.xcworkspace/xcshareddata/swiftpm/Package.resolved --github-token ${TOKEN}\n    else\n        echo \"warning: Please install license-plist with 'brew install license-plist'\"\n        exit 1\n    fi\nfi\n";
-		};
-		715E95C8295CD25000AD6331 /* Run SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"../.swift-format",
-			);
-			name = "Run SwiftFormat";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ $CONFIGURATION = \"Debug(Production)\" ]] || [[ $CONFIGURATION = \"Debug(Development)\" ]]; then\n    xcrun --sdk macosx swift build -c release --package-path ../MutaroModule/Sources/BuildTools --product swift-format\n    find MutaroApp ../MutaroModule -name \"*.swift\" -not -name \"Package.swift\" -not -path \"*/XCFrameworks/*\" -not -path \"*/.build/*\" | xargs ../MutaroModule/.build/release/swift-format format -i -r --ignore-unparsable-files -p --configuration ../.swift-format\nfi\n\n";
 		};
 		715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -351,25 +368,6 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "echo ${SRCROOT}/MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
-		};
-		716C000A296F33B800C3DDF4 /* Run SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"../.swift-format",
-			);
-			name = "Run SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ $CONFIGURATION = \"Debug(Production)\" ]] || [[ $CONFIGURATION = \"Debug(Development)\" ]]; then\n    find MutaroApp ../MutaroModule -name \"*.swift\" -not -name \"Package.swift\" -not -path \"*/XCFrameworks/*\" -not -path \"*/.build/*\" -not -path \"*/AppResource/*\" | xargs ../MutaroModule/.build/release/swift-format lint -r -s -p --configuration ../.swift-format\nfi\n";
 		};
 		71FDC928296860F4006861E8 /* Copy Firebase Plist */ = {
 			isa = PBXShellScriptBuildPhase;
