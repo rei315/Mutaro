@@ -35,16 +35,4 @@ runs:
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bash_profile
         eval "$(/opt/homebrew/bin/brew shellenv)"
         brew install licenseplist
-      shell: bash
-      
-    - name: export variable
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        G_DEV_API_KEY: ${{ secrets.G_DEV_API_KEY }}
-        G_DEV_CLIENT_ID: ${{ secrets.G_DEV_CLIENT_ID }}
-        G_DEV_GCM_SENDER_ID: ${{ secrets.G_DEV_GCM_SENDER_ID }}
-        G_DEV_GOOGLE_APP_ID: ${{ secrets.G_DEV_GOOGLE_APP_ID }}
-        G_DEV_REVERSED_CLIENT_ID: ${{ secrets.G_DEV_REVERSED_CLIENT_ID }}
-      run: |
-        ./scripts/apply-environment-variable.sh ${G_DEV_CLIENT_ID} ${G_DEV_API_KEY} ${G_DEV_REVERSED_CLIENT_ID} ${G_DEV_GCM_SENDER_ID} ${G_DEV_GOOGLE_APP_ID} ${GITHUB_TOKEN}
-      shell: bash
+      shell: bash          
