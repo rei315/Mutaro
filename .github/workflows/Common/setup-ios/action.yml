@@ -1,7 +1,6 @@
 name: Setup Ios
 
 runs:
-  runs-on: self-hosted
   using: "composite"
   steps:
     - name: set build system
