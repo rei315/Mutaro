@@ -36,3 +36,9 @@ extension UIViewController {
         }
     }
 }
+
+extension UIViewController {
+    public func setSmallTitle() {
+        navigationItem.largeTitleDisplayMode = .never
+    }
+}

@@ -13,9 +13,4 @@ public final class MutaroClient {
     public static let shared = MutaroClient()
 
     public let firestore = Firestore.firestore()
-    public let networkStatusManager: NetworkStatusManagerProtocol
-
-    private init(networkStatusManager: NetworkStatusManagerProtocol = NetworkStatusManager()) {
-        self.networkStatusManager = networkStatusManager
-    }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Network
 
 public protocol MutaroDetailResourceProtocol {
     static func getMutaros() async throws -> [MutaroDTO]
@@ -13,8 +14,8 @@ public protocol MutaroDetailResourceProtocol {
 
 extension MutaroClient {
     public struct MutaroDetailResource: MutaroDetailResourceProtocol {
-        public static func getMutaros() async throws -> [MutaroDTO] {
-            guard await MutaroClient.shared.networkStatusManager.isOnline else {
+        public static func getMutaros() async throws -> [MutaroDTO] {            
+            guard await NWPathMonitor().isOnline() else {
                 return []
             }
             let collection = MutaroClient.shared.firestore.collection("mutaroDetails")
