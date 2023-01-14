@@ -6,7 +6,7 @@
 #  Created by minguk-kim on 2022/09/27.
 #  Copyright © 2022 MGHouse, Inc. All rights reserved.
 
-git branch -a
+git branch -r
 exit 1
 
 if [[ $CI_WORKFLOW = "Test-CI" || $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then

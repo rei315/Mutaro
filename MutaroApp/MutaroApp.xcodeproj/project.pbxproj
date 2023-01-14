@@ -326,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../MutaroModule\nls Sources | xargs xcrun --sdk macosx swift package --allow-writing-to-package-directory lint-source-code --target\n";
+			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory lint-source-code --target ${path}\ndone\n";
 		};
 		715E95C7295CD1AC00AD6331 /* Run LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
