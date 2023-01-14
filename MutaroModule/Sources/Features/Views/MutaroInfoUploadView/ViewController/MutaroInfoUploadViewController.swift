@@ -52,7 +52,7 @@ final public class MutaroInfoUploadViewController: UIViewController {
         let postButton = UIBarButtonItem(
             barButtonSystemItem: .done,
             target: self,
-            action: #selector(postButtonHandler)
+            action: #selector(showPostAlert)
         )
         navigationItem.rightBarButtonItem = postButton
     }
@@ -197,8 +197,73 @@ final public class MutaroInfoUploadViewController: UIViewController {
                 self.updateImageView(url: $0.url)
             }
             .store(in: &viewModel.cancellables)
+
+        viewModel.didFinishedPostMutaroInfo
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self else {
+                    return
+                }
+                self.showFinishedPostAlert()
+            }
+            .store(in: &viewModel.cancellables)
+    }
+}
+
+extension MutaroInfoUploadViewController {
+    @objc
+    private func showPostAlert() {
+        let alert = UIAlertController(
+            title: "情報アップロード",
+            message: "入力した情報でサーバーにアップロードしますか？",
+            preferredStyle: .alert
+        )
+        let cancelAction = UIAlertAction(
+            title: "キャンセル",
+            style: .cancel
+        )
+        let postAction = UIAlertAction(
+            title: "保存",
+            style: .default
+        ) { [weak self] _ in
+            self?.postButtonHandler()
+        }
+
+        alert.addAction(cancelAction)
+        alert.addAction(postAction)
+        self.present(alert, animated: true)
     }
 
+    private func showFinishedPostAlert() {
+        let alert = UIAlertController(
+            title: "アップロード完了",
+            message: "情報をFirebaseにアップロードしました。",
+            preferredStyle: .alert
+        )
+        let doneAction = UIAlertAction(
+            title: "OK",
+            style: .default
+        ) { [weak self] _ in
+            self?.viewModel.dismiss()
+        }
+
+        alert.addAction(doneAction)
+        self.present(alert, animated: true)
+    }
+}
+
+extension MutaroInfoUploadViewController {
+    private func postButtonHandler() {
+        Task {
+            await viewModel.onTapPost(
+                title: titleField.text,
+                description: descriptionField.text
+            )
+        }
+    }
+}
+
+extension MutaroInfoUploadViewController {
     private func updateTitleLimit(_ count: Int) {
         titleLimitLabel.text = "(\(count)/\(TextFieldCharacterLimit.title.rawValue))"
     }
@@ -216,7 +281,9 @@ final public class MutaroInfoUploadViewController: UIViewController {
         let resizedImage = image.downsample(imageAt: url, to: self.imageView.frame.size)
         self.imageView.setImage(resizedImage, for: .normal)
     }
+}
 
+extension MutaroInfoUploadViewController {
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         guard !isShowingKeyboard else {
@@ -263,16 +330,6 @@ final public class MutaroInfoUploadViewController: UIViewController {
             UIView.animate(withDuration: keyboardDuration) {
                 self.view.frame.origin.y = 0
             }
-        }
-    }
-
-    @objc
-    private func postButtonHandler() {
-        Task {
-            await viewModel.onTapPost(
-                title: titleField.text,
-                description: descriptionField.text
-            )
         }
     }
 }

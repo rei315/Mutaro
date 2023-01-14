@@ -20,10 +20,10 @@ extension MutaroClient {
             }
 
             let fileData = try Data(contentsOf: fileUrl)
-            
+
             let hash = RandomStringCreator.randomString()
             let uploadDateString = DateFormatter().getJPDateString(format: "yyyy-MM-dd-HH-mm-ss")
-            
+
             let ref = MutaroClient.shared.storage.reference().child(
                 "mutaro_photos/\(hash)-\(uploadDateString).png"
             )

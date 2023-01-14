@@ -21,7 +21,6 @@ extension MutaroInfoUploadRoute where Self: Router {
 
         route(to: viewController, as: push)
     }
-
 }
 
 extension DefaultRouter: MutaroInfoUploadRoute {}

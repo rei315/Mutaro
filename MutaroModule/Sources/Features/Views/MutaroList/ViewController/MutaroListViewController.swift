@@ -95,10 +95,31 @@ extension MutaroListViewController {
 
     private func updateSnapshot(_ items: [MutaroModel]) {
         var snapshot = dataSource.snapshot()
-        let mutaroRows: [MutaroListRow] = items.indices.map {
+
+        let currentHorizontalPhotosItems = snapshot.itemIdentifiers(
+            inSection: .mutaroHorizontalPhotos)
+        items.indices.map {
             MutaroListRow.mutaroHorizontalPhoto(index: $0)
+        }.forEach {
+            if currentHorizontalPhotosItems.contains($0) {
+                snapshot.reconfigureItems([$0])
+            } else {
+                snapshot.appendItems([$0], toSection: .mutaroHorizontalPhotos)
+            }
         }
-        snapshot.appendItems(mutaroRows, toSection: .mutaroHorizontalPhotos)
+
+        let newHorizontalPhotoItemsCount = items.count
+        let horizontalPhotoItemsDiff =
+            currentHorizontalPhotosItems.count - newHorizontalPhotoItemsCount
+        if horizontalPhotoItemsDiff > 0 {
+            let delegateTargets =
+                (newHorizontalPhotoItemsCount..<newHorizontalPhotoItemsCount
+                + horizontalPhotoItemsDiff).map {
+                    MutaroListRow.mutaroHorizontalPhoto(index: $0)
+                }
+            snapshot.deleteItems(delegateTargets)
+        }
+
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 

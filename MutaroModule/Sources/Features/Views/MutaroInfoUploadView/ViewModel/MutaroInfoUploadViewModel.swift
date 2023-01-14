@@ -17,10 +17,11 @@ struct MutaroPhotoData {
 }
 
 final public class MutaroInfoUploadViewModel: NSObject {
-    typealias Routes = MutaroInfoUploadRoute
+    typealias Routes = MutaroInfoUploadRoute & Closable
     private let router: Routes
 
     @Published var pickedPhotoData: MutaroPhotoData?
+    let didFinishedPostMutaroInfo = PassthroughSubject<Void, Never>()
     var cancellables: Set<AnyCancellable> = []
 
     init(router: Routes) {
@@ -75,9 +76,13 @@ final public class MutaroInfoUploadViewModel: NSObject {
                     title: title,
                     description: description
                 )
-
+            didFinishedPostMutaroInfo.send(())
         } catch {
             print("Mins: error - \(error)")
         }
+    }
+
+    func dismiss() {
+        router.close()
     }
 }
