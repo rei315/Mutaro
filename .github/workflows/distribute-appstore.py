@@ -26,7 +26,7 @@ TARGET_PRODUCT_NAME = os.environ['TARGET_PRODUCT_NAME']
 
 productsResponse = get("https://api.appstoreconnect.apple.com/v1/apps", JWT_TOKEN)
 if productsResponse.status_code != 200:
-    print(productsResponse.status_code.status_code)
+    print(productsResponse.status_code)
     exit()
     
 productsResponseJson = productsResponse.json()
