@@ -12,7 +12,6 @@ import PhotosUI
 import Repositories
 
 struct MutaroPhotoData {
-    let image: UIImage
     let url: URL
     let fileName: String
 }
@@ -39,14 +38,11 @@ final public class MutaroInfoUploadViewModel: NSObject {
                 return
             }
 
-            let photoURL = try await itemProvider.loadItem(forTypeIdentifier: typeIdentifier)
-            let photoData = try Data(contentsOf: photoURL)
-            guard let image = UIImage(data: photoData) else {
-                return
-            }
+            let photoURL = try await itemProvider.loadFileRepresentation(
+                forTypeIdentifier: typeIdentifier
+            )
 
             self.pickedPhotoData = .init(
-                image: image,
                 url: photoURL,
                 fileName: "\(photoName).\(photoType)"
             )
@@ -62,7 +58,7 @@ final public class MutaroInfoUploadViewModel: NSObject {
         else {
             return
         }
-        
+
         do {
             let photoUrl =
                 try await MutaroClient

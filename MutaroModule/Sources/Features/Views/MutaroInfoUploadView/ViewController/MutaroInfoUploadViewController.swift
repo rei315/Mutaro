@@ -190,14 +190,11 @@ final public class MutaroInfoUploadViewController: UIViewController {
         viewModel.$pickedPhotoData
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
-            .sink { [weak self] data in
+            .sink { [weak self] in
                 guard let self else {
                     return
                 }
-                let image = data.image
-                let url = data.url
-                let resizedImage = image.downsample(imageAt: url, to: self.imageView.frame.size)
-                self.imageView.setImage(resizedImage, for: .normal)
+                self.updateImageView(url: $0.url)
             }
             .store(in: &viewModel.cancellables)
     }
@@ -208,6 +205,16 @@ final public class MutaroInfoUploadViewController: UIViewController {
 
     private func updateDescriptionLimit(_ count: Int) {
         descriptionLimitLabel.text = "(\(count)/\(TextFieldCharacterLimit.description.rawValue))"
+    }
+
+    private func updateImageView(url: URL) {
+        guard let data = try? Data(contentsOf: url),
+            let image = UIImage(data: data)
+        else {
+            return
+        }
+        let resizedImage = image.downsample(imageAt: url, to: self.imageView.frame.size)
+        self.imageView.setImage(resizedImage, for: .normal)
     }
 
     @objc
@@ -292,6 +299,7 @@ extension MutaroInfoUploadViewController: PHPickerViewControllerDelegate {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
         configuration.filter = .images
         configuration.selectionLimit = 1
+        configuration.preferredAssetRepresentationMode = .current
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         picker.modalPresentationStyle = .popover

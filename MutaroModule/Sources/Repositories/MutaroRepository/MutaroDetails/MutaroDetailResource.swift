@@ -23,13 +23,7 @@ extension MutaroClient {
             }
 
             let collection = MutaroClient.shared.firestore.collection("mutaroDetails")
-            let dateFormatter = DateFormatter().apply {
-                $0.dateFormat = "yyyy/MM/dd HH:mm"
-                $0.calendar = Calendar(identifier: .gregorian)
-                $0.locale = Locale(identifier: "ja_JP")
-                $0.timeZone = TimeZone(identifier: "Asia/Tokyo")
-            }
-            let uploadDateString = dateFormatter.string(from: Date())
+            let uploadDateString = DateFormatter().getJPDateString()
             let dto = MutaroDTO(
                 uploadDate: uploadDateString,
                 imageUrl: imageUrl,

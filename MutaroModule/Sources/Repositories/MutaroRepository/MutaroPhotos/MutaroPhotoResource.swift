@@ -20,7 +20,13 @@ extension MutaroClient {
             }
 
             let fileData = try Data(contentsOf: fileUrl)
-            let ref = MutaroClient.shared.storage.reference().child("mutaro_photos/\(fileName)")
+            
+            let hash = RandomStringCreator.randomString()
+            let uploadDateString = DateFormatter().getJPDateString(format: "yyyy-MM-dd-HH-mm-ss")
+            
+            let ref = MutaroClient.shared.storage.reference().child(
+                "mutaro_photos/\(hash)-\(uploadDateString).png"
+            )
             _ = try await ref.putDataAsync(fileData)
             let downloadUrl = try await ref.downloadURL()
 
