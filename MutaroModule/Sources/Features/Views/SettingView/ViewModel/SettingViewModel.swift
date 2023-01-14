@@ -12,7 +12,7 @@ final class SettingViewModel: NSObject {
     typealias Routes = SettingRoute & MutaroInfoUploadRoute
     private let router: Routes
 
-    @Published private(set) var shouldAddDeveloperSettingSubject = PassthroughSubject<Void, Never>()
+    let shouldAddDeveloperSettingSubject = PassthroughSubject<Void, Never>()
 
     var cancellables: Set<AnyCancellable> = []
 

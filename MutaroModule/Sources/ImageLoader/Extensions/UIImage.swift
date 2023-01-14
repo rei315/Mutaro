@@ -11,7 +11,7 @@ import UIKit
 extension UIImage {
     public func downsample(imageAt imageURL: URL, to pointSize: CGSize) -> UIImage? {
         guard pointSize != .zero else {
-            return nil
+            return self
         }
 
         let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
@@ -21,7 +21,7 @@ extension UIImage {
                 imageSourceOptions
             )
         else {
-            return nil
+            return self
         }
         let maxDimensionInPixels =
             max(
@@ -36,11 +36,15 @@ extension UIImage {
                 kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels,
             ] as CFDictionary
 
-        let downsampledImage = CGImageSourceCreateThumbnailAtIndex(
-            imageSource,
-            0,
-            downsampleOptions
-        )!
+        guard
+            let downsampledImage = CGImageSourceCreateThumbnailAtIndex(
+                imageSource,
+                0,
+                downsampleOptions
+            )
+        else {
+            return self
+        }
         return UIImage(cgImage: downsampledImage)
     }
 }

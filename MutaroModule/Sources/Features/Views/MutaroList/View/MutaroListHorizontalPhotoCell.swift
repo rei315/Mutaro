@@ -5,6 +5,7 @@
 //  Created by minguk-kim on 2023/01/02.
 //
 
+import AppResource
 import Combine
 import ImageLoader
 import UIKit
@@ -50,6 +51,7 @@ class MutaroListHorizontalPhotoCell: UICollectionViewCell {
     private func setupUI() {
         imageView.lets {
             $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.backgroundColor = Resources.Colors.navy20.color
             $0.contentMode = .scaleAspectFill
             contentView.addSubview($0)
             $0.fillConstraint(to: contentView)

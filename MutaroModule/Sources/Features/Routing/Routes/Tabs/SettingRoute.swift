@@ -19,8 +19,7 @@ extension SettingRoute where Self: Router {
         router.root = viewController
 
         let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.navigationItem.largeTitleDisplayMode = .always
+        navigationController.setLargeTitle()
         navigationController.tabBarItem = HomeTabPage.setting.item
         return navigationController
     }

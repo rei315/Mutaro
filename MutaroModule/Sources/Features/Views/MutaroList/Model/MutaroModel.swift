@@ -9,20 +9,20 @@ import Foundation
 import Repositories
 
 public struct MutaroModel {
-    public let id: Int
+    public let uploadDate: String
     public let imageUrl: String
     public let title: String
     public let description: String
 
-    public init(id: Int, imageUrl: String, title: String, description: String) {
-        self.id = id
+    public init(uploadDate: String, imageUrl: String, title: String, description: String) {
+        self.uploadDate = uploadDate
         self.imageUrl = imageUrl
         self.title = title
         self.description = description
     }
 
     public init(dto: MutaroDTO) {
-        self.id = dto.id
+        self.uploadDate = dto.uploadDate
         self.imageUrl = dto.imageUrl
         self.title = dto.title
         self.description = dto.description
