@@ -15,11 +15,13 @@ public protocol MutaroDetailResourceProtocol {
 
 extension MutaroClient {
     public struct MutaroDetailResource: MutaroDetailResourceProtocol {
-        public static func postMutaros(imageUrl: String, title: String, description: String) async throws {
+        public static func postMutaros(imageUrl: String, title: String, description: String)
+            async throws
+        {
             guard await NWPathMonitor().isOnline() else {
                 throw NSError()
             }
-            
+
             let collection = MutaroClient.shared.firestore.collection("mutaroDetails")
             let dateFormatter = DateFormatter().apply {
                 $0.dateFormat = "yyyy/MM/dd HH:mm"
@@ -34,16 +36,17 @@ extension MutaroClient {
                 title: title,
                 description: description
             )
-            
+
             let data = try JSONEncoder().encode(dto)
-            guard let dictionary = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            guard let dictionary = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            else {
                 throw NSError()
             }
-            
+
             try await collection.document().setData(dictionary)
         }
-        
-        public static func getMutaros() async throws -> [MutaroDTO] {            
+
+        public static func getMutaros() async throws -> [MutaroDTO] {
             guard await NWPathMonitor().isOnline() else {
                 throw NSError()
             }
@@ -55,7 +58,8 @@ extension MutaroClient {
                 .compactMap { document -> MutaroDTO? in
                     do {
                         let mutaroDetail = document.data()
-                        let data = try JSONSerialization.data(withJSONObject: mutaroDetail, options: .prettyPrinted)
+                        let data = try JSONSerialization.data(
+                            withJSONObject: mutaroDetail, options: .prettyPrinted)
                         let decoder = JSONDecoder()
                         let dto = try decoder.decode(MutaroDTO.self, from: data)
                         return dto

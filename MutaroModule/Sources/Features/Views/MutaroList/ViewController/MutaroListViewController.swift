@@ -47,7 +47,7 @@ public class MutaroListViewController: UIViewController {
             await viewModel.fetchMutaroItems()
         }
     }
-    
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
