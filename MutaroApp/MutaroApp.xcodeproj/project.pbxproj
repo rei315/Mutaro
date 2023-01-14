@@ -308,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../MutaroModule\nls Sources | xargs xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory format-source-code --target\n";
+			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory format-source-code --target ${path}\ndone\n\n";
 		};
 		7131E88029707623006E1C9D /* Run Swift-Lint */ = {
 			isa = PBXShellScriptBuildPhase;
