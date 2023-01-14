@@ -11,7 +11,7 @@ GOOGLE_APP_ID=$8
 PATH=/usr/libexec:$PATH
 
 if "${IS_CI}"; then
-	plistPath="${CI_WORKSPACE}/MutaroApp/Resources/GoogleServicePlists"
+	plistPath="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/GoogleServicePlists"
 else
 	plistPath="MutaroApp/Resources/GoogleServicePlists"
 fi
