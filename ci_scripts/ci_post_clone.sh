@@ -14,12 +14,10 @@ if [[ $CI_WORKFLOW = "Test-CI" || $CI_WORKFLOW = "Archive-For-Testflight-Develop
 
     if [[ $SOURCE_BRANCH != *"$RELEASE_BRANCH"* ]] && [[ $SOURCE_BRANCH != $MASTER_BRANCH ]] && [[ $SOURCE_BRANCH != *"$HOTFIX_BRANCH"* ]]; then
         git remote update
-        git branch -a
-        echo "----------"
         git fetch
-        git branch -a
-        echo "----------"
-        lines=$(git diff develop..$CI_BRANCH -G ".*[0-9]+\.[0-9]+[0-9]+.*" ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist | wc -l)
+
+        TARGET_BRANCH="remotes/origin/pull/$CI_PULL_REQUEST_NUMBER/head"
+        lines=$(git diff develop..$TARGET_BRANCH -G ".*[0-9]+\.[0-9]+[0-9]+.*" ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist | wc -l)
         if [ $lines -gt 0 ]; then
             echo "Mutaro: Version is not updated"
             exit 1
