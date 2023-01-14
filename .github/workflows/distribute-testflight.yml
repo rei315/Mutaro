@@ -44,7 +44,7 @@ jobs:
           JWT_TOKEN: ${{steps.create-jwt-token.outputs.jwtToken}}
           BRANCH: ${{ fromJSON(steps.pull_request.outputs.data).head.ref }}
           WORKFLOW_NAME: "Archive-For-Testflight-Develop"
-          TARGET_PRODUCT_NAME: "MutaroApp"
+          TARGET_PRODUCT_NAME: "MutaroDev"
         run: |
           statusCode=$(JWT_TOKEN=${JWT_TOKEN} BRANCH_NAME=${BRANCH} WORKFLOW_NAME=${WORKFLOW_NAME} TARGET_PRODUCT_NAME=${TARGET_PRODUCT_NAME} python3 ./.github/workflows/distribute-appstore.py)
           echo "statusCode=${statusCode}" >> $GITHUB_OUTPUT
