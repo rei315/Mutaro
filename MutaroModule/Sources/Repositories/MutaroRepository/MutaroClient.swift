@@ -7,10 +7,12 @@
 
 import Core
 import FirebaseFirestore
+import FirebaseStorage
 import Foundation
 
 public final class MutaroClient {
     public static let shared = MutaroClient()
 
     public let firestore = Firestore.firestore()
+    public let storage = Storage.storage()
 }

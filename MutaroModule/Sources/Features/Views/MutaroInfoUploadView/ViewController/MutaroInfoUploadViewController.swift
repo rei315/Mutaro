@@ -49,7 +49,11 @@ final public class MutaroInfoUploadViewController: UIViewController {
     }
     
     private func setupNavigationBarItem() {
-        let postButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(postButtonHandler))
+        let postButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(postButtonHandler)
+        )
         navigationItem.rightBarButtonItem = postButton
     }
     
@@ -243,7 +247,9 @@ final public class MutaroInfoUploadViewController: UIViewController {
     
     @objc
     private func postButtonHandler() {
-        viewModel.onTapPost()
+        Task {
+            await viewModel.onTapPost()
+        }
     }
 }
 

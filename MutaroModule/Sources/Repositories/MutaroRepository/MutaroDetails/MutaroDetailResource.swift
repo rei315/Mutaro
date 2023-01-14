@@ -10,13 +10,42 @@ import Network
 
 public protocol MutaroDetailResourceProtocol {
     static func getMutaros() async throws -> [MutaroDTO]
+    static func postMutaros(imageUrl: String, title: String, description: String) async throws
 }
 
 extension MutaroClient {
     public struct MutaroDetailResource: MutaroDetailResourceProtocol {
+        public static func postMutaros(imageUrl: String, title: String, description: String) async throws {
+            guard await NWPathMonitor().isOnline() else {
+                throw NSError()
+            }
+            
+            let collection = MutaroClient.shared.firestore.collection("mutaroDetails")
+            let dateFormatter = DateFormatter().apply {
+                $0.dateFormat = "yyyy/MM/dd HH:mm"
+                $0.calendar = Calendar(identifier: .gregorian)
+                $0.locale = Locale(identifier: "ja_JP")
+                $0.timeZone = TimeZone(identifier: "Asia/Tokyo")
+            }
+            let uploadDateString = dateFormatter.string(from: Date())
+            let dto = MutaroDTO(
+                uploadDate: uploadDateString,
+                imageUrl: imageUrl,
+                title: title,
+                description: description
+            )
+            
+            let data = try JSONEncoder().encode(dto)
+            guard let dictionary = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                throw NSError()
+            }
+            
+            try await collection.document().setData(dictionary)
+        }
+        
         public static func getMutaros() async throws -> [MutaroDTO] {            
             guard await NWPathMonitor().isOnline() else {
-                return []
+                throw NSError()
             }
             let collection = MutaroClient.shared.firestore.collection("mutaroDetails")
             let snapshot = try await collection.getDocuments()
@@ -24,20 +53,15 @@ extension MutaroClient {
             let mutaroDetails = snapshot.documents
                 .filter({ $0.exists })
                 .compactMap { document -> MutaroDTO? in
-                    let mutaroDetail = document.data()
-                    guard let id = mutaroDetail["id"] as? Int,
-                        let imageUrl = mutaroDetail["imageUrl"] as? String,
-                        let title = mutaroDetail["title"] as? String,
-                        let description = mutaroDetail["description"] as? String
-                    else {
+                    do {
+                        let mutaroDetail = document.data()
+                        let data = try JSONSerialization.data(withJSONObject: mutaroDetail, options: .prettyPrinted)
+                        let decoder = JSONDecoder()
+                        let dto = try decoder.decode(MutaroDTO.self, from: data)
+                        return dto
+                    } catch {
                         return nil
                     }
-                    return MutaroDTO(
-                        id: id,
-                        imageUrl: imageUrl,
-                        title: title,
-                        description: description
-                    )
                 }
                 .compactMap { $0 }
 

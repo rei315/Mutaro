@@ -41,6 +41,13 @@ public class MutaroListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            await viewModel.fetchMutaroItems()
+        }
+    }
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -49,10 +56,6 @@ public class MutaroListViewController: UIViewController {
         setupCollectionView()
         setupDefaultSnapshot()
         setupSubscription()
-
-        Task {
-            await viewModel.fetchMutaroItems()
-        }
     }
 
     private func setupSubscription() {
