@@ -22,7 +22,7 @@ if [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
 elif [[ $CI_WORKFLOW = "Archive-For-Release" ]]; then
     PATH=/usr/libexec:$PATH
     nextBuildNumber=$CI_BUILD_NUMBER
-    mainInfoPlist="${CI_WORKSPACE}/Mutaro/Resources/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist"
     
     echo "Mutaro: - versionNumber is ${nextBuildNumber}"
     

@@ -6,7 +6,8 @@
 #  Created by minguk-kim on 2022/09/27.
 #  Copyright © 2022 MGHouse, Inc. All rights reserved.
 
-ls ${CI_WORKSPACE}
+git branch -a
+exit 1
 
 if [[ $CI_WORKFLOW = "Test-CI" || $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
     SOURCE_BRANCH=$CI_BRANCH

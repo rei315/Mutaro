@@ -55,7 +55,7 @@ else:
 
 get_app_version() {
     PATH=/usr/libexec:$PATH
-    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/Resoures/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resoures/Info.plist"
     PlistBuddy -c "print CFBundleShortVersionString" "${mainInfoPlist}"
 }
 
