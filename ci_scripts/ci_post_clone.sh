@@ -16,14 +16,14 @@ if [[ $CI_WORKFLOW = "Test-CI" || $CI_WORKFLOW = "Archive-For-Testflight-Develop
         git remote update
         git branch -a
         echo "----------"
-        git fetch origin develop
+        git fetch
         git branch -a
         echo "----------"
-#        lines=$(git diff remotes/origin/develop..$CI_BRANCH -G ".*[0-9]+\.[0-9]+[0-9]+.*" ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist | wc -l)
-#        if [ $lines -gt 0 ]; then
-#            echo "Mutaro: Version is not updated"
-#            exit 1
-#        fi
+        lines=$(git diff develop..$CI_BRANCH -G ".*[0-9]+\.[0-9]+[0-9]+.*" ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist | wc -l)
+        if [ $lines -gt 0 ]; then
+            echo "Mutaro: Version is not updated"
+            exit 1
+        fi
     fi
 fi
 
