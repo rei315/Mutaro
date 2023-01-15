@@ -17,11 +17,13 @@ struct MutaroPhotoData {
 }
 
 final public class MutaroInfoUploadViewModel: NSObject {
-    typealias Routes = MutaroInfoUploadRoute & Closable
+    typealias Routes = MutaroInfoUploadRoute & Closable & LoadingRoute
     private let router: Routes
 
     @Published var pickedPhotoData: MutaroPhotoData?
     let didFinishedPostMutaroInfo = PassthroughSubject<Void, Never>()
+    private let shouldCloseLoadingSubject = PassthroughSubject<Void, Never>()
+
     var cancellables: Set<AnyCancellable> = []
 
     init(router: Routes) {
@@ -59,6 +61,9 @@ final public class MutaroInfoUploadViewModel: NSObject {
         else {
             return
         }
+        await MainActor.run {
+            openLoading()
+        }
 
         do {
             let photoUrl =
@@ -76,10 +81,24 @@ final public class MutaroInfoUploadViewModel: NSObject {
                     title: title,
                     description: description
                 )
+            await MainActor.run {
+                closeLoading()
+            }
             didFinishedPostMutaroInfo.send(())
         } catch {
+            await MainActor.run {
+                closeLoading()
+            }
             print("Mins: error - \(error)")
         }
+    }
+
+    private func openLoading() {
+        router.openLoading(shouldCloseSubject: shouldCloseLoadingSubject)
+    }
+
+    private func closeLoading() {
+        shouldCloseLoadingSubject.send(())
     }
 
     func dismiss() {
