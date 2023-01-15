@@ -304,7 +304,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory format-source-code --target ${path}\ndone\n\n";
+			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do    \n    if [ $path = \"AppResource\" ]; then        \n        continue\n    fi\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory format-source-code --target ${path}\ndone\n\n";
 		};
 		7131E88029707623006E1C9D /* Run Swift-Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -322,7 +322,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory lint-source-code --target ${path}\ndone\n";
+			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do\n    if [ $path = \"AppResource\" ]; then        \n        continue\n    fi\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory lint-source-code --target ${path}\ndone\n";
 		};
 		715E95C7295CD1AC00AD6331 /* Run LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
