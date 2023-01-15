@@ -13,10 +13,6 @@ extension UIImageView {
     public func loadImage(fileName: String, size: CGSize) async {
         image = await ImageLoadManager.shared.loadImage(for: fileName, size: size)
     }
-
-    public func loadImage(urlString: String, size: CGSize) async {
-        image = await ImageLoadManager.shared.downloadImage(with: urlString, size: size)
-    }
 }
 
 @MainActor

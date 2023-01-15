@@ -11,62 +11,42 @@ import UIKit
 public final actor ImageLoadManager {
     public static let shared = ImageLoadManager()
 
-    public func downloadImage(with urlString: String, size: CGSize) async -> UIImage? {
-        guard let url = URL(string: urlString) else {
-            return nil
-        }
+    private var ongoingTask: [String: Task<UIImage?, Never>] = [:]
 
-        if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: url) {
-            return cachedImage.downsample(imageAt: url, to: size)
-        }
-
-        do {
-            guard let image = try await downloadImage(url: url) else {
+    @discardableResult
+    public func loadImage(for fileName: String, size: CGSize) async -> UIImage? {
+        let task = Task { () -> UIImage? in
+            guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
                 return nil
             }
-            await ImageCacheManager.shared.insertImage(image, for: url)
-            return image.downsample(imageAt: url, to: size)
+
+            if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) {
+                return cachedImage.downsample(imageAt: fileUrl, to: size)
+            }
+
+            guard let image = loadImageFromResource(for: fileUrl) else {
+                return nil
+            }
+
+            await ImageCacheManager.shared.insertImage(image, for: fileUrl)
+
+            return image.downsample(imageAt: fileUrl, to: size)
+        }
+        ongoingTask.updateValue(task, forKey: fileName)
+
+        let result = await task.result
+
+        do {
+            ongoingTask.removeValue(forKey: fileName)
+            return try result.get()
         } catch {
             return nil
         }
     }
 
-    public func loadImage(for fileName: String, size: CGSize) async -> UIImage? {
-        guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
-            return nil
-        }
-
-        if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) {
-            return cachedImage.downsample(imageAt: fileUrl, to: size)
-        }
-
-        guard let image = loadImageFromResource(for: fileUrl) else {
-            return nil
-        }
-
-        await ImageCacheManager.shared.insertImage(image, for: fileUrl)
-
-        return image.downsample(imageAt: fileUrl, to: size)
-    }
-
-    public func loadImage(for fileType: ContentFileType, size: CGSize)
-        async -> UIImage?
-    {
-        guard let fileUrl = ImageContentPathProvider.url(type: fileType) else {
-            return nil
-        }
-
-        if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) {
-            return cachedImage.downsample(imageAt: fileUrl, to: size)
-        }
-
-        guard let image = loadImageFromResource(for: fileUrl) else {
-            return nil
-        }
-
-        await ImageCacheManager.shared.insertImage(image, for: fileUrl)
-
-        return image.downsample(imageAt: fileUrl, to: size)
+    public func cancelLoad(key: String) {
+        let task = ongoingTask.first { $0.key == key }?.value
+        task?.cancel()
     }
 
     private func loadImageFromResource(for url: URL) -> UIImage? {

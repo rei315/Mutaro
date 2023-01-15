@@ -65,18 +65,10 @@ final public class MutaroInfoUploadViewModel: NSObject {
         }
 
         do {
-            let photoUrl =
-                try await MutaroClient
-                .MutaroPhotoResource
-                .postMutaroPhoto(
-                    fileUrl: pickedPhotoData.url,
-                    fileName: pickedPhotoData.fileName
-                )
-
             try await MutaroClient
                 .MutaroDetailResource
                 .postMutaros(
-                    imageUrl: photoUrl,
+                    imageUrl: pickedPhotoData.fileName,
                     title: title,
                     description: description
                 )

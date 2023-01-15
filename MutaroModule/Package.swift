@@ -34,13 +34,6 @@ let firebaseFirestoreDependencies: [Target.Dependency] = [
     "leveldb-library",
 ]
 
-let firebaseStorageDependencies: [Target.Dependency] = [
-    "FirebaseAppCheckInterop",
-    "FirebaseAuthInterop",
-    "FirebaseStorage",
-    "GTMSessionFetcher",
-]
-
 let package = Package(
     name: "MutaroModule",
     platforms: [
@@ -88,7 +81,7 @@ let package = Package(
         ),
         .target(
             name: "Repositories",
-            dependencies: firebaseStorageDependencies + firebaseFirestoreDependencies + firebaseAnalyticsDependencies + ["Core"],
+            dependencies: firebaseFirestoreDependencies + firebaseAnalyticsDependencies + ["Core"],
             linkerSettings: [
                 .unsafeFlags(["-ObjC"])
             ]
@@ -202,22 +195,6 @@ let package = Package(
         .binaryTarget(
             name: "leveldb-library",
             path: "XCFrameworks/Firebase/FirebaseFirestore/leveldb-library.xcframework"
-        ),
-        .binaryTarget(
-            name: "FirebaseAppCheckInterop",
-            path: "XCFrameworks/Firebase/FirebaseStorage/FirebaseAppCheckInterop.xcframework"
-        ),
-        .binaryTarget(
-            name: "FirebaseAuthInterop",
-            path: "XCFrameworks/Firebase/FirebaseStorage/FirebaseAuthInterop.xcframework"
-        ),
-        .binaryTarget(
-            name: "FirebaseStorage",
-            path: "XCFrameworks/Firebase/FirebaseStorage/FirebaseStorage.xcframework"
-        ),
-        .binaryTarget(
-            name: "GTMSessionFetcher",
-            path: "XCFrameworks/Firebase/FirebaseStorage/GTMSessionFetcher.xcframework"
         )
     ]
 )
