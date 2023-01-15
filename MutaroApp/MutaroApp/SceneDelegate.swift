@@ -100,7 +100,17 @@ extension SceneDelegate {
 
 extension SceneDelegate: AppIntroductDelegate {
     func onTapAgree() {
+        guard let window else {
+            return
+        }
         let vc = createHomeTabViewController()
-        window?.rootViewController = vc
+        window.rootViewController = vc
+        
+        UIView.transition(
+            with: window,
+            duration: 0.5,
+            options: [.transitionCrossDissolve],
+            animations: nil
+        )
     }
 }

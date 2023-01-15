@@ -14,10 +14,23 @@ public final class ProgressHUD {
 
 extension ProgressHUD {
     public static func show() {
+        shared.loadingView.alpha = 0
         KeyWindowProvider().getKeyWindow()?.addSubview(shared.loadingView)
+        UIView.animate(
+            withDuration: 0.2,
+            animations: {
+                shared.loadingView.alpha = 1
+            })
     }
 
     public static func hide() {
-        shared.loadingView.removeFromSuperview()
+        UIView.animate(
+            withDuration: 0.2,
+            animations: {
+                shared.loadingView.alpha = 0
+            }
+        ) { _ in
+            shared.loadingView.removeFromSuperview()
+        }
     }
 }
