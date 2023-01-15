@@ -43,9 +43,6 @@ public class MutaroListViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Task {
-            await viewModel.fetchMutaroItems()
-        }
     }
 
     override public func viewDidLoad() {
@@ -56,6 +53,10 @@ public class MutaroListViewController: UIViewController {
         setupCollectionView()
         setupDefaultSnapshot()
         setupSubscription()
+
+        Task {
+            await viewModel.fetchMutaroItems()
+        }
     }
 
     private func setupSubscription() {
@@ -140,8 +141,8 @@ extension MutaroListViewController {
                 )
                 let group = NSCollectionLayoutGroup.horizontal(
                     layoutSize: .init(
-                        widthDimension: .fractionalWidth(fraction),
-                        heightDimension: .fractionalWidth(fraction)
+                        widthDimension: .absolute(MutaroListHorizontalPhotoCell.imageSize),
+                        heightDimension: .absolute(MutaroListHorizontalPhotoCell.imageSize)
                     ),
                     subitems: [item]
                 )
@@ -190,8 +191,10 @@ extension MutaroListViewController {
         case let .mutaroHorizontalPhoto(index):
             let cell = collectionView.dequeueReusableCell(
                 withType: MutaroListHorizontalPhotoCell.self, for: indexPath)
-            if let detail = viewModel.mutaroItems[getOrNil: index] {
-                cell.configureCell(mutaroDetail: detail)
+            cell.resetCell()
+
+            if let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl {
+                cell.configureCell(imageUrl)
             }
             return cell
         case .mutaroInfo:
@@ -211,6 +214,25 @@ extension MutaroListViewController: UICollectionViewDataSourcePrefetching {
             switch item {
             case let .mutaroHorizontalPhoto(index):
                 viewModel.prefetchHorizontalSectionItem(row: index)
+                break
+            case .mutaroInfo:
+                break
+            case let .mutaroPhoto(index):
+                break
+            case .none:
+                break
+            }
+        }
+    }
+
+    public func collectionView(
+        _ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]
+    ) {
+        indexPaths.forEach {
+            let item = dataSource.itemIdentifier(for: $0)
+            switch item {
+            case let .mutaroHorizontalPhoto(index):
+                viewModel.cancelPrefetchHorizontalSectionItem(row: index)
                 break
             case .mutaroInfo:
                 break

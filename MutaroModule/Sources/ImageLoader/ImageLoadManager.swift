@@ -11,62 +11,71 @@ import UIKit
 public final actor ImageLoadManager {
     public static let shared = ImageLoadManager()
 
-    public func downloadImage(with urlString: String, size: CGSize) async -> UIImage? {
-        guard let url = URL(string: urlString) else {
-            return nil
-        }
+    private var onLoadingTask: [String: Task<UIImage?, Never>] = [:]
+    private var onPrefetchTask: [String: Task<(), Never>] = [:]
 
-        if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: url) {
-            return cachedImage.downsample(imageAt: url, to: size)
-        }
-
-        do {
-            guard let image = try await downloadImage(url: url) else {
+    @discardableResult
+    public func loadImage(for fileName: String, size: CGSize) async -> UIImage? {
+        let task = Task { () -> UIImage? in
+            guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
                 return nil
             }
-            await ImageCacheManager.shared.insertImage(image, for: url)
-            return image.downsample(imageAt: url, to: size)
+
+            if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) {
+                return cachedImage.downsample(imageAt: fileUrl, to: size)
+            }
+
+            guard let image = loadImageFromResource(for: fileUrl) else {
+                return nil
+            }
+
+            await ImageCacheManager.shared.insertImage(image, for: fileUrl)
+
+            return image.downsample(imageAt: fileUrl, to: size)
+        }
+        onLoadingTask.updateValue(task, forKey: fileName)
+
+        let result = await task.result
+
+        do {
+            onLoadingTask.removeValue(forKey: fileName)
+            guard !Task.isCancelled else {
+                return nil
+            }
+            return try result.get()
         } catch {
             return nil
         }
     }
 
-    public func loadImage(for fileName: String, size: CGSize) async -> UIImage? {
-        guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
-            return nil
+    public func prefetchImage(for fileName: String) async {
+        let task = Task {
+            guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
+                return
+            }
+            guard await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) == nil else {
+                return
+            }
+
+            guard let image = loadImageFromResource(for: fileUrl) else {
+                return
+            }
+
+            await ImageCacheManager.shared.insertImage(image, for: fileUrl)
         }
-
-        if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) {
-            return cachedImage.downsample(imageAt: fileUrl, to: size)
-        }
-
-        guard let image = loadImageFromResource(for: fileUrl) else {
-            return nil
-        }
-
-        await ImageCacheManager.shared.insertImage(image, for: fileUrl)
-
-        return image.downsample(imageAt: fileUrl, to: size)
+        onPrefetchTask.updateValue(task, forKey: fileName)
+        _ = await task.result
+        onPrefetchTask.removeValue(forKey: fileName)
     }
 
-    public func loadImage(for fileType: ContentFileType, size: CGSize)
-        async -> UIImage?
-    {
-        guard let fileUrl = ImageContentPathProvider.url(type: fileType) else {
-            return nil
-        }
+    public func cancelLoad(key: String) {
+        let task = onLoadingTask.first { $0.key == key }?.value
+        task?.cancel()
+    }
 
-        if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) {
-            return cachedImage.downsample(imageAt: fileUrl, to: size)
-        }
-
-        guard let image = loadImageFromResource(for: fileUrl) else {
-            return nil
-        }
-
-        await ImageCacheManager.shared.insertImage(image, for: fileUrl)
-
-        return image.downsample(imageAt: fileUrl, to: size)
+    public func cancelPrefetch(key: String) {
+        let task = onPrefetchTask.first { $0.key == key }?.value
+        task?.cancel()
     }
 
     private func loadImageFromResource(for url: URL) -> UIImage? {

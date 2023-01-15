@@ -39,8 +39,19 @@ public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
 
     func prefetchHorizontalSectionItem(row: Int) {
         Task {
-            let imageUrl = mutaroItems[row].imageUrl
-            await UIImage.loadImage(urlString: imageUrl, size: .zero)
+            guard let imageUrl = mutaroItems[getOrNil: row]?.imageUrl else {
+                return
+            }
+            await ImageLoadManager.shared.prefetchImage(for: imageUrl)
+        }
+    }
+
+    func cancelPrefetchHorizontalSectionItem(row: Int) {
+        Task {
+            guard let imageUrl = mutaroItems[getOrNil: row]?.imageUrl else {
+                return
+            }
+            await ImageLoadManager.shared.cancelPrefetch(key: imageUrl)
         }
     }
 }
