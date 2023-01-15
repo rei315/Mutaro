@@ -105,10 +105,10 @@ let package = Package(
             dependencies: [],
             exclude: [
                 "swiftgen.yml"
+            ],
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
             ]
-            //            plugins: [
-            //                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
-            //            ]
         ),
         .target(
             name: "ImageLoader",
