@@ -2,10 +2,6 @@ name: firebase-ios-sdk, nameSpecified: , owner: firebase, version: , source: htt
 
 name: firebase-ios-sdk, nameSpecified: , owner: firebase, version: , source: https://github.com/firebase/firebase-ios-sdk
 
-name: RxSwift, nameSpecified: , owner: ReactiveX, version: , source: https://github.com/ReactiveX/RxSwift
-
-name: RxSwift, nameSpecified: , owner: ReactiveX, version: , source: https://github.com/ReactiveX/RxSwift
-
 name: LicensePlist, nameSpecified: , version: 
 body: MIT License
 
