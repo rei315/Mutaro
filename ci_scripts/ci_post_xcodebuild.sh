@@ -55,7 +55,7 @@ else:
 
 get_app_version() {
     PATH=/usr/libexec:$PATH
-    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/Resoures/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist"
     PlistBuddy -c "print CFBundleShortVersionString" "${mainInfoPlist}"
 }
 
@@ -63,7 +63,7 @@ version_pr_comment() {
     PR_NUMBER=$(get_pr_number ${CI_BRANCH} ${GITHUB_TOKEN})
     if [ $PR_NUMBER -eq -1 ]; then
         return 0
-    elif [$PR_NUMBER -eq -2 ]; then
+    elif [ $PR_NUMBER -eq -2 ]; then
         echo "Github Tokenを更新してください"
         exit 1
     fi
