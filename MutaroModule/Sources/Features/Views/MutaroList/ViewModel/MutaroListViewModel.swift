@@ -42,7 +42,7 @@ public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
             guard let imageUrl = mutaroItems[getOrNil: row]?.imageUrl else {
                 return
             }
-            await ImageLoadManager.shared.loadImage(for: imageUrl, size: .zero)
+            await ImageLoadManager.shared.prefetchImage(for: imageUrl)
         }
     }
 
@@ -51,7 +51,7 @@ public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
             guard let imageUrl = mutaroItems[getOrNil: row]?.imageUrl else {
                 return
             }
-            await ImageLoadManager.shared.cancelLoad(key: imageUrl)
+            await ImageLoadManager.shared.cancelPrefetch(key: imageUrl)
         }
     }
 }

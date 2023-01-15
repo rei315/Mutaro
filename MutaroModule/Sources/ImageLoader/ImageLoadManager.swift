@@ -11,7 +11,8 @@ import UIKit
 public final actor ImageLoadManager {
     public static let shared = ImageLoadManager()
 
-    private var ongoingTask: [String: Task<UIImage?, Never>] = [:]
+    private var onLoadingTask: [String: Task<UIImage?, Never>] = [:]
+    private var onPrefetchTask: [String: Task<(), Never>] = [:]
 
     @discardableResult
     public func loadImage(for fileName: String, size: CGSize) async -> UIImage? {
@@ -32,12 +33,12 @@ public final actor ImageLoadManager {
 
             return image.downsample(imageAt: fileUrl, to: size)
         }
-        ongoingTask.updateValue(task, forKey: fileName)
+        onLoadingTask.updateValue(task, forKey: fileName)
 
         let result = await task.result
 
         do {
-            ongoingTask.removeValue(forKey: fileName)
+            onLoadingTask.removeValue(forKey: fileName)
             guard !Task.isCancelled else {
                 return nil
             }
@@ -47,8 +48,33 @@ public final actor ImageLoadManager {
         }
     }
 
+    public func prefetchImage(for fileName: String) async {
+        let task = Task {
+            guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
+                return
+            }
+            guard await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) == nil else {
+                return
+            }
+
+            guard let image = loadImageFromResource(for: fileUrl) else {
+                return
+            }
+
+            await ImageCacheManager.shared.insertImage(image, for: fileUrl)
+        }
+        onPrefetchTask.updateValue(task, forKey: fileName)
+        _ = await task.result
+        onPrefetchTask.removeValue(forKey: fileName)
+    }
+
     public func cancelLoad(key: String) {
-        let task = ongoingTask.first { $0.key == key }?.value
+        let task = onLoadingTask.first { $0.key == key }?.value
+        task?.cancel()
+    }
+
+    public func cancelPrefetch(key: String) {
+        let task = onPrefetchTask.first { $0.key == key }?.value
         task?.cancel()
     }
 
