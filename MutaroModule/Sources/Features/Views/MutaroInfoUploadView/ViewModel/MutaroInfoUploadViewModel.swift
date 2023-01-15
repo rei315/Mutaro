@@ -22,6 +22,7 @@ final public class MutaroInfoUploadViewModel: NSObject {
 
     @Published var pickedPhotoData: MutaroPhotoData?
     let didFinishedPostMutaroInfo = PassthroughSubject<Void, Never>()
+
     var cancellables: Set<AnyCancellable> = []
 
     init(router: Routes) {
@@ -59,6 +60,9 @@ final public class MutaroInfoUploadViewModel: NSObject {
         else {
             return
         }
+        await MainActor.run {
+            ProgressHUD.show()
+        }
 
         do {
             let photoUrl =
@@ -76,8 +80,14 @@ final public class MutaroInfoUploadViewModel: NSObject {
                     title: title,
                     description: description
                 )
+            await MainActor.run {
+                ProgressHUD.hide()
+            }
             didFinishedPostMutaroInfo.send(())
         } catch {
+            await MainActor.run {
+                ProgressHUD.hide()
+            }
             print("Mins: error - \(error)")
         }
     }
