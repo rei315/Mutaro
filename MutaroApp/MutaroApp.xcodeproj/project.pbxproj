@@ -11,17 +11,51 @@
 		710C35A0296C58AC00ED034F /* MutaroUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */; };
 		710C35A9296C5B7A00ED034F /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35A8296C5B7A00ED034F /* Core */; };
 		710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35AA296C5B7A00ED034F /* FirebaseSetup */; };
+		713D5AAF297455D600BD1B6E /* mutaro_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A86297455CA00BD1B6E /* mutaro_7.png */; };
+		713D5AB0297455D600BD1B6E /* mutaro_31.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A87297455CB00BD1B6E /* mutaro_31.png */; };
+		713D5AB1297455D600BD1B6E /* mutaro_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A88297455CB00BD1B6E /* mutaro_3.png */; };
+		713D5AB2297455D600BD1B6E /* mutaro_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A89297455CB00BD1B6E /* mutaro_24.png */; };
+		713D5AB3297455D600BD1B6E /* mutaro_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A8A297455CC00BD1B6E /* mutaro_4.png */; };
+		713D5AB4297455D600BD1B6E /* mutaro_26.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A8B297455CD00BD1B6E /* mutaro_26.png */; };
+		713D5AB5297455D600BD1B6E /* mutaro_20.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A8C297455CD00BD1B6E /* mutaro_20.png */; };
+		713D5AB6297455D600BD1B6E /* mutaro_28.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A8D297455CD00BD1B6E /* mutaro_28.png */; };
+		713D5AB7297455D600BD1B6E /* mutaro_29.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A8E297455CD00BD1B6E /* mutaro_29.png */; };
+		713D5AB8297455D600BD1B6E /* mutaro_33.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A8F297455CE00BD1B6E /* mutaro_33.png */; };
+		713D5AB9297455D600BD1B6E /* mutaro_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A90297455CE00BD1B6E /* mutaro_13.png */; };
+		713D5ABA297455D600BD1B6E /* mutaro_38.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A91297455CE00BD1B6E /* mutaro_38.png */; };
+		713D5ABB297455D600BD1B6E /* mutaro_35.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A92297455CE00BD1B6E /* mutaro_35.png */; };
+		713D5ABC297455D600BD1B6E /* mutaro_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A93297455CF00BD1B6E /* mutaro_9.png */; };
+		713D5ABD297455D600BD1B6E /* mutaro_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A94297455CF00BD1B6E /* mutaro_12.png */; };
+		713D5ABE297455D600BD1B6E /* mutaro_17.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A95297455CF00BD1B6E /* mutaro_17.png */; };
+		713D5ABF297455D600BD1B6E /* mutaro_19.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A96297455CF00BD1B6E /* mutaro_19.png */; };
+		713D5AC0297455D600BD1B6E /* mutaro_14.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A97297455D000BD1B6E /* mutaro_14.png */; };
+		713D5AC1297455D600BD1B6E /* mutaro_22.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A98297455D000BD1B6E /* mutaro_22.png */; };
+		713D5AC2297455D600BD1B6E /* mutaro_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A99297455D000BD1B6E /* mutaro_0.png */; };
+		713D5AC3297455D600BD1B6E /* mutaro_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A9A297455D000BD1B6E /* mutaro_5.png */; };
+		713D5AC4297455D600BD1B6E /* mutaro_15.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A9B297455D100BD1B6E /* mutaro_15.png */; };
+		713D5AC5297455D600BD1B6E /* mutaro_23.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A9C297455D100BD1B6E /* mutaro_23.png */; };
+		713D5AC6297455D600BD1B6E /* mutaro_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A9D297455D100BD1B6E /* mutaro_16.png */; };
+		713D5AC7297455D600BD1B6E /* mutaro_25.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A9E297455D100BD1B6E /* mutaro_25.png */; };
+		713D5AC8297455D600BD1B6E /* mutaro_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5A9F297455D200BD1B6E /* mutaro_11.png */; };
+		713D5AC9297455D600BD1B6E /* mutaro_27.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA0297455D200BD1B6E /* mutaro_27.png */; };
+		713D5ACA297455D600BD1B6E /* mutaro_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA1297455D200BD1B6E /* mutaro_32.png */; };
+		713D5ACB297455D600BD1B6E /* mutaro_34.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA2297455D200BD1B6E /* mutaro_34.png */; };
+		713D5ACC297455D600BD1B6E /* mutaro_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA3297455D300BD1B6E /* mutaro_6.png */; };
+		713D5ACD297455D600BD1B6E /* mutaro_36.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA4297455D300BD1B6E /* mutaro_36.png */; };
+		713D5ACE297455D600BD1B6E /* mutaro_39.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA5297455D300BD1B6E /* mutaro_39.png */; };
+		713D5ACF297455D600BD1B6E /* mutaro_40.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA6297455D300BD1B6E /* mutaro_40.png */; };
+		713D5AD0297455D600BD1B6E /* mutaro_30.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA7297455D400BD1B6E /* mutaro_30.png */; };
+		713D5AD1297455D600BD1B6E /* mutaro_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA8297455D400BD1B6E /* mutaro_2.png */; };
+		713D5AD2297455D600BD1B6E /* mutaro_37.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AA9297455D400BD1B6E /* mutaro_37.png */; };
+		713D5AD3297455D600BD1B6E /* mutaro_18.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AAA297455D500BD1B6E /* mutaro_18.png */; };
+		713D5AD4297455D600BD1B6E /* mutaro_21.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AAB297455D500BD1B6E /* mutaro_21.png */; };
+		713D5AD5297455D600BD1B6E /* mutaro_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AAC297455D500BD1B6E /* mutaro_8.png */; };
+		713D5AD6297455D600BD1B6E /* mutaro_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AAD297455D500BD1B6E /* mutaro_1.png */; };
+		713D5AD7297455D600BD1B6E /* mutaro_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 713D5AAE297455D600BD1B6E /* mutaro_10.png */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
 		715E95C6295CD16400AD6331 /* license_plist.yml in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C5295CD16400AD6331 /* license_plist.yml */; };
 		718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC94A2969D2C0006861E8 /* Assets.xcassets */; };
-		71F5BD0D2961FB2A00CCC3F8 /* mutaro_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */; };
-		71F5BD0F2961FB2A00CCC3F8 /* mutaro_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */; };
-		71F5BD102961FB2A00CCC3F8 /* mutaro_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */; };
-		71F5BD112961FB2A00CCC3F8 /* mutaro_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0A2961FB2A00CCC3F8 /* mutaro_0.png */; };
-		71F5BD122961FB2A00CCC3F8 /* mutaro_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */; };
-		71F5BD132961FB2A00CCC3F8 /* mutaro_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */; };
-		71F5BD152961FE4600CCC3F8 /* mutaro_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F5BD142961FE4600CCC3F8 /* mutaro_5.png */; };
 		71FB3C8829707B5E008F843A /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB3C8729707B5E008F843A /* Features */; };
 		71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB3C8929707B5E008F843A /* FirebaseSetup */; };
 /* End PBXBuildFile section */
@@ -40,18 +74,52 @@
 		710C359B296C58AB00ED034F /* MutaroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		710C359D296C58AC00ED034F /* MutaroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroUITests.swift; sourceTree = "<group>"; };
 		710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		713D5A86297455CA00BD1B6E /* mutaro_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_7.png; sourceTree = "<group>"; };
+		713D5A87297455CB00BD1B6E /* mutaro_31.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_31.png; sourceTree = "<group>"; };
+		713D5A88297455CB00BD1B6E /* mutaro_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_3.png; sourceTree = "<group>"; };
+		713D5A89297455CB00BD1B6E /* mutaro_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_24.png; sourceTree = "<group>"; };
+		713D5A8A297455CC00BD1B6E /* mutaro_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_4.png; sourceTree = "<group>"; };
+		713D5A8B297455CD00BD1B6E /* mutaro_26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_26.png; sourceTree = "<group>"; };
+		713D5A8C297455CD00BD1B6E /* mutaro_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_20.png; sourceTree = "<group>"; };
+		713D5A8D297455CD00BD1B6E /* mutaro_28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_28.png; sourceTree = "<group>"; };
+		713D5A8E297455CD00BD1B6E /* mutaro_29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_29.png; sourceTree = "<group>"; };
+		713D5A8F297455CE00BD1B6E /* mutaro_33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_33.png; sourceTree = "<group>"; };
+		713D5A90297455CE00BD1B6E /* mutaro_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_13.png; sourceTree = "<group>"; };
+		713D5A91297455CE00BD1B6E /* mutaro_38.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_38.png; sourceTree = "<group>"; };
+		713D5A92297455CE00BD1B6E /* mutaro_35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_35.png; sourceTree = "<group>"; };
+		713D5A93297455CF00BD1B6E /* mutaro_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_9.png; sourceTree = "<group>"; };
+		713D5A94297455CF00BD1B6E /* mutaro_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_12.png; sourceTree = "<group>"; };
+		713D5A95297455CF00BD1B6E /* mutaro_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_17.png; sourceTree = "<group>"; };
+		713D5A96297455CF00BD1B6E /* mutaro_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_19.png; sourceTree = "<group>"; };
+		713D5A97297455D000BD1B6E /* mutaro_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_14.png; sourceTree = "<group>"; };
+		713D5A98297455D000BD1B6E /* mutaro_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_22.png; sourceTree = "<group>"; };
+		713D5A99297455D000BD1B6E /* mutaro_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_0.png; sourceTree = "<group>"; };
+		713D5A9A297455D000BD1B6E /* mutaro_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_5.png; sourceTree = "<group>"; };
+		713D5A9B297455D100BD1B6E /* mutaro_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_15.png; sourceTree = "<group>"; };
+		713D5A9C297455D100BD1B6E /* mutaro_23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_23.png; sourceTree = "<group>"; };
+		713D5A9D297455D100BD1B6E /* mutaro_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_16.png; sourceTree = "<group>"; };
+		713D5A9E297455D100BD1B6E /* mutaro_25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_25.png; sourceTree = "<group>"; };
+		713D5A9F297455D200BD1B6E /* mutaro_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_11.png; sourceTree = "<group>"; };
+		713D5AA0297455D200BD1B6E /* mutaro_27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_27.png; sourceTree = "<group>"; };
+		713D5AA1297455D200BD1B6E /* mutaro_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_32.png; sourceTree = "<group>"; };
+		713D5AA2297455D200BD1B6E /* mutaro_34.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_34.png; sourceTree = "<group>"; };
+		713D5AA3297455D300BD1B6E /* mutaro_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_6.png; sourceTree = "<group>"; };
+		713D5AA4297455D300BD1B6E /* mutaro_36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_36.png; sourceTree = "<group>"; };
+		713D5AA5297455D300BD1B6E /* mutaro_39.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_39.png; sourceTree = "<group>"; };
+		713D5AA6297455D300BD1B6E /* mutaro_40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_40.png; sourceTree = "<group>"; };
+		713D5AA7297455D400BD1B6E /* mutaro_30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_30.png; sourceTree = "<group>"; };
+		713D5AA8297455D400BD1B6E /* mutaro_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_2.png; sourceTree = "<group>"; };
+		713D5AA9297455D400BD1B6E /* mutaro_37.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_37.png; sourceTree = "<group>"; };
+		713D5AAA297455D500BD1B6E /* mutaro_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_18.png; sourceTree = "<group>"; };
+		713D5AAB297455D500BD1B6E /* mutaro_21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_21.png; sourceTree = "<group>"; };
+		713D5AAC297455D500BD1B6E /* mutaro_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_8.png; sourceTree = "<group>"; };
+		713D5AAD297455D500BD1B6E /* mutaro_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_1.png; sourceTree = "<group>"; };
+		713D5AAE297455D600BD1B6E /* mutaro_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_10.png; sourceTree = "<group>"; };
 		715E9583295CC20800AD6331 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E9586295CC20800AD6331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		715E9594295CC20A00AD6331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		715E95C5295CD16400AD6331 /* license_plist.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = license_plist.yml; sourceTree = "<group>"; };
-		71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_6.png; sourceTree = "<group>"; };
-		71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_4.png; sourceTree = "<group>"; };
-		71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_1.png; sourceTree = "<group>"; };
-		71F5BD0A2961FB2A00CCC3F8 /* mutaro_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_0.png; sourceTree = "<group>"; };
-		71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_2.png; sourceTree = "<group>"; };
-		71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_3.png; sourceTree = "<group>"; };
-		71F5BD142961FE4600CCC3F8 /* mutaro_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutaro_5.png; sourceTree = "<group>"; };
 		71FDC929296861A7006861E8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		71FDC92A296861AD006861E8 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		71FDC93829688337006861E8 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
@@ -135,13 +203,47 @@
 		71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */ = {
 			isa = PBXGroup;
 			children = (
-				71F5BD142961FE4600CCC3F8 /* mutaro_5.png */,
-				71F5BD062961FB2A00CCC3F8 /* mutaro_6.png */,
-				71F5BD082961FB2A00CCC3F8 /* mutaro_4.png */,
-				71F5BD092961FB2A00CCC3F8 /* mutaro_1.png */,
-				71F5BD0A2961FB2A00CCC3F8 /* mutaro_0.png */,
-				71F5BD0B2961FB2A00CCC3F8 /* mutaro_2.png */,
-				71F5BD0C2961FB2A00CCC3F8 /* mutaro_3.png */,
+				713D5A99297455D000BD1B6E /* mutaro_0.png */,
+				713D5AAD297455D500BD1B6E /* mutaro_1.png */,
+				713D5AA8297455D400BD1B6E /* mutaro_2.png */,
+				713D5A88297455CB00BD1B6E /* mutaro_3.png */,
+				713D5A8A297455CC00BD1B6E /* mutaro_4.png */,
+				713D5A9A297455D000BD1B6E /* mutaro_5.png */,
+				713D5AA3297455D300BD1B6E /* mutaro_6.png */,
+				713D5A86297455CA00BD1B6E /* mutaro_7.png */,
+				713D5AAC297455D500BD1B6E /* mutaro_8.png */,
+				713D5A93297455CF00BD1B6E /* mutaro_9.png */,
+				713D5AAE297455D600BD1B6E /* mutaro_10.png */,
+				713D5A9F297455D200BD1B6E /* mutaro_11.png */,
+				713D5A94297455CF00BD1B6E /* mutaro_12.png */,
+				713D5A90297455CE00BD1B6E /* mutaro_13.png */,
+				713D5A97297455D000BD1B6E /* mutaro_14.png */,
+				713D5A9B297455D100BD1B6E /* mutaro_15.png */,
+				713D5A9D297455D100BD1B6E /* mutaro_16.png */,
+				713D5A95297455CF00BD1B6E /* mutaro_17.png */,
+				713D5AAA297455D500BD1B6E /* mutaro_18.png */,
+				713D5A96297455CF00BD1B6E /* mutaro_19.png */,
+				713D5A8C297455CD00BD1B6E /* mutaro_20.png */,
+				713D5AAB297455D500BD1B6E /* mutaro_21.png */,
+				713D5A98297455D000BD1B6E /* mutaro_22.png */,
+				713D5A9C297455D100BD1B6E /* mutaro_23.png */,
+				713D5A89297455CB00BD1B6E /* mutaro_24.png */,
+				713D5A9E297455D100BD1B6E /* mutaro_25.png */,
+				713D5A8B297455CD00BD1B6E /* mutaro_26.png */,
+				713D5AA0297455D200BD1B6E /* mutaro_27.png */,
+				713D5A8D297455CD00BD1B6E /* mutaro_28.png */,
+				713D5A8E297455CD00BD1B6E /* mutaro_29.png */,
+				713D5AA7297455D400BD1B6E /* mutaro_30.png */,
+				713D5A87297455CB00BD1B6E /* mutaro_31.png */,
+				713D5AA1297455D200BD1B6E /* mutaro_32.png */,
+				713D5A8F297455CE00BD1B6E /* mutaro_33.png */,
+				713D5AA2297455D200BD1B6E /* mutaro_34.png */,
+				713D5A92297455CE00BD1B6E /* mutaro_35.png */,
+				713D5AA4297455D300BD1B6E /* mutaro_36.png */,
+				713D5AA9297455D400BD1B6E /* mutaro_37.png */,
+				713D5A91297455CE00BD1B6E /* mutaro_38.png */,
+				713D5AA5297455D300BD1B6E /* mutaro_39.png */,
+				713D5AA6297455D300BD1B6E /* mutaro_40.png */,
 			);
 			path = MutaroPhotos;
 			sourceTree = "<group>";
@@ -273,15 +375,49 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71F5BD0F2961FB2A00CCC3F8 /* mutaro_4.png in Resources */,
+				713D5AB3297455D600BD1B6E /* mutaro_4.png in Resources */,
+				713D5AC8297455D600BD1B6E /* mutaro_11.png in Resources */,
+				713D5AD0297455D600BD1B6E /* mutaro_30.png in Resources */,
+				713D5ACA297455D600BD1B6E /* mutaro_32.png in Resources */,
+				713D5AB9297455D600BD1B6E /* mutaro_13.png in Resources */,
+				713D5AC6297455D600BD1B6E /* mutaro_16.png in Resources */,
+				713D5AAF297455D600BD1B6E /* mutaro_7.png in Resources */,
+				713D5AB5297455D600BD1B6E /* mutaro_20.png in Resources */,
+				713D5ABD297455D600BD1B6E /* mutaro_12.png in Resources */,
+				713D5AC5297455D600BD1B6E /* mutaro_23.png in Resources */,
+				713D5AD7297455D600BD1B6E /* mutaro_10.png in Resources */,
+				713D5AC4297455D600BD1B6E /* mutaro_15.png in Resources */,
+				713D5AC1297455D600BD1B6E /* mutaro_22.png in Resources */,
+				713D5AC9297455D600BD1B6E /* mutaro_27.png in Resources */,
+				713D5ACC297455D600BD1B6E /* mutaro_6.png in Resources */,
+				713D5ABE297455D600BD1B6E /* mutaro_17.png in Resources */,
+				713D5ABA297455D600BD1B6E /* mutaro_38.png in Resources */,
+				713D5ABF297455D600BD1B6E /* mutaro_19.png in Resources */,
+				713D5AC3297455D600BD1B6E /* mutaro_5.png in Resources */,
+				713D5AC0297455D600BD1B6E /* mutaro_14.png in Resources */,
+				713D5AD1297455D600BD1B6E /* mutaro_2.png in Resources */,
+				713D5AD3297455D600BD1B6E /* mutaro_18.png in Resources */,
+				713D5AD5297455D600BD1B6E /* mutaro_8.png in Resources */,
 				718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */,
-				71F5BD102961FB2A00CCC3F8 /* mutaro_1.png in Resources */,
-				71F5BD122961FB2A00CCC3F8 /* mutaro_2.png in Resources */,
-				71F5BD152961FE4600CCC3F8 /* mutaro_5.png in Resources */,
-				71F5BD0D2961FB2A00CCC3F8 /* mutaro_6.png in Resources */,
-				71F5BD132961FB2A00CCC3F8 /* mutaro_3.png in Resources */,
-				71F5BD112961FB2A00CCC3F8 /* mutaro_0.png in Resources */,
+				713D5ACE297455D600BD1B6E /* mutaro_39.png in Resources */,
 				715E95C6295CD16400AD6331 /* license_plist.yml in Resources */,
+				713D5AB8297455D600BD1B6E /* mutaro_33.png in Resources */,
+				713D5AC7297455D600BD1B6E /* mutaro_25.png in Resources */,
+				713D5AB6297455D600BD1B6E /* mutaro_28.png in Resources */,
+				713D5AC2297455D600BD1B6E /* mutaro_0.png in Resources */,
+				713D5ACB297455D600BD1B6E /* mutaro_34.png in Resources */,
+				713D5AB7297455D600BD1B6E /* mutaro_29.png in Resources */,
+				713D5AB1297455D600BD1B6E /* mutaro_3.png in Resources */,
+				713D5ABB297455D600BD1B6E /* mutaro_35.png in Resources */,
+				713D5AD6297455D600BD1B6E /* mutaro_1.png in Resources */,
+				713D5AB0297455D600BD1B6E /* mutaro_31.png in Resources */,
+				713D5AB2297455D600BD1B6E /* mutaro_24.png in Resources */,
+				713D5AD4297455D600BD1B6E /* mutaro_21.png in Resources */,
+				713D5ACF297455D600BD1B6E /* mutaro_40.png in Resources */,
+				713D5AB4297455D600BD1B6E /* mutaro_26.png in Resources */,
+				713D5AD2297455D600BD1B6E /* mutaro_37.png in Resources */,
+				713D5ABC297455D600BD1B6E /* mutaro_9.png in Resources */,
+				713D5ACD297455D600BD1B6E /* mutaro_36.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

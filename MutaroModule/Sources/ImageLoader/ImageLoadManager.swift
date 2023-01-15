@@ -38,6 +38,9 @@ public final actor ImageLoadManager {
 
         do {
             ongoingTask.removeValue(forKey: fileName)
+            guard !Task.isCancelled else {
+                return nil
+            }
             return try result.get()
         } catch {
             return nil

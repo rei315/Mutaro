@@ -43,9 +43,6 @@ public class MutaroListViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Task {
-            await viewModel.fetchMutaroItems()
-        }
     }
 
     override public func viewDidLoad() {
@@ -56,6 +53,10 @@ public class MutaroListViewController: UIViewController {
         setupCollectionView()
         setupDefaultSnapshot()
         setupSubscription()
+
+        Task {
+            await viewModel.fetchMutaroItems()
+        }
     }
 
     private func setupSubscription() {

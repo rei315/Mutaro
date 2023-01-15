@@ -13,7 +13,8 @@ class MutaroListHorizontalPhotoCell: UICollectionViewCell {
     public static let imageSize: CGFloat = 100
 
     private let imageView: UIImageView = .init()
-    private var imageUrl: String? = nil
+
+    private var savedTask: Task<(), Never>?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,14 +42,19 @@ class MutaroListHorizontalPhotoCell: UICollectionViewCell {
     }
 
     func configureCell(_ imageUrl: String) {
-        Task {
-            await ImageLoadManager.shared.cancelLoad(key: imageUrl)
-
+        savedTask = Task {
             let size: CGSize = .init(
                 width: MutaroListHorizontalPhotoCell.imageSize,
                 height: MutaroListHorizontalPhotoCell.imageSize
             )
+
             await imageView.loadImage(fileName: imageUrl, size: size)
         }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        savedTask?.cancel()
+        savedTask = nil
     }
 }
