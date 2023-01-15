@@ -2,6 +2,20 @@ name: firebase-ios-sdk, nameSpecified: , owner: firebase, version: , source: htt
 
 name: firebase-ios-sdk, nameSpecified: , owner: firebase, version: , source: https://github.com/firebase/firebase-ios-sdk
 
+name: firebase-ios-sdk, nameSpecified: , owner: firebase, version: , source: https://github.com/firebase/firebase-ios-sdk
+
+name: swift-argument-parser, nameSpecified: swift-argument-parser, owner: apple, version: 1.1.4, source: https://github.com/apple/swift-argument-parser
+
+name: swift-format, nameSpecified: swift-format, owner: apple, version: , source: https://github.com/apple/swift-format
+
+name: swift-syntax, nameSpecified: swift-syntax, owner: apple, version: , source: https://github.com/apple/swift-syntax
+
+name: swift-system, nameSpecified: swift-system, owner: apple, version: 1.1.1, source: https://github.com/apple/swift-system
+
+name: swift-tools-support-core, nameSpecified: swift-tools-support-core, owner: apple, version: 0.4.0, source: https://github.com/apple/swift-tools-support-core
+
+name: SwiftGenPlugin, nameSpecified: SwiftGenPlugin, owner: SwiftGen, version: 6.6.2, source: https://github.com/SwiftGen/SwiftGenPlugin
+
 name: LicensePlist, nameSpecified: , version: 
 body: MIT License
 
