@@ -190,6 +190,8 @@ extension MutaroListViewController {
         case let .mutaroHorizontalPhoto(index):
             let cell = collectionView.dequeueReusableCell(
                 withType: MutaroListHorizontalPhotoCell.self, for: indexPath)
+            cell.resetCell()
+
             if let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl {
                 cell.configureCell(imageUrl)
             }
