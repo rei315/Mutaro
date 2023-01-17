@@ -42,10 +42,6 @@ public class MutaroListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

@@ -17,7 +17,7 @@ class MutaroListCirclePhotoCell: UICollectionViewCell {
 
     private let iconSizeSubject = CurrentValueSubject<CGSize?, Never>(nil)
     private let configureValueSubject = CurrentValueSubject<String?, Never>(nil)
-    private var cancellables: Set<AnyCancellable> = []
+    private var cancellables: AnyCancellable?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,17 +47,17 @@ class MutaroListCirclePhotoCell: UICollectionViewCell {
     }
 
     private func setupSubscription() {
-        configureValueSubject
+        cancellables =
+            configureValueSubject
             .combineLatest(iconSizeSubject)
-            .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.setupIcon(value: $0, size: $1)
             }
-            .store(in: &cancellables)
     }
 
     func resetCell() {
-        imageView.image = nil
+        savedTask?.cancel()
+        savedTask = nil
     }
 
     func configureCell(_ imageUrl: String) {
@@ -71,18 +71,7 @@ class MutaroListCirclePhotoCell: UICollectionViewCell {
             return
         }
         savedTask = Task {
-            let size: CGSize = .init(
-                width: size.width,
-                height: size.height
-            )
-
             await imageView.loadImage(fileName: imageUrl, size: size)
         }
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        savedTask?.cancel()
-        savedTask = nil
     }
 }

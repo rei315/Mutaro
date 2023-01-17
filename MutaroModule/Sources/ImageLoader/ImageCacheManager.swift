@@ -43,4 +43,9 @@ public final actor ImageCacheManager {
         }
         return imageFromCache
     }
+
+    public func isAlreadyInCache(fileUrl: URL) -> Bool {
+        let cache = imageCache.object(forKey: fileUrl as AnyObject)
+        return cache != nil
+    }
 }

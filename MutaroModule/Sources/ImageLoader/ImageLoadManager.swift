@@ -16,7 +16,7 @@ public final actor ImageLoadManager {
 
     @discardableResult
     public func loadImage(for fileName: String, size: CGSize) async -> UIImage? {
-        let task = Task { () -> UIImage? in
+        let task = Task(priority: .medium) { () -> UIImage? in
             guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
                 return nil
             }
@@ -49,11 +49,11 @@ public final actor ImageLoadManager {
     }
 
     public func prefetchImage(for fileName: String) async {
-        let task = Task {
+        let task = Task(priority: .medium) {
             guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
                 return
             }
-            guard await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) == nil else {
+            guard await ImageCacheManager.shared.isAlreadyInCache(fileUrl: fileUrl) == false else {
                 return
             }
 
