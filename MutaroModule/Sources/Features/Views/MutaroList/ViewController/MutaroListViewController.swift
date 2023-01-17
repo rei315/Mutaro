@@ -31,6 +31,7 @@ public class MutaroListViewController: UIViewController {
         }
 
     private let viewModel: MutaroListViewModel
+    private var couldCardViewPaging: Bool = false
 
     init(viewModel: MutaroListViewModel) {
         self.viewModel = viewModel
@@ -77,7 +78,8 @@ extension MutaroListViewController {
             $0.dataSource = dataSource
             $0.delegate = self
             $0.prefetchDataSource = self
-            $0.registerClass(withType: MutaroListHorizontalPhotoCell.self)
+            $0.registerClass(withType: MutaroListCirclePhotoCell.self)
+            $0.registerClass(withType: MutaroListCardPhotoCell.self)
             view.addSubview($0)
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
@@ -85,6 +87,61 @@ extension MutaroListViewController {
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             ])
+        }
+    }
+
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
+            guard let self = self else {
+                return nil
+            }
+            let section = self.dataSource.sectionIdentifier(for: sectionIndex)
+            switch section {
+            case .mutaroHorizontalCirclePhotos:
+                let item = NSCollectionLayoutItem(
+                    layoutSize: .init(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .fractionalHeight(1)
+                    )
+                )
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: .init(
+                        widthDimension: .absolute(MutaroListCirclePhotoCell.imageSize),
+                        heightDimension: .absolute(MutaroListCirclePhotoCell.imageSize)
+                    ),
+                    subitems: [item]
+                )
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
+                section.interGroupSpacing = 10
+                section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+                return section
+            case .mutaroHorizontalCardPhotos:
+                let item = NSCollectionLayoutItem(
+                    layoutSize: .init(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .fractionalHeight(1)
+                    )
+                )
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: .init(
+                        widthDimension: .fractionalWidth(0.9),
+                        heightDimension: .fractionalHeight(0.8)
+                    ),
+                    subitems: [item]
+                )
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .groupPagingCentered
+                section.interGroupSpacing = 10
+                section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+                return section
+            case .mutaroInfo:
+                return nil
+            case .none:
+                return nil
+            }
         }
     }
 
@@ -97,69 +154,57 @@ extension MutaroListViewController {
     private func updateSnapshot(_ items: [MutaroModel]) {
         var snapshot = dataSource.snapshot()
 
-        let currentHorizontalPhotosItems = snapshot.itemIdentifiers(
-            inSection: .mutaroHorizontalPhotos)
+        let currentHorizontalCirclePhotosItems = snapshot.itemIdentifiers(
+            inSection: .mutaroHorizontalCirclePhotos
+        )
         items.indices.map {
-            MutaroListRow.mutaroHorizontalPhoto(index: $0)
+            MutaroListRow.mutaroCirclePhoto(index: $0)
         }.forEach {
-            if currentHorizontalPhotosItems.contains($0) {
+            if currentHorizontalCirclePhotosItems.contains($0) {
                 snapshot.reconfigureItems([$0])
             } else {
-                snapshot.appendItems([$0], toSection: .mutaroHorizontalPhotos)
+                snapshot.appendItems([$0], toSection: .mutaroHorizontalCirclePhotos)
             }
         }
 
-        let newHorizontalPhotoItemsCount = items.count
-        let horizontalPhotoItemsDiff =
-            currentHorizontalPhotosItems.count - newHorizontalPhotoItemsCount
-        if horizontalPhotoItemsDiff > 0 {
-            let delegateTargets =
-                (newHorizontalPhotoItemsCount..<newHorizontalPhotoItemsCount
-                + horizontalPhotoItemsDiff).map {
-                    MutaroListRow.mutaroHorizontalPhoto(index: $0)
+        let newHorizontalCirclePhotoItemsCount = items.count
+        let horizontalCirclePhotoItemsDiff =
+            currentHorizontalCirclePhotosItems.count - newHorizontalCirclePhotoItemsCount
+        if horizontalCirclePhotoItemsDiff > 0 {
+            let deleteTargets =
+                (newHorizontalCirclePhotoItemsCount..<newHorizontalCirclePhotoItemsCount
+                + horizontalCirclePhotoItemsDiff).map {
+                    MutaroListRow.mutaroCirclePhoto(index: $0)
                 }
-            snapshot.deleteItems(delegateTargets)
+            snapshot.deleteItems(deleteTargets)
+        }
+
+        let currentHorizontalCardPhotosItem = snapshot.itemIdentifiers(
+            inSection: .mutaroHorizontalCardPhotos
+        )
+        items.indices.map {
+            MutaroListRow.mutaroCardPhoto(index: $0)
+        }.forEach {
+            if currentHorizontalCardPhotosItem.contains($0) {
+                snapshot.reconfigureItems([$0])
+            } else {
+                snapshot.appendItems([$0], toSection: .mutaroHorizontalCardPhotos)
+            }
+        }
+
+        let newHorizontalCardPhotosItemCount = items.count
+        let horizontalCardPhotoItemsDiff =
+            currentHorizontalCardPhotosItem.count - newHorizontalCardPhotosItemCount
+        if horizontalCardPhotoItemsDiff > 0 {
+            let deleteTargets =
+                (newHorizontalCardPhotosItemCount..<newHorizontalCardPhotosItemCount
+                + horizontalCardPhotoItemsDiff).map {
+                    MutaroListRow.mutaroCardPhoto(index: $0)
+                }
+            snapshot.deleteItems(deleteTargets)
         }
 
         dataSource.apply(snapshot, animatingDifferences: false)
-    }
-
-    private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-            guard let self = self else {
-                return nil
-            }
-            let section = self.dataSource.sectionIdentifier(for: sectionIndex)
-            switch section {
-            case .mutaroHorizontalPhotos:
-                let fraction: CGFloat = 1 / 5
-                let item = NSCollectionLayoutItem(
-                    layoutSize: .init(
-                        widthDimension: .fractionalWidth(1),
-                        heightDimension: .fractionalHeight(1)
-                    )
-                )
-                let group = NSCollectionLayoutGroup.horizontal(
-                    layoutSize: .init(
-                        widthDimension: .absolute(MutaroListHorizontalPhotoCell.imageSize),
-                        heightDimension: .absolute(MutaroListHorizontalPhotoCell.imageSize)
-                    ),
-                    subitems: [item]
-                )
-                let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .continuous
-                section.interGroupSpacing = 10
-                section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
-
-                return section
-            case .mutaroInfo:
-                return nil
-            case .mutaroVerticalPhotos:
-                return nil
-            case .none:
-                return nil
-            }
-        }
     }
 }
 
@@ -173,33 +218,39 @@ extension MutaroListViewController: UICollectionViewDelegate {
 
 extension MutaroListViewController {
     enum MutaroListSection: Hashable, CaseIterable {
-        case mutaroHorizontalPhotos
+        case mutaroHorizontalCirclePhotos
+        case mutaroHorizontalCardPhotos
         case mutaroInfo
-        case mutaroVerticalPhotos
     }
 
     enum MutaroListRow: Hashable {
-        case mutaroHorizontalPhoto(index: Int)
+        case mutaroCirclePhoto(index: Int)
+        case mutaroCardPhoto(index: Int)
         case mutaroInfo
-        case mutaroPhoto(index: Int)
     }
 
     func cellProvider(collectionView: UICollectionView, indexPath: IndexPath, item: MutaroListRow)
         -> UICollectionViewCell
     {
         switch item {
-        case let .mutaroHorizontalPhoto(index):
+        case let .mutaroCirclePhoto(index):
             let cell = collectionView.dequeueReusableCell(
-                withType: MutaroListHorizontalPhotoCell.self, for: indexPath)
+                withType: MutaroListCirclePhotoCell.self, for: indexPath)
             cell.resetCell()
 
             if let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl {
                 cell.configureCell(imageUrl)
             }
             return cell
+        case let .mutaroCardPhoto(index):
+            let cell = collectionView.dequeueReusableCell(
+                withType: MutaroListCardPhotoCell.self, for: indexPath)
+            cell.resetCell()
+            if let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl {
+                cell.configureCell(imageUrl)
+            }
+            return cell
         case .mutaroInfo:
-            return UICollectionViewCell()
-        case let .mutaroPhoto(index):
             return UICollectionViewCell()
         }
     }
@@ -212,12 +263,9 @@ extension MutaroListViewController: UICollectionViewDataSourcePrefetching {
         indexPaths.forEach {
             let item = dataSource.itemIdentifier(for: $0)
             switch item {
-            case let .mutaroHorizontalPhoto(index):
+            case let .mutaroCirclePhoto(index), let .mutaroCardPhoto(index):
                 viewModel.prefetchHorizontalSectionItem(row: index)
-                break
             case .mutaroInfo:
-                break
-            case let .mutaroPhoto(index):
                 break
             case .none:
                 break
@@ -231,12 +279,9 @@ extension MutaroListViewController: UICollectionViewDataSourcePrefetching {
         indexPaths.forEach {
             let item = dataSource.itemIdentifier(for: $0)
             switch item {
-            case let .mutaroHorizontalPhoto(index):
+            case let .mutaroCirclePhoto(index), let .mutaroCardPhoto(index):
                 viewModel.cancelPrefetchHorizontalSectionItem(row: index)
-                break
             case .mutaroInfo:
-                break
-            case let .mutaroPhoto(index):
                 break
             case .none:
                 break
