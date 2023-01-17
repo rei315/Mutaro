@@ -22,7 +22,7 @@ extension MutaroClient {
                 throw NSError()
             }
 
-            let collection = MutaroClient.shared.firestore.collection("mutaroDetails")
+            let collection = MutaroClient.shared.firestore.collection("home_photo_mutaro_list")
             let uploadDateString = DateFormatter().getJPDateString()
             let dto = MutaroDTO(
                 uploadDate: uploadDateString,
@@ -44,7 +44,7 @@ extension MutaroClient {
             guard await NWPathMonitor().isOnline() else {
                 throw NSError()
             }
-            let collection = MutaroClient.shared.firestore.collection("mutaroDetails")
+            let collection = MutaroClient.shared.firestore.collection("home_photo_mutaro_list")
             let snapshot = try await collection.getDocuments()
 
             let mutaroDetails = snapshot.documents
