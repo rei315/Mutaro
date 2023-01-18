@@ -232,19 +232,16 @@ extension MutaroListViewController {
         case let .mutaroCirclePhoto(index):
             let cell = collectionView.dequeueReusableCell(
                 withType: MutaroListCirclePhotoCell.self, for: indexPath)
-            cell.resetCell()
+            let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl
+            cell.configureCell(imageUrl)
 
-            if let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl {
-                cell.configureCell(imageUrl)
-            }
             return cell
         case let .mutaroCardPhoto(index):
             let cell = collectionView.dequeueReusableCell(
                 withType: MutaroListCardPhotoCell.self, for: indexPath)
-            cell.resetCell()
-            if let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl {
-                cell.configureCell(imageUrl)
-            }
+            let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl
+            cell.configureCell(imageUrl)
+
             return cell
         case .mutaroInfo:
             return UICollectionViewCell()

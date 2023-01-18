@@ -7,7 +7,6 @@
 
 import UIKit
 
-@globalActor
 public final actor ImageLoadManager {
     public static let shared = ImageLoadManager()
 
@@ -17,11 +16,11 @@ public final actor ImageLoadManager {
     @discardableResult
     public func loadImage(for fileName: String, size: CGSize) async -> UIImage? {
         let task = Task(priority: .medium) { () -> UIImage? in
-            guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "png") else {
+            guard let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "jpeg") else {
                 return nil
             }
 
-            if let cachedImage = await ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) {
+            if let cachedImage = ImageCacheManager.shared.getCachedImage(fileUrl: fileUrl) {
                 return cachedImage.downsample(imageAt: fileUrl, to: size)
             }
 
@@ -29,7 +28,7 @@ public final actor ImageLoadManager {
                 return nil
             }
 
-            await ImageCacheManager.shared.insertImage(image, for: fileUrl)
+            ImageCacheManager.shared.insertImage(image, for: fileUrl)
 
             return image.downsample(imageAt: fileUrl, to: size)
         }
@@ -86,13 +85,5 @@ public final actor ImageLoadManager {
         } catch {
             return nil
         }
-    }
-
-    private func downloadImage(url: URL) async throws -> UIImage? {
-        let (data, _) = try await URLSession.shared.data(from: url)
-        guard let image = UIImage(data: data) else {
-            throw ImageLoadError.downloadFailure
-        }
-        return image
     }
 }

@@ -55,12 +55,9 @@ class MutaroListCirclePhotoCell: UICollectionViewCell {
             }
     }
 
-    func resetCell() {
+    func configureCell(_ imageUrl: String?) {
         savedTask?.cancel()
         savedTask = nil
-    }
-
-    func configureCell(_ imageUrl: String) {
         configureValueSubject.send(imageUrl)
     }
 

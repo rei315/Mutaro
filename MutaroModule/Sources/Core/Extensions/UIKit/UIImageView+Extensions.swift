@@ -9,14 +9,12 @@ import ImageLoader
 import UIKit
 
 extension UIImageView {
-    @MainActor
     public func loadImage(fileName: String, size: CGSize) async {
         image = await ImageLoadManager.shared.loadImage(for: fileName, size: size)
     }
 }
 
 extension UIImageView {
-    @MainActor
     public func clipToCircle(with radius: CGFloat? = nil) {
         layer.masksToBounds = false
         let settingRadius: CGFloat

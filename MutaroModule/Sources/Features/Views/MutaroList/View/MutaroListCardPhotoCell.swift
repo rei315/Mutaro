@@ -55,16 +55,14 @@ class MutaroListCardPhotoCell: UICollectionViewCell {
             }
     }
 
-    func resetCell() {
+    func configureCell(_ imageUrl: String?) {
         savedTask?.cancel()
         savedTask = nil
-    }
-
-    func configureCell(_ imageUrl: String) {
         configureValueSubject.send(imageUrl)
     }
 
     private func setupIcon(value imageUrl: String?, size: CGSize?) {
+
         guard let size,
             let imageUrl
         else {

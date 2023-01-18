@@ -7,8 +7,7 @@
 
 import UIKit
 
-@globalActor
-public final actor ImageCacheManager {
+public final class ImageCacheManager {
     public struct Config {
         let countLimit: Int
         let memoryLimit: Int
