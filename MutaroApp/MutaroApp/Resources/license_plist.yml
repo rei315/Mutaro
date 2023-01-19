@@ -29,3 +29,5 @@ manual:
 github:
   - owner: firebase
     name: firebase-ios-sdk
+  - owner: apple
+    name: swift-format

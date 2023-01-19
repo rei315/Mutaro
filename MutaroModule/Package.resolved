@@ -1,51 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "83c0ef07c36676e7fd14c4fe373b13a81ed1b600"
-      }
-    },
-    {
-      "identity" : "swift-format",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-format",
-      "state" : {
-        "branch" : "main",
-        "revision" : "a1ebffecbfb429efed708534ec644ea015b9f4d4"
-      }
-    },
-    {
-      "identity" : "swift-syntax",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-syntax.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "a2d31e8880224f5a619f24bf58c122836faf99ff"
-      }
-    },
-    {
-      "identity" : "swift-system",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-system.git",
-      "state" : {
-        "revision" : "836bc4557b74fe6d2660218d56e3ce96aff76574",
-        "version" : "1.1.1"
-      }
-    },
-    {
-      "identity" : "swift-tools-support-core",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-tools-support-core.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "284a41800b7c5565512ec6ae21ee818aac1f84ac"
-      }
-    },
-    {
       "identity" : "swiftgenplugin",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftGen/SwiftGenPlugin",

@@ -440,7 +440,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do    \n    if [ $path = \"AppResource\" ]; then        \n        continue\n    fi\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory format-source-code --target ${path}\ndone\n\n";
+			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do    \n    if [ $path = \"AppResource\" ]; then        \n        continue\n    fi\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory format-code --target ${path}\ndone\n\n";
 		};
 		7131E88029707623006E1C9D /* Run Swift-Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -458,7 +458,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do\n    if [ $path = \"AppResource\" ]; then        \n        continue\n    fi\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory lint-source-code --target ${path}\ndone\n";
+			shellScript = "#cd ../MutaroModule\n#for path in $( ls Sources ); do\n#    if [ $path = \"AppResource\" ]; then        \n#        continue\n#    fi\n#    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory lint-source-code --target ${path}\n#done\n";
 		};
 		715E95C7295CD1AC00AD6331 /* Run LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -476,7 +476,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ $CONFIGURATION = \"Debug(Production)\" ]] || [[ $CONFIGURATION = \"Debug(Development)\" ]]; then    \n    if which /usr/local/bin/license-plist > /dev/null; then\n        if [ ! -z $LICENSE_PLIST_GITHUB_TOKEN ]; then\n            TOKEN=$LICENSE_PLIST_GITHUB_TOKEN\n        elif [ ! -z $GITHUB_TOKEN ]; then\n            TOKEN=$GITHUB_TOKEN\n        else\n            echo \"Mutaro: - licensePlistで使うためのLICENSE_PLIST_GITHUB_TOKENを設定してください\"                        \n            exit 1\n        fi\n        \n        /usr/local/bin/license-plist --output-path ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Settings.bundle --config-path ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/license_plist.yml --package-path ${CI_WORKSPACE}/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved --github-token ${TOKEN}\n    elif which /opt/homebrew/bin/license-plist > /dev/null; then\n        if [ -f \"../env-vars.sh\" ]; then       \n            source \"../env-vars.sh\"\n        fi        \n        \n        if [ ! -z $LICENSE_PLIST_GITHUB_TOKEN ]; then\n            TOKEN=$LICENSE_PLIST_GITHUB_TOKEN\n        elif [ ! -z $GITHUB_TOKEN ]; then\n            TOKEN=$GITHUB_TOKEN\n        else\n            echo \"Mutaro: - licensePlistで使うためのLICENSE_PLIST_GITHUB_TOKENを設定してください\"            \n            exit 1          \n        fi\n        \n        /opt/homebrew/bin/license-plist --output-path ${SRCROOT}/MutaroApp/Resources/Settings.bundle --config-path ${SRCROOT}/MutaroApp/Resources/license_plist.yml --package-path ../Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved --github-token ${TOKEN}\n    else\n        echo \"warning: Please install license-plist with 'brew install license-plist'\"\n        exit 1\n    fi\nfi\n";
+			shellScript = "if [[ $CONFIGURATION = \"Debug(Production)\" ]] || [[ $CONFIGURATION = \"Debug(Development)\" ]]; then    \n    if which /usr/local/bin/license-plist > /dev/null; then\n        if [ ! -z $LICENSE_PLIST_GITHUB_TOKEN ]; then\n            TOKEN=$LICENSE_PLIST_GITHUB_TOKEN\n        elif [ ! -z $GITHUB_TOKEN ]; then\n            TOKEN=$GITHUB_TOKEN\n        else\n            echo \"Mutaro: - licensePlistで使うためのLICENSE_PLIST_GITHUB_TOKENを設定してください\"                        \n            exit 1\n        fi\n        \n        /usr/local/bin/license-plist --output-path ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Settings.bundle --config-path ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/license_plist.yml --package-path ${CI_WORKSPACE}/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved --github-token ${TOKEN}\n    elif which /opt/homebrew/bin/license-plist > /dev/null; then\n        if [ -f \"../env-vars.sh\" ]; then       \n            source \"../env-vars.sh\"\n        fi        \n        \n        if [ ! -z $LICENSE_PLIST_GITHUB_TOKEN ]; then\n            TOKEN=$LICENSE_PLIST_GITHUB_TOKEN\n        elif [ ! -z $GITHUB_TOKEN ]; then\n            TOKEN=$GITHUB_TOKEN\n        else\n            echo \"Mutaro: - licensePlistで使うためのLICENSE_PLIST_GITHUB_TOKENを設定してください\"            \n            exit 1          \n        fi\n        \n        /opt/homebrew/bin/license-plist --output-path ${SRCROOT}/MutaroApp/Resources/Settings.bundle --config-path ${SRCROOT}/MutaroApp/Resources/license_plist.yml --package-path ../Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved --github-token ${TOKEN} --force\n    else\n        echo \"warning: Please install license-plist with 'brew install license-plist'\"\n        exit 1\n    fi\nfi\n";
 		};
 		715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */ = {
 			isa = PBXShellScriptBuildPhase;

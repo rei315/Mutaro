@@ -37,7 +37,8 @@ let firebaseFirestoreDependencies: [Target.Dependency] = [
 let package = Package(
     name: "MutaroModule",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v15),
+        .macOS(.v13),
     ],
     products: [
         .library(
@@ -62,10 +63,10 @@ let package = Package(
             name: "AppResource",
             targets: ["AppResource"]
         ),
+        .plugin(name: "SwiftFormat", targets: ["SwiftFormat"])
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
-        .package(url: "https://github.com/apple/swift-format", branch: "main"),
     ],
     targets: [
         .target(
@@ -106,6 +107,21 @@ let package = Package(
         .target(
             name: "ImageLoader",
             dependencies: []
+        ),
+        .plugin(
+            name: "SwiftFormat",
+            capability: .command(
+                intent: .custom(
+                    verb: "format-code",
+                    description: "format codes"
+                ),
+                permissions: [
+                    .writeToPackageDirectory(reason: "This command format source code")
+                ]
+            ),
+            dependencies: [
+                .target(name: "swift-format")
+            ]
         ),
         .binaryTarget(
             name: "FirebaseCrashlytics",
@@ -195,6 +211,10 @@ let package = Package(
         .binaryTarget(
             name: "leveldb-library",
             path: "XCFrameworks/Firebase/FirebaseFirestore/leveldb-library.xcframework"
-        )
+        ),
+        .binaryTarget(
+            name: "swift-format",
+            path: "XCFrameworks/swift-format.artifactbundle"
+        ),
     ]
 )
