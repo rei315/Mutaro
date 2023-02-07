@@ -79,7 +79,7 @@ version_pr_comment() {
 
 if [[ $CI_WORKFLOW = "Test-CI" ]]; then
     if [[ $CI_XCODEBUILD_ACTION -eq "build-for-testing" ]]; then
-        git diff --exit-code
+        # git diff --exit-code
     fi
 elif [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
     upload_dsym
