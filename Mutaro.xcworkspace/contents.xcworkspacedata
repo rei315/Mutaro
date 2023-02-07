@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:MutaroModule">
+   </FileRef>
+   <FileRef
       location = "group:MutaroApp/MutaroApp.xcodeproj">
    </FileRef>
    <Group
@@ -17,7 +20,4 @@
          location = "group:ci_post_clone.sh">
       </FileRef>
    </Group>
-   <FileRef
-      location = "group:MutaroModule">
-   </FileRef>
 </Workspace>
