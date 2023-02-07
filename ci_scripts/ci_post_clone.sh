@@ -9,6 +9,7 @@
 typeset -A envValues
 
 envValues[IS_UNIT_TEST]="true"
+envValues[IS_UNIT_TESTAAA]="false"
 for key in "${!envValues[@]}"; do
     echo $key
     #echo "${envValues[$key]}"
