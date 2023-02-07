@@ -24,6 +24,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         setupNavigationBarStyle()
 
         window = UIWindow(windowScene: windowScene)
+        
+        guard ProcessInfo.processInfo.environment["IS_TESTING"] != "True" else {
+            return
+        }
+        
         window?.makeKeyAndVisible()
 
         let isNotFirstAppLaunching = UserDefaults.standard.bool(

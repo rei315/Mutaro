@@ -28,3 +28,13 @@ elif [[ $CI_WORKFLOW = "Archive-For-Release" ]]; then
     
     PlistBuddy -c "Set :CFBundleVersion $nextBuildNumber" "${mainInfoPlist}"
 fi
+
+
+set -e
+
+if [[ $CI_XCODEBUILD_ACTION  = "test-without-building" ]]; then
+    IS_TESTING="True"
+else
+    IS_TESTING="False"
+fi
+

@@ -6,6 +6,20 @@
 #  Created by minguk-kim on 2022/09/27.
 #  Copyright © 2022 MGHouse, Inc. All rights reserved.
 
+typeset -A envValues
+
+envValues=(
+    "IS_UNIT_TEST:true"
+    "IS_TEST_VALUE:false"
+)
+
+for value in "${envValues[@]}"; do
+    KEY=${value%%:*}
+    VALUE=${value#*:}
+    echo ${KEY} ${VALUE}
+done
+exit 0
+
 if [[ $CI_WORKFLOW = "Test-CI" || $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
     SOURCE_BRANCH=$CI_BRANCH
     RELEASE_BRANCH='release/'
