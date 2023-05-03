@@ -14,7 +14,7 @@ public protocol RegisterJWTRoute {
 public extension RegisterJWTRoute where Self: Router {
     func openRegisterJWTRoute() {
         let push = PushTransition()
-        let router = DefaultRouter(rootTransition: EmptyTransition())
+        let router = DefaultRouter(rootTransition: push)
         let viewModel = RegisterJWTViewModel(router: router)
         let viewController = RegisterJWTViewController(viewModel: viewModel)
         router.root = viewController
