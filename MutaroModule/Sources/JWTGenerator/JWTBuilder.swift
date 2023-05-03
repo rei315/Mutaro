@@ -6,19 +6,9 @@
 //
 
 import SwiftJWT
+import Foundation
 
 public extension MutaroJWT {
-    enum ClaimsState {
-        case appstoreConnectV1
-
-        func get(issuerId: String) -> Claims {
-            switch self {
-            case .appstoreConnectV1:
-                return AppstoreConnectClaims(iss: issuerId)
-            }
-        }
-    }
-
     struct AppstoreConnectJWTBuilder {
         let keyId: String
         let issuerId: String
@@ -30,17 +20,37 @@ public extension MutaroJWT {
             self.pemString = pemString
         }
 
-        public func generateJWT(_ claimsState: ClaimsState) throws -> String {
+        public func generateJWT() throws -> String {
             guard let privateKey = pemString.data(using: .utf8) else {
                 throw JWTError.pemStringIsWrongPattern
             }
 
             let header = Header(kid: keyId)
-            let claims = claimsState.get(issuerId: issuerId)
-            let jwt = SwiftJWT.JWT(header: header, claims: claims)
+            let claims = AppstoreConnectClaims(
+                iss: issuerId,
+                exp: Date(timeIntervalSinceNow: 20*60),
+                aud: "appstoreconnect-v1"
+            )
+            var jwt = JWT(header: header, claims: claims)
             let signedJWT = try jwt.sign(using: .rs256(privateKey: privateKey))
 
             return signedJWT
+        }
+        
+        struct AppstoreConnectClaims: Claims {
+            let iss: String
+            let exp: Date
+            let aud: String
+            
+            init(
+                iss: String,
+                exp: Date,
+                aud: String
+            ) {
+                self.iss = iss
+                self.exp = exp
+                self.aud = aud
+            }
         }
     }
 }
