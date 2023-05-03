@@ -50,20 +50,6 @@ class SettingViewController: UIViewController {
 
         setupCollectionView()
         setupDefaultSnapshot()
-        setupSubscription()
-
-        #if DEV
-            viewModel.setupDeveloperSettings()
-        #endif
-    }
-
-    private func setupSubscription() {
-        viewModel.shouldAddDeveloperSettingSubject
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.setupDevelopToolsSnapshot()
-            }
-            .store(in: &viewModel.cancellables)
     }
 }
 
@@ -97,16 +83,6 @@ extension SettingViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
-    private func setupDevelopToolsSnapshot() {
-        var snapshot = dataSource.snapshot()
-        let tools: [DevSettingType] = [.devToolDataUploader]
-        let rowItems: [SettingListRow] = tools.indices.map {
-            SettingListRow.developSetting($0)
-        }
-        snapshot.appendItems(rowItems, toSection: .developSetting)
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
-
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
             guard let self else {
@@ -115,14 +91,6 @@ extension SettingViewController {
             let section = self.dataSource.sectionIdentifier(for: sectionIndex)
             switch section {
             case .setting:
-                var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-                configuration.backgroundColor = .white
-                let section = NSCollectionLayoutSection.list(
-                    using: configuration,
-                    layoutEnvironment: layoutEnvironment
-                )
-                return section
-            case .developSetting:
                 var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
                 configuration.backgroundColor = .white
                 let section = NSCollectionLayoutSection.list(
@@ -140,12 +108,10 @@ extension SettingViewController {
 extension SettingViewController {
     enum SettingListSection: Hashable, CaseIterable {
         case setting
-        case developSetting
     }
 
     enum SettingListRow: Hashable {
         case defaultSetting(Int)
-        case developSetting(Int)
     }
 
     func cellProvider(collectionView: UICollectionView, indexPath: IndexPath, item: SettingListRow)
@@ -162,17 +128,6 @@ extension SettingViewController {
 
                 $0.bind(type: type)
             }
-        case let .developSetting(index):
-            return collectionView.dequeueReusableCell(
-                withType: SettingDefaultCollectionViewCell.self,
-                for: indexPath
-            ).apply {
-                guard let type = DevSettingType(rawValue: index) else {
-                    return
-                }
-
-                $0.bind(type: type)
-            }
         }
     }
 }
@@ -183,13 +138,6 @@ extension SettingViewController: UICollectionViewDelegate {
         switch item {
         case let .defaultSetting(index):
             break
-        case let .developSetting(index):
-            switch DevSettingType(rawValue: index) {
-            case .devToolDataUploader:
-                viewModel.onTapDevToolUploadMutaroInfo()
-            case .none:
-                break
-            }
         case .none:
             break
         }
@@ -222,26 +170,6 @@ extension SettingViewController {
                 asset = Resources.Images.info
             case .setting:
                 asset = Resources.Images.setting
-            }
-            return asset.image
-        }
-    }
-
-    enum DevSettingType: Int {
-        case devToolDataUploader
-
-        var title: String {
-            switch self {
-            case .devToolDataUploader:
-                return "開発ツール"
-            }
-        }
-
-        var icon: UIImage {
-            let asset: ImageAsset
-            switch self {
-            case .devToolDataUploader:
-                asset = Resources.Images.devSetting
             }
             return asset.image
         }

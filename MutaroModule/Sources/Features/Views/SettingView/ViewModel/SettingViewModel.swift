@@ -9,7 +9,7 @@ import Combine
 import UIKit
 
 final class SettingViewModel: NSObject {
-    typealias Routes = SettingRoute & MutaroInfoUploadRoute
+    typealias Routes = SettingRoute
     private let router: Routes
 
     let shouldAddDeveloperSettingSubject = PassthroughSubject<Void, Never>()
@@ -23,9 +23,5 @@ final class SettingViewModel: NSObject {
 
     func setupDeveloperSettings() {
         shouldAddDeveloperSettingSubject.send(())
-    }
-
-    func onTapDevToolUploadMutaroInfo() {
-        router.openMutaroInfoUpload()
     }
 }
