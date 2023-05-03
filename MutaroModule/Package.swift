@@ -65,7 +65,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
-        .package(url: "https://github.com/apple/swift-format", branch: "main"),
+        .package(url: "https://github.com/realm/SwiftLint", from: "0.51.0")
     ],
     targets: [
         .target(
@@ -73,6 +73,9 @@ let package = Package(
             dependencies: ["ImageLoader", "Core", "Repositories", "AppResource"],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
+            ],
+            plugins: [
+                .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
             ]
         ),
         .target(
