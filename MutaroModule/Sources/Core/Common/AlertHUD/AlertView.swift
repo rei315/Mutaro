@@ -27,13 +27,13 @@ public final class AlertView: UIView {
     }
 
     private func setupView() {
-        backgroundColor = .red
+        backgroundColor = Resources.Colors.grey.color
         clipsToBounds = true
 
         alertLabel.lets {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.font = FontSize.base.ofBoldFont()
-            $0.textColor = Resources.Colors.navy70.color
+            $0.textColor = Resources.Colors.white.color
 
             addSubview($0)
 
