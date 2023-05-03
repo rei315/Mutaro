@@ -9,10 +9,8 @@ import Combine
 import UIKit
 
 final class SettingViewModel: NSObject {
-    typealias Routes = SettingRoute
+    typealias Routes = SettingRoute & RegisterJWTRoute
     private let router: Routes
-
-    let shouldAddDeveloperSettingSubject = PassthroughSubject<Void, Never>()
 
     var cancellables: Set<AnyCancellable> = []
 
@@ -21,7 +19,7 @@ final class SettingViewModel: NSObject {
         super.init()
     }
 
-    func setupDeveloperSettings() {
-        shouldAddDeveloperSettingSubject.send(())
+    func routeToRegisterJWT() {
+        router.openRegisterJWTRoute()
     }
 }

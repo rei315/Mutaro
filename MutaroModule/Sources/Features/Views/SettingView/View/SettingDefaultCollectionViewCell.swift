@@ -51,6 +51,11 @@ class SettingDefaultCollectionViewCell: UICollectionViewCell {
         ])
     }
 
+    func bind(type: SettingViewController.AppSettingType) {
+        labelView.text = type.title
+        iconView.image = type.icon
+    }
+
     func bind(type: SettingViewController.SettingType) {
         labelView.text = type.title
         iconView.image = type.icon

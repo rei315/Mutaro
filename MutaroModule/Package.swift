@@ -53,7 +53,14 @@ let package = Package(
     targets: [
         .target(
             name: "Features",
-            dependencies: ["ImageLoader", "Core", "AppResource", "Client"],
+            dependencies: [
+                "ImageLoader",
+                "Core",
+                "AppResource",
+                "Client",
+                "JWTGenerator",
+                "KeychainStore"
+            ],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
             ],
@@ -63,7 +70,10 @@ let package = Package(
         ),
         .target(
             name: "Core",
-            dependencies: ["ImageLoader"]
+            dependencies: [
+                "ImageLoader",
+                "AppResource"
+            ]
         ),
         .target(
             name: "Client",
@@ -80,6 +90,10 @@ let package = Package(
             dependencies: [
                 "JWTGenerator"
             ] + unittestDependencies
+        ),
+        .target(
+            name: "KeychainStore",
+            dependencies: []
         ),
         .target(
             name: "FirebaseSetup",
