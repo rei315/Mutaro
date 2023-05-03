@@ -60,7 +60,6 @@ extension SettingViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.dataSource = dataSource
             $0.delegate = self
-            $0.prefetchDataSource = self
             $0.registerClass(withType: SettingDefaultCollectionViewCell.self)
             view.addSubview($0)
             NSLayoutConstraint.activate([
@@ -158,16 +157,11 @@ extension SettingViewController: UICollectionViewDelegate {
         case let .defaultSetting(index):
             break
         case .registerJWT:
-            break
+            viewModel.routeToRegisterJWT()
         case .none:
             break
         }
     }
-}
-
-extension SettingViewController: UICollectionViewDataSourcePrefetching {
-    func collectionView(_: UICollectionView, prefetchItemsAt _: [IndexPath])
-    {}
 }
 
 extension SettingViewController {
