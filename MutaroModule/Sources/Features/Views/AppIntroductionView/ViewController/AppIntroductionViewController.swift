@@ -8,7 +8,7 @@
 import Core
 import UIKit
 
-final public class AppIntroductionViewController: UIViewController {
+public final class AppIntroductionViewController: UIViewController {
     private let button: UIButton = .init()
 
     weak var delegate: AppIntroductDelegate?
@@ -19,11 +19,12 @@ final public class AppIntroductionViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
@@ -53,7 +54,7 @@ final public class AppIntroductionViewController: UIViewController {
                 $0.widthAnchor.constraint(equalToConstant: 100),
                 $0.heightAnchor.constraint(equalToConstant: 50),
                 $0.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                $0.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                $0.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
         }
     }

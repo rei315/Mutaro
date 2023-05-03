@@ -19,6 +19,7 @@ final class AnimatedTransition: NSObject {
 
 extension AnimatedTransition: Transition {
     // MARK: - Transition
+
     func open(_ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?)
     {
         viewController.transitioningDelegate = self
@@ -33,17 +34,16 @@ extension AnimatedTransition: Transition {
 
 extension AnimatedTransition: UIViewControllerTransitioningDelegate {
     func animationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController,
-        source: UIViewController
+        forPresented _: UIViewController,
+        presenting _: UIViewController,
+        source _: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
         animatedTransition.isPresenting = true
         return animatedTransition
     }
 
-    func animationController(forDismissed dismissed: UIViewController)
-        -> UIViewControllerAnimatedTransitioning?
-    {
+    func animationController(forDismissed _: UIViewController)
+        -> UIViewControllerAnimatedTransitioning? {
         animatedTransition.isPresenting = false
         return animatedTransition
     }

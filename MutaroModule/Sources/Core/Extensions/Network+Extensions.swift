@@ -7,9 +7,9 @@
 
 import Network
 
-extension NWPathMonitor {
-    public func isOnline() async -> Bool {
-        return await withCheckedContinuation { continuation in
+public extension NWPathMonitor {
+    func isOnline() async -> Bool {
+        await withCheckedContinuation { continuation in
             pathUpdateHandler = { [weak self] path in
                 continuation.resume(returning: path.status == .satisfied)
                 self?.cancel()

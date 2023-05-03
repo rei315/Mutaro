@@ -9,18 +9,18 @@ import AppResource
 import Core
 import UIKit
 
-final public class HomeTabViewController: UITabBarController {
-
+public final class HomeTabViewController: UITabBarController {
     public init(viewControllers: [UIViewController]) {
         super.init(nibName: nil, bundle: nil)
         self.viewControllers = viewControllers
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
     }
@@ -85,15 +85,15 @@ enum HomeTabPage: Int {
     }
 
     var item: UITabBarItem {
-        return .init(
-            title: self.title,
+        .init(
+            title: title,
             image: UIImage(
-                systemName: self.iconName,
-                withConfiguration: self.normalTabIconConfiguration
+                systemName: iconName,
+                withConfiguration: normalTabIconConfiguration
             ),
             selectedImage: UIImage(
-                systemName: self.iconName,
-                withConfiguration: self.selectedTabIconConfiguration
+                systemName: iconName,
+                withConfiguration: selectedTabIconConfiguration
             )
         )
     }

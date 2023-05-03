@@ -37,7 +37,7 @@ extension PushTransition: Transition {
         navigationController?.pushViewController(viewController, animated: isAnimated)
     }
 
-    func close(_ viewController: UIViewController, completion: (() -> Void)?) {
+    func close(_: UIViewController, completion: (() -> Void)?) {
         closeCompletionHandler = completion
         navigationController?.popViewController(animated: isAnimated)
     }
@@ -45,14 +45,17 @@ extension PushTransition: Transition {
 
 extension PushTransition: UINavigationControllerDelegate {
     // MARK: - UINavigationControllerDelegate
+
     func navigationController(
-        _ navigationController: UINavigationController, didShow viewController: UIViewController,
-        animated: Bool
+        _ navigationController: UINavigationController, didShow _: UIViewController,
+        animated _: Bool
     ) {
         guard let transitionCoordinator = navigationController.transitionCoordinator,
-            let fromVC = transitionCoordinator.viewController(forKey: .from),
-            let toVC = transitionCoordinator.viewController(forKey: .to)
-        else { return }
+              let fromVC = transitionCoordinator.viewController(forKey: .from),
+              let toVC = transitionCoordinator.viewController(forKey: .to)
+        else {
+            return
+        }
 
         if fromVC == from {
             openCompletionHandler?()

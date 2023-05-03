@@ -7,14 +7,14 @@
 
 import UIKit
 
-extension UIButton {
-    public func updateAction(_ targetEvent: UIControl.Event, action: @escaping () -> Void) {
-        enumerateEventHandlers { action, targetAction, event, stop in
+public extension UIButton {
+    func updateAction(_ targetEvent: UIControl.Event, action: @escaping () -> Void) {
+        enumerateEventHandlers { action, targetAction, event, _ in
             guard targetEvent == event else {
                 return
             }
 
-            if let action = action {
+            if let action {
                 self.removeAction(action, for: event)
             }
             if let (target, selector) = targetAction {

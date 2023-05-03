@@ -29,3 +29,14 @@ manual:
 github:
   - owner: firebase
     name: firebase-ios-sdk
+  - owner: nicklockwood
+    name: SwiftFormat
+  - owner: realm
+    name: SwiftLint
+  - owner: SwiftGen
+    name: SwiftGenPlugin
+
+options:
+  xcworkspacePath: "Mutaro.xcworkspace"
+  singlePage: false
+  force: false

@@ -13,11 +13,10 @@ public protocol MutaroDetailResourceProtocol {
     static func postMutaros(imageUrl: String, title: String, description: String) async throws
 }
 
-extension MutaroClient {
-    public struct MutaroDetailResource: MutaroDetailResourceProtocol {
+public extension MutaroClient {
+    struct MutaroDetailResource: MutaroDetailResourceProtocol {
         public static func postMutaros(imageUrl: String, title: String, description: String)
-            async throws
-        {
+            async throws {
             guard await NWPathMonitor().isOnline() else {
                 throw NSError()
             }
@@ -48,12 +47,13 @@ extension MutaroClient {
             let snapshot = try await collection.getDocuments()
 
             let mutaroDetails = snapshot.documents
-                .filter({ $0.exists })
+                .filter { $0.exists }
                 .compactMap { document -> MutaroDTO? in
                     do {
                         let mutaroDetail = document.data()
                         let data = try JSONSerialization.data(
-                            withJSONObject: mutaroDetail, options: .prettyPrinted)
+                            withJSONObject: mutaroDetail, options: .prettyPrinted
+                        )
                         let decoder = JSONDecoder()
                         let dto = try decoder.decode(MutaroDTO.self, from: data)
                         return dto

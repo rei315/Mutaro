@@ -17,8 +17,8 @@ public protocol AppIntroductRoute {
     func makeAppIntroduct(_ delegate: AppIntroductDelegate) -> UIViewController
 }
 
-extension AppIntroductRoute where Self: Router {
-    public func makeAppIntroduct(_ delegate: AppIntroductDelegate) -> UIViewController {
+public extension AppIntroductRoute where Self: Router {
+    func makeAppIntroduct(_ delegate: AppIntroductDelegate) -> UIViewController {
         let router = DefaultRouter(rootTransition: EmptyTransition())
         let viewModel = AppIntroductionViewModel(router: router)
         let viewController = AppIntroductionViewController(viewModel: viewModel)

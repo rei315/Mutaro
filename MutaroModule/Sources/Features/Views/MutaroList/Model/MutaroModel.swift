@@ -22,10 +22,10 @@ public struct MutaroModel {
     }
 
     public init(dto: MutaroDTO) {
-        self.uploadDate = dto.uploadDate
-        self.imageUrl = dto.imageUrl
-        self.title = dto.title
-        self.description = dto.description
+        uploadDate = dto.uploadDate
+        imageUrl = dto.imageUrl
+        title = dto.title
+        description = dto.description
     }
 }
 

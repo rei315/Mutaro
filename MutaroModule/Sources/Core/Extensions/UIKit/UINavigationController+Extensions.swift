@@ -7,8 +7,8 @@
 
 import UIKit
 
-extension UINavigationController {
-    public func setLargeTitle() {
+public extension UINavigationController {
+    func setLargeTitle() {
         navigationItem.largeTitleDisplayMode = .always
         navigationBar.prefersLargeTitles = true
     }

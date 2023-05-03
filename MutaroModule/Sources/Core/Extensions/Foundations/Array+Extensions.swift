@@ -7,17 +7,19 @@
 
 import Foundation
 
-extension Array {
-    public subscript(getOrNil index: Index) -> Element? {
+public extension Array {
+    subscript(getOrNil index: Index) -> Element? {
         indices.contains(index) ? self[index] : nil
     }
 
-    public subscript(getOrNil bounds: Indices) -> SubSequence? {
+    subscript(getOrNil bounds: Indices) -> SubSequence? {
         guard let firstIndex: Int = bounds.first,
-            let lastIndex: Int = bounds.last,
-            let _: Element = self[getOrNil: firstIndex],
-            let _: Element = self[getOrNil: lastIndex]
-        else { return nil }
+              let lastIndex: Int = bounds.last,
+              let _: Element = self[getOrNil: firstIndex],
+              let _: Element = self[getOrNil: lastIndex]
+        else {
+            return nil
+        }
         return self[bounds]
     }
 }

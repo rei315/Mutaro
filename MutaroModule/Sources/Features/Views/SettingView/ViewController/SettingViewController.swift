@@ -19,8 +19,8 @@ class SettingViewController: UIViewController {
         UICollectionViewDiffableDataSource<SettingListSection, SettingListRow> = .init(
             collectionView: collectionView
         ) {
-            [weak self] (collectionView, indexPath, item) -> UICollectionViewCell in
-            guard let self = self else {
+            [weak self] collectionView, indexPath, item -> UICollectionViewCell in
+            guard let self else {
                 return UICollectionViewCell()
             }
             return self.cellProvider(
@@ -37,7 +37,8 @@ class SettingViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -80,7 +81,7 @@ extension SettingViewController {
                 $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
         }
     }
@@ -107,8 +108,8 @@ extension SettingViewController {
     }
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-            guard let self = self else {
+        UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
+            guard let self else {
                 return nil
             }
             let section = self.dataSource.sectionIdentifier(for: sectionIndex)
@@ -148,8 +149,7 @@ extension SettingViewController {
     }
 
     func cellProvider(collectionView: UICollectionView, indexPath: IndexPath, item: SettingListRow)
-        -> UICollectionViewCell
-    {
+        -> UICollectionViewCell {
         switch item {
         case let .defaultSetting(index):
             return collectionView.dequeueReusableCell(
@@ -178,7 +178,7 @@ extension SettingViewController {
 }
 
 extension SettingViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = dataSource.itemIdentifier(for: indexPath)
         switch item {
         case let .defaultSetting(index):
@@ -197,10 +197,8 @@ extension SettingViewController: UICollectionViewDelegate {
 }
 
 extension SettingViewController: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath])
-    {
-
-    }
+    func collectionView(_: UICollectionView, prefetchItemsAt _: [IndexPath])
+    {}
 }
 
 extension SettingViewController {

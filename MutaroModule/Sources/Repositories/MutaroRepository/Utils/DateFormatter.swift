@@ -9,14 +9,14 @@ import Foundation
 
 extension DateFormatter {
     func getJPDateString(format: String = "yyyy/MM/dd HH:mm") -> String {
-        self.lets {
+        lets {
             $0.dateFormat = format
             $0.calendar = Calendar(identifier: .gregorian)
             $0.locale = Locale(identifier: "ja_JP")
             $0.timeZone = TimeZone(identifier: "Asia/Tokyo")
         }
 
-        let dateString = self.string(from: Date())
+        let dateString = string(from: Date())
         return dateString
     }
 }

@@ -11,7 +11,7 @@ public final actor ImageLoadManager {
     public static let shared = ImageLoadManager()
 
     private var onLoadingTask: [String: Task<UIImage?, Never>] = [:]
-    private var onPrefetchTask: [String: Task<(), Never>] = [:]
+    private var onPrefetchTask: [String: Task<Void, Never>] = [:]
 
     @discardableResult
     public func loadImage(for fileName: String, size: CGSize) async -> UIImage? {

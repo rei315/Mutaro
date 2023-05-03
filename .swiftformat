@@ -1,0 +1,104 @@
+# Rule List - https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md
+
+--swiftversion 5.7
+
+# file options 除外するディレクトリやファイル
+
+
+# format options
+
+--commas inline # trailingCommas 有効時 複数行の配列や辞書などで、最後のカンマを無効化
+--ranges no-space # spaceAroundOperators 有効時 例: "0...9" を "0 ... 9" としない
+--wraparguments before-first
+--wrapcollections before-first
+--wrapparameters before-first
+
+# Default Rules (enabled by default) デフォルトで有効なルール
+# コメントアウト部分が有効
+
+#--disable andOperator
+#--disable anyObjectProtocol
+#--disable assertionFailures
+#--disable blankLinesAroundMark
+#--disable blankLinesAtEndOfScope
+#--disable blankLinesAtStartOfScope
+#--disable blankLinesBetweenScopes
+#--disable braces
+#--disable consecutiveBlankLines
+#--disable consecutiveSpaces
+#--disable duplicateImports
+#--disable elseOnSameLine
+#--disable emptyBraces
+#--disable enumNamespaces
+#--disable extensionAccessControl
+#--disable fileHeader
+#--disable hoistPatternLet
+#--disable indent
+#--disable initCoderUnavailable
+#--disable leadingDelimiters
+#--disable linebreakAtEndOfFile
+#--disable linebreaks
+#--disable modifierOrder
+#--disable numberFormatting
+--disable preferKeyPath
+#--disable redundantBackticks
+#--disable redundantBreak
+#--disable redundantClosure
+#--disable redundantExtensionACL
+#--disable redundantFileprivate
+#--disable redundantGet
+#--disable redundantInit
+#--disable redundantLet
+#--disable redundantLetError
+#--disable redundantNilInit
+#--disable redundantObjc
+#--disable redundantParens
+#--disable redundantPattern
+--disable redundantRawValues
+#--disable redundantReturn
+#--disable redundantSelf
+#--disable redundantType
+#--disable redundantVoidReturnType
+#--disable semicolons
+#--disable sortDeclarations
+#--disable sortedImports
+#--disable spaceAroundBraces
+#--disable spaceAroundBrackets
+#--disable spaceAroundComments
+#--disable spaceAroundGenerics
+#--disable spaceAroundOperators
+#--disable spaceAroundParens
+#--disable spaceInsideBraces
+#--disable spaceInsideBrackets
+#--disable spaceInsideComments
+#--disable spaceInsideGenerics
+#--disable spaceInsideParens
+--disable strongOutlets
+#--disable strongifiedSelf
+#--disable todos
+#--disable trailingClosures
+#--disable trailingCommas
+#--disable trailingSpace
+#--disable typeSugar
+#--disable unusedArguments
+#--disable void
+#--disable wrap
+#--disable wrapArguments
+#--disable wrapAttributes
+--disable wrapMultilineStatementBraces
+#--disable yodaConditions
+
+# Opt-in Rules (disabled by default) デフォルトで無効なルール
+# コメントアウト部分は無効
+
+#--enable acronyms
+#--enable blankLinesBetweenImports
+#--enable blockComments
+#--enable isEmpty
+#--enable markTypes
+#--enable organizeDeclarations
+#--enable preferDouble
+#--enable sortedSwitchCases
+--enable wrapConditionalBodies
+#--enable wrapEnumCases
+#--enable wrapSwitchCases

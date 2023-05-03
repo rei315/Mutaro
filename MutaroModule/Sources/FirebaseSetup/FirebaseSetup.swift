@@ -7,7 +7,7 @@
 
 import FirebaseCore
 
-public struct FirebaseSetup {
+public enum FirebaseSetup {
     public static func configure() {
         FirebaseApp.configure()
     }

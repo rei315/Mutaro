@@ -19,7 +19,8 @@ class SettingDefaultCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .blue.withAlphaComponent(0.2)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -46,7 +47,7 @@ class SettingDefaultCollectionViewCell: UICollectionViewCell {
             iconView.heightAnchor.constraint(equalToConstant: iconSize),
 
             labelView.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 16),
-            labelView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            labelView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
 

@@ -50,10 +50,10 @@ public enum FontSize: CGFloat {
     case minus4 = 8.0
 
     public func ofFont() -> UIFont {
-        return UIFont.systemFont(ofSize: rawValue)
+        UIFont.systemFont(ofSize: rawValue)
     }
 
     public func ofBoldFont() -> UIFont {
-        return UIFont.boldSystemFont(ofSize: rawValue)
+        UIFont.boldSystemFont(ofSize: rawValue)
     }
 }

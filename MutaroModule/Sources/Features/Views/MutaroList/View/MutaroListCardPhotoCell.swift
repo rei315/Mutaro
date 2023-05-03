@@ -13,7 +13,7 @@ import UIKit
 class MutaroListCardPhotoCell: UICollectionViewCell {
     public static let imageSize: CGFloat = 100
     private let imageView: UIImageView = .init()
-    private var savedTask: Task<(), Never>?
+    private var savedTask: Task<Void, Never>?
 
     private let iconSizeSubject = CurrentValueSubject<CGSize?, Never>(nil)
     private let configureValueSubject = CurrentValueSubject<String?, Never>(nil)
@@ -26,7 +26,8 @@ class MutaroListCardPhotoCell: UICollectionViewCell {
         setupSubscription()
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -49,10 +50,10 @@ class MutaroListCardPhotoCell: UICollectionViewCell {
     private func setupSubscription() {
         cancellables =
             configureValueSubject
-            .combineLatest(iconSizeSubject)
-            .sink { [weak self] in
-                self?.setupIcon(value: $0, size: $1)
-            }
+                .combineLatest(iconSizeSubject)
+                .sink { [weak self] in
+                    self?.setupIcon(value: $0, size: $1)
+                }
     }
 
     func configureCell(_ imageUrl: String?) {
@@ -62,9 +63,8 @@ class MutaroListCardPhotoCell: UICollectionViewCell {
     }
 
     private func setupIcon(value imageUrl: String?, size: CGSize?) {
-
         guard let size,
-            let imageUrl
+              let imageUrl
         else {
             return
         }

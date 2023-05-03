@@ -16,7 +16,7 @@ struct MutaroPhotoData {
     let fileName: String
 }
 
-final public class MutaroInfoUploadViewModel: NSObject {
+public final class MutaroInfoUploadViewModel: NSObject {
     typealias Routes = MutaroInfoUploadRoute & Closable
     private let router: Routes
 
@@ -32,10 +32,10 @@ final public class MutaroInfoUploadViewModel: NSObject {
     func didFinishedPickedPhoto(results: [PHPickerResult]) async {
         do {
             guard let itemProvider = results.first?.itemProvider,
-                let typeIdentifier = itemProvider.registeredTypeIdentifiers.first,
-                let photoType = typeIdentifier.components(separatedBy: ".").last,
-                let photoName = itemProvider.suggestedName,
-                itemProvider.hasItemConformingToTypeIdentifier(typeIdentifier)
+                  let typeIdentifier = itemProvider.registeredTypeIdentifiers.first,
+                  let photoType = typeIdentifier.components(separatedBy: ".").last,
+                  let photoName = itemProvider.suggestedName,
+                  itemProvider.hasItemConformingToTypeIdentifier(typeIdentifier)
             else {
                 return
             }
@@ -44,7 +44,7 @@ final public class MutaroInfoUploadViewModel: NSObject {
                 forTypeIdentifier: typeIdentifier
             )
 
-            self.pickedPhotoData = .init(
+            pickedPhotoData = .init(
                 url: photoURL,
                 fileName: "\(photoName).\(photoType)"
             )
@@ -55,8 +55,8 @@ final public class MutaroInfoUploadViewModel: NSObject {
 
     func onTapPost(title: String?, description: String?) async {
         guard let pickedPhotoData,
-            let title,
-            let description
+              let title,
+              let description
         else {
             return
         }
