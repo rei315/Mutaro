@@ -304,6 +304,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 715E95AD295CC20A00AD6331 /* Build configuration list for PBXNativeTarget "MutaroApp" */;
 			buildPhases = (
+				71B6F7812A0232A6005B8531 /* SwiftFormat */,
 				71FDC93729686DEE006861E8 /* [NEED FIRST RUN] register env */,
 				71FDC928296860F4006861E8 /* Copy Firebase Plist */,
 				715E957F295CC20800AD6331 /* Sources */,
@@ -462,6 +463,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ ! $CI ]; then\n  ACKNOWLEDGEMENTS_DIR=${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/com.mono0926.LicensePlist.Output\n  \n  DESTINATION_PATH=MutaroApp/Resources/Settings.bundle/\n  cp -r ${ACKNOWLEDGEMENTS_DIR}/* ${DESTINATION_PATH}\n  rm -rf ${ACKNOWLEDGEMENTS_DIR}\nfi\n";
+		};
+		71B6F7812A0232A6005B8531 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd ../MutaroModule\nxcrun --sdk macosx swift package plugin --allow-writing-to-package-directory swiftformat\n";
 		};
 		71FDC928296860F4006861E8 /* Copy Firebase Plist */ = {
 			isa = PBXShellScriptBuildPhase;

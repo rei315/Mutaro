@@ -1,39 +1,21 @@
 {
   "pins" : [
     {
-      "identity" : "apikit",
+      "identity" : "collectionconcurrencykit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ishkawa/APIKit.git",
+      "location" : "https://github.com/JohnSundell/CollectionConcurrencyKit.git",
       "state" : {
-        "revision" : "b839e53b870104798035b279d2a6168b0a2227b1",
-        "version" : "5.4.0"
+        "revision" : "b4f23e24b5a1bff301efc5e70871083ca029ff95",
+        "version" : "0.2.0"
       }
     },
     {
-      "identity" : "heliumlogger",
+      "identity" : "sourcekitten",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/HeliumLogger.git",
+      "location" : "https://github.com/jpsim/SourceKitten.git",
       "state" : {
-        "revision" : "fc2a71597ae974da5282d751bcc11965964bccce",
-        "version" : "2.0.0"
-      }
-    },
-    {
-      "identity" : "licenseplist",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mono0926/LicensePlist",
-      "state" : {
-        "revision" : "718763fd674d186842338e24b4cbedcf35aed5f6",
-        "version" : "3.24.9"
-      }
-    },
-    {
-      "identity" : "loggerapi",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/LoggerAPI.git",
-      "state" : {
-        "revision" : "4e6b45e850ffa275e8e26a24c6454fd709d5b6ac",
-        "version" : "2.0.0"
+        "revision" : "b6dc09ee51dfb0c66e042d2328c017483a1a5d56",
+        "version" : "0.34.1"
       }
     },
     {
@@ -46,30 +28,21 @@
       }
     },
     {
-      "identity" : "swift-html-entities",
+      "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/swift-html-entities.git",
+      "location" : "https://github.com/apple/swift-syntax.git",
       "state" : {
-        "revision" : "d8ca73197f59ce260c71bd6d7f6eb8bbdccf508b",
-        "version" : "4.0.1"
+        "revision" : "013a48e2312e57b7b355db25bd3ea75282ebf274",
+        "version" : "0.50900.0-swift-DEVELOPMENT-SNAPSHOT-2023-02-06-a"
       }
     },
     {
-      "identity" : "swift-log",
+      "identity" : "swiftformat",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-log.git",
+      "location" : "https://github.com/nicklockwood/SwiftFormat",
       "state" : {
-        "revision" : "32e8d724467f8fe623624570367e3d50c5638e46",
-        "version" : "1.5.2"
-      }
-    },
-    {
-      "identity" : "swift-snapshot-testing",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
-      "state" : {
-        "revision" : "f29e2014f6230cf7d5138fc899da51c7f513d467",
-        "version" : "1.10.0"
+        "revision" : "d98aa3f098f38e93324cfda8ee909581cf3d791d",
+        "version" : "0.51.8"
       }
     },
     {
@@ -82,21 +55,39 @@
       }
     },
     {
-      "identity" : "xcodeedit",
+      "identity" : "swiftlint",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/tomlokhorst/XcodeEdit.git",
+      "location" : "https://github.com/realm/SwiftLint",
       "state" : {
-        "revision" : "cd466d6e8c5ffd2f2b61165d37b0646f09068e1e",
-        "version" : "2.9.0"
+        "revision" : "eb85125a5f293de3d3248af259980c98bc2b1faa",
+        "version" : "0.51.0"
       }
     },
     {
-      "identity" : "yamlswift",
+      "identity" : "swiftytexttable",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/behrang/YamlSwift.git",
+      "location" : "https://github.com/scottrhoyt/SwiftyTextTable.git",
       "state" : {
-        "revision" : "287f5cab7da0d92eb947b5fd8151b203ae04a9a3",
-        "version" : "3.4.4"
+        "revision" : "c6df6cf533d120716bff38f8ff9885e1ce2a4ac3",
+        "version" : "0.9.0"
+      }
+    },
+    {
+      "identity" : "swxmlhash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/drmohundro/SWXMLHash.git",
+      "state" : {
+        "revision" : "4d0f62f561458cbe1f732171e625f03195151b60",
+        "version" : "7.0.1"
+      }
+    },
+    {
+      "identity" : "yams",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jpsim/Yams.git",
+      "state" : {
+        "revision" : "f47ba4838c30dbd59998a4e4c87ab620ff959e8a",
+        "version" : "5.0.5"
       }
     }
   ],

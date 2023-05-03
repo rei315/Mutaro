@@ -37,6 +37,15 @@
       }
     },
     {
+      "identity" : "swiftformat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nicklockwood/SwiftFormat",
+      "state" : {
+        "revision" : "d98aa3f098f38e93324cfda8ee909581cf3d791d",
+        "version" : "0.51.8"
+      }
+    },
+    {
       "identity" : "swiftgenplugin",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftGen/SwiftGenPlugin",

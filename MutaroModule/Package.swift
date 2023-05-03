@@ -37,7 +37,8 @@ let firebaseFirestoreDependencies: [Target.Dependency] = [
 let package = Package(
     name: "MutaroModule",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v15),
+        .macOS(.v12)
     ],
     products: [
         .library(
@@ -65,7 +66,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
-        .package(url: "https://github.com/realm/SwiftLint", from: "0.51.0")
+        .package(url: "https://github.com/realm/SwiftLint", from: "0.51.0"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.51.8")
     ],
     targets: [
         .target(

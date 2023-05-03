@@ -1,0 +1,63 @@
+# @see `swiftlint rules` or
+# https://qiita.com/kagemiku/items/80e6d905dc0059c342b3
+# https://qiita.com/yuukiw00w/items/075253a868805227bc78
+included:
+  - MutaroApp
+disabled_rules:
+  - file_length
+  - line_length
+  - todo
+  - unneeded_parentheses_in_closure_argument
+  - weak_delegate
+  - identifier_name
+  - force_unwrapping
+  - force_cast
+  - empty_count
+opt_in_rules:
+  - array_init
+  - attributes
+  - closure_spacing
+  - conditional_returns_on_newline
+  - contains_over_first_not_nil
+  - empty_string
+  - explicit_init
+  - extension_access_modifier
+  - fatal_error_message
+  - first_where
+  - joined_default_parameter
+  - let_var_whitespace
+  - lower_acl_than_parent
+  - multiline_arguments
+  - multiline_arguments_brackets
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - pattern_matching_keywords
+  - private_action
+  - private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - required_enum_case
+  - sorted_first_last
+  - sorted_imports
+  - switch_case_on_newline
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - anyobject_protocol
+  - multiline_function_chains
+large_tuple: 3
+function_parameter_count:
+  - 6
+  - 10
+type_body_length:
+  - 250
+  - 500
+function_body_length:
+  - 250
+  - 500
+cyclomatic_complexity:
+  - 50
+  - 100
+trailing_comma:
+  mandatory_comma: false
