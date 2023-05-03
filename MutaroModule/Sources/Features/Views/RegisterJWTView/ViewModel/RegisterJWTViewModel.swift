@@ -15,6 +15,8 @@ public final class RegisterJWTViewModel {
     private let router: Routes
 
     let showAlertSubject = PassthroughSubject<AlertState, Never>()
+    let showSavedInfoSubject = PassthroughSubject<JWTRequestInfo, Never>()
+
     var cancellables: Set<AnyCancellable> = []
 
     init(router: Routes) {
@@ -69,6 +71,13 @@ public final class RegisterJWTViewModel {
         }
         showAlertSubject.send(.successedSavingJWTReuqestInfo)
         router.close()
+    }
+
+    func loadRegisteredInfo() {
+        guard let savedElement = try? KeychainStore.shared.get(JWTRequestInfo.self).first else {
+            return
+        }
+        showSavedInfoSubject.send(savedElement)
     }
 }
 

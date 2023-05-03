@@ -42,6 +42,7 @@ class RegisterJWTViewController: UIViewController {
         setupView()
         setupRegisterButton()
         setupSubcription()
+        viewModel.loadRegisteredInfo()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +55,13 @@ class RegisterJWTViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.showAlert(state: $0)
+            }
+            .store(in: &viewModel.cancellables)
+
+        viewModel.showSavedInfoSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.configureInfoTextViews(info: $0)
             }
             .store(in: &viewModel.cancellables)
     }
@@ -99,6 +107,7 @@ class RegisterJWTViewController: UIViewController {
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
             $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.clearButtonMode = .always
         }
 
         keyIDTitleLabel.lets {
@@ -114,6 +123,7 @@ class RegisterJWTViewController: UIViewController {
             $0.layer.borderColor = Resources.Colors.navy20.color.cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
+            $0.clearButtonMode = .always
         }
 
         privateKeyTitleLabel.lets {
@@ -155,5 +165,11 @@ class RegisterJWTViewController: UIViewController {
 
     private func showAlert(state: RegisterJWTViewModel.AlertState) {
         AlertHUD.show(title: state.title)
+    }
+
+    private func configureInfoTextViews(info: RegisterJWTViewModel.JWTRequestInfo) {
+        issuerIDTextView.text = info.issuerID
+        keyIDTextView.text = info.keyID
+        privateKeyTextView.text = info.privateKey
     }
 }
