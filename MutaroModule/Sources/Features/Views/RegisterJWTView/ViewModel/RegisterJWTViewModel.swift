@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import JWTGenerator
+import KeychainStore
 
 public final class RegisterJWTViewModel {
     typealias Routes = RegisterJWTRoute
@@ -49,17 +50,35 @@ public final class RegisterJWTViewModel {
             pemString: privateKey
         )
 
-        guard let token = try? builder.generateJWT() else {
+        guard (try? builder.generateJWT()) != nil else {
             showAlertSubject.send(.invalidToken)
             return
         }
 
-        // TODO: - keyID, issuerID, privateKey
-        print("Mins: \(token)")
+        let info = JWTRequestInfo(
+            issuerID: issuerID,
+            keyID: keyID,
+            privateKey: privateKey
+        )
+        KeychainStore.shared.delete(JWTRequestInfo.self)
+
+        guard let isSuccessed = try? KeychainStore.shared.save(info, forKey: "b"),
+              isSuccessed else {
+            // TODO: - Alert failed to save
+            return
+        }
+        // TODO: - Alert Success to save
+        // TODO: - turn back parent vc
     }
 }
 
 extension RegisterJWTViewModel {
+    struct JWTRequestInfo: Codable {
+        let issuerID: String
+        let keyID: String
+        let privateKey: String
+    }
+
     enum AlertState {
         case invalidIssuerID
         case invalidKeyID

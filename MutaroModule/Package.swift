@@ -58,7 +58,8 @@ let package = Package(
                 "Core",
                 "AppResource",
                 "Client",
-                "JWTGenerator"
+                "JWTGenerator",
+                "KeychainStore"
             ],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
@@ -89,6 +90,10 @@ let package = Package(
             dependencies: [
                 "JWTGenerator"
             ] + unittestDependencies
+        ),
+        .target(
+            name: "KeychainStore",
+            dependencies: []
         ),
         .target(
             name: "FirebaseSetup",
