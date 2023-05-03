@@ -19,8 +19,8 @@ public class MutaroListViewController: UIViewController {
         UICollectionViewDiffableDataSource<MutaroListSection, MutaroListRow> = .init(
             collectionView: collectionView
         ) {
-            [weak self] (collectionView, indexPath, item) -> UICollectionViewCell in
-            guard let self = self else {
+            [weak self] collectionView, indexPath, item -> UICollectionViewCell in
+            guard let self else {
                 return UICollectionViewCell()
             }
             return self.cellProvider(
@@ -38,7 +38,8 @@ public class MutaroListViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -81,14 +82,14 @@ extension MutaroListViewController {
                 $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
         }
     }
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-            guard let self = self else {
+        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            guard let self else {
                 return nil
             }
             let section = self.dataSource.sectionIdentifier(for: sectionIndex)
@@ -169,7 +170,7 @@ extension MutaroListViewController {
         if horizontalCirclePhotoItemsDiff > 0 {
             let deleteTargets =
                 (newHorizontalCirclePhotoItemsCount..<newHorizontalCirclePhotoItemsCount
-                + horizontalCirclePhotoItemsDiff).map {
+                    + horizontalCirclePhotoItemsDiff).map {
                     MutaroListRow.mutaroCirclePhoto(index: $0)
                 }
             snapshot.deleteItems(deleteTargets)
@@ -194,7 +195,7 @@ extension MutaroListViewController {
         if horizontalCardPhotoItemsDiff > 0 {
             let deleteTargets =
                 (newHorizontalCardPhotosItemCount..<newHorizontalCardPhotosItemCount
-                + horizontalCardPhotoItemsDiff).map {
+                    + horizontalCardPhotoItemsDiff).map {
                     MutaroListRow.mutaroCardPhoto(index: $0)
                 }
             snapshot.deleteItems(deleteTargets)
@@ -226,19 +227,20 @@ extension MutaroListViewController {
     }
 
     func cellProvider(collectionView: UICollectionView, indexPath: IndexPath, item: MutaroListRow)
-        -> UICollectionViewCell
-    {
+        -> UICollectionViewCell {
         switch item {
         case let .mutaroCirclePhoto(index):
             let cell = collectionView.dequeueReusableCell(
-                withType: MutaroListCirclePhotoCell.self, for: indexPath)
+                withType: MutaroListCirclePhotoCell.self, for: indexPath
+            )
             let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl
             cell.configureCell(imageUrl)
 
             return cell
         case let .mutaroCardPhoto(index):
             let cell = collectionView.dequeueReusableCell(
-                withType: MutaroListCardPhotoCell.self, for: indexPath)
+                withType: MutaroListCardPhotoCell.self, for: indexPath
+            )
             let imageUrl = viewModel.mutaroItems[getOrNil: index]?.imageUrl
             cell.configureCell(imageUrl)
 
@@ -251,7 +253,7 @@ extension MutaroListViewController {
 
 extension MutaroListViewController: UICollectionViewDataSourcePrefetching {
     public func collectionView(
-        _ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]
+        _: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]
     ) {
         indexPaths.forEach {
             let item = dataSource.itemIdentifier(for: $0)
@@ -267,7 +269,7 @@ extension MutaroListViewController: UICollectionViewDataSourcePrefetching {
     }
 
     public func collectionView(
-        _ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]
+        _: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]
     ) {
         indexPaths.forEach {
             let item = dataSource.itemIdentifier(for: $0)

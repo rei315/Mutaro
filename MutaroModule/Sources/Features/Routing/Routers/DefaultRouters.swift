@@ -9,7 +9,7 @@ import UIKit
 
 public class DefaultRouter: NSObject, Router, Closable, Dismissable {
     private let rootTransition: Transition
-    weak public var root: UIViewController?
+    public weak var root: UIViewController?
 
     public init(rootTransition: Transition) {
         self.rootTransition = rootTransition
@@ -20,10 +20,13 @@ public class DefaultRouter: NSObject, Router, Closable, Dismissable {
     }
 
     // MARK: - Routable
+
     public func route(
         to viewController: UIViewController, as transition: Transition, completion: (() -> Void)?
     ) {
-        guard let root = root else { return }
+        guard let root else {
+            return
+        }
         transition.open(viewController, from: root, completion: completion)
     }
 
@@ -32,8 +35,11 @@ public class DefaultRouter: NSObject, Router, Closable, Dismissable {
     }
 
     // MARK: - Closable
+
     public func close(completion: (() -> Void)?) {
-        guard let root = root else { return }
+        guard let root else {
+            return
+        }
         rootTransition.close(root, completion: completion)
     }
 
@@ -42,6 +48,7 @@ public class DefaultRouter: NSObject, Router, Closable, Dismissable {
     }
 
     // MARK: - Dismissable
+
     public func dismiss(completion: (() -> Void)?) {
         root?.dismiss(animated: rootTransition.isAnimated, completion: completion)
     }

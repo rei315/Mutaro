@@ -12,18 +12,19 @@ public final class ProgressHUD {
     let loadingView: LoadingView = .init(frame: UIScreen.main.bounds)
 }
 
-extension ProgressHUD {
-    public static func show() {
+public extension ProgressHUD {
+    static func show() {
         shared.loadingView.alpha = 0
         KeyWindowProvider().getKeyWindow()?.addSubview(shared.loadingView)
         UIView.animate(
             withDuration: 0.2,
             animations: {
                 shared.loadingView.alpha = 1
-            })
+            }
+        )
     }
 
-    public static func hide() {
+    static func hide() {
         UIView.animate(
             withDuration: 0.2,
             animations: {

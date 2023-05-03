@@ -8,8 +8,8 @@
 import ImageIO
 import UIKit
 
-extension UIImage {
-    public func downsample(imageAt imageURL: URL, to pointSize: CGSize) -> UIImage? {
+public extension UIImage {
+    func downsample(imageAt imageURL: URL, to pointSize: CGSize) -> UIImage? {
         guard pointSize != .zero else {
             return self
         }
@@ -33,7 +33,7 @@ extension UIImage {
                 kCGImageSourceCreateThumbnailFromImageAlways: true,
                 kCGImageSourceShouldCacheImmediately: true,
                 kCGImageSourceCreateThumbnailWithTransform: true,
-                kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels,
+                kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels
             ] as CFDictionary
 
         guard

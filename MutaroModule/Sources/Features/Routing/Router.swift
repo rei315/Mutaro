@@ -23,7 +23,8 @@ public protocol Routable: AnyObject {
     func route(to viewController: UIViewController, as transition: Transition)
 
     func route(
-        to viewController: UIViewController, as transition: Transition, completion: (() -> Void)?)
+        to viewController: UIViewController, as transition: Transition, completion: (() -> Void)?
+    )
 }
 
 public protocol Router: Routable {

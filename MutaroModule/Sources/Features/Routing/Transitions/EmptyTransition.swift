@@ -16,8 +16,9 @@ public final class EmptyTransition {
 
 extension EmptyTransition: Transition {
     // MARK: - Transition
+
     public func open(
-        _ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?
+        _: UIViewController, from _: UIViewController, completion _: (() -> Void)?
     ) {}
-    public func close(_ viewController: UIViewController, completion: (() -> Void)?) {}
+    public func close(_: UIViewController, completion _: (() -> Void)?) {}
 }

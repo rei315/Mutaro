@@ -7,16 +7,15 @@
 
 import Foundation
 
-extension NSItemProvider {
-    public func loadFileRepresentation(forTypeIdentifier typeIdentifier: String) async throws -> URL
-    {
+public extension NSItemProvider {
+    func loadFileRepresentation(forTypeIdentifier typeIdentifier: String) async throws -> URL {
         try await withCheckedThrowingContinuation { continuation in
             self.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { url, error in
                 if let error {
                     return continuation.resume(throwing: error)
                 }
 
-                guard let url = url else {
+                guard let url else {
                     return continuation.resume(throwing: NSError())
                 }
 

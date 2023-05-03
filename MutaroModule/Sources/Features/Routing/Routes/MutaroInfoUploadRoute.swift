@@ -11,8 +11,8 @@ public protocol MutaroInfoUploadRoute {
     func openMutaroInfoUpload()
 }
 
-extension MutaroInfoUploadRoute where Self: Router {
-    public func openMutaroInfoUpload() {
+public extension MutaroInfoUploadRoute where Self: Router {
+    func openMutaroInfoUpload() {
         let push = PushTransition()
         let router = DefaultRouter(rootTransition: push)
         let viewModel = MutaroInfoUploadViewModel(router: router)

@@ -11,8 +11,7 @@ import ImageLoader
 import PhotosUI
 import UIKit
 
-final public class MutaroInfoUploadViewController: UIViewController {
-
+public final class MutaroInfoUploadViewController: UIViewController {
     private let imageView: UIButton = .init()
 
     private let titleLabel: UILabel = .init()
@@ -36,11 +35,12 @@ final public class MutaroInfoUploadViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupSubscription()
@@ -92,10 +92,12 @@ final public class MutaroInfoUploadViewController: UIViewController {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
                 $0.leadingAnchor.constraint(
-                    equalTo: view.leadingAnchor, constant: imageHorizontalPadding),
+                    equalTo: view.leadingAnchor, constant: imageHorizontalPadding
+                ),
                 $0.trailingAnchor.constraint(
-                    equalTo: view.trailingAnchor, constant: -imageHorizontalPadding),
-                $0.heightAnchor.constraint(equalTo: $0.widthAnchor, multiplier: 1.0),
+                    equalTo: view.trailingAnchor, constant: -imageHorizontalPadding
+                ),
+                $0.heightAnchor.constraint(equalTo: $0.widthAnchor, multiplier: 1.0)
             ])
         }
 
@@ -107,7 +109,7 @@ final public class MutaroInfoUploadViewController: UIViewController {
             view.addSubview($0)
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 28),
-                $0.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+                $0.leadingAnchor.constraint(equalTo: imageView.leadingAnchor)
             ])
         }
 
@@ -137,7 +139,7 @@ final public class MutaroInfoUploadViewController: UIViewController {
                 $0.heightAnchor.constraint(equalToConstant: 40),
 
                 titleLimitLabel.trailingAnchor.constraint(equalTo: $0.trailingAnchor, constant: -8),
-                titleLimitLabel.bottomAnchor.constraint(equalTo: $0.bottomAnchor, constant: -4),
+                titleLimitLabel.bottomAnchor.constraint(equalTo: $0.bottomAnchor, constant: -4)
             ])
         }
 
@@ -149,7 +151,7 @@ final public class MutaroInfoUploadViewController: UIViewController {
             view.addSubview($0)
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: titleField.bottomAnchor, constant: 16),
-                $0.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+                $0.leadingAnchor.constraint(equalTo: imageView.leadingAnchor)
             ])
         }
         descriptionLimitLabel.lets {
@@ -178,9 +180,11 @@ final public class MutaroInfoUploadViewController: UIViewController {
                 $0.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
 
                 descriptionLimitLabel.trailingAnchor.constraint(
-                    equalTo: $0.trailingAnchor, constant: -8),
+                    equalTo: $0.trailingAnchor, constant: -8
+                ),
                 descriptionLimitLabel.bottomAnchor.constraint(
-                    equalTo: $0.bottomAnchor, constant: -4),
+                    equalTo: $0.bottomAnchor, constant: -4
+                )
             ])
         }
         view.bringSubviewToFront(descriptionLimitLabel)
@@ -231,7 +235,7 @@ extension MutaroInfoUploadViewController {
 
         alert.addAction(cancelAction)
         alert.addAction(postAction)
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
 
     private func showFinishedPostAlert() {
@@ -248,7 +252,7 @@ extension MutaroInfoUploadViewController {
         }
 
         alert.addAction(doneAction)
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
 }
 
@@ -274,12 +278,12 @@ extension MutaroInfoUploadViewController {
 
     private func updateImageView(url: URL) {
         guard let data = try? Data(contentsOf: url),
-            let image = UIImage(data: data)
+              let image = UIImage(data: data)
         else {
             return
         }
-        let resizedImage = image.downsample(imageAt: url, to: self.imageView.frame.size)
-        self.imageView.setImage(resizedImage, for: .normal)
+        let resizedImage = image.downsample(imageAt: url, to: imageView.frame.size)
+        imageView.setImage(resizedImage, for: .normal)
     }
 }
 
@@ -293,11 +297,11 @@ extension MutaroInfoUploadViewController {
 
         guard
             let keyboardSize =
-                (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
+            (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
                 .cgRectValue,
-            let keyboardDuration =
+                let keyboardDuration =
                 (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]
-                as? NSNumber)?.doubleValue
+                    as? NSNumber)?.doubleValue
         else {
             return
         }
@@ -320,7 +324,7 @@ extension MutaroInfoUploadViewController {
 
         guard
             let keyboardDuration =
-                (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]
+            (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey]
                 as? NSNumber)?.doubleValue
         else {
             return
@@ -334,8 +338,8 @@ extension MutaroInfoUploadViewController {
     }
 }
 
-extension MutaroInfoUploadViewController {
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+public extension MutaroInfoUploadViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
 
         guard let touch = touches.first else {
@@ -346,7 +350,7 @@ extension MutaroInfoUploadViewController {
         case titleField, descriptionField:
             break
         default:
-            self.view.endEditing(true)
+            view.endEditing(true)
         }
     }
 }

@@ -8,6 +8,4 @@
 import ImageLoader
 import UIKit
 
-extension UIImage {
-
-}
+extension UIImage {}

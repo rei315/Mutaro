@@ -7,16 +7,16 @@
 
 import UIKit
 
-final public class LoadingView: UIView {
-
+public final class LoadingView: UIView {
     private let indicator: UIActivityIndicatorView = .init()
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -30,7 +30,7 @@ final public class LoadingView: UIView {
 
             NSLayoutConstraint.activate([
                 $0.centerXAnchor.constraint(equalTo: centerXAnchor),
-                $0.centerYAnchor.constraint(equalTo: centerYAnchor),
+                $0.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
         }
     }

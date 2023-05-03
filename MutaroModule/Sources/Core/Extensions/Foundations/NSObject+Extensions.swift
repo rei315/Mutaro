@@ -9,7 +9,7 @@ import Foundation
 
 extension NSObject {
     static func simpleClassName() -> String {
-        return NSStringFromClass(self).components(separatedBy: ".").last ?? ""
+        NSStringFromClass(self).components(separatedBy: ".").last ?? ""
     }
 
     static func simpleSwiftUIHostingClassName() -> String {

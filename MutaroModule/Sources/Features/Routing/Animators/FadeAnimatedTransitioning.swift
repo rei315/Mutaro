@@ -10,10 +10,9 @@ import UIKit
 final class FadeAnimatedTransitioning: NSObject, AnimatedTransitioning {
     var isPresenting: Bool = true
 
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?)
-        -> TimeInterval
-    {
-        return 0.35
+    func transitionDuration(using _: UIViewControllerContextTransitioning?)
+        -> TimeInterval {
+        0.35
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -25,7 +24,9 @@ final class FadeAnimatedTransitioning: NSObject, AnimatedTransitioning {
     }
 
     private func present(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let toView = transitionContext.view(forKey: .to) else { return }
+        guard let toView = transitionContext.view(forKey: .to) else {
+            return
+        }
 
         let containerView = transitionContext.containerView
         toView.alpha = 0.0
@@ -38,11 +39,14 @@ final class FadeAnimatedTransitioning: NSObject, AnimatedTransitioning {
             },
             completion: { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            })
+            }
+        )
     }
 
     private func dismiss(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromView = transitionContext.view(forKey: .from) else { return }
+        guard let fromView = transitionContext.view(forKey: .from) else {
+            return
+        }
 
         UIView.animate(
             withDuration: transitionDuration(using: transitionContext),
@@ -51,6 +55,7 @@ final class FadeAnimatedTransitioning: NSObject, AnimatedTransitioning {
             },
             completion: { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            })
+            }
+        )
     }
 }

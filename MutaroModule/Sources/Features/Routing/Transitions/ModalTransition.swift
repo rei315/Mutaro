@@ -26,6 +26,7 @@ final class ModalTransition: NSObject {
 
 extension ModalTransition: Transition {
     // MARK: - Transition
+
     func open(_ viewController: UIViewController, from: UIViewController, completion: (() -> Void)?)
     {
         viewController.modalPresentationStyle = modalPresentationStyle

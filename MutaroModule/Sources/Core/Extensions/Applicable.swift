@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 
 public protocol Applicable {}
-extension Applicable {
+public extension Applicable {
     @discardableResult
-    public func apply(block: (Self) -> Void) -> Self {
+    func apply(block: (Self) -> Void) -> Self {
         block(self)
         return self
     }
 
-    public func lets<R>(block: (Self) -> R) -> R {
-        return block(self)
+    func lets<R>(block: (Self) -> R) -> R {
+        block(self)
     }
 }
 

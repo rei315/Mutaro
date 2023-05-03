@@ -12,13 +12,14 @@ private var lastHideNavBarVCAssociationKey = 0
 extension UIViewController {
     private static var lastHideNavBarVC: UIViewController? {
         get {
-            return objc_getAssociatedObject(UIViewController.self, &lastHideNavBarVCAssociationKey)
+            objc_getAssociatedObject(UIViewController.self, &lastHideNavBarVCAssociationKey)
                 as? UIViewController
         }
         set {
             objc_setAssociatedObject(
                 UIViewController.self, &lastHideNavBarVCAssociationKey, newValue,
-                .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+            )
         }
     }
 
@@ -37,8 +38,8 @@ extension UIViewController {
     }
 }
 
-extension UIViewController {
-    public func setSmallTitle() {
+public extension UIViewController {
+    func setSmallTitle() {
         navigationItem.largeTitleDisplayMode = .never
     }
 }

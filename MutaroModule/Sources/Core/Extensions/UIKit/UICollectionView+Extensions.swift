@@ -7,21 +7,22 @@
 
 import UIKit
 
-extension UICollectionView {
-    public func dequeueReusableCell<T: UICollectionViewCell>(
+public extension UICollectionView {
+    func dequeueReusableCell<T: UICollectionViewCell>(
         withType type: T.Type, for indexPath: IndexPath
     ) -> T {
-        return dequeueReusableCell(withReuseIdentifier: type.simpleClassName(), for: indexPath)
+        dequeueReusableCell(withReuseIdentifier: type.simpleClassName(), for: indexPath)
             as! T
     }
 
-    public func registerNib<T: UICollectionViewCell>(withType type: T.Type) {
+    func registerNib(withType type: (some UICollectionViewCell).Type) {
         register(
             UINib(nibName: type.simpleClassName(), bundle: nil),
-            forCellWithReuseIdentifier: type.simpleClassName())
+            forCellWithReuseIdentifier: type.simpleClassName()
+        )
     }
 
-    public func registerClass<T: UICollectionViewCell>(withType type: T.Type) {
+    func registerClass(withType type: (some UICollectionViewCell).Type) {
         register(type.self, forCellWithReuseIdentifier: type.simpleClassName())
     }
 }
