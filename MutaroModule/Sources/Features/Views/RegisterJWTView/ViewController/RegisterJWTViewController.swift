@@ -41,11 +41,21 @@ class RegisterJWTViewController: UIViewController {
         title = "JWT生成"
         setupView()
         setupRegisterButton()
+        setupSubcription()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setSmallTitle()
+    }
+
+    private func setupSubcription() {
+        viewModel.showAlertSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.showAlert(state: $0)
+            }
+            .store(in: &viewModel.cancellables)
     }
 
     private func setupView() {
@@ -141,5 +151,9 @@ class RegisterJWTViewController: UIViewController {
             keyID: keyID,
             privateKey: privateKey
         )
+    }
+
+    private func showAlert(state: RegisterJWTViewModel.AlertState) {
+        AlertHUD.show(title: state.title)
     }
 }

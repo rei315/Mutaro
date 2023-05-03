@@ -69,7 +69,10 @@ let package = Package(
         ),
         .target(
             name: "Core",
-            dependencies: ["ImageLoader"]
+            dependencies: [
+                "ImageLoader",
+                "AppResource"
+            ]
         ),
         .target(
             name: "Client",
