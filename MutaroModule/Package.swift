@@ -35,8 +35,8 @@ let firebaseFirestoreDependencies: [Target.Dependency] = [
 ]
 
 let unittestDependencies: [Target.Dependency] = [
-    "Quick",
-    "Nimble"
+    .product(name: "Quick", package: "Quick"),
+    .product(name: "Nimble", package: "Nimble")
 ]
 
 let package = Package(
@@ -48,26 +48,12 @@ let package = Package(
     products: [
         .library(
             name: "Features",
-            targets: ["Features"]),
-        .library(
-            name: "Core",
-            targets: ["Core"]),
+            targets: ["Features"]
+        ),
         .library(
             name: "FirebaseSetup",
             targets: ["FirebaseSetup"]
-        ),
-        .library(
-            name: "ImageLoader",
-            targets: ["ImageLoader"]
-        ),
-        .library(
-            name: "Repositories",
-            targets: ["Repositories"]
-        ),
-        .library(
-            name: "AppResource",
-            targets: ["AppResource"]
-        ),
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
@@ -106,7 +92,7 @@ let package = Package(
         .target(
             name: "JWTGenerator",
             dependencies: [
-                "SwiftJWT"
+                .product(name: "SwiftJWT", package: "Swift-JWT")
             ]
         ),
         .testTarget(

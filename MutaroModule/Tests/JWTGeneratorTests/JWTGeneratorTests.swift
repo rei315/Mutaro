@@ -8,6 +8,8 @@
 import Nimble
 import Quick
 
+@testable import JWTGenerator
+
 final class JWTGeneratorTests: QuickSpec {
 //    struct TestCase {
 //        let context: String
@@ -22,5 +24,11 @@ final class JWTGeneratorTests: QuickSpec {
 //
 //    ]
 //
-    override func spec() {}
+    override func spec() {
+//        let builder = MutaroJWT.AppstoreConnectJWTBuilder(
+//            keyId: "",
+//            issuerId: "",
+//            pemString: ""
+//        )
+    }
 }
