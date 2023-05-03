@@ -5,8 +5,8 @@
 //  Created by minguk-kim on 2023/05/03.
 //
 
-import SwiftJWT
 import Foundation
+import SwiftJWT
 
 public extension MutaroJWT {
     struct AppstoreConnectJWTBuilder {
@@ -21,27 +21,24 @@ public extension MutaroJWT {
         }
 
         public func generateJWT() throws -> String {
-            guard let privateKey = pemString.data(using: .utf8) else {
-                throw JWTError.pemStringIsWrongPattern
-            }
-
+            let privateKey = Data(pemString.utf8)
             let header = Header(kid: keyId)
             let claims = AppstoreConnectClaims(
                 iss: issuerId,
-                exp: Date(timeIntervalSinceNow: 20*60),
+                exp: Date(timeIntervalSinceNow: 20 * 60),
                 aud: "appstoreconnect-v1"
             )
             var jwt = JWT(header: header, claims: claims)
-            let signedJWT = try jwt.sign(using: .rs256(privateKey: privateKey))
+            let signedJWT = try jwt.sign(using: .es256(privateKey: privateKey))
 
             return signedJWT
         }
-        
+
         struct AppstoreConnectClaims: Claims {
             let iss: String
             let exp: Date
             let aud: String
-            
+
             init(
                 iss: String,
                 exp: Date,
