@@ -92,7 +92,8 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Client"
+            name: "Client",
+            dependencies: []
         ),
         .target(
             name: "FirebaseSetup",
