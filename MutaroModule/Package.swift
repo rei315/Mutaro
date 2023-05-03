@@ -53,7 +53,13 @@ let package = Package(
     targets: [
         .target(
             name: "Features",
-            dependencies: ["ImageLoader", "Core", "AppResource", "Client"],
+            dependencies: [
+                "ImageLoader",
+                "Core",
+                "AppResource",
+                "Client",
+                "JWTGenerator"
+            ],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
             ],

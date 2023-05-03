@@ -40,6 +40,7 @@ class RegisterJWTViewController: UIViewController {
         view.backgroundColor = .white
         title = "JWT生成"
         setupView()
+        setupRegisterButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -118,5 +119,26 @@ class RegisterJWTViewController: UIViewController {
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
         }
+    }
+
+    private func setupRegisterButton() {
+        navigationItem.rightBarButtonItem = .init(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(onTapRegister)
+        )
+    }
+
+    @objc
+    private func onTapRegister() {
+        let issuerID = issuerIDTextView.text
+        let keyID = keyIDTextView.text
+        let privateKey = privateKeyTextView.text
+
+        viewModel.onTapRegister(
+            issuerID: issuerID,
+            keyID: keyID,
+            privateKey: privateKey
+        )
     }
 }
