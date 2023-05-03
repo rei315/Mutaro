@@ -50,17 +50,24 @@ public final class PlaceholderTextView: UITextView {
         return label
     }()
 
-    override init(frame: CGRect, textContainer: NSTextContainer?) {
-        super.init(frame: frame, textContainer: textContainer)
-        setupView()
+    public init(inset: UIEdgeInsets) {
+        super.init(frame: .zero, textContainer: nil)
+        setupView(padding: inset)
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
+    public init(padding: CGFloat) {
+        super.init(frame: .zero, textContainer: nil)
+        setupView(padding: .init(top: padding, left: padding, bottom: padding, right: padding))
     }
 
-    private func setupView() {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupView(padding: UIEdgeInsets) {
+        textContainerInset = padding
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(textDidChanged),

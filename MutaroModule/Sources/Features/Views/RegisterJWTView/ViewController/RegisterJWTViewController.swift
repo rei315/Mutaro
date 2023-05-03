@@ -19,7 +19,7 @@ class RegisterJWTViewController: UIViewController {
     private let keyIDTextView: PaddingTextField = .init()
 
     private let privateKeyTitleLabel: UILabel = .init()
-    private let privateKeyTextView: PlaceholderTextView = .init()
+    private let privateKeyTextView: PlaceholderTextView = .init(padding: 12)
 
     private let viewModel: RegisterJWTViewModel
 
@@ -112,12 +112,13 @@ class RegisterJWTViewController: UIViewController {
             $0.textColor = Resources.Colors.navy70.color
         }
         privateKeyTextView.lets {
-            $0.textContainerInset = .init(top: 12, left: 12, bottom: 12, right: 12)
             $0.font = FontSize.minus1.ofBoldFont()
             $0.textColor = Resources.Colors.navy70.color
             $0.layer.borderColor = Resources.Colors.navy20.color.cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
+            $0.clipsToBounds = true
+            $0.placeholder = "PrivateKeyを入力してください"
         }
     }
 
