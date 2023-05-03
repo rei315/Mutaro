@@ -10,17 +10,17 @@ import Quick
 
 @testable import JWTGenerator
 
-private struct JWTGeneratorMock {
+private enum JWTGeneratorMock {
     // SwiftJWTのSampleに書いているkey
     static let pemString = """
- -----BEGIN PUBLIC KEY-----
- MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
- UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
- HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D
- o2kQ+X5xK9cipRgEKwIDAQAB
- -----END PUBLIC KEY-----
- """
-    
+    -----BEGIN PUBLIC KEY-----
+    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
+    UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
+    HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D
+    o2kQ+X5xK9cipRgEKwIDAQAB
+    -----END PUBLIC KEY-----
+    """
+
     static let keyId = "AB1CD2EFGH"
     static let issuerId = "12abcd34-1234-12a3-a123-1a2bc3d45e6f7"
 }
@@ -39,7 +39,7 @@ final class JWTGeneratorTests: QuickSpec {
                 issuerId: JWTGeneratorMock.issuerId,
                 pemString: JWTGeneratorMock.pemString
             )
-        ),
+        )
     ]
 
     private let invalidTestCases: [TestCase] = [
@@ -88,7 +88,6 @@ final class JWTGeneratorTests: QuickSpec {
                         }
                     }
                 }
-                
             }
             context("builderのパラメターが正しいケース") {
                 for testCase in validTestCases {
