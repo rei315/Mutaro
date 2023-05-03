@@ -34,6 +34,11 @@ let firebaseFirestoreDependencies: [Target.Dependency] = [
     "leveldb-library",
 ]
 
+let unittestDependencies: [Target.Dependency] = [
+    "Quick",
+    "Nimble"
+]
+
 let package = Package(
     name: "MutaroModule",
     platforms: [
@@ -67,7 +72,10 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
         .package(url: "https://github.com/realm/SwiftLint", from: "0.51.0"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.51.8")
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.51.8"),
+        .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
+        .package(url: "https://github.com/Quick/Quick", from: "6.1.0"),
+        .package(url: "https://github.com/Quick/Nimble", from: "12.0.0")
     ],
     targets: [
         .target(
@@ -94,6 +102,18 @@ let package = Package(
         .target(
             name: "Client",
             dependencies: []
+        ),
+        .target(
+            name: "JWTGenerator",
+            dependencies: [
+                "SwiftJWT"
+            ]
+        ),
+        .testTarget(
+            name: "JWTGeneratorTests",
+            dependencies: [
+                "JWTGenerator"
+            ] + unittestDependencies
         ),
         .target(
             name: "FirebaseSetup",
