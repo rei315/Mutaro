@@ -75,11 +75,13 @@ extension SettingViewController {
     private func setupDefaultSnapshot() {
         var snapshot = dataSource.snapshot()
         snapshot.appendSections(SettingListSection.allCases)
-        let settings: [SettingType] = [.info, .setting]
-        let rowItems: [SettingListRow] = settings.indices.map {
+        let appSettings: [AppSettingType] = [.info, .setting]
+        let settingsRowItems: [SettingListRow] = [.registerJWT]
+        let appSettingsRowItems: [SettingListRow] = appSettings.indices.map {
             SettingListRow.defaultSetting($0)
         }
-        snapshot.appendItems(rowItems, toSection: .setting)
+        snapshot.appendItems(settingsRowItems, toSection: .setting)
+        snapshot.appendItems(appSettingsRowItems, toSection: .appSetting)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -98,6 +100,14 @@ extension SettingViewController {
                     layoutEnvironment: layoutEnvironment
                 )
                 return section
+            case .appSetting:
+                var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+                configuration.backgroundColor = .white
+                let section = NSCollectionLayoutSection.list(
+                    using: configuration,
+                    layoutEnvironment: layoutEnvironment
+                )
+                return section
             case .none:
                 return nil
             }
@@ -108,9 +118,11 @@ extension SettingViewController {
 extension SettingViewController {
     enum SettingListSection: Hashable, CaseIterable {
         case setting
+        case appSetting
     }
 
     enum SettingListRow: Hashable {
+        case registerJWT
         case defaultSetting(Int)
     }
 
@@ -122,11 +134,18 @@ extension SettingViewController {
                 withType: SettingDefaultCollectionViewCell.self,
                 for: indexPath
             ).apply {
-                guard let type = SettingType(rawValue: index) else {
+                guard let type = AppSettingType(rawValue: index) else {
                     return
                 }
 
                 $0.bind(type: type)
+            }
+        case .registerJWT:
+            return collectionView.dequeueReusableCell(
+                withType: SettingDefaultCollectionViewCell.self,
+                for: indexPath
+            ).apply {
+                $0.bind(type: .registerJWT)
             }
         }
     }
@@ -137,6 +156,8 @@ extension SettingViewController: UICollectionViewDelegate {
         let item = dataSource.itemIdentifier(for: indexPath)
         switch item {
         case let .defaultSetting(index):
+            break
+        case .registerJWT:
             break
         case .none:
             break
@@ -151,6 +172,26 @@ extension SettingViewController: UICollectionViewDataSourcePrefetching {
 
 extension SettingViewController {
     enum SettingType: Int {
+        case registerJWT
+
+        var title: String {
+            switch self {
+            case .registerJWT:
+                return "登録する"
+            }
+        }
+
+        var icon: UIImage {
+            let asset: ImageAsset
+            switch self {
+            case .registerJWT:
+                asset = Resources.Images.devSetting
+            }
+            return asset.image
+        }
+    }
+
+    enum AppSettingType: Int {
         case info
         case setting
 

@@ -12,16 +12,10 @@ final class SettingViewModel: NSObject {
     typealias Routes = SettingRoute
     private let router: Routes
 
-    let shouldAddDeveloperSettingSubject = PassthroughSubject<Void, Never>()
-
     var cancellables: Set<AnyCancellable> = []
 
     init(router: Routes) {
         self.router = router
         super.init()
-    }
-
-    func setupDeveloperSettings() {
-        shouldAddDeveloperSettingSubject.send(())
     }
 }
