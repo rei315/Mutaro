@@ -11,6 +11,7 @@ import Quick
 @testable import JWTGenerator
 
 private struct JWTGeneratorMock {
+    // SwiftJWTのSampleに書いているkey
     static let pemString = """
  -----BEGIN PUBLIC KEY-----
  MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
