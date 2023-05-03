@@ -10,6 +10,7 @@ import Core
 import UIKit
 
 class RegisterJWTViewController: UIViewController {
+    private let scrollView: UIScrollView = .init()
     private let stackView: UIStackView = .init()
 
     private let issuerIDTitleLabel: UILabel = .init()
@@ -67,9 +68,20 @@ class RegisterJWTViewController: UIViewController {
     }
 
     private func setupView() {
-        stackView.lets {
+        scrollView.lets {
+            $0.showsVerticalScrollIndicator = true
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            ])
+        }
+        stackView.lets {
+            scrollView.addSubview($0)
+            $0.addArrangedSubview(.createSpacer(axis: .vertical, padding: 48))
             $0.addArrangedSubview(issuerIDTitleLabel)
             $0.addArrangedSubview(issuerIDTextView)
             $0.setCustomSpacing(20, after: issuerIDTextView)
@@ -80,16 +92,13 @@ class RegisterJWTViewController: UIViewController {
 
             $0.addArrangedSubview(privateKeyTitleLabel)
             $0.addArrangedSubview(privateKeyTextView)
-
             $0.addArrangedSubview(.createSpacer(axis: .vertical))
             $0.axis = .vertical
             $0.spacing = 12
 
+            $0.fillConstraint(to: scrollView)
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
-                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-                $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+                $0.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
             ])
         }
 
@@ -139,6 +148,10 @@ class RegisterJWTViewController: UIViewController {
             $0.layer.cornerRadius = 8
             $0.clipsToBounds = true
             $0.placeholder = "PrivateKeyを入力してください"
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                $0.heightAnchor.constraint(equalToConstant: 200)
+            ])
         }
     }
 
