@@ -13,8 +13,8 @@
 		710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35AA296C5B7A00ED034F /* FirebaseSetup */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
-		715E95C6295CD16400AD6331 /* license_plist.yml in Resources */ = {isa = PBXBuildFile; fileRef = 715E95C5295CD16400AD6331 /* license_plist.yml */; };
 		718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC94A2969D2C0006861E8 /* Assets.xcassets */; };
+		71B6F77F2A02303D005B8531 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 71B6F77E2A02303D005B8531 /* Settings.bundle */; };
 		71BE22D629777D9900B51484 /* mutaro_photo_35.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22AD29777D8A00B51484 /* mutaro_photo_35.jpeg */; };
 		71BE22D729777D9900B51484 /* mutaro_photo_26.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22AE29777D8B00B51484 /* mutaro_photo_26.jpeg */; };
 		71BE22D829777D9900B51484 /* mutaro_photo_6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22AF29777D8B00B51484 /* mutaro_photo_6.jpeg */; };
@@ -78,7 +78,8 @@
 		715E9586295CC20800AD6331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		715E9594295CC20A00AD6331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		715E95C5295CD16400AD6331 /* license_plist.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = license_plist.yml; sourceTree = "<group>"; };
+		71B6F77B2A022F50005B8531 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../BuildTools; sourceTree = "<group>"; };
+		71B6F77E2A02303D005B8531 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		71BE22AD29777D8A00B51484 /* mutaro_photo_35.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_35.jpeg; sourceTree = "<group>"; };
 		71BE22AE29777D8B00B51484 /* mutaro_photo_26.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_26.jpeg; sourceTree = "<group>"; };
 		71BE22AF29777D8B00B51484 /* mutaro_photo_6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_6.jpeg; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		715E957A295CC20800AD6331 = {
 			isa = PBXGroup;
 			children = (
+				71B6F77B2A022F50005B8531 /* BuildTools */,
 				715E9585295CC20800AD6331 /* MutaroApp */,
 				710C359C296C58AC00ED034F /* MutaroUITests */,
 				715E9584295CC20800AD6331 /* Products */,
@@ -193,8 +195,8 @@
 				71FDC926296860AA006861E8 /* GoogleServicePlists */,
 				71FDC925296860A5006861E8 /* Configurations */,
 				71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */,
-				715E95C5295CD16400AD6331 /* license_plist.yml */,
 				715E9594295CC20A00AD6331 /* Info.plist */,
+				71B6F77E2A02303D005B8531 /* Settings.bundle */,
 				71FDC94A2969D2C0006861E8 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -307,14 +309,13 @@
 				715E957F295CC20800AD6331 /* Sources */,
 				715E9580295CC20800AD6331 /* Frameworks */,
 				715E9581295CC20800AD6331 /* Resources */,
-				7131E87F2970696B006E1C9D /* Run Swift-Format */,
-				7131E88029707623006E1C9D /* Run Swift-Lint */,
-				715E95C7295CD1AC00AD6331 /* Run LicensePlist */,
+				71B6F7802A023091005B8531 /* Add LicensePlist to Setting.bundle */,
 				715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				71B6F77D2A022FB9005B8531 /* PBXTargetDependency */,
 			);
 			name = MutaroApp;
 			packageProductDependencies = (
@@ -401,9 +402,9 @@
 				71BE22F229777D9900B51484 /* mutaro_photo_25.jpeg in Resources */,
 				71BE22E329777D9900B51484 /* mutaro_photo_0.jpeg in Resources */,
 				71BE22D629777D9900B51484 /* mutaro_photo_35.jpeg in Resources */,
+				71B6F77F2A02303D005B8531 /* Settings.bundle in Resources */,
 				71BE22F929777D9900B51484 /* mutaro_photo_1.jpeg in Resources */,
 				71BE22DD29777D9900B51484 /* mutaro_photo_8.jpeg in Resources */,
-				715E95C6295CD16400AD6331 /* license_plist.yml in Resources */,
 				71BE22D929777D9900B51484 /* mutaro_photo_39.jpeg in Resources */,
 				71BE22E029777D9900B51484 /* mutaro_photo_16.jpeg in Resources */,
 				71BE22D829777D9900B51484 /* mutaro_photo_6.jpeg in Resources */,
@@ -424,60 +425,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7131E87F2970696B006E1C9D /* Run Swift-Format */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Swift-Format";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do    \n    if [ $path = \"AppResource\" ]; then        \n        continue\n    fi\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory format-source-code --target ${path}\ndone\n\n";
-		};
-		7131E88029707623006E1C9D /* Run Swift-Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Swift-Lint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd ../MutaroModule\nfor path in $( ls Sources ); do\n    if [ $path = \"AppResource\" ]; then        \n        continue\n    fi\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory lint-source-code --target ${path}\ndone\n";
-		};
-		715E95C7295CD1AC00AD6331 /* Run LicensePlist */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run LicensePlist";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [[ $CONFIGURATION = \"Debug(Production)\" ]] || [[ $CONFIGURATION = \"Debug(Development)\" ]]; then    \n    if which /usr/local/bin/license-plist > /dev/null; then\n        if [ ! -z $LICENSE_PLIST_GITHUB_TOKEN ]; then\n            TOKEN=$LICENSE_PLIST_GITHUB_TOKEN\n        elif [ ! -z $GITHUB_TOKEN ]; then\n            TOKEN=$GITHUB_TOKEN\n        else\n            echo \"Mutaro: - licensePlistで使うためのLICENSE_PLIST_GITHUB_TOKENを設定してください\"                        \n            exit 1\n        fi\n        \n        /usr/local/bin/license-plist --output-path ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Settings.bundle --config-path ${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/license_plist.yml --package-path ${CI_WORKSPACE}/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved --github-token ${TOKEN}\n    elif which /opt/homebrew/bin/license-plist > /dev/null; then\n        if [ -f \"../env-vars.sh\" ]; then       \n            source \"../env-vars.sh\"\n        fi        \n        \n        if [ ! -z $LICENSE_PLIST_GITHUB_TOKEN ]; then\n            TOKEN=$LICENSE_PLIST_GITHUB_TOKEN\n        elif [ ! -z $GITHUB_TOKEN ]; then\n            TOKEN=$GITHUB_TOKEN\n        else\n            echo \"Mutaro: - licensePlistで使うためのLICENSE_PLIST_GITHUB_TOKENを設定してください\"            \n            exit 1          \n        fi\n        \n        /opt/homebrew/bin/license-plist --output-path ${SRCROOT}/MutaroApp/Resources/Settings.bundle --config-path ${SRCROOT}/MutaroApp/Resources/license_plist.yml --package-path ../Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved --github-token ${TOKEN}\n    else\n        echo \"warning: Please install license-plist with 'brew install license-plist'\"\n        exit 1\n    fi\nfi\n";
-		};
 		715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -497,6 +444,24 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "echo ../MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
+		};
+		71B6F7802A023091005B8531 /* Add LicensePlist to Setting.bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add LicensePlist to Setting.bundle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ! $CI ]; then\n  ACKNOWLEDGEMENTS_DIR=${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/com.mono0926.LicensePlist.Output\n  \n  DESTINATION_PATH=MutaroApp/Resources/Settings.bundle/\n  cp -r ${ACKNOWLEDGEMENTS_DIR}/* ${DESTINATION_PATH}\n  rm -rf ${ACKNOWLEDGEMENTS_DIR}\nfi\n";
 		};
 		71FDC928296860F4006861E8 /* Copy Firebase Plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -532,7 +497,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f \"../env-vars.sh\" ]; then       \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    if [ $IS_DEV ]; then\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else    \n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nelse    \n    if [ $IS_DEV ]; then\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nfi\n";
+			shellScript = "case \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    if [ $IS_DEV ]; then\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else    \n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nelse    \n    if [ $IS_DEV ]; then\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -562,6 +527,10 @@
 			isa = PBXTargetDependency;
 			target = 715E9582295CC20800AD6331 /* MutaroApp */;
 			targetProxy = 710C35A1296C58AC00ED034F /* PBXContainerItemProxy */;
+		};
+		71B6F77D2A022FB9005B8531 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 71B6F77C2A022FB9005B8531 /* LicensePlistPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1294,6 +1263,10 @@
 		710C35AA296C5B7A00ED034F /* FirebaseSetup */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseSetup;
+		};
+		71B6F77C2A022FB9005B8531 /* LicensePlistPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:LicensePlistPlugin";
 		};
 		71FB3C8729707B5E008F843A /* Features */ = {
 			isa = XCSwiftPackageProductDependency;
