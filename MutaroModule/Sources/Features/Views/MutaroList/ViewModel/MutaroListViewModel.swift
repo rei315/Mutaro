@@ -8,8 +8,6 @@
 import Combine
 import Core
 import Foundation
-import ImageLoader
-import Repositories
 import UIKit
 
 protocol MutaroListViewModelProtocol {}

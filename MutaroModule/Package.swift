@@ -66,7 +66,7 @@ let package = Package(
     targets: [
         .target(
             name: "Features",
-            dependencies: ["ImageLoader", "Core", "Repositories", "AppResource", "Client"],
+            dependencies: ["ImageLoader", "Core", "AppResource", "Client"],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
             ],
@@ -77,13 +77,6 @@ let package = Package(
         .target(
             name: "Core",
             dependencies: ["ImageLoader"]
-        ),
-        .target(
-            name: "Repositories",
-            dependencies: firebaseFirestoreDependencies + firebaseAnalyticsDependencies + ["Core"],
-            linkerSettings: [
-                .unsafeFlags(["-ObjC"])
-            ]
         ),
         .target(
             name: "Client",
