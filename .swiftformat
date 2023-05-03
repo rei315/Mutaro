@@ -4,7 +4,6 @@
 
 # file options 除外するディレクトリやファイル
 
---exclude Pods
 
 # format options
 
