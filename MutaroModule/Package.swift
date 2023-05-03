@@ -72,7 +72,7 @@ let package = Package(
     targets: [
         .target(
             name: "Features",
-            dependencies: ["ImageLoader", "Core", "Repositories", "AppResource"],
+            dependencies: ["ImageLoader", "Core", "Repositories", "AppResource", "Client"],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
             ],
@@ -90,6 +90,9 @@ let package = Package(
             linkerSettings: [
                 .unsafeFlags(["-ObjC"])
             ]
+        ),
+        .target(
+            name: "Client"
         ),
         .target(
             name: "FirebaseSetup",
