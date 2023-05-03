@@ -24,6 +24,8 @@ class RegisterJWTViewController: UIViewController {
 
     private let viewModel: RegisterJWTViewModel
 
+    private var keyboardHeightConstraint: NSLayoutConstraint?
+
     init(viewModel: RegisterJWTViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -43,12 +45,23 @@ class RegisterJWTViewController: UIViewController {
         setupView()
         setupRegisterButton()
         setupSubcription()
+        setupNotification()
         viewModel.loadRegisteredInfo()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setSmallTitle()
+    }
+
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] in
+            self?.handleKeyboardState($0)
+        }
     }
 
     private func setupSubcription() {
@@ -79,6 +92,16 @@ class RegisterJWTViewController: UIViewController {
                 $0.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
             ])
         }
+
+        let scrollSpacer = UIView().apply {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                $0.heightAnchor.constraint(equalToConstant: 0).apply {
+                    self.keyboardHeightConstraint = $0
+                }
+            ])
+        }
+
         stackView.lets {
             scrollView.addSubview($0)
             $0.addArrangedSubview(.createSpacer(axis: .vertical, padding: 48))
@@ -93,6 +116,7 @@ class RegisterJWTViewController: UIViewController {
             $0.addArrangedSubview(privateKeyTitleLabel)
             $0.addArrangedSubview(privateKeyTextView)
             $0.addArrangedSubview(.createSpacer(axis: .vertical))
+            $0.addArrangedSubview(scrollSpacer)
             $0.axis = .vertical
             $0.spacing = 12
 
@@ -184,5 +208,67 @@ class RegisterJWTViewController: UIViewController {
         issuerIDTextView.text = info.issuerID
         keyIDTextView.text = info.keyID
         privateKeyTextView.text = info.privateKey
+    }
+}
+
+extension RegisterJWTViewController {
+    private struct Info {
+        let frame: CGRect
+        let duration: Double
+        let animationOptions: UIView.AnimationOptions
+    }
+
+    private func handleKeyboardState(_ notification: Notification) {
+        guard let info = convertKeyboardInfo(notification) else {
+            return
+        }
+        let isHiding = info.frame.origin.y == UIScreen.main.bounds.height
+        keyboardHeightConstraint?.constant = isHiding ? 0 : info.frame.height
+        UIView.animate(
+            withDuration: info.duration,
+            delay: 0,
+            options: info.animationOptions
+        ) {
+            self.scrollView.layoutIfNeeded()
+            self.moveTextFieldIfNeeded(info: info)
+        }
+    }
+
+    private func convertKeyboardInfo(_ notification: Notification) -> Info? {
+        guard let frameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
+              let raw = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+        else {
+            return nil
+        }
+
+        return Info(
+            frame: frameValue.cgRectValue,
+            duration: duration.doubleValue,
+            animationOptions: UIView.AnimationOptions(rawValue: raw.uintValue)
+        )
+    }
+
+    private func moveTextFieldIfNeeded(info: Info) {
+        guard let input = stackView.arrangedSubviews
+            .first(where: {
+                switch $0 {
+                case is UITextView:
+                    return $0.isFirstResponder
+                case is UITextField:
+                    return $0.isFirstResponder
+                default:
+                    return false
+                }
+            }) else {
+            return
+        }
+
+        let inputFrame = input.convert(input.bounds, to: nil)
+        if inputFrame.intersects(info.frame) {
+            scrollView.setContentOffset(CGPoint(x: 0, y: inputFrame.height), animated: true)
+        } else {
+            scrollView.setContentOffset(.zero, animated: true)
+        }
     }
 }
