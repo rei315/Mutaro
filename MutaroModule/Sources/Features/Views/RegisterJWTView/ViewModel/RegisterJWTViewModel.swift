@@ -11,7 +11,7 @@ import JWTGenerator
 import KeychainStore
 
 public final class RegisterJWTViewModel {
-    typealias Routes = RegisterJWTRoute
+    typealias Routes = RegisterJWTRoute & Dismissable
     private let router: Routes
 
     let showAlertSubject = PassthroughSubject<AlertState, Never>()
@@ -68,7 +68,7 @@ public final class RegisterJWTViewModel {
             return
         }
         showAlertSubject.send(.successedSavingJWTReuqestInfo)
-        // TODO: - turn back parent vc
+        router.dismiss()
     }
 }
 
