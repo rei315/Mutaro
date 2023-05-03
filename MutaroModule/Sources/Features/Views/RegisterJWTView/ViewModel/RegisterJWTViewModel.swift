@@ -64,10 +64,10 @@ public final class RegisterJWTViewModel {
 
         guard let isSuccessed = try? KeychainStore.shared.save(info, forKey: "b"),
               isSuccessed else {
-            // TODO: - Alert failed to save
+            showAlertSubject.send(.failedSavingJWTRequestInfo)
             return
         }
-        // TODO: - Alert Success to save
+        showAlertSubject.send(.successedSavingJWTReuqestInfo)
         // TODO: - turn back parent vc
     }
 }
@@ -84,6 +84,8 @@ extension RegisterJWTViewModel {
         case invalidKeyID
         case invalidPrivateKey
         case invalidToken
+        case failedSavingJWTRequestInfo
+        case successedSavingJWTReuqestInfo
 
         var title: String {
             let string: String
@@ -97,6 +99,10 @@ extension RegisterJWTViewModel {
                 string = "Private Keyに値を追加してください。"
             case .invalidToken:
                 string = "正しい値が入ってないため、JWTの生成が失敗しました。"
+            case .failedSavingJWTRequestInfo:
+                string = "Keychainに保存を失敗しました。"
+            case .successedSavingJWTReuqestInfo:
+                string = "入力した情報を保存しました。"
             }
 
             return string
