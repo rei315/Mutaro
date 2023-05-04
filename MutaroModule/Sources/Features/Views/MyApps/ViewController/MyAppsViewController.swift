@@ -26,5 +26,6 @@ public class MyAppsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = HomeTabPage.myApps.title
+        viewModel.generateJWTString()
     }
 }

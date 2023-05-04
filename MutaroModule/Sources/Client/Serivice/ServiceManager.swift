@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BaseURL {
+public enum BaseURL {
     case appstoreConnectAPI
 
     func get() -> String {
@@ -22,7 +22,7 @@ enum BaseURL {
     }
 }
 
-actor ServiceManager {
+public actor ServiceManager {
     static let shared = ServiceManager()
 
     private init() {}

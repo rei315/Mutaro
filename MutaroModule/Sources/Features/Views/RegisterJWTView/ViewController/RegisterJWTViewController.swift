@@ -7,6 +7,7 @@
 
 import AppResource
 import Core
+import JWTGenerator
 import UIKit
 import UniformTypeIdentifiers
 
@@ -226,7 +227,7 @@ class RegisterJWTViewController: UIViewController {
         AlertHUD.show(title: state.title)
     }
 
-    private func configureInfoTextViews(info: RegisterJWTViewModel.JWTRequestInfo) {
+    private func configureInfoTextViews(info: MutaroJWT.JWTRequestInfo) {
         issuerIDTextView.text = info.issuerID
         keyIDTextView.text = info.keyID
         privateKeyTextView.text = info.privateKey
