@@ -44,6 +44,8 @@ public class MyAppsViewController: UIViewController {
             $0.dataSource = dataSource
             $0.delegate = self
             $0.prefetchDataSource = self
+            $0.registerClass(withType: MyAppsAppCell.self)
+            $0.registerClass(withType: MyAppsRegisterJWTCell.self)
             view.addSubview($0)
             $0.fillConstraint(to: view)
         }
