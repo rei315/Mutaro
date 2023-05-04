@@ -20,11 +20,24 @@ final class MyAppsAppCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        contentView.lets {
+            $0.layer.cornerRadius = rect.width / 2
+        }
+    }
+
     private func setupView() {
+        contentView.lets {
+            $0.clipsToBounds = true
+        }
         thumbnailImageView.lets {
+            contentView.addSubview($0)
             $0.fillConstraint(to: contentView)
         }
     }
 
-    func bind(url _: String) {}
+    func bind(url _: String) {
+        
+    }
 }

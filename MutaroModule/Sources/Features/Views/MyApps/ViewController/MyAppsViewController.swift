@@ -31,6 +31,7 @@ public class MyAppsViewController: UIViewController {
         title = HomeTabPage.myApps.title
 
         setupView()
+        setupDefaultSnapshot()
         setupSubscription()
     }
 
@@ -90,7 +91,7 @@ extension MyAppsViewController: UICollectionViewDataSourcePrefetching {
 
 extension MyAppsViewController {
     private func configureLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+        UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
             guard let self else {
                 return nil
             }
@@ -99,7 +100,41 @@ extension MyAppsViewController {
             case .registerJWT:
                 return nil
             case .app:
-                return nil
+                let item = NSCollectionLayoutItem(
+                    layoutSize: .init(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .fractionalWidth(1)
+                    )
+                )
+                let groupLayout: NSCollectionLayoutSize = .init(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .estimated(300)
+                )
+                let group: NSCollectionLayoutGroup
+                if #available(iOS 16.0, *) {
+                    group = NSCollectionLayoutGroup.vertical(
+                        layoutSize: groupLayout,
+                        repeatingSubitem: item,
+                        count: 1
+                    )
+                } else {
+                    group = NSCollectionLayoutGroup.vertical(
+                        layoutSize: groupLayout,
+                        subitem: item,
+                        count: 1
+                    )
+                }
+
+                let section = NSCollectionLayoutSection(group: group)
+                let centerPadding = layoutEnvironment.container.contentSize.width / 3
+                section.contentInsets = .init(
+                    top: 20,
+                    leading: centerPadding,
+                    bottom: 20,
+                    trailing: centerPadding
+                )
+                section.interGroupSpacing = 20
+                return section
             case .none:
                 return nil
             }
@@ -180,7 +215,9 @@ extension MyAppsViewController {
                 withType: MyAppsAppCell.self,
                 for: indexPath
             )
-            cell.bind(url: "")
+            if let item = viewModel.appInfosSubject.value[getOrNil: index] {
+                cell.bind(url: item.iconUrl)
+            }
 
             return cell
         case .registerJWT:

@@ -19,7 +19,12 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     private let router: Routes
 
     let currentJWTInfoSubject = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
-    let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([])
+    let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([
+        .init(id: "0", name: "test", iconUrl: "abc"),
+        .init(id: "1", name: "test2", iconUrl: "abc"),
+        .init(id: "2", name: "test3", iconUrl: "abc"),
+        .init(id: "3", name: "test4", iconUrl: "abc")
+    ])
 
     var cancellables: Set<AnyCancellable> = []
 
