@@ -26,18 +26,15 @@ final class MyAppsAppCell: UICollectionViewCell {
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        contentView.lets {
+        thumbnailImageView.lets {
             $0.layer.cornerRadius = rect.width / 2
         }
     }
 
     private func setupView() {
-        contentView.lets {
-            $0.clipsToBounds = true
-        }
-
         stackView.lets {
             $0.axis = .vertical
+            $0.spacing = 4
             $0.addArrangedSubview(thumbnailImageView)
             $0.addArrangedSubview(titleLabel)
             contentView.addSubview(stackView)
@@ -45,6 +42,7 @@ final class MyAppsAppCell: UICollectionViewCell {
         }
 
         thumbnailImageView.lets {
+            $0.clipsToBounds = true
             $0.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 $0.widthAnchor.constraint(equalTo: $0.heightAnchor, multiplier: 1.0)
@@ -52,8 +50,8 @@ final class MyAppsAppCell: UICollectionViewCell {
         }
 
         titleLabel.lets {
-            $0.font = FontSize.minus1.ofFont()
-            $0.textColor = Resources.Colors.navy70.color
+            $0.font = FontSize.base.ofFont()
+            $0.textColor = Resources.Colors.navy.color
             $0.textAlignment = .center
         }
     }

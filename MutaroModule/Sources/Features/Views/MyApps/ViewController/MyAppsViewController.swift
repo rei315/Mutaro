@@ -100,7 +100,7 @@ extension MyAppsViewController {
                 let item = NSCollectionLayoutItem(
                     layoutSize: .init(
                         widthDimension: .fractionalWidth(1),
-                        heightDimension: .fractionalWidth(1)
+                        heightDimension: .estimated(300)
                     )
                 )
                 let groupLayout: NSCollectionLayoutSize = .init(
