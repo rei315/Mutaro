@@ -52,17 +52,26 @@ public class MyAppsViewController: UIViewController {
     }
 
     private func setupSubscription() {
-        viewModel.currentJWTInfo
+        viewModel.currentJWTInfoSubject
+            .removeDuplicates()
             .compactMap { $0 }
             .sink { [weak self] in
                 self?.fetchMyApps(storedJWTInfo: $0)
+            }
+            .store(in: &viewModel.cancellables)
+
+        viewModel.appInfosSubject
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.updateAppsSnapshot(items: $0)
             }
             .store(in: &viewModel.cancellables)
     }
 
     private func fetchMyApps(storedJWTInfo: MutaroJWT.JWTRequestInfo) {
         Task {
-            let infos = await viewModel.fetchMyApps(storedJWTInfo: storedJWTInfo)
+            await viewModel.fetchMyApps(storedJWTInfo: storedJWTInfo)
         }
     }
 }
@@ -110,6 +119,40 @@ extension MyAppsViewController {
         case app(index: Int)
     }
 
+    private func setupDefaultSnapshot() {
+        var snapshot = dataSource.snapshot()
+        snapshot.appendSections(MyAppsSection.allCases)
+        dataSource.apply(snapshot)
+    }
+
+    private func updateAppsSnapshot(items: [MyAppsViewModel.AppInfo]) {
+        var snapshot = dataSource.snapshot()
+        let currentAppRows = snapshot.itemIdentifiers(inSection: .app)
+        items
+            .indices
+            .map {
+                MyAppsRow.app(index: $0)
+            }
+            .forEach {
+                if currentAppRows.contains($0) {
+                    snapshot.reconfigureItems([$0])
+                } else {
+                    snapshot.appendItems([$0], toSection: .app)
+                }
+            }
+
+        let itemCount = items.count
+        let itemCountDiff = currentAppRows.count - itemCount
+        if itemCountDiff > 0 {
+            let deleteTargets = (itemCount..<itemCount + itemCountDiff).map {
+                MyAppsRow.app(index: $0)
+            }
+            snapshot.deleteItems(deleteTargets)
+        }
+
+        dataSource.apply(snapshot)
+    }
+
     private func configureDataSource() -> DataSource {
         let dataSource: DataSource = .init(
             collectionView: collectionView
@@ -134,14 +177,15 @@ extension MyAppsViewController {
         switch item {
         case let .app(index):
             let cell = collectionView.dequeueReusableCell(
-                withType: UICollectionViewCell.self,
+                withType: MyAppsAppCell.self,
                 for: indexPath
             )
+            cell.bind(url: "")
 
             return cell
         case .registerJWT:
             let cell = collectionView.dequeueReusableCell(
-                withType: UICollectionViewCell.self,
+                withType: MyAppsRegisterJWTCell.self,
                 for: indexPath
             )
             return cell

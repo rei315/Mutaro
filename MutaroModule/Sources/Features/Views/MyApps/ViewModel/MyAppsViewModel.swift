@@ -17,7 +17,9 @@ protocol MyAppsViewModelProtocol {}
 public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     typealias Routes = MyAppsRoute
     private let router: Routes
-    let currentJWTInfo = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
+
+    let currentJWTInfoSubject = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
+    let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([])
 
     var cancellables: Set<AnyCancellable> = []
 
@@ -32,13 +34,13 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             return
         }
 
-        guard let currentSavedJWTInfo = currentJWTInfo.value, currentSavedJWTInfo != storedJWTInfo else {
-            currentJWTInfo.send(storedJWTInfo)
+        guard let currentSavedJWTInfo = currentJWTInfoSubject.value, currentSavedJWTInfo != storedJWTInfo else {
+            currentJWTInfoSubject.send(storedJWTInfo)
             return
         }
     }
 
-    func fetchMyApps(storedJWTInfo: MutaroJWT.JWTRequestInfo) async -> [AppInfo] {
+    func fetchMyApps(storedJWTInfo: MutaroJWT.JWTRequestInfo) async {
         let builder = MutaroJWT.AppstoreConnectJWTBuilder(
             keyId: storedJWTInfo.keyID,
             issuerId: storedJWTInfo.issuerID,
@@ -47,7 +49,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         guard let token = try? builder.generateJWT() else {
             // TODO: - show need to register
             print("Mins: failed generate token")
-            return []
+            return
         }
 
         do {
@@ -84,10 +86,9 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
                     iconUrl: parsedImageUrl
                 )
             }.compactMap { $0 }
-            return appInfos
-        } catch {
-            return []
-        }
+
+            appInfosSubject.send(appInfos)
+        } catch {}
     }
 
     private func getMyApps(token: String) async throws -> [(String, String)] {
@@ -109,7 +110,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         return appInfos ?? []
     }
 
-    struct AppInfo {
+    struct AppInfo: Equatable {
         let id: String
         let name: String
         let iconUrl: String

@@ -8,6 +8,8 @@
 import UIKit
 
 final class MyAppsAppCell: UICollectionViewCell {
+    private let thumbnailImageView: UIImageView = .init()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -18,5 +20,11 @@ final class MyAppsAppCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupView() {}
+    private func setupView() {
+        thumbnailImageView.lets {
+            $0.fillConstraint(to: contentView)
+        }
+    }
+
+    func bind(url _: String) {}
 }
