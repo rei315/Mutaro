@@ -15,6 +15,6 @@ public enum AppleImageTemplateUrlParser {
         return url
             .replacingOccurrences(of: "{w}", with: "\(width)")
             .replacingOccurrences(of: "{h}", with: "\(height)")
-            .replacingOccurrences(of: ".{w}", with: ".jpeg")
+            .replacingOccurrences(of: "{f}", with: "jpeg")
     }
 }

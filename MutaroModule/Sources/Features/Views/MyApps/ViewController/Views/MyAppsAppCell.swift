@@ -41,12 +41,8 @@ final class MyAppsAppCell: UICollectionViewCell {
     func bind(url: String) {
         thumbnailImageView.rt_cancelImageLoad()
 
-        let downsampleProcess = ImageProcessGenerator.createDownsample(size: thumbnailImageView.bounds.size)
         thumbnailImageView.rt_setImage(
             withURL: .init(string: url),
-            processors: [
-                downsampleProcess
-            ],
             targetCache: ImageCacheType.myAppCache.getCache()
         )
     }

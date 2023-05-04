@@ -33,6 +33,7 @@ public class MyAppsViewController: UIViewController {
         setupView()
         setupDefaultSnapshot()
         setupSubscription()
+        viewModel.setupSubscription()
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -53,14 +54,6 @@ public class MyAppsViewController: UIViewController {
     }
 
     private func setupSubscription() {
-        viewModel.currentJWTInfoSubject
-            .removeDuplicates()
-            .compactMap { $0 }
-            .sink { [weak self] in
-                self?.fetchMyApps(storedJWTInfo: $0)
-            }
-            .store(in: &viewModel.cancellables)
-
         viewModel.appInfosSubject
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
@@ -68,12 +61,6 @@ public class MyAppsViewController: UIViewController {
                 self?.updateAppsSnapshot(items: $0)
             }
             .store(in: &viewModel.cancellables)
-    }
-
-    private func fetchMyApps(storedJWTInfo: MutaroJWT.JWTRequestInfo) {
-        Task {
-            await viewModel.fetchMyApps(storedJWTInfo: storedJWTInfo)
-        }
     }
 }
 
