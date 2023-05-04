@@ -12,9 +12,11 @@ public enum MyAppsEndpoint {}
 public extension MyAppsEndpoint {
     struct GetAllListMyApps: Endpoint {
         private let token: String
+        private let additionalParameters: [String: Any]
 
-        public init(token: String) {
+        public init(token: String, additionalParameters: [String: Any]) {
             self.token = token
+            self.additionalParameters = additionalParameters
         }
 
         public var baseURL: BaseURL = .appstoreConnectAPI
@@ -30,7 +32,10 @@ public extension MyAppsEndpoint {
         }
 
         public var method: HTTPMethod = .get
-        public var parameters: [String: Any]?
+        public var parameters: [String: Any]? {
+            additionalParameters
+        }
+
         public var multipartParameters: [String: Any]?
     }
 

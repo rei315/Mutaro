@@ -7,6 +7,7 @@
 
 import Core
 import ImageLoader
+import JWTGenerator
 import UIKit
 
 public class MyAppsViewController: UIViewController {
@@ -27,16 +28,26 @@ public class MyAppsViewController: UIViewController {
         view.backgroundColor = .white
         title = HomeTabPage.myApps.title
 
-        viewModel.currentJWTInfo
-            .compactMap { $0 }
-            .sink { [weak self] in
-//                self?.viewModel.test(storedJWTInfo: $0)
-            }
-            .store(in: &viewModel.cancellables)
+        setupSubscription()
     }
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.loadStoredJWTInfo()
+    }
+
+    private func setupSubscription() {
+        viewModel.currentJWTInfo
+            .compactMap { $0 }
+            .sink { [weak self] in
+                self?.fetchMyApps(storedJWTInfo: $0)
+            }
+            .store(in: &viewModel.cancellables)
+    }
+
+    private func fetchMyApps(storedJWTInfo: MutaroJWT.JWTRequestInfo) {
+        Task {
+            let infos = await viewModel.fetchMyApps(storedJWTInfo: storedJWTInfo)
+        }
     }
 }
