@@ -53,21 +53,21 @@ public final class HomeTabViewController: UITabBarController {
 }
 
 enum HomeTabPage: Int {
-    case mutaroList
+    case myApps
     case setting
 
     var title: String {
         switch self {
-        case .mutaroList:
-            return "mutaro"
+        case .myApps:
+            return "MyApps"
         case .setting:
-            return "setting"
+            return "Setting"
         }
     }
 
     var iconName: String {
         switch self {
-        case .mutaroList:
+        case .myApps:
             return "text.below.photo"
         case .setting:
             return "gear"

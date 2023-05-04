@@ -1,5 +1,5 @@
 //
-//  MutaroListViewModel.swift
+//  MyAppsViewModel.swift
 //
 //
 //  Created by minguk-kim on 2023/01/01.
@@ -10,10 +10,10 @@ import Core
 import Foundation
 import UIKit
 
-protocol MutaroListViewModelProtocol {}
+protocol MyAppsViewModelProtocol {}
 
-public final class MutaroListViewModel: NSObject, MutaroListViewModelProtocol {
-    typealias Routes = MutaroListRoute
+public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
+    typealias Routes = MyAppsRoute
     private let router: Routes
 
     var cancellables: Set<AnyCancellable> = []

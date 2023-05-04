@@ -1,5 +1,5 @@
 //
-//  MutaroListViewController.swift
+//  MyAppsViewController.swift
 //
 //
 //  Created by minguk-kim on 2022/12/29.
@@ -9,10 +9,10 @@ import Core
 import ImageLoader
 import UIKit
 
-public class MutaroListViewController: UIViewController {
-    private let viewModel: MutaroListViewModel
+public class MyAppsViewController: UIViewController {
+    private let viewModel: MyAppsViewModel
 
-    init(viewModel: MutaroListViewModel) {
+    init(viewModel: MyAppsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,6 +25,6 @@ public class MutaroListViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = HomeTabPage.mutaroList.title
+        title = HomeTabPage.myApps.title
     }
 }

@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func createHomeTabViewController() -> UIViewController {
-        let tabs = [mainRouter.makeMutaroListTab(), mainRouter.makeSettingTab()]
+        let tabs = [mainRouter.makeMyAppsTab(), mainRouter.makeSettingTab()]
         return HomeTabViewController(viewControllers: tabs)
     }
 
