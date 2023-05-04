@@ -21,12 +21,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     private let imageDownloadService: ImageDownloadable
 
     let currentJWTInfoSubject = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
-    let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([
-        .init(id: "0", name: "test", iconUrl: "abc"),
-        .init(id: "1", name: "test2", iconUrl: "abc"),
-        .init(id: "2", name: "test3", iconUrl: "abc"),
-        .init(id: "3", name: "test4", iconUrl: "abc")
-    ])
+    let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([])
 
     var cancellables: Set<AnyCancellable> = []
 
@@ -101,7 +96,9 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
                 .compactMap { $0 }
 
             appInfosSubject.send(appInfos)
-        } catch {}
+        } catch {
+            print("Mins: \(error)")
+        }
     }
 
     private func getMyApps(token: String) async throws -> [(String, String)] {

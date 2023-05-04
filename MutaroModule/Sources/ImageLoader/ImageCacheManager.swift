@@ -17,7 +17,7 @@ public final class ImageCacheManager {
         case myAppCache = "myApp.Mutaro.MGHouse.me"
         case defaultCache
 
-        func getCache() -> ImageCache {
+        public func getCache() -> ImageCache {
             switch self {
             case .myAppCache:
                 return ImageCacheManager.shared.myAppCache
