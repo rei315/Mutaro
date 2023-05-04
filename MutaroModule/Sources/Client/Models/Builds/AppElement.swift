@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct BuildsElement: Codable {
+struct AppElement: Codable {
     let links: LinksElement?
 
     enum CodingKeys: String, CodingKey {

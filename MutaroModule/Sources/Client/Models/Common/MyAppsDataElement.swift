@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct MyAppsDataElement: Codable {
+struct DataElement: Codable {
     let id: String?
     let relationships: RelationshipsElement?
     let links: LinksElement?
