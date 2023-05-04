@@ -68,7 +68,7 @@ enum HomeTabPage: Int {
     var iconName: String {
         switch self {
         case .myApps:
-            return "text.below.photo"
+            return "app"
         case .setting:
             return "gear"
         }
