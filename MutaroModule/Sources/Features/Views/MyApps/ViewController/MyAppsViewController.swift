@@ -26,6 +26,17 @@ public class MyAppsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = HomeTabPage.myApps.title
-        viewModel.generateJWTString()
+
+        viewModel.currentJWTInfo
+            .compactMap { $0 }
+            .sink { [weak self] in
+//                self?.viewModel.test(storedJWTInfo: $0)
+            }
+            .store(in: &viewModel.cancellables)
+    }
+
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.loadStoredJWTInfo()
     }
 }

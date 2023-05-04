@@ -8,7 +8,7 @@
 import Foundation
 
 public enum MutaroJWT {
-    public struct JWTRequestInfo: Codable {
+    public struct JWTRequestInfo: Codable, Equatable {
         public let issuerID: String
         public let keyID: String
         public let privateKey: String
