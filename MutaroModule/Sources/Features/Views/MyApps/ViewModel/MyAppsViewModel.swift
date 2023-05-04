@@ -71,44 +71,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
 
             do {
                 let myApps = try await getMyApps(token: token)
-                let appInfos = try await myApps
-                    .concurrentMap { app -> AppInfo? in
-                        let appId = app.0
-                        let appName = app.1
-
-                        let buildsParametr: [String: Any] = [
-                            "filter[app]": appId,
-                            "sort": "-uploadedDate",
-                            "limit": 1
-                        ]
-                        let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
-                        let buildsResult = await Provider.shared.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
-                        guard let buildsResultElement = try? buildsResult.get(),
-                              let data = buildsResultElement.data?.first else {
-                            return .init(
-                                id: appId,
-                                name: appName,
-                                iconUrl: nil
-                            )
-                        }
-                        let iconAsset = data.attributes?.iconAssetToken
-                        let width = iconAsset?.width ?? 167
-                        let height = iconAsset?.height ?? 167
-                        let imageUrl = iconAsset?.templateURL
-                        guard let parsedImageUrl = AppleImageTemplateUrlParser.parse(
-                            url: imageUrl,
-                            width: width,
-                            height: height
-                        ) else {
-                            return nil
-                        }
-                        return .init(
-                            id: appId,
-                            name: appName,
-                            iconUrl: parsedImageUrl
-                        )
-                    }
-                    .compactMap { $0 }
+                let appInfos = try await getAppInfos(token: token, myApps: myApps)
                 appInfosSubject.send(appInfos)
             } catch {
                 print("Mins: \(error)")
@@ -133,6 +96,47 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             }
 
         return appInfos ?? []
+    }
+
+    private func getAppInfos(token: String, myApps: [(String, String)]) async throws -> [AppInfo] {
+        try await myApps
+            .concurrentMap { app -> AppInfo? in
+                let appId = app.0
+                let appName = app.1
+
+                let buildsParametr: [String: Any] = [
+                    "filter[app]": appId,
+                    "sort": "-uploadedDate",
+                    "limit": 1
+                ]
+                let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
+                let buildsResult = await Provider.shared.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
+                guard let buildsResultElement = try? buildsResult.get(),
+                      let data = buildsResultElement.data?.first else {
+                    return .init(
+                        id: appId,
+                        name: appName,
+                        iconUrl: nil
+                    )
+                }
+                let iconAsset = data.attributes?.iconAssetToken
+                let width = iconAsset?.width ?? 167
+                let height = iconAsset?.height ?? 167
+                let imageUrl = iconAsset?.templateURL
+                guard let parsedImageUrl = AppleImageTemplateUrlParser.parse(
+                    url: imageUrl,
+                    width: width,
+                    height: height
+                ) else {
+                    return nil
+                }
+                return .init(
+                    id: appId,
+                    name: appName,
+                    iconUrl: parsedImageUrl
+                )
+            }
+            .compactMap { $0 }
     }
 
     func prefetchItem(
