@@ -8,6 +8,7 @@
 import AppResource
 import Core
 import UIKit
+import UniformTypeIdentifiers
 
 class RegisterJWTViewController: UIViewController {
     private let scrollView: UIScrollView = .init()
@@ -21,6 +22,8 @@ class RegisterJWTViewController: UIViewController {
 
     private let privateKeyTitleLabel: UILabel = .init()
     private let privateKeyTextView: PlaceholderTextView = .init(padding: 12)
+
+    private let selectFileButton: UIButton = .init(type: .system)
 
     private let viewModel: RegisterJWTViewModel
 
@@ -78,6 +81,13 @@ class RegisterJWTViewController: UIViewController {
                 self?.configureInfoTextViews(info: $0)
             }
             .store(in: &viewModel.cancellables)
+
+        viewModel.didPickPrivateKeyFileSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.configurePrivateKeyTextViews(value: $0)
+            }
+            .store(in: &viewModel.cancellables)
     }
 
     private func setupView() {
@@ -115,6 +125,7 @@ class RegisterJWTViewController: UIViewController {
 
             $0.addArrangedSubview(privateKeyTitleLabel)
             $0.addArrangedSubview(privateKeyTextView)
+            $0.addArrangedSubview(selectFileButton)
             $0.addArrangedSubview(.createSpacer(axis: .vertical))
             $0.addArrangedSubview(scrollSpacer)
             $0.axis = .vertical
@@ -171,10 +182,21 @@ class RegisterJWTViewController: UIViewController {
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
             $0.clipsToBounds = true
-            $0.placeholder = "PrivateKeyを入力してください"
+            $0.placeholder = "PrivateKeyを入力するか、下のボタンからp8ファイルを選択してください。"
             $0.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 $0.heightAnchor.constraint(equalToConstant: 200)
+            ])
+        }
+
+        selectFileButton.lets {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.setTitle("File Appからp8ファイルを選択する", for: .normal)
+            $0.updateAction(.touchUpInside) { [weak self] in
+                self?.showDocumentPicker()
+            }
+            NSLayoutConstraint.activate([
+                $0.heightAnchor.constraint(equalToConstant: 60)
             ])
         }
     }
@@ -208,6 +230,31 @@ class RegisterJWTViewController: UIViewController {
         issuerIDTextView.text = info.issuerID
         keyIDTextView.text = info.keyID
         privateKeyTextView.text = info.privateKey
+    }
+
+    private func configurePrivateKeyTextViews(value: String) {
+        privateKeyTextView.text = value
+    }
+
+    private func showDocumentPicker() {
+        guard let p8Type = UTType(filenameExtension: "p8") else {
+            return
+        }
+        let documentPicker = UIDocumentPickerViewController(
+            forOpeningContentTypes: [
+                p8Type
+            ],
+            asCopy: true
+        )
+        documentPicker.delegate = self
+        documentPicker.modalPresentationStyle = .formSheet
+        present(documentPicker, animated: true)
+    }
+}
+
+extension RegisterJWTViewController: UIDocumentPickerDelegate {
+    public func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        viewModel.didPickDocuments(urls: urls)
     }
 }
 

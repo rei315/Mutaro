@@ -16,7 +16,7 @@ public final class RegisterJWTViewModel {
 
     let showAlertSubject = PassthroughSubject<AlertState, Never>()
     let showSavedInfoSubject = PassthroughSubject<JWTRequestInfo, Never>()
-
+    let didPickPrivateKeyFileSubject = PassthroughSubject<String, Never>()
     var cancellables: Set<AnyCancellable> = []
 
     init(router: Routes) {
@@ -78,6 +78,16 @@ public final class RegisterJWTViewModel {
             return
         }
         showSavedInfoSubject.send(savedElement)
+    }
+
+    func didPickDocuments(urls: [URL]) {
+        guard let url = urls.first,
+              let data = try? Data(contentsOf: url) else {
+            return
+        }
+
+        let privateKey = String(decoding: data, as: UTF8.self)
+        didPickPrivateKeyFileSubject.send(privateKey)
     }
 }
 
