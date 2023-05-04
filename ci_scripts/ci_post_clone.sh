@@ -26,5 +26,4 @@ if [[ $CI_WORKFLOW = "Test-CI" || $CI_WORKFLOW = "Archive-For-Testflight-Develop
 fi
 
 pip3 install requests
-brew install licenseplist
 defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
