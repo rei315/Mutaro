@@ -37,7 +37,5 @@ final class MyAppsAppCell: UICollectionViewCell {
         }
     }
 
-    func bind(url _: String) {
-        
-    }
+    func bind(url _: String) {}
 }

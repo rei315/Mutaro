@@ -84,9 +84,19 @@ extension MyAppsViewController: UICollectionViewDelegate {
 }
 
 extension MyAppsViewController: UICollectionViewDataSourcePrefetching {
-    public func collectionView(_: UICollectionView, prefetchItemsAt _: [IndexPath]) {}
+    public func collectionView(_: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            let item = dataSource.itemIdentifier(for: indexPath)
+            viewModel.prefetchItem(item)
+        }
+    }
 
-    public func collectionView(_: UICollectionView, cancelPrefetchingForItemsAt _: [IndexPath]) {}
+    public func collectionView(_: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            let item = dataSource.itemIdentifier(for: indexPath)
+            viewModel.cancelPrefrechItem(item)
+        }
+    }
 }
 
 extension MyAppsViewController {

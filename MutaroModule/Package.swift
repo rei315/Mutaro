@@ -48,7 +48,8 @@ let package = Package(
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.51.8"),
         .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
         .package(url: "https://github.com/Quick/Quick", from: "6.1.0"),
-        .package(url: "https://github.com/Quick/Nimble", from: "12.0.0")
+        .package(url: "https://github.com/Quick/Nimble", from: "12.0.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher", from: "7.6.2")
     ],
     targets: [
         .target(
@@ -114,7 +115,9 @@ let package = Package(
         ),
         .target(
             name: "ImageLoader",
-            dependencies: []
+            dependencies: [
+                "Kingfisher"
+            ]
         ),
         .binaryTarget(
             name: "FirebaseCrashlytics",
