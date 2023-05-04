@@ -213,7 +213,7 @@ extension MyAppsViewController {
                 for: indexPath
             )
             if let item = viewModel.appInfosSubject.value[getOrNil: index] {
-                cell.bind(url: item.iconUrl)
+                cell.bind(url: item.iconUrl, title: item.name)
             }
 
             return cell

@@ -85,7 +85,11 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
                         let buildsResult = await Provider.shared.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
                         guard let buildsResultElement = try? buildsResult.get(),
                               let data = buildsResultElement.data?.first else {
-                            return nil
+                            return .init(
+                                id: appId,
+                                name: appName,
+                                iconUrl: nil
+                            )
                         }
                         let iconAsset = data.attributes?.iconAssetToken
                         let width = iconAsset?.width ?? 167
@@ -164,6 +168,6 @@ extension MyAppsViewModel {
     struct AppInfo: Equatable {
         let id: String
         let name: String
-        let iconUrl: String
+        let iconUrl: String?
     }
 }
