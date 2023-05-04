@@ -1,14 +1,14 @@
 
 import Foundation
 
-struct PricePointsElement: Codable {
-    let links: LinksElement?
+public struct PricePointsElement: Codable {
+    public let links: LinksElement?
 
     enum CodingKeys: String, CodingKey {
         case links = "links"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         links = try values.decodeIfPresent(LinksElement.self, forKey: .links)

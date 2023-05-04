@@ -1,18 +1,18 @@
 
 import Foundation
 
-struct AttributesElement: Codable {
-    let subscriptionStatusUrlVersionForSandbox: String?
-    let subscriptionStatusUrlVersion: String?
-    let availableInNewTerritories: Bool?
-    let sku: String?
-    let contentRightsDeclaration: String?
-    let bundleId: String?
-    let primaryLocale: String?
-    let subscriptionStatusUrl: String?
-    let subscriptionStatusUrlForSandbox: String?
-    let name: String?
-    let isOrEverWasMadeForKids: Bool?
+public struct AttributesElement: Codable {
+    public let subscriptionStatusUrlVersionForSandbox: String?
+    public let subscriptionStatusUrlVersion: String?
+    public let availableInNewTerritories: Bool?
+    public let sku: String?
+    public let contentRightsDeclaration: String?
+    public let bundleId: String?
+    public let primaryLocale: String?
+    public let subscriptionStatusUrl: String?
+    public let subscriptionStatusUrlForSandbox: String?
+    public let name: String?
+    public let isOrEverWasMadeForKids: Bool?
 
     enum CodingKeys: String, CodingKey {
         case subscriptionStatusUrlVersionForSandbox = "subscriptionStatusUrlVersionForSandbox"
@@ -28,7 +28,7 @@ struct AttributesElement: Codable {
         case isOrEverWasMadeForKids = "isOrEverWasMadeForKids"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         subscriptionStatusUrlVersionForSandbox = try values.decodeIfPresent(String.self, forKey: .subscriptionStatusUrlVersionForSandbox)

@@ -38,39 +38,39 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         }
     }
 
-//    func test(storedJWTInfo: MutaroJWT.JWTRequestInfo) {
-//        let builder = MutaroJWT.AppstoreConnectJWTBuilder(
-//            keyId: storedJWTInfo.keyID,
-//            issuerId: storedJWTInfo.issuerID,
-//            pemString: storedJWTInfo.privateKey
-//        )
-//        guard let token = try? builder.generateJWT() else {
-//            // TODO: - show need to register
-//            print("Mins: failed generate token")
-//            return
-//        }
-//        Task {
-//            let myAppsEndpoint = MyAppsEndpoint.GetAllListMyApps(token: token)
-//            let myAppsResult = await Provider.shared.request(endpoint: myAppsEndpoint, responseModel: MyAppsElement.self)
-//            switch myAppsResult {
-//            case let .success(myAppsElement):
-//                let appId = myAppsElement.data?.first?.id ?? ""
-//                let buildsParametr = [
-//                    "filter[app]": appId,
-//                    "sort": "-uploadedDate",
-//                    "limit": 1
-//                ]
-//                let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
-//                let buildsResult = await Provider.shared.request(endpoint: buildsEndpoint)
-//                switch buildsResult {
-//                case let .success(buildsElement):
-//                    print("Mins: \(buildsElement.prettyPrintedJSONString)")
-//                case .failure:
-//                    break
-//                }
-//            case .failure:
-//                print("Mins: failed client")
-//            }
-//        }
-//    }
+    func test(storedJWTInfo: MutaroJWT.JWTRequestInfo) {
+        let builder = MutaroJWT.AppstoreConnectJWTBuilder(
+            keyId: storedJWTInfo.keyID,
+            issuerId: storedJWTInfo.issuerID,
+            pemString: storedJWTInfo.privateKey
+        )
+        guard let token = try? builder.generateJWT() else {
+            // TODO: - show need to register
+            print("Mins: failed generate token")
+            return
+        }
+        Task {
+            let myAppsEndpoint = MyAppsEndpoint.GetAllListMyApps(token: token)
+            let myAppsResult = await Provider.shared.request(endpoint: myAppsEndpoint, responseModel: MyAppsElement.self)
+            switch myAppsResult {
+            case let .success(myAppsElement):
+                let appId = myAppsElement.data?.first?.id ?? ""
+                let buildsParametr = [
+                    "filter[app]": appId,
+                    "sort": "-uploadedDate",
+                    "limit": 1
+                ]
+                let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
+                let buildsResult = await Provider.shared.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
+                switch buildsResult {
+                case let .success(buildsElement):
+                    print("Mins: \(buildsElement)")
+                case .failure:
+                    break
+                }
+            case .failure:
+                print("Mins: failed client")
+            }
+        }
+    }
 }

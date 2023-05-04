@@ -1,10 +1,10 @@
 
 import Foundation
 
-struct BuildsElement: Codable {
-    let links: LinksElement?
-    let data: [DataElement]?
-    let meta: MetaElement?
+public struct BuildsElement: Codable {
+    public let links: LinksElement?
+    public let data: [DataElement]?
+    public let meta: MetaElement?
 
     enum CodingKeys: String, CodingKey {
         case links = "links"
@@ -12,7 +12,7 @@ struct BuildsElement: Codable {
         case meta = "meta"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         links = try values.decodeIfPresent(LinksElement.self, forKey: .links)

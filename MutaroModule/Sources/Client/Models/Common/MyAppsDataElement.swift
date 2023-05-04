@@ -1,12 +1,12 @@
 
 import Foundation
 
-struct DataElement: Codable {
-    let id: String?
-    let relationships: RelationshipsElement?
-    let links: LinksElement?
-    let type: String?
-    let attributes: AttributesElement?
+public struct DataElement: Codable {
+    public let id: String?
+    public let relationships: RelationshipsElement?
+    public let links: LinksElement?
+    public let type: String?
+    public let attributes: AttributesElement?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -16,7 +16,7 @@ struct DataElement: Codable {
         case attributes = "attributes"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try values.decodeIfPresent(String.self, forKey: .id)

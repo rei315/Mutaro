@@ -1,14 +1,14 @@
 
 import Foundation
 
-struct BetaAppLocalizationsElement: Codable {
-    let links: LinksElement?
+public struct BetaAppLocalizationsElement: Codable {
+    public let links: LinksElement?
 
     enum CodingKeys: String, CodingKey {
         case links = "links"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         links = try values.decodeIfPresent(LinksElement.self, forKey: .links)

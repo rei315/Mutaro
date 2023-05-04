@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct IconAssetTokenElement: Codable {
+public struct IconAssetTokenElement: Codable {
     let width: Int?
     let templateUrl: String?
     let height: Int?
@@ -12,7 +12,7 @@ struct IconAssetTokenElement: Codable {
         case height = "height"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         width = try values.decodeIfPresent(Int.self, forKey: .width)

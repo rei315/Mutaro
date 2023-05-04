@@ -1,37 +1,37 @@
 
 import Foundation
 
-struct RelationshipsElement: Codable {
-    let reviewSubmissions: ReviewSubmissionsElement?
-    let betaAppLocalizations: BetaAppLocalizationsElement?
-    let promotedPurchases: PromotedPurchasesElement?
-    let ciProduct: CiProductElement?
-    let appClips: AppClipsElement?
-    let betaTesters: BetaTestersElement?
-    let inAppPurchases: InAppPurchasesElement?
-    let appAvailability: AppAvailabilityElement?
-    let preReleaseVersions: PreReleaseVersionsElement?
-    let appPricePoints: AppPricePointsElement?
-    let betaAppReviewDetail: BetaAppReviewDetailElement?
-    let builds: BuildsElement?
-    let availableTerritories: AvailableTerritoriesElement?
-    let inAppPurchasesV2: InAppPurchasesV2Element?
-    let customerReviews: CustomerReviewsElement?
-    let betaGroups: BetaGroupsElement?
-    let betaLicenseAgreement: BetaLicenseAgreementElement?
-    let endUserLicenseAgreement: EndUserLicenseAgreementElement?
-    let appPriceSchedule: AppPriceScheduleElement?
-    let subscriptionGroups: SubscriptionGroupsElement?
-    let gameCenterEnabledVersions: GameCenterEnabledVersionsElement?
-    let perfPowerMetrics: PerfPowerMetricsElement?
-    let appEvents: AppEventsElement?
-    let subscriptionGracePeriod: SubscriptionGracePeriodElement?
-    let pricePoints: PricePointsElement?
-    let appCustomProductPages: AppCustomProductPagesElement?
-    let preOrder: PreOrderElement?
-    let appInfos: AppInfosElement?
-    let appStoreVersions: AppStoreVersionsElement?
-    let prices: PricesElement?
+public struct RelationshipsElement: Codable {
+    public let reviewSubmissions: ReviewSubmissionsElement?
+    public let betaAppLocalizations: BetaAppLocalizationsElement?
+    public let promotedPurchases: PromotedPurchasesElement?
+    public let ciProduct: CiProductElement?
+    public let appClips: AppClipsElement?
+    public let betaTesters: BetaTestersElement?
+    public let inAppPurchases: InAppPurchasesElement?
+    public let appAvailability: AppAvailabilityElement?
+    public let preReleaseVersions: PreReleaseVersionsElement?
+    public let appPricePoints: AppPricePointsElement?
+    public let betaAppReviewDetail: BetaAppReviewDetailElement?
+    public let builds: BuildsElement?
+    public let availableTerritories: AvailableTerritoriesElement?
+    public let inAppPurchasesV2: InAppPurchasesV2Element?
+    public let customerReviews: CustomerReviewsElement?
+    public let betaGroups: BetaGroupsElement?
+    public let betaLicenseAgreement: BetaLicenseAgreementElement?
+    public let endUserLicenseAgreement: EndUserLicenseAgreementElement?
+    public let appPriceSchedule: AppPriceScheduleElement?
+    public let subscriptionGroups: SubscriptionGroupsElement?
+    public let gameCenterEnabledVersions: GameCenterEnabledVersionsElement?
+    public let perfPowerMetrics: PerfPowerMetricsElement?
+    public let appEvents: AppEventsElement?
+    public let subscriptionGracePeriod: SubscriptionGracePeriodElement?
+    public let pricePoints: PricePointsElement?
+    public let appCustomProductPages: AppCustomProductPagesElement?
+    public let preOrder: PreOrderElement?
+    public let appInfos: AppInfosElement?
+    public let appStoreVersions: AppStoreVersionsElement?
+    public let prices: PricesElement?
 
     enum CodingKeys: String, CodingKey {
         case reviewSubmissions = "reviewSubmissions"
@@ -66,7 +66,7 @@ struct RelationshipsElement: Codable {
         case prices = "prices"
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         reviewSubmissions = try values.decodeIfPresent(ReviewSubmissionsElement.self, forKey: .reviewSubmissions)
