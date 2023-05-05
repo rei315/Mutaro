@@ -5,7 +5,6 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
-import AppResource
 import Core
 import Features
 import UIKit
@@ -18,6 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         _ scene: UIScene, willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().clipsToBounds = true
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().clipsToBounds = true
+        
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
@@ -41,7 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func createHomeTabViewController() -> UIViewController {
-        let tabs = [mainRouter.makeMutaroListTab(), mainRouter.makeSettingTab()]
+        let tabs = [mainRouter.makeMyAppsTab(), mainRouter.makeSettingTab()]
         return HomeTabViewController(viewControllers: tabs)
     }
 
@@ -81,13 +87,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func setupNavigationBarStyle() {
-        let titleColor = Resources.Colors.black.color
+        let titleColor = ColorAsset.black
         let appearance = UINavigationBarAppearance().apply {
             $0.largeTitleTextAttributes = [
                 .foregroundColor: titleColor,
-                .font: FontSize.plus5.ofBoldFont(),
-            ]
-            $0.backgroundColor = Resources.Colors.white.color
+                .font: UIFont.boldSystemFont(ofSize: 32),
+            ]            
+            $0.backgroundColor = ColorAsset.white
             $0.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: titleColor
             ]

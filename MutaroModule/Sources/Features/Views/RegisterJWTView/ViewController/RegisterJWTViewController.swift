@@ -5,8 +5,8 @@
 //  Created by minguk-kim on 2023/05/03.
 //
 
-import AppResource
 import Core
+import JWTGenerator
 import UIKit
 import UniformTypeIdentifiers
 
@@ -140,14 +140,14 @@ class RegisterJWTViewController: UIViewController {
         issuerIDTitleLabel.lets {
             $0.text = "Issuer ID"
             $0.font = FontSize.minus1.ofBoldFont()
-            $0.textColor = Resources.Colors.navy70.color
+            $0.textColor = R.color.navy70()
         }
         issuerIDTextView.lets {
             $0.textPadding = .init(top: 12, left: 12, bottom: 12, right: 12)
             $0.placeholder = "Issuer IDを入力してください"
             $0.font = FontSize.minus1.ofFont()
-            $0.textColor = Resources.Colors.navy40.color
-            $0.layer.borderColor = Resources.Colors.navy20.color.cgColor
+            $0.textColor = R.color.navy40()
+            $0.layer.borderColor = R.color.navy20()?.cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -157,14 +157,14 @@ class RegisterJWTViewController: UIViewController {
         keyIDTitleLabel.lets {
             $0.text = "Key ID"
             $0.font = FontSize.minus1.ofBoldFont()
-            $0.textColor = Resources.Colors.navy70.color
+            $0.textColor = R.color.navy70()
         }
         keyIDTextView.lets {
             $0.textPadding = .init(top: 12, left: 12, bottom: 12, right: 12)
             $0.placeholder = "Key IDを入力してください"
             $0.font = FontSize.minus1.ofFont()
-            $0.textColor = Resources.Colors.navy40.color
-            $0.layer.borderColor = Resources.Colors.navy20.color.cgColor
+            $0.textColor = R.color.navy40()
+            $0.layer.borderColor = R.color.navy20()?.cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
             $0.clearButtonMode = .always
@@ -173,12 +173,12 @@ class RegisterJWTViewController: UIViewController {
         privateKeyTitleLabel.lets {
             $0.text = "Private Key"
             $0.font = FontSize.minus1.ofBoldFont()
-            $0.textColor = Resources.Colors.navy70.color
+            $0.textColor = R.color.navy70()
         }
         privateKeyTextView.lets {
             $0.font = FontSize.minus1.ofBoldFont()
-            $0.textColor = Resources.Colors.navy70.color
-            $0.layer.borderColor = Resources.Colors.navy20.color.cgColor
+            $0.textColor = R.color.navy70()
+            $0.layer.borderColor = R.color.navy20()?.cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
             $0.clipsToBounds = true
@@ -226,7 +226,7 @@ class RegisterJWTViewController: UIViewController {
         AlertHUD.show(title: state.title)
     }
 
-    private func configureInfoTextViews(info: RegisterJWTViewModel.JWTRequestInfo) {
+    private func configureInfoTextViews(info: MutaroJWT.JWTRequestInfo) {
         issuerIDTextView.text = info.issuerID
         keyIDTextView.text = info.keyID
         privateKeyTextView.text = info.privateKey

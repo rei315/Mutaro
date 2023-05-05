@@ -5,7 +5,6 @@
 //  Created by minguk-kim on 2023/01/01.
 //
 
-import AppResource
 import Core
 import UIKit
 
@@ -30,16 +29,16 @@ public final class HomeTabViewController: UITabBarController {
             let itemAppearance = UITabBarItemAppearance().apply {
                 $0.normal.iconColor = .brown
                 $0.normal.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor: Resources.Colors.navy.color
+                    NSAttributedString.Key.foregroundColor: R.color.navy()
                 ]
-                $0.selected.iconColor = Resources.Colors.black.color
+                $0.selected.iconColor = R.color.black()
                 $0.selected.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor: Resources.Colors.black.color
+                    NSAttributedString.Key.foregroundColor: R.color.black()
                 ]
             }
             let barAppearance = UITabBarAppearance().apply {
                 $0.configureWithOpaqueBackground()
-                $0.backgroundColor = Resources.Colors.white.color
+                $0.backgroundColor = R.color.white()
                 $0.inlineLayoutAppearance = itemAppearance
                 $0.stackedLayoutAppearance = itemAppearance
                 $0.compactInlineLayoutAppearance = itemAppearance
@@ -53,34 +52,34 @@ public final class HomeTabViewController: UITabBarController {
 }
 
 enum HomeTabPage: Int {
-    case mutaroList
+    case myApps
     case setting
 
     var title: String {
         switch self {
-        case .mutaroList:
-            return "mutaro"
+        case .myApps:
+            return "MyApps"
         case .setting:
-            return "setting"
+            return "Setting"
         }
     }
 
     var iconName: String {
         switch self {
-        case .mutaroList:
-            return "text.below.photo"
+        case .myApps:
+            return "app"
         case .setting:
             return "gear"
         }
     }
 
     var normalTabIconConfiguration: UIImage.SymbolConfiguration {
-        let normalTabImageColor = Resources.Colors.navy.color
+        let normalTabImageColor = R.color.navy() ?? .gray
         return UIImage.SymbolConfiguration(hierarchicalColor: normalTabImageColor)
     }
 
     var selectedTabIconConfiguration: UIImage.SymbolConfiguration {
-        let normalTabImageColor = Resources.Colors.turquoise.color
+        let normalTabImageColor = R.color.turquoise() ?? .orange
         return UIImage.SymbolConfiguration(hierarchicalColor: normalTabImageColor)
     }
 

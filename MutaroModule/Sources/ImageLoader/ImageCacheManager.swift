@@ -5,46 +5,60 @@
 //  Created by minguk-kim on 2023/01/02.
 //
 
-import UIKit
+import Foundation
+import Kingfisher
+
+public typealias ImageCacheType = ImageCacheManager.ImageCacheType
 
 public final class ImageCacheManager {
-    public struct Config {
-        let countLimit: Int
-        let memoryLimit: Int
-
-        public static let defaultConfig = Config(
-            countLimit: 100,
-            memoryLimit: 1024 * 1024 * 300
-        )
-    }
-
-    private lazy var imageCache: NSCache<AnyObject, AnyObject> = {
-        let cache = NSCache<AnyObject, AnyObject>()
-        cache.countLimit = config.countLimit
-        return cache
-    }()
-
-    private let config: Config
     public static let shared = ImageCacheManager()
 
-    public init(config: Config = Config.defaultConfig) {
-        self.config = config
-    }
+    public enum ImageCacheType: String {
+        case myAppCache = "myApp.Mutaro.MGHouse.me"
+        case defaultCache
 
-    public func insertImage(_ image: UIImage, for url: URL) {
-        imageCache.setObject(image, forKey: url as AnyObject)
-    }
-
-    public func getCachedImage(fileUrl: URL) -> UIImage? {
-        guard let imageFromCache = imageCache.object(forKey: fileUrl as AnyObject) as? UIImage
-        else {
-            return nil
+        public func getCache() -> ImageCache {
+            switch self {
+            case .myAppCache:
+                return ImageCacheManager.shared.myAppCache
+            case .defaultCache:
+                return ImageCacheManager.shared.defaultCache
+            }
         }
-        return imageFromCache
     }
 
-    public func isAlreadyInCache(fileUrl: URL) -> Bool {
-        let cache = imageCache.object(forKey: fileUrl as AnyObject)
-        return cache != nil
+    // TODO: - add user-detail cache
+    private let myAppCache: ImageCache
+    private let defaultCache = ImageCache.default
+
+    init() {
+        // 100 mb memory, 60 sec to expiration
+        let megabyte = 1024 * 1024
+        myAppCache = ImageCache(name: ImageCacheType.myAppCache.rawValue)
+        myAppCache.memoryStorage.config.totalCostLimit = 100 * megabyte
+        myAppCache.memoryStorage.config.countLimit = 100
+        myAppCache.memoryStorage.config.cleanInterval = 60
+        myAppCache.memoryStorage.config.expiration = .seconds(60)
+
+        defaultCache.memoryStorage.config.totalCostLimit = 300 * megabyte
+        defaultCache.memoryStorage.config.countLimit = 100
+        defaultCache.memoryStorage.config.cleanInterval = 30
+        defaultCache.memoryStorage.config.expiration = .seconds(300)
+    }
+
+    public func clearCache(_ types: [ImageCacheType]) {
+        for type in types {
+            switch type {
+            case .myAppCache:
+                myAppCache.clearMemoryCache()
+            case .defaultCache:
+                defaultCache.clearMemoryCache()
+            }
+        }
+    }
+
+    public func removeExpiredCache() {
+        myAppCache.memoryStorage.removeExpired()
+        defaultCache.memoryStorage.removeExpired()
     }
 }

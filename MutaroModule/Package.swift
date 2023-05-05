@@ -43,12 +43,13 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
+        .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
         .package(url: "https://github.com/realm/SwiftLint", from: "0.51.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.51.8"),
         .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
         .package(url: "https://github.com/Quick/Quick", from: "6.1.0"),
-        .package(url: "https://github.com/Quick/Nimble", from: "12.0.0")
+        .package(url: "https://github.com/Quick/Nimble", from: "12.0.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher", from: "7.6.2")
     ],
     targets: [
         .target(
@@ -56,23 +57,19 @@ let package = Package(
             dependencies: [
                 "ImageLoader",
                 "Core",
-                "AppResource",
                 "Client",
                 "JWTGenerator",
-                "KeychainStore"
+                "KeychainStore",
+                .product(name: "RswiftLibrary", package: "R.swift")
             ],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
-            ],
-            plugins: [
-                .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
-            ]
+            ]            
         ),
         .target(
             name: "Core",
             dependencies: [
-                "ImageLoader",
-                "AppResource"
+                "ImageLoader"
             ]
         ),
         .target(
@@ -103,18 +100,10 @@ let package = Package(
             ]
         ),
         .target(
-            name: "AppResource",
-            dependencies: [],
-            exclude: [
-                "swiftgen.yml"
-            ],
-            plugins: [
-                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
-            ]
-        ),
-        .target(
             name: "ImageLoader",
-            dependencies: []
+            dependencies: [
+                "Kingfisher"
+            ]
         ),
         .binaryTarget(
             name: "FirebaseCrashlytics",

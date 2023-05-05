@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Endpoint {
+public protocol Endpoint {
     var baseURL: BaseURL { get set }
     var baseHeaders: [String: String]? { get async }
 
@@ -17,7 +17,7 @@ protocol Endpoint {
     var multipartParameters: [String: Any]? { get }
 }
 
-extension Endpoint {
+public extension Endpoint {
     func urlRequest() async throws -> URLRequest {
         let queryString = query(parameters)
         guard let url = try await url(method: method, query: queryString) else {
@@ -74,7 +74,7 @@ extension Endpoint {
     }
 }
 
-extension Endpoint {
+public extension Endpoint {
     private func query(_ parameters: [String: Any]?) -> String? {
         guard let parameters else {
             return nil
@@ -88,7 +88,7 @@ extension Endpoint {
         return components.map { "\($0)=\($1)" }.joined(separator: "&")
     }
 
-    public func queryComponents(fromKey key: String, value: Any) -> [(String, String)] {
+    func queryComponents(fromKey key: String, value: Any) -> [(String, String)] {
         var components: [(String, String)] = []
         switch value {
         case let dictionary as [String: Any]:
@@ -113,7 +113,7 @@ extension Endpoint {
         return components
     }
 
-    public func escape(_ string: String) -> String {
+    func escape(_ string: String) -> String {
         string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? string
     }
 }

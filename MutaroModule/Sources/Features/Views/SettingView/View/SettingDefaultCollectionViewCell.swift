@@ -5,7 +5,6 @@
 //  Created by minguk-kim on 2023/01/10.
 //
 
-import AppResource
 import Core
 import UIKit
 
@@ -36,7 +35,7 @@ class SettingDefaultCollectionViewCell: UICollectionViewCell {
         labelView.lets {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.font = FontSize.plus1.ofFont()
-            $0.textColor = Resources.Colors.navy.color
+            $0.textColor = R.color.navy()
             contentView.addSubview($0)
         }
 

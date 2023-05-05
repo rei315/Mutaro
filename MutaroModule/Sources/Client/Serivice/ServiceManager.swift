@@ -7,8 +7,9 @@
 
 import Foundation
 
-enum BaseURL {
+public enum BaseURL {
     case appstoreConnectAPI
+    case iTunes
 
     func get() -> String {
         let url: String
@@ -16,13 +17,15 @@ enum BaseURL {
         switch self {
         case .appstoreConnectAPI:
             url = "https://api.appstoreconnect.apple.com"
+        case .iTunes:
+            url = "https://itunes.apple.com"
         }
 
         return url
     }
 }
 
-actor ServiceManager {
+public actor ServiceManager {
     static let shared = ServiceManager()
 
     private init() {}

@@ -15,7 +15,7 @@ public final class RegisterJWTViewModel {
     private let router: Routes
 
     let showAlertSubject = PassthroughSubject<AlertState, Never>()
-    let showSavedInfoSubject = PassthroughSubject<JWTRequestInfo, Never>()
+    let showSavedInfoSubject = PassthroughSubject<MutaroJWT.JWTRequestInfo, Never>()
     let didPickPrivateKeyFileSubject = PassthroughSubject<String, Never>()
     var cancellables: Set<AnyCancellable> = []
 
@@ -57,12 +57,12 @@ public final class RegisterJWTViewModel {
             return
         }
 
-        let info = JWTRequestInfo(
+        let info = MutaroJWT.JWTRequestInfo(
             issuerID: issuerID,
             keyID: keyID,
             privateKey: privateKey
         )
-        KeychainStore.shared.delete(JWTRequestInfo.self)
+        KeychainStore.shared.delete(MutaroJWT.JWTRequestInfo.self)
 
         guard let isSuccessed = try? KeychainStore.shared.save(info, forKey: "b"),
               isSuccessed else {
@@ -74,7 +74,7 @@ public final class RegisterJWTViewModel {
     }
 
     func loadRegisteredInfo() {
-        guard let savedElement = try? KeychainStore.shared.get(JWTRequestInfo.self).first else {
+        guard let savedElement = try? KeychainStore.shared.get(MutaroJWT.JWTRequestInfo.self).first else {
             return
         }
         showSavedInfoSubject.send(savedElement)
@@ -92,12 +92,6 @@ public final class RegisterJWTViewModel {
 }
 
 extension RegisterJWTViewModel {
-    struct JWTRequestInfo: Codable {
-        let issuerID: String
-        let keyID: String
-        let privateKey: String
-    }
-
     enum AlertState {
         case invalidIssuerID
         case invalidKeyID

@@ -5,7 +5,6 @@
 //  Created by minguk-kim on 2023/01/01.
 //
 
-import AppResource
 import Core
 import UIKit
 
@@ -175,13 +174,11 @@ extension SettingViewController {
             }
         }
 
-        var icon: UIImage {
-            let asset: ImageAsset
+        var icon: UIImage? {
             switch self {
             case .registerJWT:
-                asset = Resources.Images.devSetting
+                return R.image.dev_setting()
             }
-            return asset.image
         }
     }
 
@@ -198,15 +195,13 @@ extension SettingViewController {
             }
         }
 
-        var icon: UIImage {
-            let asset: ImageAsset
+        var icon: UIImage? {
             switch self {
             case .info:
-                asset = Resources.Images.info
+                return R.image.info()
             case .setting:
-                asset = Resources.Images.setting
+                return R.image.setting()
             }
-            return asset.image
         }
     }
 }

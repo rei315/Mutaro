@@ -14,8 +14,8 @@ protocol ProviderProtocol {
     func request(endpoint: Endpoint) async -> Result<Data, RequestError>
 }
 
-final class Provider: ProviderProtocol {
-    static let shared = Provider()
+public final class Provider: ProviderProtocol {
+    public static let shared = Provider()
 
     private let session: URLSession
     private let successRange = 200..<300
@@ -29,7 +29,7 @@ final class Provider: ProviderProtocol {
         self.session = session
     }
 
-    func request<T>(endpoint: Endpoint, responseModel: T.Type) async -> Result<T, RequestError>
+    public func request<T>(endpoint: Endpoint, responseModel: T.Type) async -> Result<T, RequestError>
         where T: Decodable {
         do {
             let request = try await endpoint.urlRequest()
@@ -57,7 +57,7 @@ final class Provider: ProviderProtocol {
         }
     }
 
-    func request(endpoint: Endpoint) async -> Result<Data, RequestError> {
+    public func request(endpoint: Endpoint) async -> Result<Data, RequestError> {
         do {
             let request = try await endpoint.urlRequest()
 
