@@ -5,11 +5,10 @@
 //  Created by minguk-kim on 2023/01/12.
 //
 
-import SettingFeature
 import UIKit
 
-extension SettingRoute where Self: Router {
-    public func makeSettingTab() -> UIViewController {
+// extension SettingRoute where Self: Router {
+//    public func makeSettingTab() -> UIViewController {
 //        let router = DefaultRouter(rootTransition: EmptyTransition())
 //        let viewModel = SettingViewModel(router: router)
 //        let viewController = SettingViewController(viewModel: viewModel)
@@ -19,12 +18,12 @@ extension SettingRoute where Self: Router {
 //        navigationController.setLargeTitle()
 //        navigationController.tabBarItem = HomeTabPage.setting.item
 //        return navigationController
-        UIViewController()
-    }
+//        UIViewController()
+//    }
 
-    func selectMutaroListTab() {
+//    func selectMutaroListTab() {
 //        root?.tabBarController?.selectedIndex = HomeTabPage.setting.rawValue
-    }
-}
-
-extension DefaultRouter: SettingRoute {}
+//    }
+// }
+//
+// extension DefaultRouter: SettingRoute {}

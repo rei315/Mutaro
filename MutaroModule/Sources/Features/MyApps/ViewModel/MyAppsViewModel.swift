@@ -25,7 +25,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
 
     var cancellables: Set<AnyCancellable> = []
 
-    init(
+    public init(
         //        router: Routes,
         imageDownloadService: ImageDownloadable = ImageDownloadService()
     ) {

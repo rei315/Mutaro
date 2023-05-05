@@ -15,9 +15,6 @@ public protocol RegisterJWTRoute {
 }
 
 public final class RegisterJWTViewModel {
-//    typealias Routes = RegisterJWTRoute
-//    private let router: Routes
-
     let showAlertSubject = PassthroughSubject<AlertState, Never>()
     let showSavedInfoSubject = PassthroughSubject<MutaroJWT.JWTRequestInfo, Never>()
     let didPickPrivateKeyFileSubject = PassthroughSubject<String, Never>()

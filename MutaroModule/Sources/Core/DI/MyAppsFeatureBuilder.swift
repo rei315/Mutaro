@@ -9,9 +9,10 @@ import NeedleFoundation
 import UIKit
 
 public protocol MyAppsFeatureBuildable: Buildable {
+    @MainActor
     func build() -> UIViewController
 }
 
-public protocol MyAppsFeatureBuilder {
+public protocol FeatureMyApps {
     func myAppsFeatureBuilder() -> MyAppsFeatureBuildable
 }

@@ -14,9 +14,19 @@ public class MyAppsViewController: UIViewController {
     private lazy var collectionView: UICollectionView = .init(frame: .zero, collectionViewLayout: configureLayout())
     private lazy var dataSource: DataSource = self.configureDataSource()
     private let viewModel: MyAppsViewModel
+    private let dependency: Dependency
 
-    public init(viewModel: MyAppsViewModel) {
-        self.viewModel = viewModel
+    public struct Dependency {
+        let viewModel: MyAppsViewModel
+
+        public init(viewModel: MyAppsViewModel) {
+            self.viewModel = viewModel
+        }
+    }
+
+    public init(dependency: Dependency) {
+        self.dependency = dependency
+        viewModel = dependency.viewModel
         super.init(nibName: nil, bundle: nil)
     }
 

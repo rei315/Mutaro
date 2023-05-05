@@ -40,7 +40,8 @@ let productionFeatures: [PackageDescription.Target.Dependency] = [
     "HomeViewFeature",
     "MyAppsFeature",
     "RegisterJWTFeature",
-    "SettingFeature"
+    "SettingFeature",
+    .needle
 ]
 
 let package = Package(
@@ -58,6 +59,7 @@ let package = Package(
             name: "FirebaseSetup",
             targets: ["FirebaseSetup"]
         ),
+        .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
         .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
         .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
@@ -76,7 +78,7 @@ let package = Package(
     targets: [
         .target(
             name: "MutaroApp",
-            dependencies: productionFeatures
+            dependencies: [.needle]
         ),
         .target(
             name: "AppIntroductionFeature",

@@ -8,7 +8,7 @@
 import Core
 import UIKit
 
-class SettingViewController: UIViewController {
+public final class SettingViewController: UIViewController {
     private lazy var collectionView: UICollectionView = .init(
         frame: .zero,
         collectionViewLayout: createLayout()
@@ -30,9 +30,19 @@ class SettingViewController: UIViewController {
         }
 
     private let viewModel: SettingViewModel
+    private let dependency: Dependency
 
-    init(viewModel: SettingViewModel) {
-        self.viewModel = viewModel
+    public struct Dependency {
+        let viewModel: SettingViewModel
+
+        public init(viewModel: SettingViewModel) {
+            self.viewModel = viewModel
+        }
+    }
+
+    public init(dependency: Dependency) {
+        self.dependency = dependency
+        viewModel = dependency.viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -41,7 +51,7 @@ class SettingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
@@ -150,7 +160,7 @@ extension SettingViewController {
 }
 
 extension SettingViewController: UICollectionViewDelegate {
-    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = dataSource.itemIdentifier(for: indexPath)
         switch item {
         case let .defaultSetting(index):

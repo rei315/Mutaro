@@ -11,11 +11,20 @@ import UIKit
 public final class AppIntroductionViewController: UIViewController {
     private let button: UIButton = .init()
 
-    weak var delegate: AppIntroductDelegate?
     private var viewModel: AppIntroductionViewModel
+    private let dependency: Dependency
 
-    init(viewModel: AppIntroductionViewModel) {
-        self.viewModel = viewModel
+    public struct Dependency {
+        let viewModel: AppIntroductionViewModel
+
+        public init(viewModel: AppIntroductionViewModel) {
+            self.viewModel = viewModel
+        }
+    }
+
+    public init(dependency: Dependency) {
+        self.dependency = dependency
+        viewModel = dependency.viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -46,7 +55,6 @@ public final class AppIntroductionViewController: UIViewController {
             $0.configuration = configuration
             $0.updateAction(.touchUpInside) { [weak self] in
                 self?.viewModel.onTapAgree()
-                self?.delegate?.onTapAgree()
             }
             view.addSubview($0)
 

@@ -5,13 +5,11 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
-import Core
 import MutaroApp
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    let mainRouter = DefaultRouter(rootTransition: EmptyTransition())
 
     func scene(
         _ scene: UIScene, willConnectTo session: UISceneSession,
@@ -24,14 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().clipsToBounds = true
         
-//        guard let windowScene = (scene as? UIWindowScene) else {
-//            return
-//        }
-//        setupNavigationBarStyle()
-//
-//        window = UIWindow(windowScene: windowScene)
-//        window?.makeKeyAndVisible()
-//
+        guard let windowScene = (scene as? UIWindowScene) else {
+            return
+        }
+        setupNavigationBarStyle()
+
 //        let isNotFirstAppLaunching = UserDefaults.standard.bool(
 //            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
 //
@@ -42,8 +37,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            mainVC = createAppIntroductViewController()
 //        }
 //
-//        sleep(1)
-//        window?.rootViewController = mainVC
+        sleep(1)
+        
+        guard let rootComponent = (UIApplication.shared.delegate as? AppDelegate)?.rootComponent else {
+            return
+        }
+        window = UIWindow(windowScene: windowScene)
+        let introductionVC = rootComponent.appIntroduction.appIntroductionBuilder().build()
+        window?.rootViewController = introductionVC
+        window?.makeKeyAndVisible()
     }
 
 //    private func createHomeTabViewController() -> UIViewController {
@@ -87,36 +89,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func setupNavigationBarStyle() {
-        let titleColor = ColorAsset.black
-        let appearance = UINavigationBarAppearance().apply {
-            $0.largeTitleTextAttributes = [
-                .foregroundColor: titleColor,
-                .font: UIFont.boldSystemFont(ofSize: 32),
-            ]            
-            $0.backgroundColor = ColorAsset.white
-            $0.titleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: titleColor
-            ]
-        }
-
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+//        let titleColor = ColorAsset.black
+//        let appearance = UINavigationBarAppearance().apply {
+//            $0.largeTitleTextAttributes = [
+//                .foregroundColor: titleColor,
+//                .font: UIFont.boldSystemFont(ofSize: 32),
+//            ]
+//            $0.backgroundColor = ColorAsset.white
+//            $0.titleTextAttributes = [
+//                NSAttributedString.Key.foregroundColor: titleColor
+//            ]
+//        }
+//
+//        UINavigationBar.appearance().standardAppearance = appearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 }
-
-//extension SceneDelegate: AppIntroductDelegate {
-//    func onTapAgree() {
-//        guard let window else {
-//            return
-//        }
-//        let vc = createHomeTabViewController()
-//        window.rootViewController = vc
-//
-//        UIView.transition(
-//            with: window,
-//            duration: 0.5,
-//            options: [.transitionCrossDissolve],
-//            animations: nil
-//        )
-//    }
-//}

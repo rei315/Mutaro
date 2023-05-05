@@ -9,9 +9,10 @@ import NeedleFoundation
 import UIKit
 
 public protocol HomeViewFeatureBuildable: Buildable {
-    func build() -> UIViewController
+    @MainActor
+    func build(viewControllers: [UIViewController]) -> UIViewController
 }
 
-public protocol HomeViewFeatureBuilder {
+public protocol FeatureHomeView {
     func homeViewFeatureBuilder() -> HomeViewFeatureBuildable
 }

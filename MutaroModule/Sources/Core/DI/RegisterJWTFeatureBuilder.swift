@@ -9,9 +9,10 @@ import NeedleFoundation
 import UIKit
 
 public protocol RegisterJWTFeatureBuildable: Buildable {
+    @MainActor
     func build() -> UIViewController
 }
 
-public protocol RegisterJWTFeatureBuilder {
+public protocol FeatureRegisterJWT {
     func registerJWTFeatureBuilder() -> RegisterJWTFeatureBuildable
 }

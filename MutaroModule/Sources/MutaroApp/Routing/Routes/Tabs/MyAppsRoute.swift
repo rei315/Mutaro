@@ -5,8 +5,6 @@
 //  Created by minguk-kim on 2023/01/12.
 //
 
-import HomeViewFeature
-import MyAppsFeature
 import UIKit
 
 public protocol MyAppsRoute {

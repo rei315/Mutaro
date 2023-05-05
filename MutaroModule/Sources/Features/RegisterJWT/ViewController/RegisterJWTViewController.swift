@@ -10,7 +10,7 @@ import JWTGenerator
 import UIKit
 import UniformTypeIdentifiers
 
-class RegisterJWTViewController: UIViewController {
+public final class RegisterJWTViewController: UIViewController {
     private let scrollView: UIScrollView = .init()
     private let stackView: UIStackView = .init()
 
@@ -26,11 +26,21 @@ class RegisterJWTViewController: UIViewController {
     private let selectFileButton: UIButton = .init(type: .system)
 
     private let viewModel: RegisterJWTViewModel
+    private let dependency: Dependency
 
     private var keyboardHeightConstraint: NSLayoutConstraint?
 
-    init(viewModel: RegisterJWTViewModel) {
-        self.viewModel = viewModel
+    public struct Dependency {
+        let viewModel: RegisterJWTViewModel
+
+        public init(viewModel: RegisterJWTViewModel) {
+            self.viewModel = viewModel
+        }
+    }
+
+    public init(dependency: Dependency) {
+        self.dependency = dependency
+        viewModel = dependency.viewModel
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
     }
@@ -40,7 +50,7 @@ class RegisterJWTViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
@@ -52,7 +62,7 @@ class RegisterJWTViewController: UIViewController {
         viewModel.loadRegisteredInfo()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setSmallTitle()
     }

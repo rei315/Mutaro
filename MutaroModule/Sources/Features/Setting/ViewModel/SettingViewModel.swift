@@ -13,18 +13,14 @@ public protocol SettingRoute {
     func openRegisterJWTRoute()
 }
 
-final class SettingViewModel: NSObject {
-    typealias Routes = SettingRoute
-    private let router: Routes
-
+public final class SettingViewModel: NSObject {
     var cancellables: Set<AnyCancellable> = []
 
-    init(router: Routes) {
-        self.router = router
+    override public init() {
         super.init()
     }
 
-    func routeToRegisterJWT() {
-        router.openRegisterJWTRoute()
+    public func routeToRegisterJWT() {
+//        router.openRegisterJWTRoute()
     }
 }

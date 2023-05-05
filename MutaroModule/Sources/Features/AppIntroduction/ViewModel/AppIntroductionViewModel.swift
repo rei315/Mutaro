@@ -8,22 +8,11 @@
 import Core
 import UIKit
 
-@MainActor
-public protocol AppIntroductDelegate: AnyObject {
-    func onTapAgree()
-}
+public final class AppIntroductionViewModel: NSObject {
+    private let environment: AppIntroductionFeatureEnvironment
 
-@MainActor
-public protocol AppIntroductRoute {
-    func makeAppIntroduct(_ delegate: AppIntroductDelegate) -> UIViewController
-}
-
-final class AppIntroductionViewModel: NSObject {
-    typealias Routes = AppIntroductRoute
-    private let router: Routes
-
-    init(router: Routes) {
-        self.router = router
+    public init(environment: AppIntroductionFeatureEnvironment) {
+        self.environment = environment
     }
 
     func onTapAgree() {
