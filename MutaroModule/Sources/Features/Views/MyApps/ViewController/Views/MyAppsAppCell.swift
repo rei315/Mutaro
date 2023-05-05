@@ -5,7 +5,6 @@
 //  Created by minguk-kim on 2023/05/05.
 //
 
-import AppResource
 import ImageLoader
 import UIKit
 

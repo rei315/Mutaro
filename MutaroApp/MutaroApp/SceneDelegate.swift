@@ -5,7 +5,6 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
-import AppResource
 import Core
 import Features
 import UIKit
@@ -88,13 +87,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func setupNavigationBarStyle() {
-        let titleColor = R.color.black()
+        let titleColor = ColorAsset.black
         let appearance = UINavigationBarAppearance().apply {
             $0.largeTitleTextAttributes = [
                 .foregroundColor: titleColor,
-                .font: FontSize.plus5.ofBoldFont(),
-            ]
-            $0.backgroundColor = R.color.white()
+                .font: UIFont.boldSystemFont(ofSize: 32),
+            ]            
+            $0.backgroundColor = ColorAsset.white
             $0.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: titleColor
             ]

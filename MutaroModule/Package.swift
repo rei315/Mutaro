@@ -57,10 +57,10 @@ let package = Package(
             dependencies: [
                 "ImageLoader",
                 "Core",
-                "AppResource",
                 "Client",
                 "JWTGenerator",
-                "KeychainStore"
+                "KeychainStore",
+                .product(name: "RswiftLibrary", package: "R.swift")
             ],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
@@ -69,8 +69,7 @@ let package = Package(
         .target(
             name: "Core",
             dependencies: [
-                "ImageLoader",
-                "AppResource"
+                "ImageLoader"
             ]
         ),
         .target(
@@ -98,15 +97,6 @@ let package = Package(
             dependencies: firebaseCrashlyticsDependencies + firebaseAnalyticsDependencies,
             linkerSettings: [
                 .unsafeFlags(["-ObjC"])
-            ]
-        ),
-        .target(
-            name: "AppResource",
-            dependencies: [
-                .product(name: "RswiftLibrary", package: "R.swift")
-            ],
-            plugins: [
-                .plugin(name: "RswiftGeneratePublicResources", package: "R.swift")
             ]
         ),
         .target(

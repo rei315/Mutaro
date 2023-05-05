@@ -56,6 +56,7 @@
 		71BE22FC29777D9900B51484 /* mutaro_photo_11.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D329777D9800B51484 /* mutaro_photo_11.jpeg */; };
 		71BE22FD29777D9900B51484 /* mutaro_photo_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D429777D9900B51484 /* mutaro_photo_3.jpeg */; };
 		71BE22FE29777D9900B51484 /* mutaro_photo_10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D529777D9900B51484 /* mutaro_photo_10.jpeg */; };
+		71D0A8C02A04EEC200330A28 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D0A8BF2A04EEC200330A28 /* Color.swift */; };
 		71FB3C8829707B5E008F843A /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB3C8729707B5E008F843A /* Features */; };
 		71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB3C8929707B5E008F843A /* FirebaseSetup */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,7 @@
 		71BE22D329777D9800B51484 /* mutaro_photo_11.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_11.jpeg; sourceTree = "<group>"; };
 		71BE22D429777D9900B51484 /* mutaro_photo_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_3.jpeg; sourceTree = "<group>"; };
 		71BE22D529777D9900B51484 /* mutaro_photo_10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_10.jpeg; sourceTree = "<group>"; };
+		71D0A8BF2A04EEC200330A28 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		71EAE2EE2A02C50900EFC765 /* MutaroApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroApp.entitlements; sourceTree = "<group>"; };
 		71FDC929296861A7006861E8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		71FDC92A296861AD006861E8 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				715E9594295CC20A00AD6331 /* Info.plist */,
 				71B6F77E2A02303D005B8531 /* Settings.bundle */,
 				71FDC94A2969D2C0006861E8 /* Assets.xcassets */,
+				71D0A8BF2A04EEC200330A28 /* Color.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -318,7 +321,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				71B6F77D2A022FB9005B8531 /* PBXTargetDependency */,
+				71D0A8C22A04F04200330A28 /* PBXTargetDependency */,
 			);
 			name = MutaroApp;
 			packageProductDependencies = (
@@ -464,7 +467,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ! $CI ]; then\n  ACKNOWLEDGEMENTS_DIR=${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/com.mono0926.LicensePlist.Output\n  \n  DESTINATION_PATH=MutaroApp/Resources/Settings.bundle/\n  cp -r ${ACKNOWLEDGEMENTS_DIR}/* ${DESTINATION_PATH}\n  rm -rf ${ACKNOWLEDGEMENTS_DIR}\nfi\n";
+			shellScript = "if [ $CI ]; then\n  ACKNOWLEDGEMENTS_DIR=${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/com.mono0926.LicensePlist.Output\n  \n  DESTINATION_PATH=MutaroApp/Resources/Settings.bundle/\n  cp -r ${ACKNOWLEDGEMENTS_DIR}/* ${DESTINATION_PATH}\n  rm -rf ${ACKNOWLEDGEMENTS_DIR}\nfi\n";
 		};
 		71B6F7812A0232A6005B8531 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -538,6 +541,7 @@
 			files = (
 				715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */,
 				715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */,
+				71D0A8C02A04EEC200330A28 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,9 +553,9 @@
 			target = 715E9582295CC20800AD6331 /* MutaroApp */;
 			targetProxy = 710C35A1296C58AC00ED034F /* PBXContainerItemProxy */;
 		};
-		71B6F77D2A022FB9005B8531 /* PBXTargetDependency */ = {
+		71D0A8C22A04F04200330A28 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 71B6F77C2A022FB9005B8531 /* LicensePlistPlugin */;
+			productRef = 71D0A8C12A04F04200330A28 /* LicensePlistPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1289,7 +1293,7 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseSetup;
 		};
-		71B6F77C2A022FB9005B8531 /* LicensePlistPlugin */ = {
+		71D0A8C12A04F04200330A28 /* LicensePlistPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:LicensePlistPlugin";
 		};
