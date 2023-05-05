@@ -82,7 +82,6 @@ if [[ $CI_WORKFLOW = "Test-CI" ]]; then
         git diff --exit-code
     fi
 elif [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
-    upload_dsym
     version_pr_comment
 elif [[ $CI_WORKFLOW = "Archive-For-Release" ]]; then
     upload_dsym
