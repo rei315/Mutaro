@@ -7,6 +7,7 @@
 
 import Core
 import JWTGenerator
+import Resources
 import UIKit
 import UniformTypeIdentifiers
 

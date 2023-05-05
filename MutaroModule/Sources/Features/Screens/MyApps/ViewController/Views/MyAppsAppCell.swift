@@ -6,6 +6,7 @@
 //
 
 import ImageLoader
+import Resources
 import UIKit
 
 final class MyAppsAppCell: UICollectionViewCell {

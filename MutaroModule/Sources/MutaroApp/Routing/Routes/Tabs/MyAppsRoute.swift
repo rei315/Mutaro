@@ -5,9 +5,9 @@
 //  Created by minguk-kim on 2023/01/12.
 //
 
-import UIKit
-import MyAppsFeature
 import HomeViewFeature
+import MyAppsFeature
+import UIKit
 
 public protocol MyAppsRoute {
     func makeMyAppsTab() -> UIViewController
@@ -15,19 +15,20 @@ public protocol MyAppsRoute {
 
 extension MyAppsRoute where Self: Router {
     public func makeMyAppsTab() -> UIViewController {
-        let router = DefaultRouter(rootTransition: EmptyTransition())
-        let viewModel = MyAppsViewModel(router: router)
-        let viewController = MyAppsViewController(viewModel: viewModel)
-        router.root = viewController
-
-        let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.setLargeTitle()
-        navigationController.tabBarItem = HomeTabPage.myApps.item
-        return navigationController
+//        let router = DefaultRouter(rootTransition: EmptyTransition())
+//        let viewModel = MyAppsViewModel(router: router)
+//        let viewController = MyAppsViewController(viewModel: viewModel)
+//        router.root = viewController
+//
+//        let navigationController = UINavigationController(rootViewController: viewController)
+//        navigationController.setLargeTitle()
+//        navigationController.tabBarItem = HomeTabPage.myApps.item
+//        return navigationController
+        UIViewController()
     }
 
     func selectMutaroListTab() {
-        root?.tabBarController?.selectedIndex = HomeTabPage.myApps.rawValue
+//        root?.tabBarController?.selectedIndex = HomeTabPage.myApps.rawValue
     }
 }
 

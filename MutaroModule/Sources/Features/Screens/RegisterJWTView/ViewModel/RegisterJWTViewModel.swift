@@ -15,17 +15,18 @@ public protocol RegisterJWTRoute {
 }
 
 public final class RegisterJWTViewModel {
-    typealias Routes = RegisterJWTRoute & Closable
-    private let router: Routes
+//    typealias Routes = RegisterJWTRoute
+//    private let router: Routes
 
     let showAlertSubject = PassthroughSubject<AlertState, Never>()
     let showSavedInfoSubject = PassthroughSubject<MutaroJWT.JWTRequestInfo, Never>()
     let didPickPrivateKeyFileSubject = PassthroughSubject<String, Never>()
     var cancellables: Set<AnyCancellable> = []
 
-    public init(router: Routes) {
-        self.router = router
-    }
+//    public init(router: Routes) {
+//        self.router = router
+//    }
+    public init() {}
 
     func onTapRegister(
         issuerID: String?,
@@ -74,7 +75,7 @@ public final class RegisterJWTViewModel {
             return
         }
         showAlertSubject.send(.successedSavingJWTReuqestInfo)
-        router.close()
+//        router.close()
     }
 
     func loadRegisteredInfo() {
