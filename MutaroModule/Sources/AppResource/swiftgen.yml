@@ -1,5 +1,5 @@
 input_dir: Resources
-output_dir: Generated
+output_dir: ${DERIVED_SOURCES_DIR}
 xcassets:
   inputs:
     - Images.xcassets
