@@ -30,6 +30,11 @@ let unittestDependencies: [Target.Dependency] = [
     .product(name: "Nimble", package: "Nimble")
 ]
 
+private extension PackageDescription.Target.Dependency {
+    static let rSwift: Self = .product(name: "RswiftLibrary", package: "R.swift")
+    static let needle: Self = .product(name: "NeedleFoundation", package: "needle")
+}
+
 let productionFeatures: [PackageDescription.Target.Dependency] = [
     "AppIntroductionFeature",
     "HomeViewFeature",
@@ -56,6 +61,8 @@ let package = Package(
         .library(name: "Resources", targets: ["Resources"]),
         .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
+        .library(name: "RegisterJWTViewFeature", targets: ["RegisterJWTViewFeature"]),
+        .library(name: "SettingViewFeature", targets: ["SettingViewFeature"])
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
@@ -64,7 +71,8 @@ let package = Package(
         .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
         .package(url: "https://github.com/Quick/Quick", from: "6.1.0"),
         .package(url: "https://github.com/Quick/Nimble", from: "12.0.0"),
-        .package(url: "https://github.com/onevcat/Kingfisher", from: "7.6.2")
+        .package(url: "https://github.com/onevcat/Kingfisher", from: "7.6.2"),
+        .package(url: "https://github.com/uber/needle.git", from: "0.23.0")
     ],
     targets: [
         .target(
@@ -79,7 +87,7 @@ let package = Package(
             name: "AppIntroductionFeature",
             dependencies: [
                 "Core",
-                .product(name: "RswiftLibrary", package: "R.swift")
+                .rSwift
             ],
             path: "./Sources/Features/Screens/AppIntroduction",
             swiftSettings: debugSwiftSettings
@@ -89,7 +97,7 @@ let package = Package(
             dependencies: [
                 "Core",
                 "Resources",
-                .product(name: "RswiftLibrary", package: "R.swift")
+                .rSwift
             ],
             path: "./Sources/Features/Screens/HomeView",
             swiftSettings: debugSwiftSettings
@@ -103,7 +111,7 @@ let package = Package(
                 "JWTGenerator",
                 "KeychainStore",
                 "Resources",
-                .product(name: "RswiftLibrary", package: "R.swift")
+                .rSwift
             ],
             path: "./Sources/Features/Screens/MyApps",
             swiftSettings: debugSwiftSettings
@@ -115,7 +123,7 @@ let package = Package(
                 "KeychainStore",
                 "Core",
                 "Resources",
-                .product(name: "RswiftLibrary", package: "R.swift")
+                .rSwift
             ],
             path: "./Sources/Features/Screens/RegisterJWTView",
             swiftSettings: debugSwiftSettings
@@ -125,7 +133,7 @@ let package = Package(
             dependencies: [
                 "Core",
                 "Resources",
-                .product(name: "RswiftLibrary", package: "R.swift")
+                .rSwift
             ],
             path: "./Sources/Features/Screens/SettingView",
             swiftSettings: debugSwiftSettings
@@ -133,7 +141,8 @@ let package = Package(
         .target(
             name: "Core",
             dependencies: [
-                "ImageLoader"
+                "ImageLoader",
+                .needle
             ]
         ),
         .target(
