@@ -21,9 +21,21 @@ let firebaseAnalyticsDependencies: [Target.Dependency] = [
     "nanopb",
 ]
 
+let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
+    .define("DEV", .when(configuration: .debug))
+]
+
 let unittestDependencies: [Target.Dependency] = [
     .product(name: "Quick", package: "Quick"),
     .product(name: "Nimble", package: "Nimble")
+]
+
+let productionFeatures: [PackageDescription.Target.Dependency] = [
+    "AppIntroductionFeature",
+    "HomeViewFeature",
+    "MyAppsFeature",
+    "RegisterJWTViewFeature",
+    "SettingViewFeature"
 ]
 
 let package = Package(
@@ -34,13 +46,16 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Features",
-            targets: ["Features"]
+            name: "MutaroApp",
+            targets: ["MutaroApp"]
         ),
         .library(
             name: "FirebaseSetup",
             targets: ["FirebaseSetup"]
-        )
+        ),
+        .library(name: "Resources", targets: ["Resources"]),
+        .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
+        .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
@@ -53,18 +68,67 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Features",
+            name: "MutaroApp",
+            dependencies: productionFeatures
+        ),
+        .target(
+            name: "Resources",
+            dependencies: []
+        ),
+        .target(
+            name: "AppIntroductionFeature",
             dependencies: [
-                "ImageLoader",
                 "Core",
-                "Client",
-                "JWTGenerator",
-                "KeychainStore",
                 .product(name: "RswiftLibrary", package: "R.swift")
             ],
-            swiftSettings: [
-                .define("DEV", .when(configuration: .debug))
-            ]            
+            path: "./Sources/Features/Screens/AppIntroduction",
+            swiftSettings: debugSwiftSettings
+        ),
+        .target(
+            name: "HomeViewFeature",
+            dependencies: [
+                "Core",
+                "Resources",
+                .product(name: "RswiftLibrary", package: "R.swift")
+            ],
+            path: "./Sources/Features/Screens/HomeView",
+            swiftSettings: debugSwiftSettings
+        ),
+        .target(
+            name: "MyAppsFeature",
+            dependencies: [
+                "Client",
+                "Core",
+                "ImageLoader",
+                "JWTGenerator",
+                "KeychainStore",
+                "Resources",
+                .product(name: "RswiftLibrary", package: "R.swift")
+            ],
+            path: "./Sources/Features/Screens/MyApps",
+            swiftSettings: debugSwiftSettings
+        ),
+        .target(
+            name: "RegisterJWTViewFeature",
+            dependencies: [
+                "JWTGenerator",
+                "KeychainStore",
+                "Core",
+                "Resources",
+                .product(name: "RswiftLibrary", package: "R.swift")
+            ],
+            path: "./Sources/Features/Screens/RegisterJWTView",
+            swiftSettings: debugSwiftSettings
+        ),
+        .target(
+            name: "SettingViewFeature",
+            dependencies: [
+                "Core",
+                "Resources",
+                .product(name: "RswiftLibrary", package: "R.swift")
+            ],
+            path: "./Sources/Features/Screens/SettingView",
+            swiftSettings: debugSwiftSettings
         ),
         .target(
             name: "Core",

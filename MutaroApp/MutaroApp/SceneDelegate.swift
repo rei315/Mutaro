@@ -6,7 +6,7 @@
 //
 
 import Core
-import Features
+import MutaroApp
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -24,36 +24,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().clipsToBounds = true
         
-        guard let windowScene = (scene as? UIWindowScene) else {
-            return
-        }
-        setupNavigationBarStyle()
-
-        window = UIWindow(windowScene: windowScene)
-        window?.makeKeyAndVisible()
-
-        let isNotFirstAppLaunching = UserDefaults.standard.bool(
-            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
-
-        let mainVC: UIViewController
-        if isNotFirstAppLaunching {
-            mainVC = createHomeTabViewController()
-        } else {
-            mainVC = createAppIntroductViewController()
-        }
-
-        sleep(1)
-        window?.rootViewController = mainVC
+//        guard let windowScene = (scene as? UIWindowScene) else {
+//            return
+//        }
+//        setupNavigationBarStyle()
+//
+//        window = UIWindow(windowScene: windowScene)
+//        window?.makeKeyAndVisible()
+//
+//        let isNotFirstAppLaunching = UserDefaults.standard.bool(
+//            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
+//
+//        let mainVC: UIViewController
+//        if isNotFirstAppLaunching {
+//            mainVC = createHomeTabViewController()
+//        } else {
+//            mainVC = createAppIntroductViewController()
+//        }
+//
+//        sleep(1)
+//        window?.rootViewController = mainVC
     }
 
-    private func createHomeTabViewController() -> UIViewController {
-        let tabs = [mainRouter.makeMyAppsTab(), mainRouter.makeSettingTab()]
-        return HomeTabViewController(viewControllers: tabs)
-    }
-
-    private func createAppIntroductViewController() -> UIViewController {
-        mainRouter.makeAppIntroduct(self)
-    }
+//    private func createHomeTabViewController() -> UIViewController {
+//        let tabs = [mainRouter.makeMyAppsTab(), mainRouter.makeSettingTab()]
+//        return HomeTabViewController(viewControllers: tabs)
+//    }
+//
+//    private func createAppIntroductViewController() -> UIViewController {
+//        mainRouter.makeAppIntroduct(self)
+//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -104,19 +104,19 @@ extension SceneDelegate {
     }
 }
 
-extension SceneDelegate: AppIntroductDelegate {
-    func onTapAgree() {
-        guard let window else {
-            return
-        }
-        let vc = createHomeTabViewController()
-        window.rootViewController = vc
-        
-        UIView.transition(
-            with: window,
-            duration: 0.5,
-            options: [.transitionCrossDissolve],
-            animations: nil
-        )
-    }
-}
+//extension SceneDelegate: AppIntroductDelegate {
+//    func onTapAgree() {
+//        guard let window else {
+//            return
+//        }
+//        let vc = createHomeTabViewController()
+//        window.rootViewController = vc
+//
+//        UIView.transition(
+//            with: window,
+//            duration: 0.5,
+//            options: [.transitionCrossDissolve],
+//            animations: nil
+//        )
+//    }
+//}
