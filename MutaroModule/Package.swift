@@ -89,7 +89,7 @@ let package = Package(
                 "Core",
                 .rSwift
             ],
-            path: "./Sources/Features/Screens/AppIntroduction",
+            path: "./Sources/Features/AppIntroduction",
             swiftSettings: debugSwiftSettings
         ),
         .target(
@@ -99,7 +99,7 @@ let package = Package(
                 "Resources",
                 .rSwift
             ],
-            path: "./Sources/Features/Screens/HomeView",
+            path: "./Sources/Features/HomeView",
             swiftSettings: debugSwiftSettings
         ),
         .target(
@@ -113,7 +113,7 @@ let package = Package(
                 "Resources",
                 .rSwift
             ],
-            path: "./Sources/Features/Screens/MyApps",
+            path: "./Sources/Features/MyApps",
             swiftSettings: debugSwiftSettings
         ),
         .target(
@@ -125,7 +125,7 @@ let package = Package(
                 "Resources",
                 .rSwift
             ],
-            path: "./Sources/Features/Screens/RegisterJWT",
+            path: "./Sources/Features/RegisterJWT",
             swiftSettings: debugSwiftSettings
         ),
         .target(
@@ -135,7 +135,7 @@ let package = Package(
                 "Resources",
                 .rSwift
             ],
-            path: "./Sources/Features/Screens/Setting",
+            path: "./Sources/Features/Setting",
             swiftSettings: debugSwiftSettings
         ),
         .target(
