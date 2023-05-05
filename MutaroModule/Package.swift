@@ -105,9 +105,6 @@ let package = Package(
             dependencies: [
                 .product(name: "RswiftLibrary", package: "R.swift")
             ],
-            exclude: [
-                "swiftgen.yml"
-            ],
             plugins: [
                 .plugin(name: "RswiftGeneratePublicResources", package: "R.swift")
             ]
