@@ -64,10 +64,10 @@ let package = Package(
             ],
             swiftSettings: [
                 .define("DEV", .when(configuration: .debug))
-            ],
-            plugins: [
-                .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
             ]
+//            plugins: [
+//                .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
+//            ]
         ),
         .target(
             name: "Core",
