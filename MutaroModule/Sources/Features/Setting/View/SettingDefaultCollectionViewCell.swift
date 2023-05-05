@@ -6,7 +6,6 @@
 //
 
 import Core
-import Resources
 import UIKit
 
 class SettingDefaultCollectionViewCell: UICollectionViewCell {

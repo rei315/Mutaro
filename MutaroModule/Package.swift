@@ -58,7 +58,6 @@ let package = Package(
             name: "FirebaseSetup",
             targets: ["FirebaseSetup"]
         ),
-        .library(name: "Resources", targets: ["Resources"]),
         .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
         .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
@@ -80,10 +79,6 @@ let package = Package(
             dependencies: productionFeatures
         ),
         .target(
-            name: "Resources",
-            dependencies: []
-        ),
-        .target(
             name: "AppIntroductionFeature",
             dependencies: [
                 "Core",
@@ -96,7 +91,6 @@ let package = Package(
             name: "HomeViewFeature",
             dependencies: [
                 "Core",
-                "Resources",
                 .rSwift
             ],
             path: "./Sources/Features/HomeView",
@@ -110,7 +104,6 @@ let package = Package(
                 "ImageLoader",
                 "JWTGenerator",
                 "KeychainStore",
-                "Resources",
                 .rSwift
             ],
             path: "./Sources/Features/MyApps",
@@ -122,7 +115,6 @@ let package = Package(
                 "JWTGenerator",
                 "KeychainStore",
                 "Core",
-                "Resources",
                 .rSwift
             ],
             path: "./Sources/Features/RegisterJWT",
@@ -132,7 +124,6 @@ let package = Package(
             name: "SettingFeature",
             dependencies: [
                 "Core",
-                "Resources",
                 .rSwift
             ],
             path: "./Sources/Features/Setting",

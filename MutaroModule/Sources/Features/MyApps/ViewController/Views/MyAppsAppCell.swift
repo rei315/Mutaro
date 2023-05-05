@@ -5,8 +5,8 @@
 //  Created by minguk-kim on 2023/05/05.
 //
 
+import Core
 import ImageLoader
-import Resources
 import UIKit
 
 final class MyAppsAppCell: UICollectionViewCell {
