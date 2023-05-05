@@ -5,7 +5,7 @@
 //  Created by minguk-kim on 2023/01/12.
 //
 
-import SettingViewFeature
+import SettingFeature
 import UIKit
 
 extension SettingRoute where Self: Router {

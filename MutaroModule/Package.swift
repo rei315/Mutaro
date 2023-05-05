@@ -39,8 +39,8 @@ let productionFeatures: [PackageDescription.Target.Dependency] = [
     "AppIntroductionFeature",
     "HomeViewFeature",
     "MyAppsFeature",
-    "RegisterJWTViewFeature",
-    "SettingViewFeature"
+    "RegisterJWTFeature",
+    "SettingFeature"
 ]
 
 let package = Package(
@@ -61,8 +61,8 @@ let package = Package(
         .library(name: "Resources", targets: ["Resources"]),
         .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
-        .library(name: "RegisterJWTViewFeature", targets: ["RegisterJWTViewFeature"]),
-        .library(name: "SettingViewFeature", targets: ["SettingViewFeature"])
+        .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
+        .library(name: "SettingFeature", targets: ["SettingFeature"])
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
@@ -117,7 +117,7 @@ let package = Package(
             swiftSettings: debugSwiftSettings
         ),
         .target(
-            name: "RegisterJWTViewFeature",
+            name: "RegisterJWTFeature",
             dependencies: [
                 "JWTGenerator",
                 "KeychainStore",
@@ -125,17 +125,17 @@ let package = Package(
                 "Resources",
                 .rSwift
             ],
-            path: "./Sources/Features/Screens/RegisterJWTView",
+            path: "./Sources/Features/Screens/RegisterJWT",
             swiftSettings: debugSwiftSettings
         ),
         .target(
-            name: "SettingViewFeature",
+            name: "SettingFeature",
             dependencies: [
                 "Core",
                 "Resources",
                 .rSwift
             ],
-            path: "./Sources/Features/Screens/SettingView",
+            path: "./Sources/Features/Screens/Setting",
             swiftSettings: debugSwiftSettings
         ),
         .target(
