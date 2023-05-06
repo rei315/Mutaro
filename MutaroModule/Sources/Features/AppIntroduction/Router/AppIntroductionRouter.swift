@@ -35,18 +35,18 @@ public class AppIntroductionRouter: AppIntroductionRoutable {
     // TODO: - showBFeature
     @MainActor
     public func showHomeAsRoot() {
-//        let myApps = dependency.myAppsBuilder.build()
-//        let settings = dependency.settingsBuilder.build()
-//        let vc = dependency.homeBuilder.build(viewControllers: [myApps, settings])
-//        guard let window = KeyWindowProvider().getKeyWindow() else {
-//            return
-//        }
-//        window.rootViewController = vc
-//        UIView.transition(
-//            with: window,
-//            duration: 0.5,
-//            options: [.transitionCrossDissolve],
-//            animations: nil
-//        )
+        let myApps = dependency.myAppsFeatureBuilder.build()
+        let settings = dependency.settingsFeatureBuilder.build()
+        let vc = dependency.homeFeatureBuilder.build(viewControllers: [myApps, settings])
+        guard let window = KeyWindowProvider().getKeyWindow() else {
+            return
+        }
+        window.rootViewController = vc
+        UIView.transition(
+            with: window,
+            duration: 0.5,
+            options: [.transitionCrossDissolve],
+            animations: nil
+        )
     }
 }

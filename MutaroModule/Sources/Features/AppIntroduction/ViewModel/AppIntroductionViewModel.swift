@@ -17,5 +17,6 @@ public final class AppIntroductionViewModel: NSObject {
 
     func onTapAgree() {
         UserDefaults.standard.set(true, forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
+        environment.router.showHomeAsRoot()
     }
 }
