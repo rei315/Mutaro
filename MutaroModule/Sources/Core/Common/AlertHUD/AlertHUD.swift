@@ -15,13 +15,23 @@ public final class AlertHUD: NSObject {
 }
 
 public extension AlertHUD {
-    static func show(title: String) {
+    static func show(
+        _ title: String,
+        backgroundColor: UIColor,
+        font: UIFont,
+        textColor: UIColor
+    ) {
         let window = KeyWindowProvider().getKeyWindow()
         let centerXPos = window?.center.x ?? UIScreen.main.bounds.width / 2
         let topPadding = window?.rootViewController?.view.safeAreaInsets.top ?? 0
 
         shared.alertView.lets { view in
-            view.setupTitle(title)
+            view.show(
+                title,
+                backgroundColor: backgroundColor,
+                font: font,
+                textColor: textColor
+            )
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTapView))
             view.addGestureRecognizer(tapGesture)
             view.alpha = 0.2

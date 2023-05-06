@@ -18,9 +18,15 @@ struct _R {
 
     func validate() throws {}
 
-    /// This `_R.color` struct is generated, and contains static references to 3 colors.
+    /// This `_R.color` struct is generated, and contains static references to 6 colors.
     struct color {
         let bundle: Foundation.Bundle
+
+        /// Color `grey`.
+        var grey: RswiftResources.ColorResource { .init(name: "grey", path: [], bundle: bundle) }
+
+        /// Color `navy`.
+        var navy: RswiftResources.ColorResource { .init(name: "navy", path: [], bundle: bundle) }
 
         /// Color `navy20`.
         var navy20: RswiftResources.ColorResource { .init(name: "navy20", path: [], bundle: bundle) }
@@ -30,5 +36,8 @@ struct _R {
 
         /// Color `navy70`.
         var navy70: RswiftResources.ColorResource { .init(name: "navy70", path: [], bundle: bundle) }
+
+        /// Color `white`.
+        var white: RswiftResources.ColorResource { .init(name: "white", path: [], bundle: bundle) }
     }
 }

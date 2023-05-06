@@ -234,7 +234,12 @@ public final class RegisterJWTViewController: UIViewController {
     }
 
     private func showAlert(state: RegisterJWTViewModel.AlertState) {
-        AlertHUD.show(title: state.title)
+        AlertHUD.show(
+            state.title,
+            backgroundColor: R.color.grey() ?? .gray,
+            font: FontSize.base.ofBoldFont(),
+            textColor: R.color.white() ?? .white
+        )
     }
 
     private func configureInfoTextViews(info: MutaroJWT.JWTRequestInfo) {
