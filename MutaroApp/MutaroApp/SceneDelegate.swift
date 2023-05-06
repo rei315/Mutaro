@@ -5,7 +5,8 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
-import MutaroApp
+import NeedleFoundation
+import Core
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -26,36 +27,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         setupNavigationBarStyle()
-
-//        let isNotFirstAppLaunching = UserDefaults.standard.bool(
-//            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
-//
-//        let mainVC: UIViewController
-//        if isNotFirstAppLaunching {
-//            mainVC = createHomeTabViewController()
-//        } else {
-//            mainVC = createAppIntroductViewController()
-//        }
-//
+        
         sleep(1)
         
         guard let rootComponent = (UIApplication.shared.delegate as? AppDelegate)?.rootComponent else {
             return
         }
         window = UIWindow(windowScene: windowScene)
-        let introductionVC = rootComponent.appIntroductionFeatureBuilder.build()
-        window?.rootViewController = introductionVC
+
+        let isNotFirstAppLaunching = UserDefaults.standard.bool(
+            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue
+        )
+        let mainVC: UIViewController
+        if isNotFirstAppLaunching {
+            let myApps = rootComponent.myAppsFeatureBuilder.build()
+            let settings = rootComponent.settingFeatureBuilder.build()
+            mainVC = rootComponent.homeFeatureBuilder.build(viewControllers: [myApps, settings])
+        } else {
+            mainVC = rootComponent.appIntroductionFeatureBuilder.build()
+        }
+        window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
     }
-
-//    private func createHomeTabViewController() -> UIViewController {
-//        let tabs = [mainRouter.makeMyAppsTab(), mainRouter.makeSettingTab()]
-//        return HomeTabViewController(viewControllers: tabs)
-//    }
-//
-//    private func createAppIntroductViewController() -> UIViewController {
-//        mainRouter.makeAppIntroduct(self)
-//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -89,19 +82,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func setupNavigationBarStyle() {
-//        let titleColor = ColorAsset.black
-//        let appearance = UINavigationBarAppearance().apply {
-//            $0.largeTitleTextAttributes = [
-//                .foregroundColor: titleColor,
-//                .font: UIFont.boldSystemFont(ofSize: 32),
-//            ]
-//            $0.backgroundColor = ColorAsset.white
-//            $0.titleTextAttributes = [
-//                NSAttributedString.Key.foregroundColor: titleColor
-//            ]
-//        }
-//
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        let titleColor = ColorAsset.black
+        let appearance = UINavigationBarAppearance().apply {
+            $0.largeTitleTextAttributes = [
+                .foregroundColor: titleColor,
+                .font: UIFont.boldSystemFont(ofSize: 32),
+            ]
+            $0.backgroundColor = ColorAsset.white
+            $0.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: titleColor
+            ]
+        }
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 }

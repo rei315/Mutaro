@@ -78,7 +78,7 @@ let package = Package(
     targets: [
         .target(
             name: "MutaroApp",
-            dependencies: [.needle]
+            dependencies: [.needle, "Core"]
         ),
         .target(
             name: "AppIntroductionFeature",
