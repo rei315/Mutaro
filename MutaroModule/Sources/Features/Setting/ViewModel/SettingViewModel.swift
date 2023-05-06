@@ -6,21 +6,19 @@
 //
 
 import Combine
+import Core
 import UIKit
 
-public protocol SettingRoute {
-    func makeSettingTab() -> UIViewController
-    func openRegisterJWTRoute()
-}
-
 public final class SettingViewModel: NSObject {
+    private let environment: SettingFeatureEnvironment
+
     var cancellables: Set<AnyCancellable> = []
 
-    override public init() {
-        super.init()
+    init(environment: SettingFeatureEnvironment) {
+        self.environment = environment
     }
 
-    public func routeToRegisterJWT() {
-//        router.openRegisterJWTRoute()
+    public func routeToRegisterJWT(from viewController: UIViewController) {
+        environment.router.showRegisterJWT(from: viewController)
     }
 }

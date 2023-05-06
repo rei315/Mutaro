@@ -57,15 +57,17 @@ private func factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb(_ component: Needle
     return HomeFeatureDependency8a76a83d24651fa35706Provider()
 }
 private class SettingFeatureDependencybb7d9caeeb950cbc5892Provider: SettingFeatureDependency {
-
-
-    init() {
-
+    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+        return rootComponent.registerJWTFeatureBuilder
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
     }
 }
 /// ^->RootComponent->SettingFeatureBuilderComponent
-private func factory78443b45858507b98a9de3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return SettingFeatureDependencybb7d9caeeb950cbc5892Provider()
+private func factory78443b45858507b98a9db3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return SettingFeatureDependencybb7d9caeeb950cbc5892Provider(rootComponent: parent1(component) as! RootComponent)
 }
 private class AppIntroductionFeatureDependency28a2d19e67af53b93df4Provider: AppIntroductionFeatureDependency {
     var myAppsFeatureBuilder: MyAppsFeatureBuildable {
@@ -105,7 +107,7 @@ extension HomeFeatureBuilderComponent: Registration {
 }
 extension SettingFeatureBuilderComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\SettingFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
     }
 }
 extension AppIntroductionFeatureBuilderComponent: Registration {
@@ -140,7 +142,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->RootComponent->RegisterJWTFeatureBuilderComponent", factorya0afd58e4976bcfb953ee3b0c44298fc1c149afb)
     registerProviderFactory("^->RootComponent->MyAppsFeatureBuilderComponent", factorybea64e632592e689d959e3b0c44298fc1c149afb)
     registerProviderFactory("^->RootComponent->HomeFeatureBuilderComponent", factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb)
-    registerProviderFactory("^->RootComponent->SettingFeatureBuilderComponent", factory78443b45858507b98a9de3b0c44298fc1c149afb)
+    registerProviderFactory("^->RootComponent->SettingFeatureBuilderComponent", factory78443b45858507b98a9db3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AppIntroductionFeatureBuilderComponent", factory9fdb332e057827d6b3d2b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
 }

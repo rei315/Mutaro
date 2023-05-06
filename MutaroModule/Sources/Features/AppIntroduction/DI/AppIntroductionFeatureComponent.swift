@@ -28,7 +28,7 @@ public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDepend
         return UINavigationController(rootViewController: vc)
     }
 
-    public var environment: AppIntroductionFeatureEnvironment {
+    private var environment: AppIntroductionFeatureEnvironment {
         .init(router: router)
     }
 

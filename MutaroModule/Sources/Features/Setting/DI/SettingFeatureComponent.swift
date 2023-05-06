@@ -12,6 +12,7 @@ import UIKit
 
 public protocol SettingFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
+    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable { get }
 }
 
 public class SettingFeatureBuilder: Builder<SettingFeatureDependency>, SettingFeatureBuildable {
@@ -19,7 +20,7 @@ public class SettingFeatureBuilder: Builder<SettingFeatureDependency>, SettingFe
     public func build() -> UIViewController {
         let settingVC = SettingViewController(
             dependency: .init(
-                viewModel: .init()
+                viewModel: .init(environment: environment)
             )
         )
         let navigationVC = UINavigationController(rootViewController: settingVC)
@@ -38,6 +39,18 @@ public class SettingFeatureBuilder: Builder<SettingFeatureDependency>, SettingFe
             selectedImage: selectedTabImage
         )
         return navigationVC
+    }
+
+    private var environment: SettingFeatureEnvironment {
+        .init(router: router)
+    }
+
+    private var router: SettingRoutable {
+        SettingRouter(
+            dependency: .init(
+                registerJWTFeatureBuilder: dependency.registerJWTFeatureBuilder
+            )
+        )
     }
 }
 

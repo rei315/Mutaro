@@ -32,7 +32,6 @@ public class AppIntroductionRouter: AppIntroductionRoutable {
         self.dependency = dependency
     }
 
-    // TODO: - showBFeature
     @MainActor
     public func showHomeAsRoot() {
         let myApps = dependency.myAppsFeatureBuilder.build()

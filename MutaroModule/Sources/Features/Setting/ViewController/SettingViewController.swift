@@ -166,7 +166,7 @@ extension SettingViewController: UICollectionViewDelegate {
         case let .defaultSetting(index):
             break
         case .registerJWT:
-            viewModel.routeToRegisterJWT()
+            viewModel.routeToRegisterJWT(from: self)
         case .none:
             break
         }
