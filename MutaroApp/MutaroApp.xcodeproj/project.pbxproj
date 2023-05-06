@@ -11,7 +11,6 @@
 		710C35A0296C58AC00ED034F /* MutaroUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */; };
 		710C35A9296C5B7A00ED034F /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35A8296C5B7A00ED034F /* Core */; };
 		710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35AA296C5B7A00ED034F /* FirebaseSetup */; };
-		7129F29C2A05818B0093A4D1 /* MutaroApp in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F29B2A05818B0093A4D1 /* MutaroApp */; };
 		7129F29E2A0582200093A4D1 /* AppIntroductionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F29D2A0582200093A4D1 /* AppIntroductionFeature */; };
 		7129F2A02A0582200093A4D1 /* HomeViewFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F29F2A0582200093A4D1 /* HomeViewFeature */; };
 		7129F2A22A0582200093A4D1 /* MyAppsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F2A12A0582200093A4D1 /* MyAppsFeature */; };
@@ -156,7 +155,6 @@
 			files = (
 				7129F29E2A0582200093A4D1 /* AppIntroductionFeature in Frameworks */,
 				7129F2A22A0582200093A4D1 /* MyAppsFeature in Frameworks */,
-				7129F29C2A05818B0093A4D1 /* MutaroApp in Frameworks */,
 				7129F2A62A0582200093A4D1 /* SettingFeature in Frameworks */,
 				71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */,
 				7129F2A42A0582200093A4D1 /* RegisterJWTFeature in Frameworks */,
@@ -351,7 +349,6 @@
 			name = MutaroApp;
 			packageProductDependencies = (
 				71FB3C8929707B5E008F843A /* FirebaseSetup */,
-				7129F29B2A05818B0093A4D1 /* MutaroApp */,
 				7129F29D2A0582200093A4D1 /* AppIntroductionFeature */,
 				7129F29F2A0582200093A4D1 /* HomeViewFeature */,
 				7129F2A12A0582200093A4D1 /* MyAppsFeature */,
@@ -1343,10 +1340,6 @@
 		710C35AA296C5B7A00ED034F /* FirebaseSetup */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseSetup;
-		};
-		7129F29B2A05818B0093A4D1 /* MutaroApp */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MutaroApp;
 		};
 		7129F29D2A0582200093A4D1 /* AppIntroductionFeature */ = {
 			isa = XCSwiftPackageProductDependency;

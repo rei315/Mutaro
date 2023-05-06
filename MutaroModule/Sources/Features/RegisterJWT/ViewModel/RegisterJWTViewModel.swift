@@ -7,9 +7,9 @@
 
 import Combine
 import Foundation
-import UIKit
 import JWTGenerator
 import KeychainStore
+import UIKit
 
 public protocol RegisterJWTRoute {
     func openRegisterJWTRoute()
@@ -71,7 +71,7 @@ public final class RegisterJWTViewModel {
             return
         }
         showAlertSubject.send(.successedSavingJWTReuqestInfo)
-        
+
         viewController.navigationController?.popViewController(animated: true)
     }
 
