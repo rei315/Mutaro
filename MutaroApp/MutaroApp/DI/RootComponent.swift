@@ -16,8 +16,10 @@ import RegisterJWTFeature
 
 final class RootComponent: BootstrapComponent {
     var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
-        AppIntroductionFeatureBuilderComponent(parent: self)
-            .appIntroductionBuilder()
+        shared {
+            AppIntroductionFeatureBuilderComponent(parent: self)
+                .appIntroductionBuilder()
+        }        
     }
 
     var settingFeatureBuilder: SettingFeatureBuildable {
