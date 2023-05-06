@@ -16,8 +16,6 @@ import KeychainStore
 protocol MyAppsViewModelProtocol {}
 
 public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
-//    typealias Routes = MyAppsRoute
-//    private let router: Routes
     private let imageDownloadService: ImageDownloadable
 
     let currentJWTInfoSubject = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
@@ -26,10 +24,8 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     var cancellables: Set<AnyCancellable> = []
 
     public init(
-        //        router: Routes,
         imageDownloadService: ImageDownloadable = ImageDownloadService()
     ) {
-//        self.router = router
         self.imageDownloadService = imageDownloadService
     }
 

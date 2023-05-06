@@ -19,8 +19,18 @@ class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, Register
     public func build() -> UIViewController {
         RegisterJWTViewController(
             dependency: .init(
-                viewModel: .init()
+                viewModel: .init(environment: environment)
             )
+        )
+    }
+
+    private var environment: RegisterJWTFeatureEnvironment {
+        .init(router: router)
+    }
+
+    private var router: RegisterJWTFeatureRoutable {
+        RegisterJWTFeatureRouter(
+            dependency: .init()
         )
     }
 }

@@ -21,7 +21,11 @@ public final class RegisterJWTViewModel {
     let didPickPrivateKeyFileSubject = PassthroughSubject<String, Never>()
     var cancellables: Set<AnyCancellable> = []
 
-    public init() {}
+    private let environment: RegisterJWTFeatureEnvironment
+
+    public init(environment: RegisterJWTFeatureEnvironment) {
+        self.environment = environment
+    }
 
     func onTapRegister(
         from viewController: UIViewController,
@@ -72,7 +76,7 @@ public final class RegisterJWTViewModel {
         }
         showAlertSubject.send(.successedSavingJWTReuqestInfo)
 
-        viewController.navigationController?.popViewController(animated: true)
+        environment.router.close(from: viewController)
     }
 
     func loadRegisteredInfo() {
