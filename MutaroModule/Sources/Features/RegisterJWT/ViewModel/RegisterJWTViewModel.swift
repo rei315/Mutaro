@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import UIKit
 import JWTGenerator
 import KeychainStore
 
@@ -20,12 +21,10 @@ public final class RegisterJWTViewModel {
     let didPickPrivateKeyFileSubject = PassthroughSubject<String, Never>()
     var cancellables: Set<AnyCancellable> = []
 
-//    public init(router: Routes) {
-//        self.router = router
-//    }
     public init() {}
 
     func onTapRegister(
+        from viewController: UIViewController,
         issuerID: String?,
         keyID: String?,
         privateKey: String?
@@ -72,7 +71,8 @@ public final class RegisterJWTViewModel {
             return
         }
         showAlertSubject.send(.successedSavingJWTReuqestInfo)
-//        router.close()
+        
+        viewController.navigationController?.popViewController(animated: true)
     }
 
     func loadRegisteredInfo() {

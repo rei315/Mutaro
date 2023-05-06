@@ -226,6 +226,7 @@ public final class RegisterJWTViewController: UIViewController {
         let privateKey = privateKeyTextView.text
 
         viewModel.onTapRegister(
+            from: self,
             issuerID: issuerID,
             keyID: keyID,
             privateKey: privateKey
