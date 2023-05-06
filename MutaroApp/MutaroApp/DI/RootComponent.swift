@@ -5,50 +5,46 @@
 //  Created by minguk-kim on 2023/05/06.
 //
 
-import AppIntroductionFeature
 import Core
-import HomeViewFeature
 import NeedleFoundation
+
+import AppIntroductionFeature
+import HomeViewFeature
 import SettingFeature
+import MyAppsFeature
+import RegisterJWTFeature
 
 final class RootComponent: BootstrapComponent {
-    var appIntroduction: AppIntroductionFeatureBuilderComponent {
-        .init(parent: self)
+    var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
+        AppIntroductionFeatureBuilderComponent(parent: self)
+            .appIntroductionBuilder()
+    }
+
+    var settingFeatureBuilder: SettingFeatureBuildable {
+        shared {
+            SettingFeatureBuilderComponent(parent: self)
+                .settingFeatureBuilder()
+        }
+    }
+
+    var homeFeatureBuilder: HomeViewFeatureBuildable {
+        shared {
+            HomeFeatureBuilderComponent(parent: self)
+                .homeViewFeatureBuilder()
+        }
+    }
+
+    var myAppsFeatureBuilder: MyAppsFeatureBuildable {
+        shared {
+            MyAppsFeatureBuilderComponent(parent: self)
+                .myAppsFeatureBuilder()
+        }
     }
     
-    var setting: SettingFeatureBuilderComponent {
-        .init(parent: self)
-    }
-    
-    var home: HomeFeatureBuilderComponent {
-        .init(parent: self)
-    }
-    
-    var myApps: MyAppsFeatureBuilderComponent {
-        .init(parent: self)
-    }
-    
-    var registerJWT: RegisterJWTFeatureBuilderComponent {
-        .init(parent: self)
-    }
-    
-    var appIntroductionBuilder: AppIntroductionFeatureBuildable {
-        appIntroduction.appIntroductionBuilder()
-    }
-    
-    var settingBuilder: SettingFeatureBuildable {
-        setting.settingFeatureBuilder()
-    }
-    
-    var homeBuilder: HomeViewFeatureBuildable {
-        home.homeViewFeatureBuilder()
-    }
-    
-    var myAppsBuilder: MyAppsFeatureBuildable {
-        myApps.myAppsFeatureBuilder()
-    }
-    
-    var registerJWTBuilder: RegisterJWTFeatureBuildable {
-        registerJWT.registerJWTFeatureBuilder()
+    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+        shared {
+            RegisterJWTFeatureBuilderComponent(parent: self)
+                .registerJWTFeatureBuilder()
+        }
     }
 }

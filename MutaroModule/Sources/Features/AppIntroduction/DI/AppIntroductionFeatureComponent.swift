@@ -9,12 +9,11 @@ import Core
 import Foundation
 import NeedleFoundation
 import UIKit
-import AppIntroductionFeature
 
 public protocol AppIntroductionFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var myAppsFeatureBuilder: MyAppsFeatureBuildable { get }
-    var settingsFeatureBuilder: SettingFeatureBuildable { get }
+    var settingFeatureBuilder: SettingFeatureBuildable { get }
     var homeFeatureBuilder: HomeViewFeatureBuildable { get }
 }
 
@@ -37,9 +36,9 @@ public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDepend
         // TODO: - dependency initの中で遷移するBModuleのBuilderを入れる
         AppIntroductionRouter(
             dependency: .init(
-                homeBuilder: dependency.homeFeatureBuilder,
-                myAppsBuilder: dependency.myAppsFeatureBuilder,
-                settingsBuilder: dependency.settingsFeatureBuilder
+                homeFeatureBuilder: dependency.homeFeatureBuilder,
+                myAppsFeatureBuilder: dependency.myAppsFeatureBuilder,
+                settingFeatureBuilder: dependency.settingFeatureBuilder
             )
         )
     }

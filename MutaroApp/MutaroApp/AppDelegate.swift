@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-//        registerProviderFactories()
+        registerProviderFactories()
         rootComponent = RootComponent()
         FirebaseSetup.configure()
         

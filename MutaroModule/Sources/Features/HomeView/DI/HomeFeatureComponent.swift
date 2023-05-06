@@ -9,7 +9,6 @@ import Core
 import Foundation
 import NeedleFoundation
 import UIKit
-import HomeViewFeature
 
 public protocol HomeFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }

@@ -9,7 +9,6 @@ import Core
 import Foundation
 import NeedleFoundation
 import UIKit
-import RegisterJWTFeature
 
 public protocol RegisterJWTFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }

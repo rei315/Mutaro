@@ -64,10 +64,7 @@
 		71BE22FD29777D9900B51484 /* mutaro_photo_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D429777D9900B51484 /* mutaro_photo_3.jpeg */; };
 		71BE22FE29777D9900B51484 /* mutaro_photo_10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D529777D9900B51484 /* mutaro_photo_10.jpeg */; };
 		71D0A8C02A04EEC200330A28 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D0A8BF2A04EEC200330A28 /* Color.swift */; };
-		71E2FDAF2A058D89006CBC1A /* AppIntroductionFeatureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E2FDAE2A058D89006CBC1A /* AppIntroductionFeatureComponent.swift */; };
-		71E2FDB12A058D93006CBC1A /* HomeFeatureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E2FDB02A058D93006CBC1A /* HomeFeatureComponent.swift */; };
-		71E2FDB32A058F66006CBC1A /* MyAppsFeatureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E2FDB22A058F66006CBC1A /* MyAppsFeatureComponent.swift */; };
-		71E2FDB52A058F6D006CBC1A /* RegisterJWTFeatureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E2FDB42A058F6D006CBC1A /* RegisterJWTFeatureComponent.swift */; };
+		71E2FDD42A05F21E006CBC1A /* NeedleGenerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E2FDD32A05F21E006CBC1A /* NeedleGenerated.swift */; };
 		71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB3C8929707B5E008F843A /* FirebaseSetup */; };
 /* End PBXBuildFile section */
 
@@ -134,10 +131,7 @@
 		71BE22D429777D9900B51484 /* mutaro_photo_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_3.jpeg; sourceTree = "<group>"; };
 		71BE22D529777D9900B51484 /* mutaro_photo_10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_10.jpeg; sourceTree = "<group>"; };
 		71D0A8BF2A04EEC200330A28 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		71E2FDAE2A058D89006CBC1A /* AppIntroductionFeatureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntroductionFeatureComponent.swift; sourceTree = "<group>"; };
-		71E2FDB02A058D93006CBC1A /* HomeFeatureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeatureComponent.swift; sourceTree = "<group>"; };
-		71E2FDB22A058F66006CBC1A /* MyAppsFeatureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppsFeatureComponent.swift; sourceTree = "<group>"; };
-		71E2FDB42A058F6D006CBC1A /* RegisterJWTFeatureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterJWTFeatureComponent.swift; sourceTree = "<group>"; };
+		71E2FDD32A05F21E006CBC1A /* NeedleGenerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedleGenerated.swift; sourceTree = "<group>"; };
 		71EAE2EE2A02C50900EFC765 /* MutaroApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroApp.entitlements; sourceTree = "<group>"; };
 		71FDC929296861A7006861E8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		71FDC92A296861AD006861E8 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
@@ -185,11 +179,8 @@
 		7129F2A72A05823B0093A4D1 /* DI */ = {
 			isa = PBXGroup;
 			children = (
+				71E2FDD32A05F21E006CBC1A /* NeedleGenerated.swift */,
 				7129F2A82A05823B0093A4D1 /* RootComponent.swift */,
-				71E2FDAE2A058D89006CBC1A /* AppIntroductionFeatureComponent.swift */,
-				71E2FDB02A058D93006CBC1A /* HomeFeatureComponent.swift */,
-				71E2FDB22A058F66006CBC1A /* MyAppsFeatureComponent.swift */,
-				71E2FDB42A058F6D006CBC1A /* RegisterJWTFeatureComponent.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -503,10 +494,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				$SRCROOT/MutaroApp/DI/NeedleGenerated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which needle; then\n    needle generate $SRCROOT/NeedleGenerated.swift $SRCROOT/../\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which needle; then\n    needle generate $SRCROOT/MutaroApp/DI/NeedleGenerated.swift $SRCROOT/../\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
 		};
 		71B6F7802A023091005B8531 /* Add LicensePlist to Setting.bundle */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -596,14 +588,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71E2FDB32A058F66006CBC1A /* MyAppsFeatureComponent.swift in Sources */,
 				71A45D702A058376003E226B /* RootComponent.swift in Sources */,
-				71E2FDB12A058D93006CBC1A /* HomeFeatureComponent.swift in Sources */,
 				715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */,
-				71E2FDAF2A058D89006CBC1A /* AppIntroductionFeatureComponent.swift in Sources */,
 				715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */,
 				71D0A8C02A04EEC200330A28 /* Color.swift in Sources */,
-				71E2FDB52A058F6D006CBC1A /* RegisterJWTFeatureComponent.swift in Sources */,
+				71E2FDD42A05F21E006CBC1A /* NeedleGenerated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

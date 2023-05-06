@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         window = UIWindow(windowScene: windowScene)
-        let introductionVC = rootComponent.appIntroduction.appIntroductionBuilder().build()
+        let introductionVC = rootComponent.appIntroductionFeatureBuilder.build()
         window?.rootViewController = introductionVC
         window?.makeKeyAndVisible()
     }
