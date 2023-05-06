@@ -7,8 +7,10 @@
 
 import UIKit
 
-struct KeyWindowProvider {
-    func getKeyWindow() -> UIWindow? {
+public struct KeyWindowProvider {
+    public init() {}
+
+    public func getKeyWindow() -> UIWindow? {
         UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .first?

@@ -5,13 +5,12 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
+import NeedleFoundation
 import Core
-import Features
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    let mainRouter = DefaultRouter(rootTransition: EmptyTransition())
 
     func scene(
         _ scene: UIScene, willConnectTo session: UISceneSession,
@@ -28,31 +27,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         setupNavigationBarStyle()
-
+        
+        sleep(1)
+        
+        guard let rootComponent = (UIApplication.shared.delegate as? AppDelegate)?.rootComponent else {
+            return
+        }
         window = UIWindow(windowScene: windowScene)
-        window?.makeKeyAndVisible()
 
         let isNotFirstAppLaunching = UserDefaults.standard.bool(
-            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
-
+            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue
+        )
         let mainVC: UIViewController
         if isNotFirstAppLaunching {
-            mainVC = createHomeTabViewController()
+            let myApps = rootComponent.myAppsFeatureBuilder.build()
+            let settings = rootComponent.settingFeatureBuilder.build()
+            mainVC = rootComponent.homeFeatureBuilder.build(viewControllers: [myApps, settings])
         } else {
-            mainVC = createAppIntroductViewController()
+            mainVC = rootComponent.appIntroductionFeatureBuilder.build()
         }
-
-        sleep(1)
         window?.rootViewController = mainVC
-    }
-
-    private func createHomeTabViewController() -> UIViewController {
-        let tabs = [mainRouter.makeMyAppsTab(), mainRouter.makeSettingTab()]
-        return HomeTabViewController(viewControllers: tabs)
-    }
-
-    private func createAppIntroductViewController() -> UIViewController {
-        mainRouter.makeAppIntroduct(self)
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -92,7 +87,7 @@ extension SceneDelegate {
             $0.largeTitleTextAttributes = [
                 .foregroundColor: titleColor,
                 .font: UIFont.boldSystemFont(ofSize: 32),
-            ]            
+            ]
             $0.backgroundColor = ColorAsset.white
             $0.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: titleColor
@@ -101,22 +96,5 @@ extension SceneDelegate {
 
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
-    }
-}
-
-extension SceneDelegate: AppIntroductDelegate {
-    func onTapAgree() {
-        guard let window else {
-            return
-        }
-        let vc = createHomeTabViewController()
-        window.rootViewController = vc
-        
-        UIView.transition(
-            with: window,
-            duration: 0.5,
-            options: [.transitionCrossDissolve],
-            animations: nil
-        )
     }
 }

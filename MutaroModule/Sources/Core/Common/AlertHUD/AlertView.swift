@@ -26,14 +26,10 @@ public final class AlertView: UIView {
     }
 
     private func setupView() {
-//        backgroundColor = R.color.grey()
         clipsToBounds = true
 
         alertLabel.lets {
             $0.translatesAutoresizingMaskIntoConstraints = false
-//            $0.font = FontSize.base.ofBoldFont()
-//            $0.textColor = R.color.white()
-
             addSubview($0)
 
             NSLayoutConstraint.activate([
@@ -43,7 +39,17 @@ public final class AlertView: UIView {
         }
     }
 
-    func setupTitle(_ title: String) {
-        alertLabel.text = title
+    func show(
+        _ title: String,
+        backgroundColor: UIColor,
+        font: UIFont,
+        textColor: UIColor
+    ) {
+        self.backgroundColor = backgroundColor
+        alertLabel.lets {
+            $0.text = title
+            $0.font = font
+            $0.textColor = textColor
+        }
     }
 }
