@@ -99,7 +99,10 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
 
     private func getAppInfos(token: String, myApps: [(String, String)]) async throws -> [AppInfo] {
         try await myApps
-            .concurrentMap { app -> AppInfo? in
+            .concurrentMap { [weak self] app -> AppInfo? in
+                guard let self else {
+                    return
+                }
                 let appId = app.0
                 let appName = app.1
 
