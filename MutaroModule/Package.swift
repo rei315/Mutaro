@@ -134,7 +134,6 @@ let package = Package(
         .target(
             name: "Core",
             dependencies: [
-                "ImageLoader",
                 .needle
             ]
         ),

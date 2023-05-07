@@ -40,15 +40,14 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     }
 
     func loadStoredJWTInfo() {
-        guard let storedJWTInfo = try? KeychainStore.shared.get(MutaroJWT.JWTRequestInfo.self).first else {
+        do {
+            let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
+            guard let currentSavedJWTInfo = currentJWTInfoSubject.value, currentSavedJWTInfo != storedJWTInfo else {
+                currentJWTInfoSubject.send(storedJWTInfo)
+                return
+            }
+        } catch {
             // TODO: - show need to register
-            print("Mins: failed get stored jwt info")
-            return
-        }
-
-        guard let currentSavedJWTInfo = currentJWTInfoSubject.value, currentSavedJWTInfo != storedJWTInfo else {
-            currentJWTInfoSubject.send(storedJWTInfo)
-            return
         }
     }
 

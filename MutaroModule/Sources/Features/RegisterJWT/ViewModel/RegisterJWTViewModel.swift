@@ -67,23 +67,24 @@ public final class RegisterJWTViewModel {
             keyID: keyID,
             privateKey: privateKey
         )
-        KeychainStore.shared.delete(MutaroJWT.JWTRequestInfo.self)
 
-        guard let isSuccessed = try? KeychainStore.shared.save(info, forKey: "b"),
-              isSuccessed else {
+        do {
+            try KeychainStore.shared.deleteValue(forKey: .jwt)
+            try KeychainStore.shared.saveValue(info, forKey: .jwt)
+            showAlertSubject.send(.successedSavingJWTReuqestInfo)
+            environment.router.close(from: viewController)
+        } catch {
             showAlertSubject.send(.failedSavingJWTRequestInfo)
-            return
         }
-        showAlertSubject.send(.successedSavingJWTReuqestInfo)
-
-        environment.router.close(from: viewController)
     }
 
     func loadRegisteredInfo() {
-        guard let savedElement = try? KeychainStore.shared.get(MutaroJWT.JWTRequestInfo.self).first else {
-            return
+        do {
+            let savedElement: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
+            showSavedInfoSubject.send(savedElement)
+        } catch {
+            // TODO: - error
         }
-        showSavedInfoSubject.send(savedElement)
     }
 
     func didPickDocuments(urls: [URL]) {
