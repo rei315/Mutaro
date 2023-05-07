@@ -83,7 +83,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             "fields[apps]": "name"
         ]
         let myAppsEndpoint = MyAppsEndpoint.GetAllListMyApps(token: token, additionalParameters: myAppsParameters)
-        let myAppsResult = await Provider.shared.request(endpoint: myAppsEndpoint, responseModel: MyAppsElement.self)
+        let myAppsResult = await environment.client.request(endpoint: myAppsEndpoint, responseModel: MyAppsElement.self)
         let myAppsResultElement = try myAppsResult.get()
         let appInfos = myAppsResultElement.data?
             .compactMap { data -> (String, String)? in
@@ -109,7 +109,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
                     "limit": 1
                 ]
                 let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
-                let buildsResult = await Provider.shared.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
+                let buildsResult = await self.environment.client.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
                 guard let buildsResultElement = try? buildsResult.get(),
                       let data = buildsResultElement.data?.first else {
                     return .init(
