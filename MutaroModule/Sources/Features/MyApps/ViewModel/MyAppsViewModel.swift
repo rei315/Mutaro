@@ -5,18 +5,20 @@
 //  Created by minguk-kim on 2023/01/01.
 //
 
-import Client
+import AppStoreRepository
 import Combine
 import Core
 import Foundation
 import ImageLoader
 import JWTGenerator
 import KeychainStore
+import TestFlightRepository
 
 protocol MyAppsViewModelProtocol {}
 
 public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     private let imageDownloadService: ImageDownloadable
+    private let environment: MyAppsFeatureEnvironment
 
     let currentJWTInfoSubject = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
     let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([])
@@ -24,8 +26,10 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     var cancellables: Set<AnyCancellable> = []
 
     public init(
+        environment: MyAppsFeatureEnvironment,
         imageDownloadService: ImageDownloadable = ImageDownloadService()
     ) {
+        self.environment = environment
         self.imageDownloadService = imageDownloadService
     }
 
@@ -79,7 +83,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             "fields[apps]": "name"
         ]
         let myAppsEndpoint = MyAppsEndpoint.GetAllListMyApps(token: token, additionalParameters: myAppsParameters)
-        let myAppsResult = await Provider.shared.request(endpoint: myAppsEndpoint, responseModel: MyAppsElement.self)
+        let myAppsResult = await environment.client.request(endpoint: myAppsEndpoint, responseModel: MyAppsElement.self)
         let myAppsResultElement = try myAppsResult.get()
         let appInfos = myAppsResultElement.data?
             .compactMap { data -> (String, String)? in
@@ -95,7 +99,10 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
 
     private func getAppInfos(token: String, myApps: [(String, String)]) async throws -> [AppInfo] {
         try await myApps
-            .concurrentMap { app -> AppInfo? in
+            .concurrentMap { [weak self] app -> AppInfo? in
+                guard let self else {
+                    return nil
+                }
                 let appId = app.0
                 let appName = app.1
 
@@ -105,7 +112,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
                     "limit": 1
                 ]
                 let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
-                let buildsResult = await Provider.shared.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
+                let buildsResult = await self.environment.client.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
                 guard let buildsResultElement = try? buildsResult.get(),
                       let data = buildsResultElement.data?.first else {
                     return .init(

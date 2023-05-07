@@ -12,6 +12,7 @@ import UIKit
 
 public protocol MyAppsFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
+    var client: Providable { get }
 }
 
 class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuildable {
@@ -19,7 +20,7 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
     public func build() -> UIViewController {
         let myAppsVC = MyAppsViewController(
             dependency: .init(
-                viewModel: .init()
+                viewModel: .init(environment: environment)
             )
         )
         let navigationVC = UINavigationController(rootViewController: myAppsVC)
@@ -38,6 +39,10 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
             selectedImage: selectedTabImage
         )
         return navigationVC
+    }
+
+    private var environment: MyAppsFeatureEnvironment {
+        .init(client: dependency.client)
     }
 }
 

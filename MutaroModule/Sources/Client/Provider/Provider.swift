@@ -5,18 +5,10 @@
 //  Created by minguk-kim on 2023/05/03.
 //
 
+import Core
 import Foundation
 
-protocol ProviderProtocol {
-    func request<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async -> Result<
-        T, RequestError
-    >
-    func request(endpoint: Endpoint) async -> Result<Data, RequestError>
-}
-
-public final class Provider: ProviderProtocol {
-    public static let shared = Provider()
-
+public final class Provider: Providable {
     private let session: URLSession
     private let successRange = 200..<300
     private let decoder: JSONDecoder = {
@@ -25,7 +17,7 @@ public final class Provider: ProviderProtocol {
         return jsonDecoder
     }()
 
-    private init(session: URLSession = URLSession.shared) {
+    public init(session: URLSession = URLSession.shared) {
         self.session = session
     }
 
