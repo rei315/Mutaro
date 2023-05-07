@@ -101,7 +101,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         try await myApps
             .concurrentMap { [weak self] app -> AppInfo? in
                 guard let self else {
-                    return
+                    return nil
                 }
                 let appId = app.0
                 let appName = app.1
