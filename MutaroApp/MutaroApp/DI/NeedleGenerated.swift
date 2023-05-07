@@ -1,6 +1,7 @@
 
 
 import AppIntroductionFeature
+import Client
 import Core
 import Foundation
 import HomeViewFeature
@@ -35,15 +36,17 @@ private func factorya0afd58e4976bcfb953ee3b0c44298fc1c149afb(_ component: Needle
     return RegisterJWTFeatureDependencyafcbabee5908dec1a2f7Provider()
 }
 private class MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider: MyAppsFeatureDependency {
-
-
-    init() {
-
+    var client: Providable {
+        return rootComponent.client
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
     }
 }
 /// ^->RootComponent->MyAppsFeatureBuilderComponent
-private func factorybea64e632592e689d959e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider()
+private func factorybea64e632592e689d959b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider(rootComponent: parent1(component) as! RootComponent)
 }
 private class HomeFeatureDependency8a76a83d24651fa35706Provider: HomeFeatureDependency {
 
@@ -97,7 +100,7 @@ extension RegisterJWTFeatureBuilderComponent: Registration {
 }
 extension MyAppsFeatureBuilderComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\MyAppsFeatureDependency.client] = "client-Providable"
     }
 }
 extension HomeFeatureBuilderComponent: Registration {
@@ -140,7 +143,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 @inline(never) private func register1() {
     registerProviderFactory("^->RootComponent->RegisterJWTFeatureBuilderComponent", factorya0afd58e4976bcfb953ee3b0c44298fc1c149afb)
-    registerProviderFactory("^->RootComponent->MyAppsFeatureBuilderComponent", factorybea64e632592e689d959e3b0c44298fc1c149afb)
+    registerProviderFactory("^->RootComponent->MyAppsFeatureBuilderComponent", factorybea64e632592e689d959b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->HomeFeatureBuilderComponent", factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb)
     registerProviderFactory("^->RootComponent->SettingFeatureBuilderComponent", factory78443b45858507b98a9db3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AppIntroductionFeatureBuilderComponent", factory9fdb332e057827d6b3d2b3a8f24c1d289f2c0f2e)

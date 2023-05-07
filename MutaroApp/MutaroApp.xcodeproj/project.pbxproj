@@ -18,6 +18,7 @@
 		7129F2A62A0582200093A4D1 /* SettingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F2A52A0582200093A4D1 /* SettingFeature */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
+		717A92972A07E2C4005F2AEB /* Client in Frameworks */ = {isa = PBXBuildFile; productRef = 717A92962A07E2C4005F2AEB /* Client */; };
 		718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC94A2969D2C0006861E8 /* Assets.xcassets */; };
 		71A45D702A058376003E226B /* RootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129F2A82A05823B0093A4D1 /* RootComponent.swift */; };
 		71B6F77F2A02303D005B8531 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 71B6F77E2A02303D005B8531 /* Settings.bundle */; };
@@ -154,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7129F29E2A0582200093A4D1 /* AppIntroductionFeature in Frameworks */,
+				717A92972A07E2C4005F2AEB /* Client in Frameworks */,
 				7129F2A22A0582200093A4D1 /* MyAppsFeature in Frameworks */,
 				7129F2A62A0582200093A4D1 /* SettingFeature in Frameworks */,
 				71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */,
@@ -354,6 +356,7 @@
 				7129F2A12A0582200093A4D1 /* MyAppsFeature */,
 				7129F2A32A0582200093A4D1 /* RegisterJWTFeature */,
 				7129F2A52A0582200093A4D1 /* SettingFeature */,
+				717A92962A07E2C4005F2AEB /* Client */,
 			);
 			productName = MutaroApp;
 			productReference = 715E9583295CC20800AD6331 /* Mutaro.app */;
@@ -1360,6 +1363,10 @@
 		7129F2A52A0582200093A4D1 /* SettingFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SettingFeature;
+		};
+		717A92962A07E2C4005F2AEB /* Client */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Client;
 		};
 		71D0A8C12A04F04200330A28 /* LicensePlistPlugin */ = {
 			isa = XCSwiftPackageProductDependency;

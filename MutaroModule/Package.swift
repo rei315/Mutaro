@@ -44,6 +44,13 @@ let productionFeatures: [PackageDescription.Target.Dependency] = [
     .needle
 ]
 
+// MARK: - Repositories
+
+private extension PackageDescription.Target.Dependency {
+    static let appstore: Self = .target(name: "AppStoreRepository")
+    static let testflight: Self = .target(name: "TestFlightRepository")
+}
+
 let package = Package(
     name: "MutaroModule",
     platforms: [
@@ -63,7 +70,8 @@ let package = Package(
         .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
         .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
-        .library(name: "SettingFeature", targets: ["SettingFeature"])
+        .library(name: "SettingFeature", targets: ["SettingFeature"]),
+        .library(name: "Client", targets: ["Client"])
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
@@ -101,12 +109,13 @@ let package = Package(
         .target(
             name: "MyAppsFeature",
             dependencies: [
-                "Client",
                 "Core",
                 "ImageLoader",
                 "JWTGenerator",
                 "KeychainStore",
-                .rSwift
+                .rSwift,
+                .appstore,
+                .testflight
             ],
             path: "./Sources/Features/MyApps",
             swiftSettings: debugSwiftSettings
@@ -139,7 +148,23 @@ let package = Package(
         ),
         .target(
             name: "Client",
-            dependencies: []
+            dependencies: [
+                "Core"
+            ]
+        ),
+        .target(
+            name: "AppStoreRepository",
+            dependencies: [
+                "Core"
+            ],
+            path: "./Sources/Repository/AppStore"
+        ),
+        .target(
+            name: "TestFlightRepository",
+            dependencies: [
+                "Core"
+            ],
+            path: "./Sources/Repository/TestFlight"
         ),
         .target(
             name: "JWTGenerator",

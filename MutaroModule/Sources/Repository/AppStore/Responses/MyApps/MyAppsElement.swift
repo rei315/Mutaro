@@ -5,6 +5,7 @@
 //  Created by minguk-kim on 2023/05/04.
 //
 
+import Core
 import Foundation
 
 // MARK: - MyAppsElement

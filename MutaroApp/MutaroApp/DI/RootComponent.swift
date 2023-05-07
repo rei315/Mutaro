@@ -7,6 +7,7 @@
 
 import Core
 import NeedleFoundation
+import Client
 
 import AppIntroductionFeature
 import HomeViewFeature
@@ -47,6 +48,12 @@ final class RootComponent: BootstrapComponent {
         shared {
             RegisterJWTFeatureBuilderComponent(parent: self)
                 .registerJWTFeatureBuilder()
+        }
+    }
+    
+    var client: Providable {
+        shared {
+            Provider()
         }
     }
 }

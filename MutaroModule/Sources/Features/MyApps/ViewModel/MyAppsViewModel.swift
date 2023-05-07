@@ -5,18 +5,20 @@
 //  Created by minguk-kim on 2023/01/01.
 //
 
-import Client
+import AppStoreRepository
 import Combine
 import Core
 import Foundation
 import ImageLoader
 import JWTGenerator
 import KeychainStore
+import TestFlightRepository
 
 protocol MyAppsViewModelProtocol {}
 
 public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     private let imageDownloadService: ImageDownloadable
+    private let environment: MyAppsFeatureEnvironment
 
     let currentJWTInfoSubject = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
     let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([])
@@ -24,8 +26,10 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     var cancellables: Set<AnyCancellable> = []
 
     public init(
+        environment: MyAppsFeatureEnvironment,
         imageDownloadService: ImageDownloadable = ImageDownloadService()
     ) {
+        self.environment = environment
         self.imageDownloadService = imageDownloadService
     }
 
