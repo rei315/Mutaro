@@ -24,35 +24,6 @@ upload_dsym() {
     fi
 }
 
-get_pr_number() {
-    CI_BRANCH=$1 GITHUB_TOKEN=$2 python3 -c $'
-import sys, json, os, requests
-
-def get(url, token):
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "Authorization": "Bearer {}".format(token),
-        "X-GitHub-Api-Version": "2022-11-28"
-    }
-    response = requests.get(url, headers=headers)
-    return response
-
-CI_BRANCH=os.environ["CI_BRANCH"]
-GITHUB_TOKEN=os.environ["GITHUB_TOKEN"]
-
-prInfoResponse=get("https://api.github.com/repos/rei315/Mutaro/pulls", GITHUB_TOKEN)
-if prInfoResponse.status_code != 200:
-    print(-2)
-    exit()
-prInfoResponseJson = prInfoResponse.json()
-targetResponse = [x for x in prInfoResponseJson if x["head"]["ref"] == CI_BRANCH]
-if (len(targetResponse) != 0):
-    print(targetResponse[0]["number"])
-else:
-   print(-1)
-'
-}
-
 get_app_version() {
     PATH=/usr/libexec:$PATH
     mainInfoPlist="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist"
@@ -60,12 +31,9 @@ get_app_version() {
 }
 
 version_pr_comment() {
-    PR_NUMBER=$(get_pr_number ${CI_BRANCH} ${GITHUB_TOKEN})
-    if [ $PR_NUMBER -eq -1 ]; then
+    PR_NUMBER=$CI_PULL_REQUEST_NUMBER
+    if [ ! -n $PR_NUMBER ]; then
         return 0
-    elif [ $PR_NUMBER -eq -2 ]; then
-        echo "Github Tokenを更新してください"
-        exit 1
     fi
         
     APP_VERSION=$(get_app_version)
