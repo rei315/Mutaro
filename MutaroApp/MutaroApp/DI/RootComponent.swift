@@ -8,6 +8,7 @@
 import Core
 import NeedleFoundation
 import Client
+import ImageLoader
 
 import AppIntroductionFeature
 import HomeViewFeature
@@ -54,6 +55,12 @@ final class RootComponent: BootstrapComponent {
     var client: Providable {
         shared {
             Provider()
+        }
+    }
+    
+    var imageDownloadService: ImageDownloadService {
+        shared {
+            ImageDownloadServiceImp()
         }
     }
 }

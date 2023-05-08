@@ -62,16 +62,11 @@ let package = Package(
             name: "MutaroApp",
             targets: ["MutaroApp"]
         ),
-        .library(
-            name: "FirebaseSetup",
-            targets: ["FirebaseSetup"]
-        ),
         .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
         .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
         .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
         .library(name: "SettingFeature", targets: ["SettingFeature"]),
-        .library(name: "Client", targets: ["Client"])
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
@@ -86,7 +81,12 @@ let package = Package(
     targets: [
         .target(
             name: "MutaroApp",
-            dependencies: [.needle, "Core"]
+            dependencies: [
+                .needle,
+                "Core",
+                "FirebaseSetup",
+                "Client"
+            ]
         ),
         .target(
             name: "AppIntroductionFeature",
@@ -192,7 +192,8 @@ let package = Package(
         .target(
             name: "ImageLoader",
             dependencies: [
-                "Kingfisher"
+                "Kingfisher",
+                "Core"
             ]
         ),
         .binaryTarget(

@@ -7,21 +7,17 @@
 
 import Foundation
 import Kingfisher
+import Core
 
-public protocol ImageDownloadable {
-    func downloadImage(with urlString: String, cache targetCache: ImageCacheType)
-    func cancelDownloadImage(with urlString: String)
-}
-
-public final class ImageDownloadService: ImageDownloadable {
+public final class ImageDownloadServiceImp: ImageDownloadService {
     public init() {}
 
+    public typealias CacheType = ImageCache
     public func downloadImage(
         with urlString: String,
-        cache targetCache: ImageCacheType
+        cache targetCache: CacheType
     ) {
-        let cache = targetCache.getCache()
-        guard !cache.isCached(forKey: urlString) else {
+        guard !targetCache.isCached(forKey: urlString) else {
             return
         }
 
@@ -35,7 +31,7 @@ public final class ImageDownloadService: ImageDownloadable {
             with: resource,
             options: [
                 .cacheOriginalImage,
-                .targetCache(cache)
+                .targetCache(targetCache)
             ],
             completionHandler: nil
         )
