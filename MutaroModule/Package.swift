@@ -33,7 +33,9 @@ let productionFeatures: [PackageDescription.Target.Dependency] = [
     .settingFeature,
     
     .firebaseSetup,
-    .client
+    .needle,
+    .core,
+    .client,
 ]
 
 // MARK: - UnitTest Dependencies
