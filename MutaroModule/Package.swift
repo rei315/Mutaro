@@ -32,9 +32,7 @@ let productionFeatures: [PackageDescription.Target.Dependency] = [
     .registerJWTFeature,
     .settingFeature,
     
-    .firebaseSetup,
-    .needle,
-    .core,
+    .firebaseSetup,    
     .client,
 ]
 
