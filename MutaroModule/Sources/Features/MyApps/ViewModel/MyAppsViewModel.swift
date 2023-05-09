@@ -17,7 +17,6 @@ import TestFlightRepository
 protocol MyAppsViewModelProtocol {}
 
 public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
-    private let imageDownloadService: ImageDownloadable
     private let environment: MyAppsFeatureEnvironment
 
     let currentJWTInfoSubject = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
@@ -26,11 +25,9 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     var cancellables: Set<AnyCancellable> = []
 
     public init(
-        environment: MyAppsFeatureEnvironment,
-        imageDownloadService: ImageDownloadable = ImageDownloadService()
+        environment: MyAppsFeatureEnvironment
     ) {
         self.environment = environment
-        self.imageDownloadService = imageDownloadService
     }
 
     func setupSubscription() {
@@ -151,7 +148,8 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             guard let url = appInfosSubject.value[getOrNil: index]?.iconUrl else {
                 return
             }
-            imageDownloadService.downloadImage(with: url, cache: .myAppCache)
+            let cache = ImageCacheType.myAppCache.getCache()
+            environment.imageDownloadService.downloadImage(with: url, cache: cache)
         }
     }
 
@@ -165,7 +163,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             guard let url = appInfosSubject.value[getOrNil: index]?.iconUrl else {
                 return
             }
-            imageDownloadService.cancelDownloadImage(with: url)
+            environment.imageDownloadService.cancelDownloadImage(with: url)
         }
     }
 }

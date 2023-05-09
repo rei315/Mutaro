@@ -7,12 +7,14 @@
 
 import Core
 import Foundation
+import ImageLoader
 import NeedleFoundation
 import UIKit
 
 public protocol MyAppsFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var client: Providable { get }
+    var imageDownloadService: ImageDownloadService { get }
 }
 
 class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuildable {
@@ -42,7 +44,10 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
     }
 
     private var environment: MyAppsFeatureEnvironment {
-        .init(client: dependency.client)
+        .init(
+            client: dependency.client,
+            imageDownloadService: dependency.imageDownloadService
+        )
     }
 }
 

@@ -25,30 +25,60 @@ let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
     .define("DEV", .when(configuration: .debug))
 ]
 
+let productionFeatures: [PackageDescription.Target.Dependency] = [
+    .appIntroductionFeature,
+    .homeViewFeature,
+    .myAppsFeature,
+    .registerJWTFeature,
+    .settingFeature,
+    
+    .firebaseSetup,
+    .client
+]
+
+// MARK: - UnitTest Dependencies
+
 let unittestDependencies: [Target.Dependency] = [
     .product(name: "Quick", package: "Quick"),
     .product(name: "Nimble", package: "Nimble")
 ]
 
+// MARK: - Dependencies
+
 private extension PackageDescription.Target.Dependency {
     static let rSwift: Self = .product(name: "RswiftLibrary", package: "R.swift")
     static let needle: Self = .product(name: "NeedleFoundation", package: "needle")
+    
+    static let kingfisher: Self = .product(name: "Kingfisher", package: "Kingfisher")
+    static let swiftJWT: Self = .product(name: "SwiftJWT", package: "Swift-JWT")
 }
-
-let productionFeatures: [PackageDescription.Target.Dependency] = [
-    "AppIntroductionFeature",
-    "HomeViewFeature",
-    "MyAppsFeature",
-    "RegisterJWTFeature",
-    "SettingFeature",
-    .needle
-]
 
 // MARK: - Repositories
 
 private extension PackageDescription.Target.Dependency {
     static let appstore: Self = .target(name: "AppStoreRepository")
     static let testflight: Self = .target(name: "TestFlightRepository")
+}
+
+// MARK: - Custom Modules
+
+private extension PackageDescription.Target.Dependency {
+    static let core: Self = .target(name: "Core")
+    static let imageLoader: Self = .target(name: "ImageLoader")
+    static let jwtGenerator: Self = .target(name: "JWTGenerator")
+    static let keychainStore: Self = .target(name: "KeychainStore")
+    static let firebaseSetup: Self = .target(name: "FirebaseSetup")
+    static let client: Self = .target(name: "Client")
+}
+
+// MARK: - Feature
+
+private extension PackageDescription.Target.Dependency {
+    static let appIntroductionFeature: Self = .target(name: "AppIntroductionFeature")
+    static let homeViewFeature: Self = .target(name: "HomeViewFeature")
+    static let myAppsFeature: Self = .target(name: "MyAppsFeature")
+    static let registerJWTFeature: Self = .target(name: "RegisterJWTFeature")
+    static let settingFeature: Self = .target(name: "SettingFeature")
 }
 
 let package = Package(
@@ -61,17 +91,7 @@ let package = Package(
         .library(
             name: "MutaroApp",
             targets: ["MutaroApp"]
-        ),
-        .library(
-            name: "FirebaseSetup",
-            targets: ["FirebaseSetup"]
-        ),
-        .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
-        .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
-        .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
-        .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
-        .library(name: "SettingFeature", targets: ["SettingFeature"]),
-        .library(name: "Client", targets: ["Client"])
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
@@ -86,12 +106,12 @@ let package = Package(
     targets: [
         .target(
             name: "MutaroApp",
-            dependencies: [.needle, "Core"]
+            dependencies: productionFeatures
         ),
         .target(
             name: "AppIntroductionFeature",
             dependencies: [
-                "Core",
+                .core,
                 .rSwift
             ],
             path: "./Sources/Features/AppIntroduction",
@@ -100,7 +120,7 @@ let package = Package(
         .target(
             name: "HomeViewFeature",
             dependencies: [
-                "Core",
+                .core,
                 .rSwift
             ],
             path: "./Sources/Features/HomeView",
@@ -109,10 +129,10 @@ let package = Package(
         .target(
             name: "MyAppsFeature",
             dependencies: [
-                "Core",
-                "ImageLoader",
-                "JWTGenerator",
-                "KeychainStore",
+                .core,
+                .imageLoader,
+                .jwtGenerator,
+                .keychainStore,
                 .rSwift,
                 .appstore,
                 .testflight
@@ -123,9 +143,9 @@ let package = Package(
         .target(
             name: "RegisterJWTFeature",
             dependencies: [
-                "JWTGenerator",
-                "KeychainStore",
-                "Core",
+                .jwtGenerator,
+                .keychainStore,
+                .core,
                 .rSwift
             ],
             path: "./Sources/Features/RegisterJWT",
@@ -134,7 +154,7 @@ let package = Package(
         .target(
             name: "SettingFeature",
             dependencies: [
-                "Core",
+                .core,
                 .rSwift
             ],
             path: "./Sources/Features/Setting",
@@ -143,39 +163,40 @@ let package = Package(
         .target(
             name: "Core",
             dependencies: [
-                .needle
+                .needle,
+                .kingfisher
             ]
         ),
         .target(
             name: "Client",
             dependencies: [
-                "Core"
+                .core
             ]
         ),
         .target(
             name: "AppStoreRepository",
             dependencies: [
-                "Core"
+                .core
             ],
             path: "./Sources/Repository/AppStore"
         ),
         .target(
             name: "TestFlightRepository",
             dependencies: [
-                "Core"
+                .core
             ],
             path: "./Sources/Repository/TestFlight"
         ),
         .target(
             name: "JWTGenerator",
             dependencies: [
-                .product(name: "SwiftJWT", package: "Swift-JWT")
+                .swiftJWT
             ]
         ),
         .testTarget(
             name: "JWTGeneratorTests",
             dependencies: [
-                "JWTGenerator"
+                .jwtGenerator
             ] + unittestDependencies
         ),
         .target(
@@ -192,7 +213,8 @@ let package = Package(
         .target(
             name: "ImageLoader",
             dependencies: [
-                "Kingfisher"
+                .kingfisher,
+                .core
             ]
         ),
         .binaryTarget(

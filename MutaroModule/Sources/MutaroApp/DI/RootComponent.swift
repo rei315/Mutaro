@@ -5,22 +5,23 @@
 //  Created by minguk-kim on 2023/05/06.
 //
 
-import Core
-import NeedleFoundation
 import Client
+import Core
+import ImageLoader
+import NeedleFoundation
 
 import AppIntroductionFeature
 import HomeViewFeature
-import SettingFeature
 import MyAppsFeature
 import RegisterJWTFeature
+import SettingFeature
 
 final class RootComponent: BootstrapComponent {
     var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
         shared {
             AppIntroductionFeatureBuilderComponent(parent: self)
                 .appIntroductionBuilder()
-        }        
+        }
     }
 
     var settingFeatureBuilder: SettingFeatureBuildable {
@@ -43,17 +44,23 @@ final class RootComponent: BootstrapComponent {
                 .myAppsFeatureBuilder()
         }
     }
-    
+
     var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
         shared {
             RegisterJWTFeatureBuilderComponent(parent: self)
                 .registerJWTFeatureBuilder()
         }
     }
-    
+
     var client: Providable {
         shared {
             Provider()
+        }
+    }
+
+    var imageDownloadService: ImageDownloadService {
+        shared {
+            ImageDownloadServiceImp()
         }
     }
 }

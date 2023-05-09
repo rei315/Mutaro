@@ -5,9 +5,8 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
-import NeedleFoundation
-import Core
 import UIKit
+import MutaroApp
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -16,38 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         _ scene: UIScene, willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().clipsToBounds = true
-        UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().backgroundImage = UIImage()
-        UITabBar.appearance().clipsToBounds = true
-        
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
-        setupNavigationBarStyle()
-        
+        setupGlobalStyle()
         sleep(1)
-        
-        guard let rootComponent = (UIApplication.shared.delegate as? AppDelegate)?.rootComponent else {
-            return
-        }
-        window = UIWindow(windowScene: windowScene)
-
-        let isNotFirstAppLaunching = UserDefaults.standard.bool(
-            forKey: UserDefaultsKey.notFirstAppLaunching.rawValue
-        )
-        let mainVC: UIViewController
-        if isNotFirstAppLaunching {
-            let myApps = rootComponent.myAppsFeatureBuilder.build()
-            let settings = rootComponent.settingFeatureBuilder.build()
-            mainVC = rootComponent.homeFeatureBuilder.build(viewControllers: [myApps, settings])
-        } else {
-            mainVC = rootComponent.appIntroductionFeatureBuilder.build()
-        }
-        window?.rootViewController = mainVC
-        window?.makeKeyAndVisible()
+        window = UIWindow(windowScene: windowScene)        
+        MutaroApp.shared.start(window: window)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -81,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 extension SceneDelegate {
-    func setupNavigationBarStyle() {
+    func setupGlobalStyle() {
         let titleColor = ColorAsset.black
         let appearance = UINavigationBarAppearance().apply {
             $0.largeTitleTextAttributes = [
@@ -96,5 +70,11 @@ extension SceneDelegate {
 
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().clipsToBounds = true
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().clipsToBounds = true
     }
 }

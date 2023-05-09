@@ -11,61 +11,12 @@
 		710C35A0296C58AC00ED034F /* MutaroUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */; };
 		710C35A9296C5B7A00ED034F /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35A8296C5B7A00ED034F /* Core */; };
 		710C35AB296C5B7A00ED034F /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 710C35AA296C5B7A00ED034F /* FirebaseSetup */; };
-		7129F29E2A0582200093A4D1 /* AppIntroductionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F29D2A0582200093A4D1 /* AppIntroductionFeature */; };
-		7129F2A02A0582200093A4D1 /* HomeViewFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F29F2A0582200093A4D1 /* HomeViewFeature */; };
-		7129F2A22A0582200093A4D1 /* MyAppsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F2A12A0582200093A4D1 /* MyAppsFeature */; };
-		7129F2A42A0582200093A4D1 /* RegisterJWTFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F2A32A0582200093A4D1 /* RegisterJWTFeature */; };
-		7129F2A62A0582200093A4D1 /* SettingFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 7129F2A52A0582200093A4D1 /* SettingFeature */; };
+		715C4BBC2A094BB3000F4ACD /* MutaroApp in Frameworks */ = {isa = PBXBuildFile; productRef = 715C4BBB2A094BB3000F4ACD /* MutaroApp */; };
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
-		717A92972A07E2C4005F2AEB /* Client in Frameworks */ = {isa = PBXBuildFile; productRef = 717A92962A07E2C4005F2AEB /* Client */; };
 		718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC94A2969D2C0006861E8 /* Assets.xcassets */; };
-		71A45D702A058376003E226B /* RootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129F2A82A05823B0093A4D1 /* RootComponent.swift */; };
 		71B6F77F2A02303D005B8531 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 71B6F77E2A02303D005B8531 /* Settings.bundle */; };
-		71BE22D629777D9900B51484 /* mutaro_photo_35.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22AD29777D8A00B51484 /* mutaro_photo_35.jpeg */; };
-		71BE22D729777D9900B51484 /* mutaro_photo_26.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22AE29777D8B00B51484 /* mutaro_photo_26.jpeg */; };
-		71BE22D829777D9900B51484 /* mutaro_photo_6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22AF29777D8B00B51484 /* mutaro_photo_6.jpeg */; };
-		71BE22D929777D9900B51484 /* mutaro_photo_39.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B029777D8B00B51484 /* mutaro_photo_39.jpeg */; };
-		71BE22DA29777D9900B51484 /* mutaro_photo_13.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B129777D8C00B51484 /* mutaro_photo_13.jpeg */; };
-		71BE22DB29777D9900B51484 /* mutaro_photo_34.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B229777D8C00B51484 /* mutaro_photo_34.jpeg */; };
-		71BE22DC29777D9900B51484 /* mutaro_photo_37.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B329777D8C00B51484 /* mutaro_photo_37.jpeg */; };
-		71BE22DD29777D9900B51484 /* mutaro_photo_8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B429777D8D00B51484 /* mutaro_photo_8.jpeg */; };
-		71BE22DE29777D9900B51484 /* mutaro_photo_5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B529777D8D00B51484 /* mutaro_photo_5.jpeg */; };
-		71BE22DF29777D9900B51484 /* mutaro_photo_17.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B629777D8E00B51484 /* mutaro_photo_17.jpeg */; };
-		71BE22E029777D9900B51484 /* mutaro_photo_16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B729777D8E00B51484 /* mutaro_photo_16.jpeg */; };
-		71BE22E129777D9900B51484 /* mutaro_photo_28.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B829777D8E00B51484 /* mutaro_photo_28.jpeg */; };
-		71BE22E229777D9900B51484 /* mutaro_photo_32.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22B929777D8F00B51484 /* mutaro_photo_32.jpeg */; };
-		71BE22E329777D9900B51484 /* mutaro_photo_0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22BA29777D8F00B51484 /* mutaro_photo_0.jpeg */; };
-		71BE22E429777D9900B51484 /* mutaro_photo_18.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22BB29777D9000B51484 /* mutaro_photo_18.jpeg */; };
-		71BE22E529777D9900B51484 /* mutaro_photo_21.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22BC29777D9000B51484 /* mutaro_photo_21.jpeg */; };
-		71BE22E629777D9900B51484 /* mutaro_photo_19.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22BD29777D9000B51484 /* mutaro_photo_19.jpeg */; };
-		71BE22E729777D9900B51484 /* mutaro_photo_20.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22BE29777D9100B51484 /* mutaro_photo_20.jpeg */; };
-		71BE22E829777D9900B51484 /* mutaro_photo_27.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22BF29777D9100B51484 /* mutaro_photo_27.jpeg */; };
-		71BE22E929777D9900B51484 /* mutaro_photo_29.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C029777D9100B51484 /* mutaro_photo_29.jpeg */; };
-		71BE22EA29777D9900B51484 /* mutaro_photo_14.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C129777D9200B51484 /* mutaro_photo_14.jpeg */; };
-		71BE22EB29777D9900B51484 /* mutaro_photo_31.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C229777D9200B51484 /* mutaro_photo_31.jpeg */; };
-		71BE22EC29777D9900B51484 /* mutaro_photo_23.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C329777D9200B51484 /* mutaro_photo_23.jpeg */; };
-		71BE22ED29777D9900B51484 /* mutaro_photo_30.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C429777D9300B51484 /* mutaro_photo_30.jpeg */; };
-		71BE22EE29777D9900B51484 /* mutaro_photo_7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C529777D9300B51484 /* mutaro_photo_7.jpeg */; };
-		71BE22EF29777D9900B51484 /* mutaro_photo_4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C629777D9300B51484 /* mutaro_photo_4.jpeg */; };
-		71BE22F029777D9900B51484 /* mutaro_photo_33.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C729777D9400B51484 /* mutaro_photo_33.jpeg */; };
-		71BE22F129777D9900B51484 /* mutaro_photo_36.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C829777D9400B51484 /* mutaro_photo_36.jpeg */; };
-		71BE22F229777D9900B51484 /* mutaro_photo_25.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22C929777D9500B51484 /* mutaro_photo_25.jpeg */; };
-		71BE22F329777D9900B51484 /* mutaro_photo_12.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22CA29777D9500B51484 /* mutaro_photo_12.jpeg */; };
-		71BE22F429777D9900B51484 /* mutaro_photo_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22CB29777D9500B51484 /* mutaro_photo_2.jpeg */; };
-		71BE22F529777D9900B51484 /* mutaro_photo_24.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22CC29777D9600B51484 /* mutaro_photo_24.jpeg */; };
-		71BE22F629777D9900B51484 /* mutaro_photo_38.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22CD29777D9600B51484 /* mutaro_photo_38.jpeg */; };
-		71BE22F729777D9900B51484 /* mutaro_photo_40.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22CE29777D9600B51484 /* mutaro_photo_40.jpeg */; };
-		71BE22F829777D9900B51484 /* mutaro_photo_15.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22CF29777D9700B51484 /* mutaro_photo_15.jpeg */; };
-		71BE22F929777D9900B51484 /* mutaro_photo_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D029777D9700B51484 /* mutaro_photo_1.jpeg */; };
-		71BE22FA29777D9900B51484 /* mutaro_photo_22.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D129777D9800B51484 /* mutaro_photo_22.jpeg */; };
-		71BE22FB29777D9900B51484 /* mutaro_photo_9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D229777D9800B51484 /* mutaro_photo_9.jpeg */; };
-		71BE22FC29777D9900B51484 /* mutaro_photo_11.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D329777D9800B51484 /* mutaro_photo_11.jpeg */; };
-		71BE22FD29777D9900B51484 /* mutaro_photo_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D429777D9900B51484 /* mutaro_photo_3.jpeg */; };
-		71BE22FE29777D9900B51484 /* mutaro_photo_10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71BE22D529777D9900B51484 /* mutaro_photo_10.jpeg */; };
 		71D0A8C02A04EEC200330A28 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D0A8BF2A04EEC200330A28 /* Color.swift */; };
-		71E2FDD42A05F21E006CBC1A /* NeedleGenerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E2FDD32A05F21E006CBC1A /* NeedleGenerated.swift */; };
-		71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */ = {isa = PBXBuildFile; productRef = 71FB3C8929707B5E008F843A /* FirebaseSetup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,56 +33,13 @@
 		710C359B296C58AB00ED034F /* MutaroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MutaroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		710C359D296C58AC00ED034F /* MutaroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroUITests.swift; sourceTree = "<group>"; };
 		710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutaroUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		7129F2A82A05823B0093A4D1 /* RootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComponent.swift; sourceTree = "<group>"; };
 		715E9583295CC20800AD6331 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		715E9586295CC20800AD6331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		715E9594295CC20A00AD6331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71B6F77B2A022F50005B8531 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../BuildTools; sourceTree = "<group>"; };
 		71B6F77E2A02303D005B8531 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		71BE22AD29777D8A00B51484 /* mutaro_photo_35.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_35.jpeg; sourceTree = "<group>"; };
-		71BE22AE29777D8B00B51484 /* mutaro_photo_26.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_26.jpeg; sourceTree = "<group>"; };
-		71BE22AF29777D8B00B51484 /* mutaro_photo_6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_6.jpeg; sourceTree = "<group>"; };
-		71BE22B029777D8B00B51484 /* mutaro_photo_39.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_39.jpeg; sourceTree = "<group>"; };
-		71BE22B129777D8C00B51484 /* mutaro_photo_13.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_13.jpeg; sourceTree = "<group>"; };
-		71BE22B229777D8C00B51484 /* mutaro_photo_34.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_34.jpeg; sourceTree = "<group>"; };
-		71BE22B329777D8C00B51484 /* mutaro_photo_37.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_37.jpeg; sourceTree = "<group>"; };
-		71BE22B429777D8D00B51484 /* mutaro_photo_8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_8.jpeg; sourceTree = "<group>"; };
-		71BE22B529777D8D00B51484 /* mutaro_photo_5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_5.jpeg; sourceTree = "<group>"; };
-		71BE22B629777D8E00B51484 /* mutaro_photo_17.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_17.jpeg; sourceTree = "<group>"; };
-		71BE22B729777D8E00B51484 /* mutaro_photo_16.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_16.jpeg; sourceTree = "<group>"; };
-		71BE22B829777D8E00B51484 /* mutaro_photo_28.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_28.jpeg; sourceTree = "<group>"; };
-		71BE22B929777D8F00B51484 /* mutaro_photo_32.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_32.jpeg; sourceTree = "<group>"; };
-		71BE22BA29777D8F00B51484 /* mutaro_photo_0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_0.jpeg; sourceTree = "<group>"; };
-		71BE22BB29777D9000B51484 /* mutaro_photo_18.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_18.jpeg; sourceTree = "<group>"; };
-		71BE22BC29777D9000B51484 /* mutaro_photo_21.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_21.jpeg; sourceTree = "<group>"; };
-		71BE22BD29777D9000B51484 /* mutaro_photo_19.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_19.jpeg; sourceTree = "<group>"; };
-		71BE22BE29777D9100B51484 /* mutaro_photo_20.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_20.jpeg; sourceTree = "<group>"; };
-		71BE22BF29777D9100B51484 /* mutaro_photo_27.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_27.jpeg; sourceTree = "<group>"; };
-		71BE22C029777D9100B51484 /* mutaro_photo_29.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_29.jpeg; sourceTree = "<group>"; };
-		71BE22C129777D9200B51484 /* mutaro_photo_14.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_14.jpeg; sourceTree = "<group>"; };
-		71BE22C229777D9200B51484 /* mutaro_photo_31.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_31.jpeg; sourceTree = "<group>"; };
-		71BE22C329777D9200B51484 /* mutaro_photo_23.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_23.jpeg; sourceTree = "<group>"; };
-		71BE22C429777D9300B51484 /* mutaro_photo_30.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_30.jpeg; sourceTree = "<group>"; };
-		71BE22C529777D9300B51484 /* mutaro_photo_7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_7.jpeg; sourceTree = "<group>"; };
-		71BE22C629777D9300B51484 /* mutaro_photo_4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_4.jpeg; sourceTree = "<group>"; };
-		71BE22C729777D9400B51484 /* mutaro_photo_33.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_33.jpeg; sourceTree = "<group>"; };
-		71BE22C829777D9400B51484 /* mutaro_photo_36.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_36.jpeg; sourceTree = "<group>"; };
-		71BE22C929777D9500B51484 /* mutaro_photo_25.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_25.jpeg; sourceTree = "<group>"; };
-		71BE22CA29777D9500B51484 /* mutaro_photo_12.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_12.jpeg; sourceTree = "<group>"; };
-		71BE22CB29777D9500B51484 /* mutaro_photo_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_2.jpeg; sourceTree = "<group>"; };
-		71BE22CC29777D9600B51484 /* mutaro_photo_24.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_24.jpeg; sourceTree = "<group>"; };
-		71BE22CD29777D9600B51484 /* mutaro_photo_38.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_38.jpeg; sourceTree = "<group>"; };
-		71BE22CE29777D9600B51484 /* mutaro_photo_40.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_40.jpeg; sourceTree = "<group>"; };
-		71BE22CF29777D9700B51484 /* mutaro_photo_15.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_15.jpeg; sourceTree = "<group>"; };
-		71BE22D029777D9700B51484 /* mutaro_photo_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_1.jpeg; sourceTree = "<group>"; };
-		71BE22D129777D9800B51484 /* mutaro_photo_22.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_22.jpeg; sourceTree = "<group>"; };
-		71BE22D229777D9800B51484 /* mutaro_photo_9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_9.jpeg; sourceTree = "<group>"; };
-		71BE22D329777D9800B51484 /* mutaro_photo_11.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_11.jpeg; sourceTree = "<group>"; };
-		71BE22D429777D9900B51484 /* mutaro_photo_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_3.jpeg; sourceTree = "<group>"; };
-		71BE22D529777D9900B51484 /* mutaro_photo_10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mutaro_photo_10.jpeg; sourceTree = "<group>"; };
 		71D0A8BF2A04EEC200330A28 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		71E2FDD32A05F21E006CBC1A /* NeedleGenerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedleGenerated.swift; sourceTree = "<group>"; };
 		71EAE2EE2A02C50900EFC765 /* MutaroApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroApp.entitlements; sourceTree = "<group>"; };
 		71FDC929296861A7006861E8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		71FDC92A296861AD006861E8 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
@@ -154,13 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7129F29E2A0582200093A4D1 /* AppIntroductionFeature in Frameworks */,
-				717A92972A07E2C4005F2AEB /* Client in Frameworks */,
-				7129F2A22A0582200093A4D1 /* MyAppsFeature in Frameworks */,
-				7129F2A62A0582200093A4D1 /* SettingFeature in Frameworks */,
-				71FB3C8A29707B5E008F843A /* FirebaseSetup in Frameworks */,
-				7129F2A42A0582200093A4D1 /* RegisterJWTFeature in Frameworks */,
-				7129F2A02A0582200093A4D1 /* HomeViewFeature in Frameworks */,
+				715C4BBC2A094BB3000F4ACD /* MutaroApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,15 +76,6 @@
 				710C359F296C58AC00ED034F /* MutaroUITestsLaunchTests.swift */,
 			);
 			path = MutaroUITests;
-			sourceTree = "<group>";
-		};
-		7129F2A72A05823B0093A4D1 /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				71E2FDD32A05F21E006CBC1A /* NeedleGenerated.swift */,
-				7129F2A82A05823B0093A4D1 /* RootComponent.swift */,
-			);
-			path = DI;
 			sourceTree = "<group>";
 		};
 		715E957A295CC20800AD6331 = {
@@ -208,7 +101,6 @@
 		715E9585295CC20800AD6331 /* MutaroApp */ = {
 			isa = PBXGroup;
 			children = (
-				7129F2A72A05823B0093A4D1 /* DI */,
 				71EAE2EE2A02C50900EFC765 /* MutaroApp.entitlements */,
 				715E95BF295CC35E00AD6331 /* Resources */,
 				715E9586295CC20800AD6331 /* AppDelegate.swift */,
@@ -222,61 +114,12 @@
 			children = (
 				71FDC926296860AA006861E8 /* GoogleServicePlists */,
 				71FDC925296860A5006861E8 /* Configurations */,
-				71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */,
 				715E9594295CC20A00AD6331 /* Info.plist */,
 				71B6F77E2A02303D005B8531 /* Settings.bundle */,
 				71FDC94A2969D2C0006861E8 /* Assets.xcassets */,
 				71D0A8BF2A04EEC200330A28 /* Color.swift */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		71F5BD052961FB2A00CCC3F8 /* MutaroPhotos */ = {
-			isa = PBXGroup;
-			children = (
-				71BE22BA29777D8F00B51484 /* mutaro_photo_0.jpeg */,
-				71BE22D029777D9700B51484 /* mutaro_photo_1.jpeg */,
-				71BE22CB29777D9500B51484 /* mutaro_photo_2.jpeg */,
-				71BE22D429777D9900B51484 /* mutaro_photo_3.jpeg */,
-				71BE22C629777D9300B51484 /* mutaro_photo_4.jpeg */,
-				71BE22B529777D8D00B51484 /* mutaro_photo_5.jpeg */,
-				71BE22AF29777D8B00B51484 /* mutaro_photo_6.jpeg */,
-				71BE22C529777D9300B51484 /* mutaro_photo_7.jpeg */,
-				71BE22B429777D8D00B51484 /* mutaro_photo_8.jpeg */,
-				71BE22D229777D9800B51484 /* mutaro_photo_9.jpeg */,
-				71BE22D529777D9900B51484 /* mutaro_photo_10.jpeg */,
-				71BE22D329777D9800B51484 /* mutaro_photo_11.jpeg */,
-				71BE22CA29777D9500B51484 /* mutaro_photo_12.jpeg */,
-				71BE22B129777D8C00B51484 /* mutaro_photo_13.jpeg */,
-				71BE22C129777D9200B51484 /* mutaro_photo_14.jpeg */,
-				71BE22CF29777D9700B51484 /* mutaro_photo_15.jpeg */,
-				71BE22B729777D8E00B51484 /* mutaro_photo_16.jpeg */,
-				71BE22B629777D8E00B51484 /* mutaro_photo_17.jpeg */,
-				71BE22BB29777D9000B51484 /* mutaro_photo_18.jpeg */,
-				71BE22BD29777D9000B51484 /* mutaro_photo_19.jpeg */,
-				71BE22BE29777D9100B51484 /* mutaro_photo_20.jpeg */,
-				71BE22BC29777D9000B51484 /* mutaro_photo_21.jpeg */,
-				71BE22D129777D9800B51484 /* mutaro_photo_22.jpeg */,
-				71BE22C329777D9200B51484 /* mutaro_photo_23.jpeg */,
-				71BE22CC29777D9600B51484 /* mutaro_photo_24.jpeg */,
-				71BE22C929777D9500B51484 /* mutaro_photo_25.jpeg */,
-				71BE22AE29777D8B00B51484 /* mutaro_photo_26.jpeg */,
-				71BE22BF29777D9100B51484 /* mutaro_photo_27.jpeg */,
-				71BE22B829777D8E00B51484 /* mutaro_photo_28.jpeg */,
-				71BE22C029777D9100B51484 /* mutaro_photo_29.jpeg */,
-				71BE22C429777D9300B51484 /* mutaro_photo_30.jpeg */,
-				71BE22C229777D9200B51484 /* mutaro_photo_31.jpeg */,
-				71BE22B929777D8F00B51484 /* mutaro_photo_32.jpeg */,
-				71BE22C729777D9400B51484 /* mutaro_photo_33.jpeg */,
-				71BE22B229777D8C00B51484 /* mutaro_photo_34.jpeg */,
-				71BE22AD29777D8A00B51484 /* mutaro_photo_35.jpeg */,
-				71BE22C829777D9400B51484 /* mutaro_photo_36.jpeg */,
-				71BE22B329777D8C00B51484 /* mutaro_photo_37.jpeg */,
-				71BE22CD29777D9600B51484 /* mutaro_photo_38.jpeg */,
-				71BE22B029777D8B00B51484 /* mutaro_photo_39.jpeg */,
-				71BE22CE29777D9600B51484 /* mutaro_photo_40.jpeg */,
-			);
-			path = MutaroPhotos;
 			sourceTree = "<group>";
 		};
 		71FDC925296860A5006861E8 /* Configurations */ = {
@@ -350,13 +193,7 @@
 			);
 			name = MutaroApp;
 			packageProductDependencies = (
-				71FB3C8929707B5E008F843A /* FirebaseSetup */,
-				7129F29D2A0582200093A4D1 /* AppIntroductionFeature */,
-				7129F29F2A0582200093A4D1 /* HomeViewFeature */,
-				7129F2A12A0582200093A4D1 /* MyAppsFeature */,
-				7129F2A32A0582200093A4D1 /* RegisterJWTFeature */,
-				7129F2A52A0582200093A4D1 /* SettingFeature */,
-				717A92962A07E2C4005F2AEB /* Client */,
+				715C4BBB2A094BB3000F4ACD /* MutaroApp */,
 			);
 			productName = MutaroApp;
 			productReference = 715E9583295CC20800AD6331 /* Mutaro.app */;
@@ -412,49 +249,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71BE22D729777D9900B51484 /* mutaro_photo_26.jpeg in Resources */,
-				71BE22E529777D9900B51484 /* mutaro_photo_21.jpeg in Resources */,
-				71BE22F829777D9900B51484 /* mutaro_photo_15.jpeg in Resources */,
-				71BE22DC29777D9900B51484 /* mutaro_photo_37.jpeg in Resources */,
-				71BE22EC29777D9900B51484 /* mutaro_photo_23.jpeg in Resources */,
-				71BE22EA29777D9900B51484 /* mutaro_photo_14.jpeg in Resources */,
-				71BE22EB29777D9900B51484 /* mutaro_photo_31.jpeg in Resources */,
 				718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */,
-				71BE22FC29777D9900B51484 /* mutaro_photo_11.jpeg in Resources */,
-				71BE22FE29777D9900B51484 /* mutaro_photo_10.jpeg in Resources */,
-				71BE22FB29777D9900B51484 /* mutaro_photo_9.jpeg in Resources */,
-				71BE22DA29777D9900B51484 /* mutaro_photo_13.jpeg in Resources */,
-				71BE22F629777D9900B51484 /* mutaro_photo_38.jpeg in Resources */,
-				71BE22DF29777D9900B51484 /* mutaro_photo_17.jpeg in Resources */,
-				71BE22EE29777D9900B51484 /* mutaro_photo_7.jpeg in Resources */,
-				71BE22DE29777D9900B51484 /* mutaro_photo_5.jpeg in Resources */,
-				71BE22F729777D9900B51484 /* mutaro_photo_40.jpeg in Resources */,
-				71BE22F329777D9900B51484 /* mutaro_photo_12.jpeg in Resources */,
-				71BE22E829777D9900B51484 /* mutaro_photo_27.jpeg in Resources */,
-				71BE22FD29777D9900B51484 /* mutaro_photo_3.jpeg in Resources */,
-				71BE22E629777D9900B51484 /* mutaro_photo_19.jpeg in Resources */,
-				71BE22F129777D9900B51484 /* mutaro_photo_36.jpeg in Resources */,
-				71BE22E129777D9900B51484 /* mutaro_photo_28.jpeg in Resources */,
-				71BE22F229777D9900B51484 /* mutaro_photo_25.jpeg in Resources */,
-				71BE22E329777D9900B51484 /* mutaro_photo_0.jpeg in Resources */,
-				71BE22D629777D9900B51484 /* mutaro_photo_35.jpeg in Resources */,
 				71B6F77F2A02303D005B8531 /* Settings.bundle in Resources */,
-				71BE22F929777D9900B51484 /* mutaro_photo_1.jpeg in Resources */,
-				71BE22DD29777D9900B51484 /* mutaro_photo_8.jpeg in Resources */,
-				71BE22D929777D9900B51484 /* mutaro_photo_39.jpeg in Resources */,
-				71BE22E029777D9900B51484 /* mutaro_photo_16.jpeg in Resources */,
-				71BE22D829777D9900B51484 /* mutaro_photo_6.jpeg in Resources */,
-				71BE22E229777D9900B51484 /* mutaro_photo_32.jpeg in Resources */,
-				71BE22ED29777D9900B51484 /* mutaro_photo_30.jpeg in Resources */,
-				71BE22F029777D9900B51484 /* mutaro_photo_33.jpeg in Resources */,
-				71BE22F429777D9900B51484 /* mutaro_photo_2.jpeg in Resources */,
-				71BE22E429777D9900B51484 /* mutaro_photo_18.jpeg in Resources */,
-				71BE22E729777D9900B51484 /* mutaro_photo_20.jpeg in Resources */,
-				71BE22DB29777D9900B51484 /* mutaro_photo_34.jpeg in Resources */,
-				71BE22E929777D9900B51484 /* mutaro_photo_29.jpeg in Resources */,
-				71BE22F529777D9900B51484 /* mutaro_photo_24.jpeg in Resources */,
-				71BE22FA29777D9900B51484 /* mutaro_photo_22.jpeg in Resources */,
-				71BE22EF29777D9900B51484 /* mutaro_photo_4.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,7 +294,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which needle; then\n    needle generate $SRCROOT/MutaroApp/DI/NeedleGenerated.swift $SRCROOT/../\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which needle; then\n    cd ../MutaroModule\n    needle generate Sources/MutaroApp/DI/NeedleGenerated.swift $SRCROOT/../\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
 		};
 		71B6F7802A023091005B8531 /* Add LicensePlist to Setting.bundle */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -588,11 +384,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71A45D702A058376003E226B /* RootComponent.swift in Sources */,
 				715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */,
 				715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */,
 				71D0A8C02A04EEC200330A28 /* Color.swift in Sources */,
-				71E2FDD42A05F21E006CBC1A /* NeedleGenerated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1344,37 +1138,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseSetup;
 		};
-		7129F29D2A0582200093A4D1 /* AppIntroductionFeature */ = {
+		715C4BBB2A094BB3000F4ACD /* MutaroApp */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = AppIntroductionFeature;
-		};
-		7129F29F2A0582200093A4D1 /* HomeViewFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = HomeViewFeature;
-		};
-		7129F2A12A0582200093A4D1 /* MyAppsFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MyAppsFeature;
-		};
-		7129F2A32A0582200093A4D1 /* RegisterJWTFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RegisterJWTFeature;
-		};
-		7129F2A52A0582200093A4D1 /* SettingFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SettingFeature;
-		};
-		717A92962A07E2C4005F2AEB /* Client */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Client;
+			productName = MutaroApp;
 		};
 		71D0A8C12A04F04200330A28 /* LicensePlistPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:LicensePlistPlugin";
-		};
-		71FB3C8929707B5E008F843A /* FirebaseSetup */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FirebaseSetup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
