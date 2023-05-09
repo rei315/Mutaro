@@ -143,7 +143,8 @@ let package = Package(
         .target(
             name: "Core",
             dependencies: [
-                .needle
+                .needle,
+                "Kingfisher"
             ]
         ),
         .target(

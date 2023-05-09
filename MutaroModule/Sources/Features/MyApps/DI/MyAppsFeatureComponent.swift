@@ -7,9 +7,9 @@
 
 import Core
 import Foundation
+import ImageLoader
 import NeedleFoundation
 import UIKit
-import ImageLoader
 
 public protocol MyAppsFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
@@ -43,7 +43,7 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
         return navigationVC
     }
 
-    private var environment: MyAppsFeatureEnvironment<ImageDownloadServiceImp> {
+    private var environment: MyAppsFeatureEnvironment {
         .init(
             client: dependency.client,
             imageDownloadService: dependency.imageDownloadService

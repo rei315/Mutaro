@@ -8,11 +8,11 @@
 import Core
 import Foundation
 
-public struct MyAppsFeatureEnvironment<ImageDownloadServiceType: ImageDownloadService> {
+public struct MyAppsFeatureEnvironment {
     public let client: Providable
-    public let imageDownloadService: ImageDownloadServiceType
+    public let imageDownloadService: ImageDownloadService
 
-    public init(client: Providable, imageDownloadService: ImageDownloadServiceType) {
+    public init(client: Providable, imageDownloadService: ImageDownloadService) {
         self.client = client
         self.imageDownloadService = imageDownloadService
     }

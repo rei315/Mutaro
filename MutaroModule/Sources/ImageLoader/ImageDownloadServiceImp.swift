@@ -5,17 +5,16 @@
 //  Created by minguk-kim on 2023/05/05.
 //
 
+import Core
 import Foundation
 import Kingfisher
-import Core
 
 public final class ImageDownloadServiceImp: ImageDownloadService {
     public init() {}
 
-    public typealias CacheType = ImageCache
     public func downloadImage(
         with urlString: String,
-        cache targetCache: CacheType
+        cache targetCache: ImageCache
     ) {
         guard !targetCache.isCached(forKey: urlString) else {
             return

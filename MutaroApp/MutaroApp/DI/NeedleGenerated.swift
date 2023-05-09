@@ -5,6 +5,7 @@ import Client
 import Core
 import Foundation
 import HomeViewFeature
+import ImageLoader
 import MyAppsFeature
 import NeedleFoundation
 import RegisterJWTFeature
@@ -38,6 +39,9 @@ private func factorya0afd58e4976bcfb953ee3b0c44298fc1c149afb(_ component: Needle
 private class MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider: MyAppsFeatureDependency {
     var client: Providable {
         return rootComponent.client
+    }
+    var imageDownloadService: ImageDownloadService {
+        return rootComponent.imageDownloadService
     }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
@@ -101,6 +105,7 @@ extension RegisterJWTFeatureBuilderComponent: Registration {
 extension MyAppsFeatureBuilderComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyAppsFeatureDependency.client] = "client-Providable"
+        keyPathToName[\MyAppsFeatureDependency.imageDownloadService] = "imageDownloadService-ImageDownloadService"
     }
 }
 extension HomeFeatureBuilderComponent: Registration {
