@@ -41,7 +41,10 @@ let productionFeatures: [PackageDescription.Target.Dependency] = [
     "MyAppsFeature",
     "RegisterJWTFeature",
     "SettingFeature",
-    .needle
+    .needle,
+    "Core",
+    "FirebaseSetup",
+    "Client"
 ]
 
 // MARK: - Repositories
@@ -61,12 +64,7 @@ let package = Package(
         .library(
             name: "MutaroApp",
             targets: ["MutaroApp"]
-        ),
-        .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
-        .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
-        .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
-        .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
-        .library(name: "SettingFeature", targets: ["SettingFeature"]),
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
@@ -81,12 +79,7 @@ let package = Package(
     targets: [
         .target(
             name: "MutaroApp",
-            dependencies: [
-                .needle,
-                "Core",
-                "FirebaseSetup",
-                "Client"
-            ]
+            dependencies: productionFeatures
         ),
         .target(
             name: "AppIntroductionFeature",
