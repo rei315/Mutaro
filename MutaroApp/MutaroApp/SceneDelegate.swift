@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
-        setupGlobalStyle()
         sleep(1)
         window = UIWindow(windowScene: windowScene)        
         MutaroApp.shared.start(window: window)
@@ -50,31 +49,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-    }
-
-}
-
-extension SceneDelegate {
-    func setupGlobalStyle() {
-        let titleColor = ColorAsset.black
-        let appearance = UINavigationBarAppearance().apply {
-            $0.largeTitleTextAttributes = [
-                .foregroundColor: titleColor,
-                .font: UIFont.boldSystemFont(ofSize: 32),
-            ]
-            $0.backgroundColor = ColorAsset.white
-            $0.titleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: titleColor
-            ]
-        }
-
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().clipsToBounds = true
-        UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().backgroundImage = UIImage()
-        UITabBar.appearance().clipsToBounds = true
     }
 }
