@@ -215,7 +215,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "echo ../MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
+			shellScript = "../MutaroModule/XCFrameworks/Firebase/FirebaseCrashlytics/run\n";
 		};
 		71A45D712A05850E003E226B /* Needle */ = {
 			isa = PBXShellScriptBuildPhase;
