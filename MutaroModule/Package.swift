@@ -91,7 +91,14 @@ let package = Package(
         .library(
             name: "MutaroApp",
             targets: ["MutaroApp"]
-        )
+        ),
+        // For R.swift to generate resources codes by XcodeCommandPlugin
+        // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
+        .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
+        .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
+        .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
+        .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
+        .library(name: "SettingFeature", targets: ["SettingFeature"]),
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
