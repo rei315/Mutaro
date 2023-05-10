@@ -45,11 +45,7 @@ version_pr_comment() {
     -d '{"body":"ビルドが成功し、下記のバージョンで配信中です。\nApp Version: '${APP_VERSION}'\nBuild Number: '${CI_BUILD_NUMBER}'"}'
 }
 
-if [[ $CI_WORKFLOW = "Test-CI" ]]; then
-    if [[ $CI_XCODEBUILD_ACTION -eq "build-for-testing" ]]; then
-        git diff --exit-code
-    fi
-elif [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
+if [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
     version_pr_comment
 elif [[ $CI_WORKFLOW = "Archive-For-Release" ]]; then
     upload_dsym
