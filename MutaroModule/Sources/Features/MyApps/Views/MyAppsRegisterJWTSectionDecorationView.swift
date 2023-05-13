@@ -1,12 +1,12 @@
 //
 //  MyAppsRegisterJWTSectionDecorationView.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/05/13.
 //
 
-import UIKit
 import Core
+import UIKit
 
 final class MyAppsRegisterJWTSectionDecorationView: UICollectionReusableView {
     override init(frame: CGRect) {

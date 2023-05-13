@@ -34,14 +34,14 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     func loadStoredJWTInfo() {
         do {
             let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-            
+
             guard let currentJWTInfo, currentJWTInfo != storedJWTInfo else {
                 shouldShowRegisterJWTSubject.send(false)
                 currentJWTInfo = storedJWTInfo
-                self.fetchMyApps(storedJWTInfo: storedJWTInfo)
+                fetchMyApps(storedJWTInfo: storedJWTInfo)
                 return
             }
-            
+
             shouldShowRegisterJWTSubject.send(true)
         } catch {
             shouldShowRegisterJWTSubject.send(true)
@@ -137,7 +137,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     func onTapRegisterJWT(from viewController: UIViewController) {
         environment.router.showRegisterJWT(from: viewController)
     }
-    
+
     func prefetchItem(
         _ rowType: MyAppsViewController.MyAppsRow?
     ) {

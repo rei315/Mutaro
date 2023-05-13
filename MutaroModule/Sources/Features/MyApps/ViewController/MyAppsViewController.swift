@@ -73,7 +73,7 @@ public class MyAppsViewController: UIViewController {
                 self?.updateAppsSnapshot(items: $0)
             }
             .store(in: &viewModel.cancellables)
-        
+
         viewModel.shouldShowRegisterJWTSubject
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
@@ -110,7 +110,7 @@ extension MyAppsViewController {
     private func configureLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20
-        
+
         return .init(
             sectionProvider: { [weak self] sectionIndex, layoutEnvironment in
                 guard let self else {
@@ -157,7 +157,7 @@ extension MyAppsViewController {
                             heightDimension: .estimated(300)
                         )
                     )
-                    
+
                     let groupLayout: NSCollectionLayoutSize = .init(
                         widthDimension: .fractionalWidth(1),
                         heightDimension: .estimated(300)
@@ -176,7 +176,7 @@ extension MyAppsViewController {
                             count: 1
                         )
                     }
-                                    
+
                     let section = NSCollectionLayoutSection(group: group)
                     let centerPadding = layoutEnvironment.container.contentSize.width / 3
                     section.contentInsets = .init(
@@ -247,7 +247,7 @@ extension MyAppsViewController {
 
         dataSource.apply(snapshot)
     }
-    
+
     private func updateRegisterJWTSnapshot(shuoldShow: Bool) {
         var snapshot = dataSource.snapshot()
         let currentRows = snapshot.itemIdentifiers(inSection: .registerJWT)
@@ -260,7 +260,7 @@ extension MyAppsViewController {
         } else {
             snapshot.deleteItems(currentRows)
         }
-        
+
         dataSource.apply(snapshot)
     }
 
@@ -295,7 +295,7 @@ extension MyAppsViewController {
                     $0.bind(url: item.iconUrl, title: item.name)
                 }
             }
-            
+
             return cell
         case .registerJWT:
             let cell = collectionView.dequeueReusableCell(

@@ -24,7 +24,7 @@ public final class MutaroApp {
     @MainActor
     public func start(window: UIWindow?) {
         setupGlobalStyle()
-        
+
         let isNotFirstAppLaunching = UserDefaults.standard.bool(
             forKey: UserDefaultsKey.notFirstAppLaunching.rawValue
         )
@@ -39,13 +39,13 @@ public final class MutaroApp {
         window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
     }
-    
+
     private func setupGlobalStyle() {
         let titleColor = R.color.black() ?? .black
         let appearance = UINavigationBarAppearance().apply {
             $0.largeTitleTextAttributes = [
                 .foregroundColor: titleColor,
-                .font: UIFont.boldSystemFont(ofSize: 32),
+                .font: UIFont.boldSystemFont(ofSize: 32)
             ]
             $0.backgroundColor = R.color.white() ?? .white
             $0.titleTextAttributes = [

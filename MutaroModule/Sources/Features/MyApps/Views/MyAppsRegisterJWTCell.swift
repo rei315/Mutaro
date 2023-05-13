@@ -5,14 +5,14 @@
 //  Created by minguk-kim on 2023/05/05.
 //
 
-import UIKit
 import Core
+import UIKit
 
 final class MyAppsRegisterJWTCell: UICollectionViewCell {
     private let titleLabel: UILabel = .init()
     private let descriptionLabel: UILabel = .init()
     private let registerButton: UIButton = .init(type: .system)
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -29,7 +29,7 @@ final class MyAppsRegisterJWTCell: UICollectionViewCell {
             $0.addSubview(descriptionLabel)
             $0.addSubview(registerButton)
         }
-        
+
         titleLabel.lets {
             $0.numberOfLines = 2
             $0.font = FontSize.base.ofBoldFont()
@@ -40,10 +40,10 @@ final class MyAppsRegisterJWTCell: UICollectionViewCell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
                 $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-                $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+                $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
             ])
         }
-        
+
         descriptionLabel.lets {
             $0.numberOfLines = 2
             $0.font = FontSize.minus1.ofFont()
@@ -54,10 +54,10 @@ final class MyAppsRegisterJWTCell: UICollectionViewCell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
                 $0.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-                $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+                $0.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
             ])
         }
-        
+
         registerButton.lets {
             $0.layer.cornerRadius = 4
             $0.backgroundColor = .blue.withAlphaComponent(0.2)
@@ -71,7 +71,7 @@ final class MyAppsRegisterJWTCell: UICollectionViewCell {
             ])
         }
     }
-    
+
     func bind(_ action: @escaping () -> Void) {
         registerButton.updateAction(.touchUpInside, action: action)
     }

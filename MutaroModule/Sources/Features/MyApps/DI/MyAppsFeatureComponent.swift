@@ -51,7 +51,7 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
             router: router
         )
     }
-    
+
     private var router: MyAppsRoutable {
         MyAppsRouter(
             dependency: .init(
