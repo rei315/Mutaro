@@ -13,6 +13,7 @@ import ImageLoader
 import JWTGenerator
 import KeychainStore
 import TestFlightRepository
+import UIKit
 
 protocol MyAppsViewModelProtocol {}
 
@@ -133,8 +134,8 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             .compactMap { $0 }
     }
 
-    func onTapRegisterJWT() {
-        
+    func onTapRegisterJWT(from viewController: UIViewController) {
+        environment.router.showRegisterJWT(from: viewController)
     }
     
     func prefetchItem(

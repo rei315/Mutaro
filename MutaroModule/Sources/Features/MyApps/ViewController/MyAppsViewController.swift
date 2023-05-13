@@ -303,7 +303,10 @@ extension MyAppsViewController {
                 for: indexPath
             ).apply {
                 $0.bind { [weak self] in
-                    self?.viewModel.onTapRegisterJWT()
+                    guard let self else {
+                        return
+                    }
+                    self.viewModel.onTapRegisterJWT(from: self)
                 }
             }
             return cell

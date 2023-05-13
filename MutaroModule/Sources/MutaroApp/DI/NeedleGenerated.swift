@@ -43,6 +43,9 @@ private class MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider: MyAppsFeature
     var imageDownloadService: ImageDownloadService {
         return rootComponent.imageDownloadService
     }
+    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+        return rootComponent.registerJWTFeatureBuilder
+    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -106,6 +109,7 @@ extension MyAppsFeatureBuilderComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyAppsFeatureDependency.client] = "client-Providable"
         keyPathToName[\MyAppsFeatureDependency.imageDownloadService] = "imageDownloadService-ImageDownloadService"
+        keyPathToName[\MyAppsFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
     }
 }
 extension HomeFeatureBuilderComponent: Registration {
