@@ -290,17 +290,22 @@ extension MyAppsViewController {
             let cell = collectionView.dequeueReusableCell(
                 withType: MyAppsAppCell.self,
                 for: indexPath
-            )
-            if let item = viewModel.appInfosSubject.value[getOrNil: index] {
-                cell.bind(url: item.iconUrl, title: item.name)
+            ).apply {
+                if let item = viewModel.appInfosSubject.value[getOrNil: index] {
+                    $0.bind(url: item.iconUrl, title: item.name)
+                }
             }
-
+            
             return cell
         case .registerJWT:
             let cell = collectionView.dequeueReusableCell(
                 withType: MyAppsRegisterJWTCell.self,
                 for: indexPath
-            )
+            ).apply {
+                $0.bind { [weak self] in
+                    self?.viewModel.onTapRegisterJWT()
+                }
+            }
             return cell
         }
     }

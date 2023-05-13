@@ -71,4 +71,8 @@ final class MyAppsRegisterJWTCell: UICollectionViewCell {
             ])
         }
     }
+    
+    func bind(_ action: @escaping () -> Void) {
+        registerButton.updateAction(.touchUpInside, action: action)
+    }
 }

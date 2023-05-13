@@ -133,6 +133,10 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             .compactMap { $0 }
     }
 
+    func onTapRegisterJWT() {
+        
+    }
+    
     func prefetchItem(
         _ rowType: MyAppsViewController.MyAppsRow?
     ) {
