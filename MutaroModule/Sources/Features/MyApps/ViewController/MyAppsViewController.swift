@@ -78,7 +78,7 @@ public class MyAppsViewController: UIViewController {
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
-                self?.updateRegisterJWTSnapshot(shuoldShow: !$0)
+                self?.updateRegisterJWTSnapshot(shuoldShow: $0)
             }
             .store(in: &viewModel.cancellables)
     }
