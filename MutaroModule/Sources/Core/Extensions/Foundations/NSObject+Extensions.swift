@@ -8,11 +8,11 @@
 import Foundation
 
 extension NSObject {
-    static func simpleClassName() -> String {
+    public static func simpleClassName() -> String {
         NSStringFromClass(self).components(separatedBy: ".").last ?? ""
     }
 
-    static func simpleSwiftUIHostingClassName() -> String {
+    public static func simpleSwiftUIHostingClassName() -> String {
         "\(self)".components(separatedBy: "<").first ?? ""
     }
 }
