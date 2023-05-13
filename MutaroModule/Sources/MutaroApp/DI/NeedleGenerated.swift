@@ -43,6 +43,10 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
             rootComponent.imageDownloadService
         }
 
+        var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+            rootComponent.registerJWTFeatureBuilder
+        }
+
         private let rootComponent: RootComponent
         init(rootComponent: RootComponent) {
             self.rootComponent = rootComponent
@@ -112,6 +116,7 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
         public func registerItems() {
             keyPathToName[\MyAppsFeatureDependency.client] = "client-Providable"
             keyPathToName[\MyAppsFeatureDependency.imageDownloadService] = "imageDownloadService-ImageDownloadService"
+            keyPathToName[\MyAppsFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
         }
     }
 

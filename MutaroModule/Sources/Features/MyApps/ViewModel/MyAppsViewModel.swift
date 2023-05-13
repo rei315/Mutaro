@@ -13,15 +13,16 @@ import ImageLoader
 import JWTGenerator
 import KeychainStore
 import TestFlightRepository
+import UIKit
 
 protocol MyAppsViewModelProtocol {}
 
 public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     private let environment: MyAppsFeatureEnvironment
 
-    let currentJWTInfoSubject = CurrentValueSubject<MutaroJWT.JWTRequestInfo?, Never>(nil)
+    var currentJWTInfo: MutaroJWT.JWTRequestInfo?
     let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([])
-
+    let shouldShowRegisterJWTSubject = PassthroughSubject<Bool, Never>()
     var cancellables: Set<AnyCancellable> = []
 
     public init(
@@ -30,25 +31,20 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         self.environment = environment
     }
 
-    func setupSubscription() {
-        currentJWTInfoSubject
-            .removeDuplicates()
-            .compactMap { $0 }
-            .sink { [weak self] in
-                self?.fetchMyApps(storedJWTInfo: $0)
-            }
-            .store(in: &cancellables)
-    }
-
     func loadStoredJWTInfo() {
         do {
             let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-            guard let currentSavedJWTInfo = currentJWTInfoSubject.value, currentSavedJWTInfo != storedJWTInfo else {
-                currentJWTInfoSubject.send(storedJWTInfo)
+
+            guard let currentJWTInfo, currentJWTInfo != storedJWTInfo else {
+                shouldShowRegisterJWTSubject.send(false)
+                currentJWTInfo = storedJWTInfo
+                fetchMyApps(storedJWTInfo: storedJWTInfo)
                 return
             }
+
+            shouldShowRegisterJWTSubject.send(true)
         } catch {
-            // TODO: - show need to register
+            shouldShowRegisterJWTSubject.send(true)
         }
     }
 
@@ -136,6 +132,10 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
                 )
             }
             .compactMap { $0 }
+    }
+
+    func onTapRegisterJWT(from viewController: UIViewController) {
+        environment.router.showRegisterJWT(from: viewController)
     }
 
     func prefetchItem(

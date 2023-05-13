@@ -11,7 +11,10 @@ import JWTGenerator
 import UIKit
 
 public class MyAppsViewController: UIViewController {
-    private lazy var collectionView: UICollectionView = .init(frame: .zero, collectionViewLayout: configureLayout())
+    private lazy var collectionView: UICollectionView = .init(
+        frame: .zero,
+        collectionViewLayout: configureLayout()
+    )
     private lazy var dataSource: DataSource = self.configureDataSource()
     private let viewModel: MyAppsViewModel
     private let dependency: Dependency
@@ -43,7 +46,6 @@ public class MyAppsViewController: UIViewController {
         setupView()
         setupDefaultSnapshot()
         setupSubscription()
-        viewModel.setupSubscription()
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -69,6 +71,14 @@ public class MyAppsViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.updateAppsSnapshot(items: $0)
+            }
+            .store(in: &viewModel.cancellables)
+
+        viewModel.shouldShowRegisterJWTSubject
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.updateRegisterJWTSnapshot(shuoldShow: $0)
             }
             .store(in: &viewModel.cancellables)
     }
@@ -98,53 +108,96 @@ extension MyAppsViewController: UICollectionViewDataSourcePrefetching {
 
 extension MyAppsViewController {
     private func configureLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-            guard let self else {
-                return nil
-            }
-            let section = self.dataSource.sectionIdentifier(for: sectionIndex)
-            switch section {
-            case .registerJWT:
-                return nil
-            case .app:
-                let item = NSCollectionLayoutItem(
-                    layoutSize: .init(
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.interSectionSpacing = 20
+
+        return .init(
+            sectionProvider: { [weak self] sectionIndex, layoutEnvironment in
+                guard let self else {
+                    return nil
+                }
+                let section = self.dataSource.sectionIdentifier(for: sectionIndex)
+                switch section {
+                case .registerJWT:
+                    let item = NSCollectionLayoutItem(
+                        layoutSize: .init(
+                            widthDimension: .fractionalWidth(1),
+                            heightDimension: .estimated(200)
+                        )
+                    )
+                    let groupLayout: NSCollectionLayoutSize = .init(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .estimated(200)
+                    )
+                    let group: NSCollectionLayoutGroup
+                    if #available(iOS 16.0, *) {
+                        group = NSCollectionLayoutGroup.vertical(
+                            layoutSize: groupLayout,
+                            repeatingSubitem: item,
+                            count: 1
+                        )
+                    } else {
+                        group = NSCollectionLayoutGroup.vertical(
+                            layoutSize: groupLayout,
+                            subitem: item,
+                            count: 1
+                        )
+                    }
+                    let section = NSCollectionLayoutSection(group: group)
+                    let backgroundItem = NSCollectionLayoutDecorationItem.background(
+                        elementKind: MyAppsRegisterJWTSectionDecorationView.simpleClassName()
+                    )
+                    section.decorationItems = [backgroundItem]
+                    section.contentInsets = .init(top: 12, leading: 20, bottom: 12, trailing: 20)
+                    return section
+                case .app:
+                    let item = NSCollectionLayoutItem(
+                        layoutSize: .init(
+                            widthDimension: .fractionalWidth(1),
+                            heightDimension: .estimated(300)
+                        )
+                    )
+
+                    let groupLayout: NSCollectionLayoutSize = .init(
                         widthDimension: .fractionalWidth(1),
                         heightDimension: .estimated(300)
                     )
-                )
-                let groupLayout: NSCollectionLayoutSize = .init(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .estimated(300)
-                )
-                let group: NSCollectionLayoutGroup
-                if #available(iOS 16.0, *) {
-                    group = NSCollectionLayoutGroup.vertical(
-                        layoutSize: groupLayout,
-                        repeatingSubitem: item,
-                        count: 1
-                    )
-                } else {
-                    group = NSCollectionLayoutGroup.vertical(
-                        layoutSize: groupLayout,
-                        subitem: item,
-                        count: 1
-                    )
-                }
+                    let group: NSCollectionLayoutGroup
+                    if #available(iOS 16.0, *) {
+                        group = NSCollectionLayoutGroup.vertical(
+                            layoutSize: groupLayout,
+                            repeatingSubitem: item,
+                            count: 1
+                        )
+                    } else {
+                        group = NSCollectionLayoutGroup.vertical(
+                            layoutSize: groupLayout,
+                            subitem: item,
+                            count: 1
+                        )
+                    }
 
-                let section = NSCollectionLayoutSection(group: group)
-                let centerPadding = layoutEnvironment.container.contentSize.width / 3
-                section.contentInsets = .init(
-                    top: 20,
-                    leading: centerPadding,
-                    bottom: 20,
-                    trailing: centerPadding
-                )
-                section.interGroupSpacing = 20
-                return section
-            case .none:
-                return nil
-            }
+                    let section = NSCollectionLayoutSection(group: group)
+                    let centerPadding = layoutEnvironment.container.contentSize.width / 3
+                    section.contentInsets = .init(
+                        top: 0,
+                        leading: centerPadding,
+                        bottom: 0,
+                        trailing: centerPadding
+                    )
+                    section.interGroupSpacing = 20
+                    section.contentInsetsReference = .none
+                    return section
+                case .none:
+                    return nil
+                }
+            },
+            configuration: config
+        ).apply {
+            $0.register(
+                MyAppsRegisterJWTSectionDecorationView.self,
+                forDecorationViewOfKind: MyAppsRegisterJWTSectionDecorationView.simpleClassName()
+            )
         }
     }
 }
@@ -195,6 +248,22 @@ extension MyAppsViewController {
         dataSource.apply(snapshot)
     }
 
+    private func updateRegisterJWTSnapshot(shuoldShow: Bool) {
+        var snapshot = dataSource.snapshot()
+        let currentRows = snapshot.itemIdentifiers(inSection: .registerJWT)
+        if shuoldShow {
+            if currentRows.contains(.registerJWT) {
+                snapshot.reconfigureItems([.registerJWT])
+            } else {
+                snapshot.appendItems([.registerJWT], toSection: .registerJWT)
+            }
+        } else {
+            snapshot.deleteItems(currentRows)
+        }
+
+        dataSource.apply(snapshot)
+    }
+
     private func configureDataSource() -> DataSource {
         let dataSource: DataSource = .init(
             collectionView: collectionView
@@ -221,9 +290,10 @@ extension MyAppsViewController {
             let cell = collectionView.dequeueReusableCell(
                 withType: MyAppsAppCell.self,
                 for: indexPath
-            )
-            if let item = viewModel.appInfosSubject.value[getOrNil: index] {
-                cell.bind(url: item.iconUrl, title: item.name)
+            ).apply {
+                if let item = viewModel.appInfosSubject.value[getOrNil: index] {
+                    $0.bind(url: item.iconUrl, title: item.name)
+                }
             }
 
             return cell
@@ -231,7 +301,14 @@ extension MyAppsViewController {
             let cell = collectionView.dequeueReusableCell(
                 withType: MyAppsRegisterJWTCell.self,
                 for: indexPath
-            )
+            ).apply {
+                $0.bind { [weak self] in
+                    guard let self else {
+                        return
+                    }
+                    self.viewModel.onTapRegisterJWT(from: self)
+                }
+            }
             return cell
         }
     }

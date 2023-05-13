@@ -234,7 +234,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then    \n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/MutaroApp/DI/NeedleGenerated.swift\n    else\n        NEEDLE_SWIFT_FILE_PATH=../MutaroModule/Sources/MutaroApp/DI/NeedleGenerated.swift\n    fi\n    needle generate $NEEDLE_SWIFT_FILE_PATH ../\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/MutaroApp/DI/NeedleGenerated.swift\n    else\n        NEEDLE_SWIFT_FILE_PATH=../MutaroModule/Sources/MutaroApp/DI/NeedleGenerated.swift\n    fi\n    needle generate $NEEDLE_SWIFT_FILE_PATH ../\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
 		};
 		71B6F7802A023091005B8531 /* Add LicensePlist to Setting.bundle */ = {
 			isa = PBXShellScriptBuildPhase;

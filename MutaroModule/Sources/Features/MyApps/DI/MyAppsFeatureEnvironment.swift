@@ -11,9 +11,15 @@ import Foundation
 public struct MyAppsFeatureEnvironment {
     public let client: Providable
     public let imageDownloadService: ImageDownloadService
+    public let router: MyAppsRoutable
 
-    public init(client: Providable, imageDownloadService: ImageDownloadService) {
+    public init(
+        client: Providable,
+        imageDownloadService: ImageDownloadService,
+        router: MyAppsRoutable
+    ) {
         self.client = client
         self.imageDownloadService = imageDownloadService
+        self.router = router
     }
 }

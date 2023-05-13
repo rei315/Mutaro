@@ -18,12 +18,30 @@ struct _R {
 
     func validate() throws {}
 
-    /// This `_R.color` struct is generated, and contains static references to 2 colors.
+    /// This `_R.color` struct is generated, and contains static references to 8 colors.
     struct color {
         let bundle: Foundation.Bundle
 
+        /// Color `black`.
+        var black: RswiftResources.ColorResource { .init(name: "black", path: [], bundle: bundle) }
+
+        /// Color `grey`.
+        var grey: RswiftResources.ColorResource { .init(name: "grey", path: [], bundle: bundle) }
+
         /// Color `navy`.
         var navy: RswiftResources.ColorResource { .init(name: "navy", path: [], bundle: bundle) }
+
+        /// Color `navy10`.
+        var navy10: RswiftResources.ColorResource { .init(name: "navy10", path: [], bundle: bundle) }
+
+        /// Color `navy20`.
+        var navy20: RswiftResources.ColorResource { .init(name: "navy20", path: [], bundle: bundle) }
+
+        /// Color `navy40`.
+        var navy40: RswiftResources.ColorResource { .init(name: "navy40", path: [], bundle: bundle) }
+
+        /// Color `navy70`.
+        var navy70: RswiftResources.ColorResource { .init(name: "navy70", path: [], bundle: bundle) }
 
         /// Color `turquoise`.
         var turquoise: RswiftResources.ColorResource { .init(name: "turquoise", path: [], bundle: bundle) }

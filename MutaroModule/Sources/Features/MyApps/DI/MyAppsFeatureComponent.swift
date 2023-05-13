@@ -15,6 +15,7 @@ public protocol MyAppsFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var client: Providable { get }
     var imageDownloadService: ImageDownloadService { get }
+    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable { get }
 }
 
 class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuildable {
@@ -46,7 +47,16 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
     private var environment: MyAppsFeatureEnvironment {
         .init(
             client: dependency.client,
-            imageDownloadService: dependency.imageDownloadService
+            imageDownloadService: dependency.imageDownloadService,
+            router: router
+        )
+    }
+
+    private var router: MyAppsRoutable {
+        MyAppsRouter(
+            dependency: .init(
+                registerJWTFeatureBuilder: dependency.registerJWTFeatureBuilder
+            )
         )
     }
 }
