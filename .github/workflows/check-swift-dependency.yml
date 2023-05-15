@@ -23,7 +23,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          current_datetime=$(date +"%Y-%m-%d %H:%M")
+          current_datetime=$(date +"%Y-%m-%d-%H-%M")
           
           branchName="feature/update-dependency/${current_datetime}"
           
