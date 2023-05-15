@@ -22,16 +22,10 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-                    
-          branchName="feature/update-dependency"
-                    
-          if git rev-parse --verify update-dependencies >/dev/null 2>&1; then
-            git branch -D $branchName
-          fi
           
-          if git ls-remote --exit-code --heads origin update-dependencies >/dev/null 2>&1; then
-            git push origin --delete $branchName
-          fi          
+          current_datetime=$(date +"%Y-%m-%d %H:%M")
+          
+          branchName="feature/update-dependency/${current_datetime}"
           
           git branch $branchName
           git switch $branchName
