@@ -9,11 +9,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
         
       - name: Run Ruby script
         id: ruby-script
@@ -29,9 +24,14 @@ jobs:
           git config --local user.name "GitHub Action"
                     
           branchName="feature/update-dependency"
+                    
+          if git rev-parse --verify update-dependencies >/dev/null 2>&1; then
+            git branch -D $branchName
+          fi
           
-          git branch -D $branchName
-          git push origin --delete $branchName
+          if git ls-remote --exit-code --heads origin update-dependencies >/dev/null 2>&1; then
+            git push origin --delete $branchName
+          fi          
           
           git branch $branchName
           git switch $branchName
