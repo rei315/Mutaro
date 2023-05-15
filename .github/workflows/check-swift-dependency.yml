@@ -25,6 +25,9 @@ jobs:
       - name: Create Branch
         id: cb
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
           branchName="feature/update-dependency"
           git branch $branchName
           git switch $branchName
