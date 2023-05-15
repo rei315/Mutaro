@@ -63,7 +63,7 @@ end
 def extract_version(version)
     version.gsub!(/^v/, '') if version.start_with?('v')
     version.gsub!(/-.*/, '') if version.include?('-')
-    version.gsub!(/[^0-9.]/, '')
+    version = version.match(/\d+\.\d+\.\d+/) ? version.match(/\d+\.\d+\.\d+/)[0] : ""
     version
 end
 
