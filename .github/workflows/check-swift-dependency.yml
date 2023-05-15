@@ -21,7 +21,7 @@ jobs:
           FILE_PATH: "../Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved"
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          ls ../
+          ls ../Mutaro/Mutaro.xcworkspace/
         
 #      - name: Run Ruby script
 #        id: ruby-script
