@@ -22,13 +22,22 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GITHUB_TOKEN}
 
+      - name: Create Branch
+        id: cb
+        run |
+          branchName="feature/update-dependency"
+          git branch $branchName
+          git switch $branchName
+          git commit --allow-empty -m "Empty-Commit"
+          git push --set-upstream origin $branchName
+          
       - name: Create PR
         id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update dependencies
-          branch: update-dependencies
+          branch: feature/update-dependency
           base: develop
           title: NEED UPDATE DEPENDENCY
           body: |
@@ -46,5 +55,5 @@ jobs:
 
             comment="CurrentVersion: $currentVersion\nNewVersion: $newVersion\nRepository: $repository"
 
-            echo "$comment" | gh issue comment ${{ secrets.GITHUB_TOKEN }} -R $owner/$repository ${{ steps.create-pr.outputs.pull-request-number }}
+            echo "$comment" | gh issue comment ${{ secrets.GITHUB_TOKEN }} -R $owner/$repository ${{ steps.cpr.outputs.pull-request-number }}
           done
