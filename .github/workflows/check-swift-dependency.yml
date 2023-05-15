@@ -34,7 +34,7 @@ jobs:
           git commit --allow-empty -m "Empty-Commit"
           git push --set-upstream origin $branchName
           
-          pr_number=$(gh pr create --base develop --title "Update Swift Package Dependency" --body "" | grep -oP '(?<=https:\/\/github.com\/[^/]+\/[^/]+\/pull\/)[0-9]+')
+          pr_number=$(gh pr create --base develop --title "Update Swift Package Dependency" --body "" | sed -n 's#.*https://github.com/[^/]\+/[^/]\+/pull/\([0-9]\+\).*#\1#p')
           echo "pull-request-number=${pr_number}" >> $GITHUB_OUTPUT
           
       - name: Add comments to PR
