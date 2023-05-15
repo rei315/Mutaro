@@ -22,30 +22,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GITHUB_TOKEN}
 
-      - name: Create Branch
+      - name: Create Branch and PR
         id: cb
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
+                    
           branchName="feature/update-dependency"
+          
+          git branch -D $branchName
+          git push origin --delete $branchName
+          
           git branch $branchName
           git switch $branchName
           git commit --allow-empty -m "Empty-Commit"
           git push --set-upstream origin $branchName
           
-      - name: Create PR
-        id: cpr
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update dependencies
-          branch: feature/update-dependency
-          base: develop
-          title: NEED UPDATE DEPENDENCY
-          body: |
-            Current dependencies need to be updated.
-
+          pr_number=$(gh pr create --base develop --title "Update Swift Package Dependency" --body "" | grep -oP '(?<=https:\/\/github.com\/[^/]+\/[^/]+\/pull\/)[0-9]+')
+          echo "pull-request-number=${pr_number}" >> $GITHUB_OUTPUT
+          
       - name: Add comments to PR
         run: |
           result="${{ steps.ruby-script.outputs.result }}"
