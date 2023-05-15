@@ -50,6 +50,6 @@ jobs:
             newVersion=$(echo "$item" | jq -r '.newVersion')
             repository=$(echo "$item" | jq -r '.repository')
             
-            comment="CurrentVersion: $currentVersion\nNewVersion: $newVersion\nRepository: $repository"
+            comment="CurrentVersion: $currentVersion \n NewVersion: $newVersion \n Repository: $repository"
             gh issue comment "${PULL_REQUEST_NUMBER}" -b "$comment"
           done
