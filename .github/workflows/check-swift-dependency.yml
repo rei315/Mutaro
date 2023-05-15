@@ -49,13 +49,7 @@ jobs:
             currentVersion=$(echo "$item" | jq -r '.currentVersion')
             newVersion=$(echo "$item" | jq -r '.newVersion')
             repository=$(echo "$item" | jq -r '.repository')
-
-            echo "currentVersion: $currentVersion"
-            echo "newVersion: $newVersion"
-            echo "repository: $repository"
             
             comment="CurrentVersion: $currentVersion\nNewVersion: $newVersion\nRepository: $repository"
-            gh issue comment -R $owner/$repository ${{ github.event.pull_request.number }} -b "$comment"
+            gh issue comment $PULL_REQUEST_NUMBER -b "$comment"
           done
-
-
