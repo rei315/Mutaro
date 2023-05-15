@@ -20,7 +20,7 @@ jobs:
         env:
           FILE_PATH: "../Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved"
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${{FILE_PATH}} ${{GITHUB_TOKEN}}
+        run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GITHUB_TOKEN}
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
