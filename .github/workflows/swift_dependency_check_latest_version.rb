@@ -78,22 +78,23 @@ def compare_versions(packageVersion, gitVersion)
 end
 
 def check_available_new_version(token, data)
-    results = []
+    available_version_info = []
     
-    data.each do |package_info|
-        owner, repository, version = package_info['owner'], package_info['repository'], package_info['version']
+    data.each do |package|
+        owner, repository, version = package['owner'], package['repository'], package['version']
         latest_tag = get_latest_tag(owner, repository, token)
         latest_tag = extract_version(latest_tag)
         
         result = compare_versions(version, latest_tag)
         next if result == false
+        package_info = {}
         package_info['currentVersion'] = version
         package_info['newVersion'] = latest_tag
         package_info['repository'] = "https://github.com/#{owner}/#{repository}"
-        results << package_info
+        available_version_info << package_info
     end
     
-    results
+    available_version_info
 end
 
 file_path = ARGV[0]
