@@ -19,6 +19,8 @@ jobs:
 
       - name: Create Branch and PR
         id: cb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -36,6 +38,9 @@ jobs:
           echo "pull-request-number=${pr_number}" >> $GITHUB_OUTPUT
           
       - name: Add comments to PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
         run: |
           result="${{ steps.ruby-script.outputs.result }}"
           IFS=$'\n'
@@ -47,5 +52,5 @@ jobs:
 
             comment="CurrentVersion: $currentVersion\nNewVersion: $newVersion\nRepository: $repository"
 
-            echo "$comment" | gh issue comment ${{ secrets.GITHUB_TOKEN }} -R $owner/$repository ${{ steps.cpr.outputs.pull-request-number }}
+            echo "$comment" | gh issue comment ${GITHUB_TOKEN} -R $owner/$repository ${PULL_REQUEST_NUMBER}
           done
