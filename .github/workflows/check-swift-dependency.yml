@@ -14,8 +14,8 @@ jobs:
         id: ruby-script
         env:
           FILE_PATH: "../Mutaro/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved"
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GITHUB_TOKEN}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GH_TOKEN}
 
       - name: Create Branch and PR
         id: cb
