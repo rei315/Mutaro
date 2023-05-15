@@ -15,7 +15,9 @@ jobs:
         env:
           FILE_PATH: "../Mutaro/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved"
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GH_TOKEN}
+        run: |
+          result=$(ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GH_TOKEN})
+          echo "result=${result}" >> $GITHUB_OUTPUT
 
       - name: Create Branch and PR
         id: cb
@@ -49,8 +51,8 @@ jobs:
             repository=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["repository"]')
             currentVersion=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["currentVersion"]')
             newVersion=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["newVersion"]')
-
+    
             comment="CurrentVersion: $currentVersion\nNewVersion: $newVersion\nRepository: $repository"
 
-            echo "$comment" | gh issue comment ${GITHUB_TOKEN} -R $owner/$repository ${PULL_REQUEST_NUMBER}
+            GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} gh issue comment -R $owner/$repository ${{     github.event.pull_request.number }} -b "$comment"
           done
