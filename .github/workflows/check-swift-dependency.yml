@@ -20,7 +20,7 @@ jobs:
           echo "result=${result}" >> $GITHUB_OUTPUT
 
       - name: Create Branch and PR
-        id: cb
+        id: create-branch-pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -42,7 +42,7 @@ jobs:
       - name: Add comments to PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PULL_REQUEST_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+          PULL_REQUEST_NUMBER: ${{ steps.create-branch-pr.outputs.pull-request-number }}
         run: |
           result='${{ steps.ruby-script.outputs.result }}'
           for item in $(echo "$result" | jq -c '.[]'); do
