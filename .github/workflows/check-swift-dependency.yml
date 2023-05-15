@@ -23,12 +23,13 @@ jobs:
         run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GITHUB_TOKEN}
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v3
-        id: create-pr
+        id: cpr
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update dependencies
           branch: update-dependencies
+          base: develop
           title: NEED UPDATE DEPENDENCY
           body: |
             Current dependencies need to be updated.
