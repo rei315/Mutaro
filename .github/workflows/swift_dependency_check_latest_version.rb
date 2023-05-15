@@ -18,7 +18,6 @@ def get_latest_tag(owner, repository, token)
         latest_tag = tags[0]['name'] unless tags.empty?
         latest_tag ||= 'N/A'
     else
-        puts response.code
         latest_tag = 'N/A'
     end
     
@@ -88,9 +87,6 @@ def check_available_new_version(token, data)
         
         result = compare_versions(version, latest_tag)
         next if result == false
-        puts "Repository: #{repository}"
-        puts "Version in Package.resolved: #{version}"
-        puts "Latest Tag: #{latest_tag}"
         package_info['currentVersion'] = version
         package_info['newVersion'] = latest_tag
         package_info['repository'] = "https://github.com/#{owner}/#{repository}"
