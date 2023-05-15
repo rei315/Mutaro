@@ -10,40 +10,48 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          
+#      - name: Setup Ruby
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: 2.7
+        
       - name: Run Ruby script
         id: ruby-script
         env:
           FILE_PATH: "../Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved"
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GITHUB_TOKEN}
-
-      - name: Create PR
-        uses: peter-evans/create-pull-request@v3
-        id: create-pr
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update dependencies
-          branch: update-dependencies
-          title: NEED UPDATE DEPENDENCY
-          body: |
-            Current dependencies need to be updated.
-
-      - name: Add comments to PR
         run: |
-          result="${{ steps.ruby-script.outputs.result }}"
-          IFS=$'\n'
-          for line in $result; do
-            owner=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["owner"]')
-            repository=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["repository"]')
-            currentVersion=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["currentVersion"]')
-            newVersion=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["newVersion"]')
+          ls ../
+        
+#      - name: Run Ruby script
+#        id: ruby-script
+#        env:
+#          FILE_PATH: "../Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#        run: ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GITHUB_TOKEN}
 
-            comment="CurrentVersion: $currentVersion\nNewVersion: $newVersion\nRepository: $repository"
-
-            echo "$comment" | gh issue comment ${{ secrets.GITHUB_TOKEN }} -R $owner/$repository ${{ steps.create-pr.outputs.pull-request-number }}
-          done
+#      - name: Create PR
+#        uses: peter-evans/create-pull-request@v3
+#        id: create-pr
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          commit-message: Update dependencies
+#          branch: update-dependencies
+#          title: NEED UPDATE DEPENDENCY
+#          body: |
+#            Current dependencies need to be updated.
+#
+#      - name: Add comments to PR
+#        run: |
+#          result="${{ steps.ruby-script.outputs.result }}"
+#          IFS=$'\n'
+#          for line in $result; do
+#            owner=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["owner"]')
+#            repository=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["repository"]')
+#            currentVersion=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["currentVersion"]')
+#            newVersion=$(echo "$line" | ruby -rjson -e 'puts JSON.parse(ARGF.read)["newVersion"]')
+#
+#            comment="CurrentVersion: $currentVersion\nNewVersion: $newVersion\nRepository: $repository"
+#
+#            echo "$comment" | gh issue comment ${{ secrets.GITHUB_TOKEN }} -R $owner/$repository ${{ steps.create-pr.outputs.pull-request-number }}
+#          done
