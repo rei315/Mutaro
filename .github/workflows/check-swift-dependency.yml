@@ -37,40 +37,40 @@ jobs:
           git fetch --prune --all
           git branch -r --format='%(refname:lstrip=3)' | grep '^swift-package/update-dependency/' > branches.txt
           
-          while read -r branch; do
-            git push origin --delete "$branch"
-            branch_name=${branch#*/}
-            hub api "/repos/:owner/:repo/pulls?state=open" | jq -r ".[] | select(.head.ref == \"$branch_name\") | .number" | xargs -I {} hub api -X DELETE "/repos/:owner/:repo/pulls/{}"
-          done < branches.txt
+#          while read -r branch; do
+#            git push origin --delete "$branch"
+#            branch_name=${branch#*/}
+#            hub api "/repos/:owner/:repo/pulls?state=open" | jq -r ".[] | select(.head.ref == \"$branch_name\") | .number" | xargs -I {} hub api -X DELETE "/repos/:owner/:repo/pulls/{}"
+#          done < branches.txt
 
-      - name: Create Branch and PR
-        id: create-branch-pr
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          current_datetime=$(date +"%Y-%m-%d-%H-%M")
+#       - name: Create Branch and PR
+#         id: create-branch-pr
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         run: |
+#           current_datetime=$(date +"%Y-%m-%d-%H-%M")
           
-          branchName="swift-package/update-dependency/${current_datetime}"
+#           branchName="swift-package/update-dependency/${current_datetime}"
           
-          git branch $branchName
-          git switch $branchName
-          git commit --allow-empty -m "Empty-Commit"
-          git push --set-upstream origin $branchName
+#           git branch $branchName
+#           git switch $branchName
+#           git commit --allow-empty -m "Empty-Commit"
+#           git push --set-upstream origin $branchName
           
-          pr_number=$(gh pr create --base develop --title "Update Swift Package Dependency" --body "" | sed -n 's#.*https://github.com/[^/]\+/[^/]\+/pull/\([0-9]\+\).*#\1#p')
-          echo "pull-request-number=${pr_number}" >> $GITHUB_OUTPUT
+#           pr_number=$(gh pr create --base develop --title "Update Swift Package Dependency" --body "" | sed -n 's#.*https://github.com/[^/]\+/[^/]\+/pull/\([0-9]\+\).*#\1#p')
+#           echo "pull-request-number=${pr_number}" >> $GITHUB_OUTPUT
           
-      - name: Add comments to PR
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PULL_REQUEST_NUMBER: ${{ steps.create-branch-pr.outputs.pull-request-number }}
-        run: |
-          result='${{ steps.ruby-script.outputs.result }}'
-          for item in $(echo "$result" | jq -c '.[]'); do
-            currentVersion=$(echo "$item" | jq -r '.currentVersion')
-            newVersion=$(echo "$item" | jq -r '.newVersion')
-            repository=$(echo "$item" | jq -r '.repository')
+#       - name: Add comments to PR
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           PULL_REQUEST_NUMBER: ${{ steps.create-branch-pr.outputs.pull-request-number }}
+#         run: |
+#           result='${{ steps.ruby-script.outputs.result }}'
+#           for item in $(echo "$result" | jq -c '.[]'); do
+#             currentVersion=$(echo "$item" | jq -r '.currentVersion')
+#             newVersion=$(echo "$item" | jq -r '.newVersion')
+#             repository=$(echo "$item" | jq -r '.repository')
             
-            comment="CurrentVersion: $currentVersion<br>NewVersion: $newVersion<br>Repository: $repository"
-            gh issue comment "${PULL_REQUEST_NUMBER}" -b "$comment"
-          done
+#             comment="CurrentVersion: $currentVersion<br>NewVersion: $newVersion<br>Repository: $repository"
+#             gh issue comment "${PULL_REQUEST_NUMBER}" -b "$comment"
+#           done
