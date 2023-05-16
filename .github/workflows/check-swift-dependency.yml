@@ -2,10 +2,10 @@ name: Check Swift Dependency
 
 on:
   schedule:
-    - cron: "50 7 * * *"
-    - cron: "53 6 * * *"
-    - cron: "58 6 * * *"
-    - cron: "00 7 * * *"
+    - cron: "50 7 * * 1-5"
+    - cron: "53 6 * * 1-5"
+    - cron: "58 6 * * 1-5"
+    - cron: "00 7 * * 1-5"
 
 jobs:
   check-version:
