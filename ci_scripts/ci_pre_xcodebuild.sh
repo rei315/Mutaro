@@ -28,3 +28,5 @@ elif [[ $CI_WORKFLOW = "Archive-For-Release" ]]; then
     
     PlistBuddy -c "Set :CFBundleVersion $nextBuildNumber" "${mainInfoPlist}"
 fi
+    
+sed -i 's/gitHubToken: ""/gitHubToken: ${GITHUB_TOKEN}/' ${CI_WORKSPACE}/MutaroApp/license_plist.yml
