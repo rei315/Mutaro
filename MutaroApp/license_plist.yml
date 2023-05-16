@@ -40,3 +40,4 @@ options:
   xcworkspacePath: "Mutaro.xcworkspace"
   singlePage: false
   force: false
+  gitHubToken: ""

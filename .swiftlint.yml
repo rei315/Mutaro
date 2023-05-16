@@ -2,7 +2,11 @@
 # https://qiita.com/kagemiku/items/80e6d905dc0059c342b3
 # https://qiita.com/yuukiw00w/items/075253a868805227bc78
 included:
-  - MutaroApp
+  - MutaroModule/**
+excluded:
+  - MutaroModule/**/NeedleGenerated.swift
+  - MutaroModule/**/R.generated.swift
+  
 disabled_rules:
   - file_length
   - line_length

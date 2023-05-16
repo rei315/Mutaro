@@ -11,8 +11,8 @@
 		715E9587295CC20800AD6331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9586295CC20800AD6331 /* AppDelegate.swift */; };
 		715E9589295CC20800AD6331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E9588295CC20800AD6331 /* SceneDelegate.swift */; };
 		718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71FDC94A2969D2C0006861E8 /* Assets.xcassets */; };
-		71B6F77F2A02303D005B8531 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 71B6F77E2A02303D005B8531 /* Settings.bundle */; };
 		71D0A8C02A04EEC200330A28 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D0A8BF2A04EEC200330A28 /* Color.swift */; };
+		71F9C49E2A139B5C00F84557 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 71F9C49D2A139B5C00F84557 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,9 +23,9 @@
 		715E9588295CC20800AD6331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		715E9594295CC20A00AD6331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71B6F77B2A022F50005B8531 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../BuildTools; sourceTree = "<group>"; };
-		71B6F77E2A02303D005B8531 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		71D0A8BF2A04EEC200330A28 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		71EAE2EE2A02C50900EFC765 /* MutaroApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroApp.entitlements; sourceTree = "<group>"; };
+		71F9C49D2A139B5C00F84557 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		71FDC929296861A7006861E8 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		71FDC92A296861AD006861E8 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		71FDC93829688337006861E8 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
@@ -90,9 +90,9 @@
 				71FDC926296860AA006861E8 /* GoogleServicePlists */,
 				71FDC925296860A5006861E8 /* Configurations */,
 				715E9594295CC20A00AD6331 /* Info.plist */,
-				71B6F77E2A02303D005B8531 /* Settings.bundle */,
 				71FDC94A2969D2C0006861E8 /* Assets.xcassets */,
 				71D0A8BF2A04EEC200330A28 /* Color.swift */,
+				71F9C49D2A139B5C00F84557 /* Settings.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -130,6 +130,7 @@
 			buildConfigurationList = 715E95AD295CC20A00AD6331 /* Build configuration list for PBXNativeTarget "MutaroApp" */;
 			buildPhases = (
 				71A45D712A05850E003E226B /* Needle */,
+				71244D272A138EE800F2939F /* SwiftFormat */,
 				71FDC93729686DEE006861E8 /* [NEED FIRST RUN] register env */,
 				71FDC928296860F4006861E8 /* Copy Firebase Plist */,
 				715E957F295CC20800AD6331 /* Sources */,
@@ -189,14 +190,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71F9C49E2A139B5C00F84557 /* Settings.bundle in Resources */,
 				718FD576296EE13C00FE8F8D /* Assets.xcassets in Resources */,
-				71B6F77F2A02303D005B8531 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		71244D272A138EE800F2939F /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! $CI ]; then\n    cd ../MutaroModule\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory swiftformat\nfi\n";
+		};
 		715E95CF295CD8C600AD6331 /* Run FirebaseCrashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -288,7 +307,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f \"../env-vars.sh\" ]; then \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\n esac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then\n    if [ $IS_DEV ]; then\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else    \n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nelse    \n    if [ $IS_DEV ]; then\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nfi\n";
+			shellScript = "if [ -f \"../env-vars.sh\" ]; then \n    source \"../env-vars.sh\"\nfi\n\ncase \"${CONFIGURATION}\" in\n    \"Debug(Production)\" )\n        IS_DEV=false ;;\n    \"Debug(Development)\" )\n        IS_DEV=true ;;\n    \"Release(Production)\" )\n        IS_DEV=false ;;\n    \"Release(Development)\" )\n        IS_DEV=true ;;\nesac\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then    \n    if [ $IS_DEV ]; then\n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else    \n        ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true $IS_DEV $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nelse    \n    if [ $IS_DEV ]; then\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_DEV_CLIENT_ID $G_DEV_API_KEY $G_DEV_REVERSED_CLIENT_ID $G_DEV_GCM_SENDER_ID $G_DEV_GOOGLE_APP_ID\n    else\n        ../scripts/update-google-service-plist.sh false $IS_DEV \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
