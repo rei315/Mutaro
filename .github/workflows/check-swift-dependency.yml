@@ -3,7 +3,6 @@ name: Check Swift Dependency
 on:
   schedule:
     - cron: "0 8 * * *"
-  workflow_dispatch
 
 jobs:
   check-version:
