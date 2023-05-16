@@ -9,29 +9,31 @@ import RswiftResources
 let R = _R(bundle: Bundle.module)
 
 struct _R {
+  let bundle: Foundation.Bundle
+  var color: color { .init(bundle: bundle) }
+
+  func color(bundle: Foundation.Bundle) -> color {
+    .init(bundle: bundle)
+  }
+  func validate() throws {
+
+  }
+
+
+  /// This `_R.color` struct is generated, and contains static references to 4 colors.
+  struct color {
     let bundle: Foundation.Bundle
-    var color: color { .init(bundle: bundle) }
 
-    func color(bundle: Foundation.Bundle) -> color {
-        .init(bundle: bundle)
-    }
+    /// Color `black`.
+    var black: RswiftResources.ColorResource { .init(name: "black", path: [], bundle: bundle) }
 
-    func validate() throws {}
+    /// Color `navy`.
+    var navy: RswiftResources.ColorResource { .init(name: "navy", path: [], bundle: bundle) }
 
-    /// This `_R.color` struct is generated, and contains static references to 4 colors.
-    struct color {
-        let bundle: Foundation.Bundle
+    /// Color `turquoise`.
+    var turquoise: RswiftResources.ColorResource { .init(name: "turquoise", path: [], bundle: bundle) }
 
-        /// Color `black`.
-        var black: RswiftResources.ColorResource { .init(name: "black", path: [], bundle: bundle) }
-
-        /// Color `navy`.
-        var navy: RswiftResources.ColorResource { .init(name: "navy", path: [], bundle: bundle) }
-
-        /// Color `turquoise`.
-        var turquoise: RswiftResources.ColorResource { .init(name: "turquoise", path: [], bundle: bundle) }
-
-        /// Color `white`.
-        var white: RswiftResources.ColorResource { .init(name: "white", path: [], bundle: bundle) }
-    }
+    /// Color `white`.
+    var white: RswiftResources.ColorResource { .init(name: "white", path: [], bundle: bundle) }
+  }
 }

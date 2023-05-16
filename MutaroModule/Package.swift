@@ -81,6 +81,10 @@ private extension PackageDescription.Target.Dependency {
     static let settingFeature: Self = .target(name: "SettingFeature")
 }
 
+private extension PackageDescription.Target.PluginUsage {
+    static let lintPlugin: Self = .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
+}
+
 let package = Package(
     name: "MutaroModule",
     platforms: [
@@ -115,7 +119,7 @@ let package = Package(
             name: "MutaroApp",
             dependencies: productionFeatures,
             plugins: [
-                .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
+                .lintPlugin
             ]
         ),
         .target(
