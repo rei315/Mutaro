@@ -30,10 +30,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          git branch -r | grep 'origin/feature/update-dependency/' | awk -F'/' '{print $2}' > branches.txt
+          git fetch --prune --all
+          git branch -r --format='%(refname:lstrip=3)' | grep '^feature/update-dependency/' > branches.txt
+          
           while read -r branch; do
-            git push origin --delete "feature/update-dependency/$branch"
-            hub api -X DELETE "/repos/:owner/:repo/pulls/$branch"
+            git push origin --delete "$branch"
+            branch_name=${branch#*/}
+            hub api "/repos/:owner/:repo/pulls?state=open" | jq -r ".[] | select(.head.ref == \"$branch_name\") | .number" | xargs -I {} hub api -X DELETE "/repos/:owner/:repo/pulls/{}"
           done < branches.txt
           
           current_datetime=$(date +"%Y-%m-%d-%H-%M")
