@@ -29,7 +29,7 @@ jobs:
           git config --local user.name "GitHub Action"
           
           git fetch --prune --all
-          git branch -r --format='%(refname:lstrip=3)' | grep '^feature/update-dependency/' > branches.txt
+          git branch -r --format='%(refname:lstrip=3)' | grep '^swift-package/update-dependency/' > branches.txt
           
           while read -r branch; do
             git push origin --delete "$branch"
@@ -44,7 +44,7 @@ jobs:
         run: |
           current_datetime=$(date +"%Y-%m-%d-%H-%M")
           
-          branchName="feature/update-dependency/${current_datetime}"
+          branchName="swift-package/update-dependency/${current_datetime}"
           
           git branch $branchName
           git switch $branchName
