@@ -1,6 +1,8 @@
 name: Check Swift Dependency
 
 on:
+  schedule:
+    - cron: "0 8 * * *"
   workflow_dispatch
 
 jobs:
@@ -9,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: develop
         
       - name: Run Ruby script
         id: ruby-script
