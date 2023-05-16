@@ -7,12 +7,12 @@
 
 import Foundation
 
-extension NSObject {
-    public static func simpleClassName() -> String {
+public extension NSObject {
+    static func simpleClassName() -> String {
         NSStringFromClass(self).components(separatedBy: ".").last ?? ""
     }
 
-    public static func simpleSwiftUIHostingClassName() -> String {
+    static func simpleSwiftUIHostingClassName() -> String {
         "\(self)".components(separatedBy: "<").first ?? ""
     }
 }

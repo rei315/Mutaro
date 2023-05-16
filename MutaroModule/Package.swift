@@ -85,7 +85,7 @@ let package = Package(
     name: "MutaroModule",
     platforms: [
         .iOS(.v15),
-        .macOS(.v12)
+        .macOS(.v13)
     ],
     products: [
         .library(
@@ -113,7 +113,10 @@ let package = Package(
     targets: [
         .target(
             name: "MutaroApp",
-            dependencies: productionFeatures
+            dependencies: productionFeatures,
+            plugins: [
+                .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
+            ]
         ),
         .target(
             name: "AppIntroductionFeature",

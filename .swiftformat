@@ -3,7 +3,8 @@
 --swiftversion 5.7
 
 # file options 除外するディレクトリやファイル
-
+--exclude MutaroModule/**/NeedleGenerated.swift
+--exclude MutaroModule/**/R.generated.swift
 
 # format options
 
