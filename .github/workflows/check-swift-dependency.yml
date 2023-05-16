@@ -27,25 +27,23 @@ jobs:
             exit 0
           fi
           echo "result=${result}" >> $GITHUB_OUTPUT
-      - name: Setup Git
-        id: setup
+      - name: Setup and Remove related branch and pr
+        id: setup-remove-branch-pr
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-      - name: Fetch all branches
-        id: fetch-all-branches
-        run: git fetch --no-tags --prune --depth=1 origin "+refs/heads/*:refs/remotes/origin/*"
-      - name: Remove related branch and pr
-        id: setup-remove-branch-pr
-        run: |
-          set -o pipefail
-          git branch -r | grep "origin/spm/update-dependency/" > branches.txt
+          git fetch --prune --all
+          git branch -r --format='%(refname:lstrip=3)' | grep '^swift-package/update-dependency/' > branches.txt || true
           
-          while read -r branch; do
-            git push origin --delete "$branch"
-            branch_name=${branch#*/}
-            hub api "/repos/:owner/:repo/pulls?state=open" | jq -r ".[] | select(.head.ref == \"$branch_name\") | .number" | xargs -I {} hub api -X DELETE "/repos/:owner/:repo/pulls/{}"
-          done < branches.txt
+          if [[ -s branches.txt ]]; then
+            while read -r branch; do
+              git push origin --delete "$branch"
+              branch_name=${branch#*/}
+              hub api "/repos/:owner/:repo/pulls?state=open" | jq -r ".[] | select(.head.ref == \"$branch_name\") | .number" | xargs -I {} hub api -X DELETE "/repos/:owner/:repo/pulls/{}"
+            done < branches.txt
+          else
+            echo "No branches found."
+          fi
 
       - name: Create Branch and PR
         id: create-branch-pr
