@@ -35,13 +35,13 @@ jobs:
           git config --local user.name "GitHub Action"
           
           git fetch --prune --all
-          git branch -r --format='%(refname:lstrip=3)' | grep '^spm/update-dependency/' > branches.txt
+#           git branch -r --format='%(refname:lstrip=3)' | grep '^spm/update-dependency/' > branches.txt
           
-          while read -r branch; do
-            git push origin --delete "$branch"
-            branch_name=${branch#*/}
-            hub api "/repos/:owner/:repo/pulls?state=open" | jq -r ".[] | select(.head.ref == \"$branch_name\") | .number" | xargs -I {} hub api -X DELETE "/repos/:owner/:repo/pulls/{}"
-          done < branches.txt
+#           while read -r branch; do
+#             git push origin --delete "$branch"
+#             branch_name=${branch#*/}
+#             hub api "/repos/:owner/:repo/pulls?state=open" | jq -r ".[] | select(.head.ref == \"$branch_name\") | .number" | xargs -I {} hub api -X DELETE "/repos/:owner/:repo/pulls/{}"
+#           done < branches.txt
 
 #       - name: Create Branch and PR
 #         id: create-branch-pr
