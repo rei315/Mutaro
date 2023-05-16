@@ -17,6 +17,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           result=$(ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GH_TOKEN})
+          if [ -z "$result" ] || [ "$result" = '[{}]' ]; then
+            exit 0
+          fi
           echo "result=${result}" >> $GITHUB_OUTPUT
 
       - name: Create Branch and PR
@@ -26,6 +29,12 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          
+          git branch -r | grep 'origin/feature/update-dependency/' | awk -F'/' '{print $2}' > branches.txt
+          while read -r branch; do
+            git push origin --delete "feature/update-dependency/$branch"
+            hub api -X DELETE "/repos/:owner/:repo/pulls/$branch"
+          done < branches.txt
           
           current_datetime=$(date +"%Y-%m-%d-%H-%M")
           
