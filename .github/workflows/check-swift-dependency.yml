@@ -27,15 +27,19 @@ jobs:
             exit 0
           fi
           echo "result=${result}" >> $GITHUB_OUTPUT
-
-      - name: Setup and Remove related branch and pr
-        id: setup-remove-branch-pr
+      - name: Setup Git
+        id: setup
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
-          git fetch --prune --all
-          git branch -r --format='%(refname:lstrip=3)' | grep '^spm/update-dependency/' > branches.txt
+      - name: Fetch all branches
+        id: fetch-all-branches
+        run: git fetch --no-tags --prune --depth=1 origin "+refs/heads/*:refs/remotes/origin/*"
+      - name: Remove related branch and pr
+        id: setup-remove-branch-pr
+        run: |
+          git branch -r | grep "origin/spm/update-dependency/" > branches.txt
+#          git branch -r --format='%(refname:lstrip=3)' | grep '^spm/update-dependency/' > branches.txt
           
 #           while read -r branch; do
 #             git push origin --delete "$branch"
