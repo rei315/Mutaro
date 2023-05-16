@@ -22,10 +22,8 @@ jobs:
           fi
           echo "result=${result}" >> $GITHUB_OUTPUT
 
-      - name: Create Branch and PR
-        id: create-branch-pr
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup and Remove related branch and pr
+        id: setup-remove-branch-pr
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -38,7 +36,12 @@ jobs:
             branch_name=${branch#*/}
             hub api "/repos/:owner/:repo/pulls?state=open" | jq -r ".[] | select(.head.ref == \"$branch_name\") | .number" | xargs -I {} hub api -X DELETE "/repos/:owner/:repo/pulls/{}"
           done < branches.txt
-          
+
+      - name: Create Branch and PR
+        id: create-branch-pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           current_datetime=$(date +"%Y-%m-%d-%H-%M")
           
           branchName="feature/update-dependency/${current_datetime}"
