@@ -81,7 +81,7 @@ def check_available_new_version(token, data):
         if result:
             package_info = {
                 'currentVersion': version,
-                'newVersion': latest_tag,s
+                'newVersion': latest_tag,
                 'repository': url
             }
             available_version_info.append(package_info)
