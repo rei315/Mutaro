@@ -107,6 +107,6 @@ all_dependencies = []
 package_files.each do |package_swift_file_path|
   parse_package_swift(package_swift_file_path, all_dependencies)
 end
-results = check_available_new_version(token, all_dependencies)
+results = check_available_new_version(gh_token, all_dependencies)
 
 puts JSON.generate(results)
