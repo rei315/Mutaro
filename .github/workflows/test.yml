@@ -10,6 +10,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
     
+      - name: "install pip and dependencies"
+        id: "install-pip"
+        run: |
+          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          python3 get-pip.py
+          pip3 install requests
+    
       - name: Run Ruby script
         id: ruby-script
         env:
@@ -17,7 +24,7 @@ jobs:
         run: |
           package_files=$(find . -type f -name "Package.swift" -print)
           
-          result=$(ruby ./.github/workflows/test.rb $GH_TOKEN $package_files)
+          result=$(python3 ./.github/workflows/test.py $GH_TOKEN $package_files)
           if [ -z "$result" ] || [ "$result" = '[{}]' ]; then
             exit 0
           fi
