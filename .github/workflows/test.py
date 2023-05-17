@@ -61,6 +61,9 @@ def extract_version(version):
     return version
 
 def compare_versions(package_version, git_version):
+    if not git_version:
+        return False
+    
     v1_parts = list(map(int, package_version.split('.')))
     v2_parts = list(map(int, git_version.split('.')))
     
