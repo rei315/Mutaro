@@ -23,11 +23,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           package_files=$(find . -type f -name "Package.swift" -print)
+          echo $package_files
           
           result=$(python3 ./.github/workflows/test.py $GH_TOKEN $package_files)
           if [ -z "$result" ] || [ "$result" = '[{}]' ]; then
             exit 0
           fi
+          echo $result
           echo "result=${result}" >> $GITHUB_ENV
 
       - name: Setup and Remove related branch and pr
