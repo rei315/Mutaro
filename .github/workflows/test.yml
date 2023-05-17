@@ -10,16 +10,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
     
-      - name: Find Package.swift files
-        id: find-files
-        run: |
-          find . -type f -name "Package.swift" -print > file_paths.txt
-          
-      - name: Read file paths
-        id: read-paths
-        run: |
-          echo "::set-output name=paths::$(cat file_paths.txt)"
-    
       - name: Run Ruby script
         id: ruby-script
         env:
@@ -28,11 +18,11 @@ jobs:
         run: |
           package_files=$(find . -type f -name "Package.swift" -print)
           
-          result=$(ruby ./.github/workflows/test.rb $GH_TOKEN $FILE_PATHS)
+          result=$(ruby ./.github/workflows/test.rb $GH_TOKEN $package_files)
           if [ -z "$result" ] || [ "$result" = '[{}]' ]; then
             exit 0
           fi
-          echo "result=${result}" >> $GITHUB_OUTPUT
+          echo "result=${result}" >> $GITHUB_ENV
 
       - name: Setup and Remove related branch and pr
         id: setup-remove-branch-pr
@@ -67,15 +57,15 @@ jobs:
           git push --set-upstream origin $branchName
           
           pr_number=$(gh pr create --base develop --title "Update Swift Package Dependency" --body "" | sed -n 's#.*https://github.com/[^/]\+/[^/]\+/pull/\([0-9]\+\).*#\1#p')
-          echo "pull-request-number=${pr_number}" >> $GITHUB_OUTPUT
+          echo "pull-request-number=${pr_number}" >> $GITHUB_ENV
           
       - name: Add comments to PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PULL_REQUEST_NUMBER: ${{ steps.create-branch-pr.outputs.pull-request-number }}
+          PULL_REQUEST_NUMBER: ${{ env.pull-request-number }}
+          RESULT: ${{ env.result }}
         run: |
-          result='${{ steps.ruby-script.outputs.result }}'
-          for item in $(echo "$result" | jq -c '.[]'); do
+          for item in $(echo "$RESULT" | jq -c '.[]'); do
             currentVersion=$(echo "$item" | jq -r '.currentVersion')
             newVersion=$(echo "$item" | jq -r '.newVersion')
             repository=$(echo "$item" | jq -r '.repository')
