@@ -1,0 +1,16 @@
+name: Check Swift Dependency
+
+on:
+  workflow_dispatch
+
+jobs:
+  get-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Run Ruby script
+        id: ruby-script
+        run: |
+          find . -type f -name "Package.swift" -print
