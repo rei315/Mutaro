@@ -1,16 +1,35 @@
-name: Check Swift Dependency
+name: Test
 
 on:
   workflow_dispatch
 
 jobs:
-  get-file:
+  check-version:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+    
+      - name: Find Package.swift files
+        id: find-files
+        run: |
+          find . -type f -name "Package.swift" -print > file_paths.txt
+          
+      - name: Read file paths
+        id: read-paths
+        run: |
+          echo "::set-output name=paths::$(cat file_paths.txt)"
+    
       - name: Run Ruby script
         id: ruby-script
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          FILE_PATHS: ${{ steps.read-paths.outputs.paths }}
         run: |
-          find . -type f -name "Package.swift" -print
+          package_files=$(find . -type f -name "Package.swift" -print)
+          
+          result=$(ruby ./.github/workflows/test.rb $GH_TOKEN $FILE_PATHS)
+          if [ -z "$result" ] || [ "$result" = '[{}]' ]; then
+            exit 0
+          fi
+          echo "result=${result}" >> $GITHUB_OUTPUT
