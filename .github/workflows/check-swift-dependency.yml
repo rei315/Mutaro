@@ -10,18 +10,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+    
       - name: Run Ruby script
         id: ruby-script
         env:
-          FILE_PATH: "../Mutaro/Mutaro.xcworkspace/xcshareddata/swiftpm/Package.resolved"
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          result=$(ruby ./.github/workflows/swift_dependency_check_latest_version.rb ${FILE_PATH} ${GH_TOKEN})
+          package_files=$(find . -type f -name "Package.swift" -print)
+          
+          result=$(ruby ./.github/workflows/swift_dependency_check_latest_version.rb $GH_TOKEN $package_files)
           if [ -z "$result" ] || [ "$result" = '[{}]' ]; then
             exit 0
           fi
-          echo "result=${result}" >> $GITHUB_OUTPUT
+          echo "result=${result}" >> $GITHUB_ENV
+
       - name: Setup and Remove related branch and pr
         id: setup-remove-branch-pr
         run: |
@@ -47,7 +49,7 @@ jobs:
         run: |
           current_datetime=$(date +"%Y-%m-%d-%H-%M")
           
-          branchName="spm/update-dependency/${current_datetime}"
+          branchName="swift-package/update-dependency/${current_datetime}"
           
           git branch $branchName
           git switch $branchName
@@ -55,15 +57,15 @@ jobs:
           git push --set-upstream origin $branchName
           
           pr_number=$(gh pr create --base develop --title "Update Swift Package Dependency" --body "" | sed -n 's#.*https://github.com/[^/]\+/[^/]\+/pull/\([0-9]\+\).*#\1#p')
-          echo "pull-request-number=${pr_number}" >> $GITHUB_OUTPUT
+          echo "pull-request-number=${pr_number}" >> $GITHUB_ENV
           
       - name: Add comments to PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PULL_REQUEST_NUMBER: ${{ steps.create-branch-pr.outputs.pull-request-number }}
+          PULL_REQUEST_NUMBER: ${{ env.pull-request-number }}
+          RESULT: ${{ env.result }}
         run: |
-          result='${{ steps.ruby-script.outputs.result }}'
-          for item in $(echo "$result" | jq -c '.[]'); do
+          for item in $(echo "$RESULT" | jq -c '.[]'); do
             currentVersion=$(echo "$item" | jq -r '.currentVersion')
             newVersion=$(echo "$item" | jq -r '.newVersion')
             repository=$(echo "$item" | jq -r '.repository')

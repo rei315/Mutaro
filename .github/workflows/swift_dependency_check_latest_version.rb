@@ -24,40 +24,43 @@ def get_latest_tag(owner, repository, token)
     latest_tag
 end
 
-def parse_package_resolved(file_path)
-    file = File.read(file_path)
-    data = JSON.parse(file)
-    packages = data['pins']
-    results = []
-    
-    packages.each do |package|
-        state = package['state']
-        next if state.nil? || state.empty?
-        
-        version = state['version']
-        next if version.nil? || version.empty?
-        
-        location = package['location']
-        next if location.nil? || location.empty?
-        
-        uri = URI.parse(location)
-        path_parts = uri.path.split('/').reject(&:empty?)
+def parse_package_swift(file_path, dependencies)
+  file_content = File.read(file_path)
 
-        owner = path_parts[0]
-        next if owner.nil? || owner.empty?
-        repository = path_parts[1]
-        next if repository.nil? || repository.empty?
-        
-        repository.gsub!(/\.git$/, '')
-        
-        package_info = {}
-        package_info['owner'] = owner
-        package_info['repository'] = repository
-        package_info['version'] = version
-        results << package_info
+  # Find the dependencies section within the package.swift file
+  dependencies_section = file_content.match(/dependencies:\s*\[(.*?)\]/m)&.captures&.first
+
+  if dependencies_section
+    # Find each package within the dependencies section
+    dependencies_section.scan(/.package\s*\((.*?)\)/m) do |package_match|
+      package = package_match[0]
+
+      # Extract the URL and version from each package
+      url_match = package.match(/url:\s*["'](.*?)["']/)
+      version_match = package.match(/(?:from|exact):\s*["'](.*?)["']/)
+
+      url = url_match&.captures&.first
+      version = version_match&.captures&.first
+      next if url.nil? || version.nil?
+
+      uri = URI.parse(url)
+      path_parts = uri.path.split('/').reject(&:empty?)
+      owner = path_parts[0]
+      next if owner.nil? || owner.empty?
+      repository = path_parts[1]
+      next if repository.nil? || repository.empty?
+      repository.gsub!(/\.git$/, '')
+
+      package_info = {}
+      package_info['full_url'] = url
+      package_info['owner'] = owner
+      package_info['repository'] = repository
+      package_info['version'] = version
+      dependencies << package_info
     end
-    
-    results
+  end
+
+  dependencies
 end
 
 def extract_version(version)
@@ -81,7 +84,7 @@ def check_available_new_version(token, data)
     available_version_info = []
     
     data.each do |package|
-        owner, repository, version = package['owner'], package['repository'], package['version']
+        owner, repository, version, url = package['owner'], package['repository'], package['version'], package['full_url']
         latest_tag = get_latest_tag(owner, repository, token)
         latest_tag = extract_version(latest_tag)
         
@@ -90,16 +93,20 @@ def check_available_new_version(token, data)
         package_info = {}
         package_info['currentVersion'] = version
         package_info['newVersion'] = latest_tag
-        package_info['repository'] = "https://github.com/#{owner}/#{repository}"
+        package_info['repository'] = url
         available_version_info << package_info
     end
     
     available_version_info
 end
 
-file_path = ARGV[0]
-token = ARGV[1]
-parsed_data = parse_package_resolved(file_path)
-results = check_available_new_version(token, parsed_data)
+gh_token = ARGV[0]
+package_files = ARGV[1..]
+all_dependencies = []
+
+package_files.each do |package_swift_file_path|
+  parse_package_swift(package_swift_file_path, all_dependencies)
+end
+results = check_available_new_version(gh_token, all_dependencies)
 
 puts JSON.generate(results)
