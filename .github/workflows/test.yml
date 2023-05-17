@@ -59,7 +59,7 @@ jobs:
         run: |
           current_datetime=$(date +"%Y-%m-%d-%H-%M")
           
-          branchName="spm/update-dependency/${current_datetime}"
+          branchName="swift-package/update-dependency/${current_datetime}"
           
           git branch $branchName
           git switch $branchName
