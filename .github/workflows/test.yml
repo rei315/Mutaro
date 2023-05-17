@@ -14,7 +14,6 @@ jobs:
         id: ruby-script
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          FILE_PATHS: ${{ steps.read-paths.outputs.paths }}
         run: |
           package_files=$(find . -type f -name "Package.swift" -print)
           
