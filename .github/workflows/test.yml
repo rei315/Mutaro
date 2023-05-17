@@ -33,3 +33,4 @@ jobs:
             exit 0
           fi
           echo "result=${result}" >> $GITHUB_OUTPUT
+          echo ${result}
