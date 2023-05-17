@@ -1,6 +1,7 @@
 import json
 import requests
 import sys
+import re
 from urllib.parse import urlparse
 
 def get_latest_tag(owner, repository, token):
