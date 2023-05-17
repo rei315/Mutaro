@@ -49,4 +49,4 @@ package_files.each do |package_swift_file_path|
   parse_package_swift(package_swift_file_path, all_dependencies)
 end
 
-puts JSON.generate(results)
+puts JSON.generate(all_dependencies)
