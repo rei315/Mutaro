@@ -5,14 +5,13 @@ import re
 from urllib.parse import urlparse
 
 def get_latest_tag(owner, repository, token):
-    url = f"https://api.github.com/repos/{owner}/{repository}/tags"
+    url = f"https://api.github.com/repos/{owner}/{repository}/releases/latest"
     headers = {"Authorization": f"Bearer {token}"}
     
     response = requests.get(url, headers=headers)
-    
     if response.status_code == 200:
         tags = json.loads(response.text)
-        latest_tag = tags[0]['name'] if tags else 'N/A'
+        latest_tag = tags['tag_name'] if tags else 'N/A'
     else:
         latest_tag = 'N/A'
     
@@ -40,8 +39,7 @@ def parse_package_swift(file_path, dependencies):
                 
                 if len(path_parts) >= 2:
                     owner = path_parts[0]
-                    repository = path_parts[1].rstrip('.git')
-                    
+                    repository = re.sub(r'\.git$', '', path_parts[1])
                     package_info = {
                         'full_url': url,
                         'owner': owner,
@@ -50,7 +48,6 @@ def parse_package_swift(file_path, dependencies):
                     }
                     
                     dependencies.append(package_info)
-    
     return dependencies
 
 def extract_version(version):
@@ -64,12 +61,14 @@ def compare_versions(package_version, git_version):
     if not git_version:
         return False
     
-    v1_parts = list(map(int, package_version.split('.')))
-    v2_parts = list(map(int, git_version.split('.')))
+    v1_parts = package_version.split('.')
+    v2_parts = git_version.split('.')
     
-    comparison_result = (v1_parts > v2_parts) - (v1_parts < v2_parts)
+    for v1, v2 in zip(v1_parts, v2_parts):
+        if v1 != v2:
+            return v1 < v2
     
-    return comparison_result < 0
+    return len(v1_parts) < len(v2_parts)
 
 def check_available_new_version(token, data):
     available_version_info = []
@@ -78,12 +77,11 @@ def check_available_new_version(token, data):
         owner, repository, version, url = package['owner'], package['repository'], package['version'], package['full_url']
         latest_tag = get_latest_tag(owner, repository, token)
         latest_tag = extract_version(latest_tag)
-        
         result = compare_versions(version, latest_tag)
         if result:
             package_info = {
                 'currentVersion': version,
-                'newVersion': latest_tag,
+                'newVersion': latest_tag,s
                 'repository': url
             }
             available_version_info.append(package_info)
