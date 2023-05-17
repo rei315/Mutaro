@@ -28,7 +28,7 @@ def parse_package_swift(file_path, dependencies)
       repository = path_parts[1]
       next if repository.nil? || repository.empty?
       repository.gsub!(/\.git$/, '')
-ㄴ
+
       package_info = {}
       package_info['full_url'] = url
       package_info['owner'] = owner
