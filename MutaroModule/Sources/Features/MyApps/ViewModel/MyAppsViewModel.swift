@@ -5,14 +5,13 @@
 //  Created by minguk-kim on 2023/01/01.
 //
 
-import AppStoreRepository
+import Client
 import Combine
 import Core
 import Foundation
 import ImageLoader
 import JWTGenerator
 import KeychainStore
-import TestFlightRepository
 import UIKit
 
 protocol MyAppsViewModelProtocol {}
@@ -76,9 +75,12 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             "fields[apps]": "name"
         ]
         let myAppsEndpoint = MyAppsEndpoint.GetAllListMyApps(token: token, additionalParameters: myAppsParameters)
-        let myAppsResult = await environment.client.request(endpoint: myAppsEndpoint, responseModel: MyAppsElement.self)
-        let myAppsResultElement = try myAppsResult.get()
-        let appInfos = myAppsResultElement.data?
+        let myAppsResult = await environment.client.request(
+            endpoint: myAppsEndpoint,
+            responseModel: MyAppsDTO.self
+        )
+        let myAppsResultEntity = try myAppsResult.get().toEntity()
+        let appInfos = myAppsResultEntity.data?
             .compactMap { data -> (String, String)? in
                 guard let id = data.id,
                       let name = data.attributes?.name else {
@@ -105,9 +107,9 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
                     "limit": 1
                 ]
                 let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
-                let buildsResult = await self.environment.client.request(endpoint: buildsEndpoint, responseModel: BuildsElement.self)
-                guard let buildsResultElement = try? buildsResult.get(),
-                      let data = buildsResultElement.data?.first else {
+                let buildsResult = await self.environment.client.request(endpoint: buildsEndpoint, responseModel: BuildsDTO.self)
+                guard let buildsResultEntity = try? buildsResult.get().toEntity(),
+                      let data = buildsResultEntity.data?.first else {
                     return .init(
                         id: appId,
                         name: appName,

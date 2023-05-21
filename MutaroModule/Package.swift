@@ -53,13 +53,6 @@ private extension PackageDescription.Target.Dependency {
     static let swiftJWT: Self = .product(name: "SwiftJWT", package: "Swift-JWT")
 }
 
-// MARK: - Repositories
-
-private extension PackageDescription.Target.Dependency {
-    static let appstore: Self = .target(name: "AppStoreRepository")
-    static let testflight: Self = .target(name: "TestFlightRepository")
-}
-
 // MARK: - Custom Modules
 
 private extension PackageDescription.Target.Dependency {
@@ -148,8 +141,7 @@ let package = Package(
                 .jwtGenerator,
                 .keychainStore,
                 .rSwift,
-                .appstore,
-                .testflight
+                .client
             ],
             path: "./Sources/Features/MyApps",
             swiftSettings: debugSwiftSettings
@@ -186,20 +178,6 @@ let package = Package(
             dependencies: [
                 .core
             ]
-        ),
-        .target(
-            name: "AppStoreRepository",
-            dependencies: [
-                .core
-            ],
-            path: "./Sources/Repository/AppStore"
-        ),
-        .target(
-            name: "TestFlightRepository",
-            dependencies: [
-                .core
-            ],
-            path: "./Sources/Repository/TestFlight"
         ),
         .target(
             name: "JWTGenerator",
