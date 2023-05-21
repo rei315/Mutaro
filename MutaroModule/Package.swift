@@ -183,7 +183,8 @@ let package = Package(
             name: "JWTGenerator",
             dependencies: [
                 .swiftJWT
-            ]
+            ],
+            path: "./Sources/Modules/JWTGenerator"
         ),
         .testTarget(
             name: "JWTGeneratorTests",
@@ -193,11 +194,13 @@ let package = Package(
         ),
         .target(
             name: "KeychainStore",
-            dependencies: []
+            dependencies: [],
+            path: "./Sources/Modules/KeychainStore"
         ),
         .target(
             name: "FirebaseSetup",
             dependencies: firebaseCrashlyticsDependencies + firebaseAnalyticsDependencies,
+            path: "./Sources/Modules/FirebaseSetup",
             linkerSettings: [
                 .unsafeFlags(["-ObjC"])
             ]
@@ -207,7 +210,8 @@ let package = Package(
             dependencies: [
                 .kingfisher,
                 .core
-            ]
+            ],
+            path: "./Sources/Modules/ImageLoader"
         ),
         .binaryTarget(
             name: "FirebaseCrashlytics",
