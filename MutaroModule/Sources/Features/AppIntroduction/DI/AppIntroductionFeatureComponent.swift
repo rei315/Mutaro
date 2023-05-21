@@ -14,7 +14,7 @@ public protocol AppIntroductionFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var myAppsFeatureBuilder: MyAppsFeatureBuildable { get }
     var settingFeatureBuilder: SettingFeatureBuildable { get }
-    var homeFeatureBuilder: HomeViewFeatureBuildable { get }
+    var homeFeatureBuilder: HomeFeatureBuildable { get }
 }
 
 public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDependency>, AppIntroductionFeatureBuildable {

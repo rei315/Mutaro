@@ -27,7 +27,7 @@ let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
 
 let productionFeatures: [PackageDescription.Target.Dependency] = [
     .appIntroductionFeature,
-    .homeViewFeature,
+    .homeFeature,
     .myAppsFeature,
     .registerJWTFeature,
     .settingFeature,
@@ -68,7 +68,7 @@ private extension PackageDescription.Target.Dependency {
 
 private extension PackageDescription.Target.Dependency {
     static let appIntroductionFeature: Self = .target(name: "AppIntroductionFeature")
-    static let homeViewFeature: Self = .target(name: "HomeViewFeature")
+    static let homeFeature: Self = .target(name: "HomeFeature")
     static let myAppsFeature: Self = .target(name: "MyAppsFeature")
     static let registerJWTFeature: Self = .target(name: "RegisterJWTFeature")
     static let settingFeature: Self = .target(name: "SettingFeature")
@@ -92,7 +92,7 @@ let package = Package(
         // For R.swift to generate resources codes by XcodeCommandPlugin
         // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
         .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
-        .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
+        .library(name: "HomeFeature", targets: ["HomeFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
         .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
         .library(name: "SettingFeature", targets: ["SettingFeature"]),
@@ -125,12 +125,12 @@ let package = Package(
             swiftSettings: debugSwiftSettings
         ),
         .target(
-            name: "HomeViewFeature",
+            name: "HomeFeature",
             dependencies: [
                 .core,
                 .rSwift
             ],
-            path: "./Sources/Features/HomeView",
+            path: "./Sources/Features/Home",
             swiftSettings: debugSwiftSettings
         ),
         .target(
