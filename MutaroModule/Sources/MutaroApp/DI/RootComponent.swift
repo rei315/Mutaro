@@ -11,7 +11,7 @@ import ImageLoader
 import NeedleFoundation
 
 import AppIntroductionFeature
-import HomeViewFeature
+import HomeFeature
 import MyAppsFeature
 import RegisterJWTFeature
 import SettingFeature
@@ -31,10 +31,10 @@ final class RootComponent: BootstrapComponent {
         }
     }
 
-    var homeFeatureBuilder: HomeViewFeatureBuildable {
+    var homeFeatureBuilder: HomeFeatureBuildable {
         shared {
             HomeFeatureBuilderComponent(parent: self)
-                .homeViewFeatureBuilder()
+                .homeFeatureBuilder()
         }
     }
 

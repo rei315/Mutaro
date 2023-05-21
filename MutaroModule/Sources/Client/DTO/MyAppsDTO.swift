@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  MyAppsDTO.swift
 //
 //
 //  Created by minguk-kim on 2023/05/04.
@@ -8,9 +8,9 @@
 import Core
 import Foundation
 
-// MARK: - MyAppsElement
+// MARK: - MyAppsDTO
 
-public struct MyAppsElement: Codable {
+public struct MyAppsDTO: Codable {
     public let links: MyAppsLinks?
     public let data: [MyAppsData]?
     public let meta: MyAppsMeta?

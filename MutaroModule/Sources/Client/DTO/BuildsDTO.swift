@@ -1,5 +1,5 @@
 //
-//  BuildsElement.swift
+//  BuildsDTO.swift
 //
 //
 //  Created by minguk-kim on 2023/05/04.
@@ -8,9 +8,9 @@
 import Core
 import Foundation
 
-// MARK: - BuildsElement
+// MARK: - BuildsDTO
 
-public struct BuildsElement: Codable {
+public struct BuildsDTO: Codable {
     public let links: BuildsLinks?
     public let data: [BuildsDatum]?
     public let meta: BuildsMeta?
@@ -47,30 +47,30 @@ public struct BuildsElement: Codable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container: KeyedDecodingContainer<BuildsElement.BuildsAttributes.CodingKeys> = try decoder.container(keyedBy: BuildsElement.BuildsAttributes.CodingKeys.self)
-            if let expirationDateString = try container.decodeIfPresent(String.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.expirationDate),
+            let container: KeyedDecodingContainer<BuildsDTO.BuildsAttributes.CodingKeys> = try decoder.container(keyedBy: BuildsDTO.BuildsAttributes.CodingKeys.self)
+            if let expirationDateString = try container.decodeIfPresent(String.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.expirationDate),
                let expirationDate = DateFormatter.iso8601Full.date(from: expirationDateString) {
                 self.expirationDate = expirationDate
             } else {
                 expirationDate = nil
             }
 
-            expired = try container.decodeIfPresent(Bool.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.expired)
-            processingState = try container.decodeIfPresent(String.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.processingState)
-            buildAudienceType = try container.decodeIfPresent(String.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.buildAudienceType)
-            minOSVersion = try container.decodeIfPresent(String.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.minOSVersion)
-            iconAssetToken = try container.decodeIfPresent(BuildsElement.BuildsIconAssetToken.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.iconAssetToken)
-            version = try container.decodeIfPresent(String.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.version)
-            if let uploadedDateString = try? container.decodeIfPresent(String.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.uploadedDate),
+            expired = try container.decodeIfPresent(Bool.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.expired)
+            processingState = try container.decodeIfPresent(String.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.processingState)
+            buildAudienceType = try container.decodeIfPresent(String.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.buildAudienceType)
+            minOSVersion = try container.decodeIfPresent(String.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.minOSVersion)
+            iconAssetToken = try container.decodeIfPresent(BuildsDTO.BuildsIconAssetToken.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.iconAssetToken)
+            version = try container.decodeIfPresent(String.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.version)
+            if let uploadedDateString = try? container.decodeIfPresent(String.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.uploadedDate),
                let uploadedDate = DateFormatter.iso8601Full.date(from: uploadedDateString) {
                 self.uploadedDate = uploadedDate
             } else {
                 uploadedDate = nil
             }
 
-            lsMinimumSystemVersion = try container.decodeIfPresent(JSONNull.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.lsMinimumSystemVersion)
-            computedMinMACOSVersion = try container.decodeIfPresent(String.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.computedMinMACOSVersion)
-            usesNonExemptEncryption = try container.decodeIfPresent(Bool.self, forKey: BuildsElement.BuildsAttributes.CodingKeys.usesNonExemptEncryption)
+            lsMinimumSystemVersion = try container.decodeIfPresent(JSONNull.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.lsMinimumSystemVersion)
+            computedMinMACOSVersion = try container.decodeIfPresent(String.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.computedMinMACOSVersion)
+            usesNonExemptEncryption = try container.decodeIfPresent(Bool.self, forKey: BuildsDTO.BuildsAttributes.CodingKeys.usesNonExemptEncryption)
         }
     }
 

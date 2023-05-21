@@ -4,7 +4,7 @@ import AppIntroductionFeature
 import Client
 import Core
 import Foundation
-import HomeViewFeature
+import HomeFeature
 import ImageLoader
 import MyAppsFeature
 import NeedleFoundation
@@ -25,6 +25,17 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
+private class HomeFeatureDependency8a76a83d24651fa35706Provider: HomeFeatureDependency {
+
+
+    init() {
+
+    }
+}
+/// ^->RootComponent->HomeFeatureBuilderComponent
+private func factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return HomeFeatureDependency8a76a83d24651fa35706Provider()
+}
 private class RegisterJWTFeatureDependencyafcbabee5908dec1a2f7Provider: RegisterJWTFeatureDependency {
 
 
@@ -55,17 +66,6 @@ private class MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider: MyAppsFeature
 private func factorybea64e632592e689d959b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider(rootComponent: parent1(component) as! RootComponent)
 }
-private class HomeFeatureDependency8a76a83d24651fa35706Provider: HomeFeatureDependency {
-
-
-    init() {
-
-    }
-}
-/// ^->RootComponent->HomeFeatureBuilderComponent
-private func factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return HomeFeatureDependency8a76a83d24651fa35706Provider()
-}
 private class SettingFeatureDependencybb7d9caeeb950cbc5892Provider: SettingFeatureDependency {
     var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
         return rootComponent.registerJWTFeatureBuilder
@@ -86,7 +86,7 @@ private class AppIntroductionFeatureDependency28a2d19e67af53b93df4Provider: AppI
     var settingFeatureBuilder: SettingFeatureBuildable {
         return rootComponent.settingFeatureBuilder
     }
-    var homeFeatureBuilder: HomeViewFeatureBuildable {
+    var homeFeatureBuilder: HomeFeatureBuildable {
         return rootComponent.homeFeatureBuilder
     }
     private let rootComponent: RootComponent
@@ -100,6 +100,11 @@ private func factory9fdb332e057827d6b3d2b3a8f24c1d289f2c0f2e(_ component: Needle
 }
 
 #else
+extension HomeFeatureBuilderComponent: Registration {
+    public func registerItems() {
+
+    }
+}
 extension RegisterJWTFeatureBuilderComponent: Registration {
     public func registerItems() {
 
@@ -112,11 +117,6 @@ extension MyAppsFeatureBuilderComponent: Registration {
         keyPathToName[\MyAppsFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
     }
 }
-extension HomeFeatureBuilderComponent: Registration {
-    public func registerItems() {
-
-    }
-}
 extension SettingFeatureBuilderComponent: Registration {
     public func registerItems() {
         keyPathToName[\SettingFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
@@ -126,7 +126,7 @@ extension AppIntroductionFeatureBuilderComponent: Registration {
     public func registerItems() {
         keyPathToName[\AppIntroductionFeatureDependency.myAppsFeatureBuilder] = "myAppsFeatureBuilder-MyAppsFeatureBuildable"
         keyPathToName[\AppIntroductionFeatureDependency.settingFeatureBuilder] = "settingFeatureBuilder-SettingFeatureBuildable"
-        keyPathToName[\AppIntroductionFeatureDependency.homeFeatureBuilder] = "homeFeatureBuilder-HomeViewFeatureBuildable"
+        keyPathToName[\AppIntroductionFeatureDependency.homeFeatureBuilder] = "homeFeatureBuilder-HomeFeatureBuildable"
     }
 }
 extension RootComponent: Registration {
@@ -151,9 +151,9 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 #if !NEEDLE_DYNAMIC
 
 @inline(never) private func register1() {
+    registerProviderFactory("^->RootComponent->HomeFeatureBuilderComponent", factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb)
     registerProviderFactory("^->RootComponent->RegisterJWTFeatureBuilderComponent", factorya0afd58e4976bcfb953ee3b0c44298fc1c149afb)
     registerProviderFactory("^->RootComponent->MyAppsFeatureBuilderComponent", factorybea64e632592e689d959b3a8f24c1d289f2c0f2e)
-    registerProviderFactory("^->RootComponent->HomeFeatureBuilderComponent", factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb)
     registerProviderFactory("^->RootComponent->SettingFeatureBuilderComponent", factory78443b45858507b98a9db3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->AppIntroductionFeatureBuilderComponent", factory9fdb332e057827d6b3d2b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)

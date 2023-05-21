@@ -14,7 +14,7 @@ public protocol HomeFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
 }
 
-class HomeFeatureBuilder: Builder<HomeFeatureDependency>, HomeViewFeatureBuildable {
+class HomeFeatureBuilder: Builder<HomeFeatureDependency>, HomeFeatureBuildable {
     @MainActor
     public func build(viewControllers: [UIViewController]) -> UIViewController {
         HomeTabViewController(viewControllers: viewControllers)
@@ -22,7 +22,7 @@ class HomeFeatureBuilder: Builder<HomeFeatureDependency>, HomeViewFeatureBuildab
 }
 
 public class HomeFeatureBuilderComponent: Component<HomeFeatureDependency>, FeatureHomeView {
-    public func homeViewFeatureBuilder() -> Core.HomeViewFeatureBuildable {
+    public func homeFeatureBuilder() -> Core.HomeFeatureBuildable {
         HomeFeatureBuilder(dependency: dependency)
     }
 }

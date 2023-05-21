@@ -27,7 +27,7 @@ let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
 
 let productionFeatures: [PackageDescription.Target.Dependency] = [
     .appIntroductionFeature,
-    .homeViewFeature,
+    .homeFeature,
     .myAppsFeature,
     .registerJWTFeature,
     .settingFeature,
@@ -53,13 +53,6 @@ private extension PackageDescription.Target.Dependency {
     static let swiftJWT: Self = .product(name: "SwiftJWT", package: "Swift-JWT")
 }
 
-// MARK: - Repositories
-
-private extension PackageDescription.Target.Dependency {
-    static let appstore: Self = .target(name: "AppStoreRepository")
-    static let testflight: Self = .target(name: "TestFlightRepository")
-}
-
 // MARK: - Custom Modules
 
 private extension PackageDescription.Target.Dependency {
@@ -75,7 +68,7 @@ private extension PackageDescription.Target.Dependency {
 
 private extension PackageDescription.Target.Dependency {
     static let appIntroductionFeature: Self = .target(name: "AppIntroductionFeature")
-    static let homeViewFeature: Self = .target(name: "HomeViewFeature")
+    static let homeFeature: Self = .target(name: "HomeFeature")
     static let myAppsFeature: Self = .target(name: "MyAppsFeature")
     static let registerJWTFeature: Self = .target(name: "RegisterJWTFeature")
     static let settingFeature: Self = .target(name: "SettingFeature")
@@ -99,7 +92,7 @@ let package = Package(
         // For R.swift to generate resources codes by XcodeCommandPlugin
         // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
         .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
-        .library(name: "HomeViewFeature", targets: ["HomeViewFeature"]),
+        .library(name: "HomeFeature", targets: ["HomeFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
         .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
         .library(name: "SettingFeature", targets: ["SettingFeature"]),
@@ -132,12 +125,12 @@ let package = Package(
             swiftSettings: debugSwiftSettings
         ),
         .target(
-            name: "HomeViewFeature",
+            name: "HomeFeature",
             dependencies: [
                 .core,
                 .rSwift
             ],
-            path: "./Sources/Features/HomeView",
+            path: "./Sources/Features/Home",
             swiftSettings: debugSwiftSettings
         ),
         .target(
@@ -148,8 +141,7 @@ let package = Package(
                 .jwtGenerator,
                 .keychainStore,
                 .rSwift,
-                .appstore,
-                .testflight
+                .client
             ],
             path: "./Sources/Features/MyApps",
             swiftSettings: debugSwiftSettings
@@ -188,24 +180,11 @@ let package = Package(
             ]
         ),
         .target(
-            name: "AppStoreRepository",
-            dependencies: [
-                .core
-            ],
-            path: "./Sources/Repository/AppStore"
-        ),
-        .target(
-            name: "TestFlightRepository",
-            dependencies: [
-                .core
-            ],
-            path: "./Sources/Repository/TestFlight"
-        ),
-        .target(
             name: "JWTGenerator",
             dependencies: [
                 .swiftJWT
-            ]
+            ],
+            path: "./Sources/Modules/JWTGenerator"
         ),
         .testTarget(
             name: "JWTGeneratorTests",
@@ -215,11 +194,13 @@ let package = Package(
         ),
         .target(
             name: "KeychainStore",
-            dependencies: []
+            dependencies: [],
+            path: "./Sources/Modules/KeychainStore"
         ),
         .target(
             name: "FirebaseSetup",
             dependencies: firebaseCrashlyticsDependencies + firebaseAnalyticsDependencies,
+            path: "./Sources/Modules/FirebaseSetup",
             linkerSettings: [
                 .unsafeFlags(["-ObjC"])
             ]
@@ -229,7 +210,8 @@ let package = Package(
             dependencies: [
                 .kingfisher,
                 .core
-            ]
+            ],
+            path: "./Sources/Modules/ImageLoader"
         ),
         .binaryTarget(
             name: "FirebaseCrashlytics",

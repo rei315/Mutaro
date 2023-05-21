@@ -15,11 +15,11 @@ public protocol AppIntroductionRoutable {
 public class AppIntroductionRouter: AppIntroductionRoutable {
     public struct Dependency {
         // TODO: - ここから遷移するfeatureのbuilder
-        public let homeFeatureBuilder: HomeViewFeatureBuildable
+        public let homeFeatureBuilder: HomeFeatureBuildable
         public let myAppsFeatureBuilder: MyAppsFeatureBuildable
         public let settingsFeatureBuilder: SettingFeatureBuildable
 
-        public init(homeFeatureBuilder: HomeViewFeatureBuildable, myAppsFeatureBuilder: MyAppsFeatureBuildable, settingFeatureBuilder: SettingFeatureBuildable) {
+        public init(homeFeatureBuilder: HomeFeatureBuildable, myAppsFeatureBuilder: MyAppsFeatureBuildable, settingFeatureBuilder: SettingFeatureBuildable) {
             self.homeFeatureBuilder = homeFeatureBuilder
             self.myAppsFeatureBuilder = myAppsFeatureBuilder
             settingsFeatureBuilder = settingFeatureBuilder

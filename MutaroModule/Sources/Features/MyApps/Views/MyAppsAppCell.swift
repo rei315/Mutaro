@@ -60,6 +60,7 @@ final class MyAppsAppCell: UICollectionViewCell {
         titleLabel.text = title
 
         thumbnailImageView.rt_cancelImageLoad()
+        thumbnailImageView.image = nil
 
         guard let url else {
             thumbnailImageView.backgroundColor = .darkGray
