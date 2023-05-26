@@ -11,6 +11,9 @@
 - UI Imp: Programmatically UI
 - Architecture: MVVM
 - Dependencies: SPM + XCFramework
+- Features:
+  - Muiti Module by spm
+  - DI with needle
 - CI/CD:
   - Github Actions(self host runner)
   - XcodeCloud
