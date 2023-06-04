@@ -23,7 +23,9 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
     public func build() -> UIViewController {
         let myAppsVC = MyAppsViewController(
             dependency: .init(
-                viewModel: .init(environment: environment)
+                viewModel: .init(
+                    environment: environment
+                )
             )
         )
         let navigationVC = UINavigationController(rootViewController: myAppsVC)
@@ -46,7 +48,7 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
 
     private var environment: MyAppsFeatureEnvironment {
         .init(
-            client: dependency.client,
+            appInfoUseCase: appInfoUseCase,
             imageDownloadService: dependency.imageDownloadService,
             router: router
         )
@@ -58,6 +60,10 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
                 registerJWTFeatureBuilder: dependency.registerJWTFeatureBuilder
             )
         )
+    }
+
+    private var appInfoUseCase: AppInfoUseCase {
+        AppInfoUseCaseImpl(client: dependency.client)
     }
 }
 

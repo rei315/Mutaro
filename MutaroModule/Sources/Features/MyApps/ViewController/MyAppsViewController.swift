@@ -50,7 +50,9 @@ public class MyAppsViewController: UIViewController {
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.loadStoredJWTInfo()
+        Task {
+            await viewModel.loadStoredJWTInfo()
+        }
     }
 
     private func setupView() {
@@ -220,7 +222,7 @@ extension MyAppsViewController {
         dataSource.apply(snapshot)
     }
 
-    private func updateAppsSnapshot(items: [MyAppsViewModel.AppInfo]) {
+    private func updateAppsSnapshot(items: [AppInfo]) {
         var snapshot = dataSource.snapshot()
         let currentAppRows = snapshot.itemIdentifiers(inSection: .app)
         items
