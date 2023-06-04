@@ -19,7 +19,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     private let environment: MyAppsFeatureEnvironment
 
     var currentJWTInfo: MutaroJWT.JWTRequestInfo?
-    let appInfosSubject = CurrentValueSubject<[AppInfo], Never>([])
+    @currentPublished private(set) var appInfosSubject: [AppInfo] = []
     let shouldShowRegisterJWTSubject = PassthroughSubject<Bool, Never>()
     var cancellables: Set<AnyCancellable> = []
 
@@ -41,7 +41,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             shouldShowRegisterJWTSubject.send(false)
             currentJWTInfo = storedJWTInfo
             let appInfos = try await environment.appInfoUseCase.fetchAppInfos(storedJWTInfo: storedJWTInfo)
-            appInfosSubject.send(appInfos)
+            appInfosSubject = appInfos
         } catch {
             shouldShowRegisterJWTSubject.send(true)
         }
@@ -58,7 +58,8 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         case .none, .registerJWT:
             break
         case let .app(index):
-            guard let url = appInfosSubject.value[getOrNil: index]?.iconUrl else {
+
+            guard let url = appInfosSubject[getOrNil: index]?.iconUrl else {
                 return
             }
             let cache = ImageCacheType.myAppCache.getCache()
@@ -73,7 +74,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         case .none, .registerJWT:
             break
         case let .app(index):
-            guard let url = appInfosSubject.value[getOrNil: index]?.iconUrl else {
+            guard let url = appInfosSubject[getOrNil: index]?.iconUrl else {
                 return
             }
             environment.imageDownloadService.cancelDownloadImage(with: url)

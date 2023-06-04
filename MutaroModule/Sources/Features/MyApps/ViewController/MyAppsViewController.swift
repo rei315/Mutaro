@@ -68,8 +68,7 @@ public class MyAppsViewController: UIViewController {
     }
 
     private func setupSubscription() {
-        viewModel.appInfosSubject
-            .removeDuplicates()
+        viewModel.$appInfosSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.updateAppsSnapshot(items: $0)
@@ -293,7 +292,7 @@ extension MyAppsViewController {
                 withType: MyAppsAppCell.self,
                 for: indexPath
             ).apply {
-                if let item = viewModel.appInfosSubject.value[getOrNil: index] {
+                if let item = viewModel.appInfosSubject[getOrNil: index] {
                     $0.bind(url: item.iconUrl, title: item.name)
                 }
             }
