@@ -50,7 +50,9 @@ public class MyAppsViewController: UIViewController {
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.loadStoredJWTInfo()
+        Task {
+            await viewModel.loadStoredJWTInfo()
+        }
     }
 
     private func setupView() {
@@ -66,8 +68,7 @@ public class MyAppsViewController: UIViewController {
     }
 
     private func setupSubscription() {
-        viewModel.appInfosSubject
-            .removeDuplicates()
+        viewModel.$appInfosSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.updateAppsSnapshot(items: $0)
@@ -220,7 +221,7 @@ extension MyAppsViewController {
         dataSource.apply(snapshot)
     }
 
-    private func updateAppsSnapshot(items: [MyAppsViewModel.AppInfo]) {
+    private func updateAppsSnapshot(items: [AppInfo]) {
         var snapshot = dataSource.snapshot()
         let currentAppRows = snapshot.itemIdentifiers(inSection: .app)
         items
@@ -291,7 +292,7 @@ extension MyAppsViewController {
                 withType: MyAppsAppCell.self,
                 for: indexPath
             ).apply {
-                if let item = viewModel.appInfosSubject.value[getOrNil: index] {
+                if let item = viewModel.appInfosSubject[getOrNil: index] {
                     $0.bind(url: item.iconUrl, title: item.name)
                 }
             }

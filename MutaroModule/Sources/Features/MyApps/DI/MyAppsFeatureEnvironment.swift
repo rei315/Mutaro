@@ -9,16 +9,16 @@ import Core
 import Foundation
 
 public struct MyAppsFeatureEnvironment {
-    public let client: Providable
+    public let appInfoUseCase: AppInfoUseCase
     public let imageDownloadService: ImageDownloadService
     public let router: MyAppsRoutable
 
     public init(
-        client: Providable,
+        appInfoUseCase: AppInfoUseCase,
         imageDownloadService: ImageDownloadService,
         router: MyAppsRoutable
     ) {
-        self.client = client
+        self.appInfoUseCase = appInfoUseCase
         self.imageDownloadService = imageDownloadService
         self.router = router
     }
