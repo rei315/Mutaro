@@ -20,8 +20,10 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
 
     var currentJWTInfo: MutaroJWT.JWTRequestInfo?
     @currentPublished private(set) var appInfosSubject: [AppInfo] = []
+    @currentPublished private(set) var myAppsSubject: [MyAppsEntity.MyAppsData] = []
     let shouldShowRegisterJWTSubject = PassthroughSubject<Bool, Never>()
     var cancellables: Set<AnyCancellable> = []
+    let taskCancellable = TaskCancellable()
 
     public init(
         environment: MyAppsFeatureEnvironment
@@ -29,10 +31,17 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         self.environment = environment
     }
 
-    func loadStoredJWTInfo() async {
+    func setupSubscription() {
+        $myAppsSubject
+            .sink { [weak self] in
+                self?.fetchAppInfos(myApps: $0)
+            }
+            .store(in: &cancellables)
+    }
+
+    func fetchMyApps() async {
         do {
             let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-
             if let currentJWTInfo, currentJWTInfo != storedJWTInfo {
                 shouldShowRegisterJWTSubject.send(true)
                 return
@@ -40,11 +49,38 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
 
             shouldShowRegisterJWTSubject.send(false)
             currentJWTInfo = storedJWTInfo
-            let appInfos = try await environment.appInfoUseCase.fetchAppInfos(storedJWTInfo: storedJWTInfo)
-            appInfosSubject = appInfos
+            let myApps = try await environment.appInfoUseCase.fetchMyApps(storedJWTInfo: storedJWTInfo)
+            myAppsSubject = myApps
         } catch {
             shouldShowRegisterJWTSubject.send(true)
         }
+    }
+
+    func fetchAppInfos(myApps: [MyAppsEntity.MyAppsData]) {
+        Task {
+            do {
+                let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
+                if let currentJWTInfo, currentJWTInfo != storedJWTInfo {
+                    shouldShowRegisterJWTSubject.send(true)
+                    return
+                }
+                shouldShowRegisterJWTSubject.send(false)
+                currentJWTInfo = storedJWTInfo
+                let myAppsInfo = myApps
+                    .compactMap { data -> (String, String)? in
+                        guard let id = data.id,
+                              let name = data.attributes?.name else {
+                            return nil
+                        }
+                        return (id, name)
+                    }
+                let appInfos = try await environment.appInfoUseCase.fetchAppInfos(storedJWTInfo: storedJWTInfo, myApps: myAppsInfo)
+                appInfosSubject = appInfos
+            } catch {
+                shouldShowRegisterJWTSubject.send(true)
+            }
+        }
+        .store(in: taskCancellable)
     }
 
     func onTapRegisterJWT(from viewController: UIViewController) {

@@ -46,13 +46,16 @@ public class MyAppsViewController: UIViewController {
         setupView()
         setupDefaultSnapshot()
         setupSubscription()
+        viewModel.setupSubscription()
     }
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         Task {
-            await viewModel.loadStoredJWTInfo()
+            await viewModel.fetchMyApps()
         }
+        .store(in: viewModel.taskCancellable)
     }
 
     private func setupView() {
