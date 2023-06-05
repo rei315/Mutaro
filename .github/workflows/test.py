@@ -61,14 +61,7 @@ def compare_versions(package_version, git_version):
     if not git_version:
         return False
     
-    v1_parts = package_version.split('.')
-    v2_parts = git_version.split('.')
-    
-    for v1, v2 in zip(v1_parts, v2_parts):
-        if v1 != v2:
-            return v1 < v2
-    
-    return len(v1_parts) < len(v2_parts)
+    return package_version != git_version
 
 def check_available_new_version(token, data):
     available_version_info = []
