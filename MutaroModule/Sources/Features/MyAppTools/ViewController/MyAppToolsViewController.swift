@@ -23,6 +23,7 @@ final class MyAppToolsViewController: UIViewController {
         self.dependency = dependency
         viewModel = dependency.viewModel
         super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
     }
 
     @available(*, unavailable)
@@ -32,5 +33,6 @@ final class MyAppToolsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
     }
 }
