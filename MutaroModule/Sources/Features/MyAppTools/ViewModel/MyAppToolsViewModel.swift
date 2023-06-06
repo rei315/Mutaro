@@ -7,4 +7,10 @@
 
 import Foundation
 
-final class MyAppToolsViewModel {}
+final class MyAppToolsViewModel {
+    private let environment: MyAppToolsFeatureEnvironment
+
+    init(environment: MyAppToolsFeatureEnvironment) {
+        self.environment = environment
+    }
+}

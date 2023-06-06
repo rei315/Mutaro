@@ -13,6 +13,7 @@ import NeedleFoundation
 import AppIntroductionFeature
 import HomeFeature
 import MyAppsFeature
+import MyAppToolsFeature
 import RegisterJWTFeature
 import SettingFeature
 
@@ -49,6 +50,13 @@ final class RootComponent: BootstrapComponent {
         shared {
             RegisterJWTFeatureBuilderComponent(parent: self)
                 .registerJWTFeatureBuilder()
+        }
+    }
+
+    var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable {
+        shared {
+            MyAppToolsFeatureComponent(parent: self)
+                .myAppToolsFeatureBuilder()
         }
     }
 
