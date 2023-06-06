@@ -46,7 +46,7 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
 
     private func getMyApps(token: String) async throws -> [MyAppsEntity.MyAppsData] {
         let myAppsParameters = [
-            "fields[apps]": "name"
+            "fields[apps]": "name,ciProduct"
         ]
         let myAppsEndpoint = MyAppsEndpoint.GetAllListMyApps(token: token, additionalParameters: myAppsParameters)
         let myAppsResult = await client.request(
