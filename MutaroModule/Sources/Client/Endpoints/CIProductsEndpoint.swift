@@ -13,10 +13,12 @@ public enum CIProductsEndpoint {}
 public extension CIProductsEndpoint {
     struct GetAllProducts: Endpoint {
         private let token: String
+        private let appId: String
         private let additionalParameters: [String: Any]
 
-        public init(token: String, additionalParameters: [String: Any]) {
+        public init(token: String, appId: String, additionalParameters: [String: Any]) {
             self.token = token
+            self.appId = appId
             self.additionalParameters = additionalParameters
         }
 
@@ -30,7 +32,7 @@ public extension CIProductsEndpoint {
         }
 
         public var path: String {
-            "/v1/ciProducts"
+            "/v1/apps/\(appId)/ciProduct"
         }
 
         public var method: Core.HTTPMethod = .get
