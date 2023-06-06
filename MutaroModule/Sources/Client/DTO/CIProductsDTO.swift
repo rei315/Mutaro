@@ -19,17 +19,17 @@ public struct CIProductsDTO: Codable {
         public let relationships: CIProductsRelationships?
         public let links: CIProductsLinks?
     }
-    
+
     public struct CIProductsAttributes: Codable {
         public let name: String?
         public let createdDate: Date?
         public let productType: String?
     }
-    
+
     public struct CIProductsRelationships: Codable {
         public let app, workflows, primaryRepositories, additionalRepositories, buildRuns: CIProductsLinksElement?
     }
-    
+
     // MARK: - CIProductsLinksElement
 
     public struct CIProductsLinksElement: Codable {
@@ -46,7 +46,7 @@ public struct CIProductsDTO: Codable {
             case linksSelf = "self"
         }
     }
-    
+
     // MARK: - CIProductsLinks
 
     public struct CIProductsLinks: Codable {

@@ -1,6 +1,6 @@
 //
-//  MyAppFeaturesComponent.swift
-//  
+//  MyAppToolsComponent.swift
+//
 //
 //  Created by minguk-kim on 2023/06/07.
 //
