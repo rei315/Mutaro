@@ -13,7 +13,6 @@ import JWTGenerator
 public protocol AppInfoUseCase {
     func fetchAppInfos(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, myApps: [(id: String, name: String)]) async throws -> [AppInfo]
     func fetchMyApps(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async throws -> [MyAppsEntity.MyAppsData]
-    func test(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async
 }
 
 public final class AppInfoUseCaseImpl: AppInfoUseCase {
@@ -47,7 +46,7 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
 
     private func getMyApps(token: String) async throws -> [MyAppsEntity.MyAppsData] {
         let myAppsParameters = [
-            "fields[apps]": "name,builds,ciProduct"
+            "fields[apps]": "name"
         ]
         let myAppsEndpoint = MyAppsEndpoint.GetAllListMyApps(token: token, additionalParameters: myAppsParameters)
         let myAppsResult = await client.request(
@@ -68,22 +67,35 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
                 let appId = app.0
                 let appName = app.1
 
-                let buildsParametr: [String: Any] = [
-                    "filter[app]": appId,
-                    "sort": "-uploadedDate",
-                    "limit": 1
-                ]
-                let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
+                let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, appId: appId, additionalParameters: [:])
                 let buildsResult = await self.client.request(endpoint: buildsEndpoint, responseModel: BuildsDTO.self)
+
                 guard let buildsResultEntity = try? buildsResult.get().toEntity(),
-                      let data = buildsResultEntity.data?.first else {
+                      let datas = buildsResultEntity.data else {
                     return .init(
                         id: appId,
                         name: appName,
                         iconUrl: nil
                     )
                 }
-                let iconAsset = data.attributes?.iconAssetToken
+                let filteredDatas = datas.filter { datum in
+                    datum.attributes?.uploadedDate != nil
+                }
+                guard let lastUploadedData = filteredDatas.sorted(by: { lhs, rhs in
+                    guard let lhsUploadedDate = lhs.attributes?.uploadedDate,
+                          let rhsUploadedDate = rhs.attributes?.uploadedDate else {
+                        return true
+                    }
+                    return lhsUploadedDate > rhsUploadedDate
+                }).first else {
+                    return .init(
+                        id: appId,
+                        name: appName,
+                        iconUrl: nil
+                    )
+                }
+
+                let iconAsset = lastUploadedData.attributes?.iconAssetToken
                 let width = iconAsset?.width ?? 167
                 let height = iconAsset?.height ?? 167
                 let imageUrl = iconAsset?.templateURL
@@ -92,7 +104,11 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
                     width: width,
                     height: height
                 ) else {
-                    return nil
+                    return .init(
+                        id: appId,
+                        name: appName,
+                        iconUrl: nil
+                    )
                 }
                 return .init(
                     id: appId,
@@ -101,22 +117,5 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
                 )
             }
             .compactMap { $0 }
-    }
-
-    public func test(storedJWTInfo _: JWTGenerator.MutaroJWT.JWTRequestInfo) async {
-//        do {
-//            let builder = MutaroJWT.AppstoreConnectJWTBuilder(
-//                keyId: storedJWTInfo.keyID,
-//                issuerId: storedJWTInfo.issuerID,
-//                pemString: storedJWTInfo.privateKey
-//            )
-//            let token = try builder.generateJWT()
-//            let endpoint = CIProductsEndpoint.GetAllProducts(token: token, additionalParameters: [:])
-//            let result = await client.request(endpoint: endpoint)
-//            let abc = try result.get().prettyPrintedJSONString
-//            print("Mins: \(abc)")
-//        } catch {
-//            print("Mins: use: \(error)")
-//        }
     }
 }

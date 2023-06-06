@@ -13,10 +13,12 @@ public enum BuildsEndpoint {}
 public extension BuildsEndpoint {
     struct GetAllBuilds: Endpoint {
         private let token: String
+        private let appId: String
         private let additionalParameters: [String: Any]
 
-        public init(token: String, additionalParameters: [String: Any]) {
+        public init(token: String, appId: String, additionalParameters: [String: Any]) {
             self.token = token
+            self.appId = appId
             self.additionalParameters = additionalParameters
         }
 
@@ -29,7 +31,7 @@ public extension BuildsEndpoint {
         }
 
         public var path: String {
-            "/v1/builds"
+            "/v1/apps/\(appId)/builds"
         }
 
         public var method: HTTPMethod = .get
