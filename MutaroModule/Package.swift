@@ -143,7 +143,8 @@ let package = Package(
                 .imageLoader,
                 .jwtGenerator,
                 .keychainStore,
-                .rSwift
+                .rSwift,
+                .client
             ],
             path: "./Sources/Features/MyApps",
             swiftSettings: debugSwiftSettings
@@ -154,7 +155,8 @@ let package = Package(
                 .core,
                 .jwtGenerator,
                 .keychainStore,
-                .rSwift
+                .rSwift,
+                .client
             ],
             path: "./Sources/Features/MyAppTools",
             swiftSettings: debugSwiftSettings

@@ -9,9 +9,14 @@ import Core
 import Foundation
 
 public struct MyAppToolsFeatureEnvironment {
+    public let ciProductUseCase: CIProductUseCase
     public let router: MyAppToolsRoutable
 
-    public init(router: MyAppToolsRoutable) {
+    public init(
+        ciProductUseCase: CIProductUseCase,
+        router: MyAppToolsRoutable
+    ) {
+        self.ciProductUseCase = ciProductUseCase
         self.router = router
     }
 }

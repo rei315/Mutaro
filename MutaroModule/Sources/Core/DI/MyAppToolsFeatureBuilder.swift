@@ -10,7 +10,7 @@ import UIKit
 
 public protocol MyAppToolsFeatureBuildable: Buildable {
     @MainActor
-    func build() -> UIViewController
+    func build(appId: String) -> UIViewController
 }
 
 public protocol FeatureMyAppTools {

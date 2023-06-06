@@ -8,9 +8,14 @@
 import Foundation
 
 final class MyAppToolsViewModel {
+    private let appId: String
     private let environment: MyAppToolsFeatureEnvironment
 
-    init(environment: MyAppToolsFeatureEnvironment) {
+    public init(
+        appId: String,
+        environment: MyAppToolsFeatureEnvironment
+    ) {
+        self.appId = appId
         self.environment = environment
     }
 }

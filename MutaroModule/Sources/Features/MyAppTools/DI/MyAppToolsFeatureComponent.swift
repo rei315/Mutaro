@@ -16,10 +16,11 @@ public protocol MyAppToolsFeatureDependency: Dependency {
 
 class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppToolsFeatureBuildable {
     @MainActor
-    func build() -> UIViewController {
+    func build(appId: String) -> UIViewController {
         let myAppTools = MyAppToolsViewController(
             dependency: .init(
                 viewModel: .init(
+                    appId: appId,
                     environment: environment
                 )
             )
@@ -29,6 +30,7 @@ class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppTools
 
     private var environment: MyAppToolsFeatureEnvironment {
         .init(
+            ciProductUseCase: ciProductUseCase,
             router: router
         )
     }
@@ -37,6 +39,10 @@ class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppTools
         MyAppToolsRouter(
             dependency: .init()
         )
+    }
+
+    private var ciProductUseCase: CIProductUseCase {
+        CIProductUseCaseImp(client: dependency.client)
     }
 }
 
