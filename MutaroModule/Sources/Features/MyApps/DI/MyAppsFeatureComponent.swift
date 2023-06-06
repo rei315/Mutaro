@@ -12,10 +12,10 @@ import NeedleFoundation
 import UIKit
 
 public protocol MyAppsFeatureDependency: Dependency {
-    // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var client: Providable { get }
     var imageDownloadService: ImageDownloadService { get }
     var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable { get }
+    var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable { get }
 }
 
 class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuildable {
@@ -57,7 +57,8 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
     private var router: MyAppsRoutable {
         MyAppsRouter(
             dependency: .init(
-                registerJWTFeatureBuilder: dependency.registerJWTFeatureBuilder
+                registerJWTFeatureBuilder: dependency.registerJWTFeatureBuilder,
+                myAppToolsFeatureBuilder: dependency.myAppToolsFeatureBuilder
             )
         )
     }

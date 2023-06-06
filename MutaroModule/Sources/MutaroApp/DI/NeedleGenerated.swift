@@ -71,6 +71,9 @@ private class MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider: MyAppsFeature
     var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
         return rootComponent.registerJWTFeatureBuilder
     }
+    var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable {
+        return rootComponent.myAppToolsFeatureBuilder
+    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -134,6 +137,7 @@ extension MyAppsFeatureBuilderComponent: Registration {
         keyPathToName[\MyAppsFeatureDependency.client] = "client-Providable"
         keyPathToName[\MyAppsFeatureDependency.imageDownloadService] = "imageDownloadService-ImageDownloadService"
         keyPathToName[\MyAppsFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
+        keyPathToName[\MyAppsFeatureDependency.myAppToolsFeatureBuilder] = "myAppToolsFeatureBuilder-MyAppToolsFeatureBuildable"
     }
 }
 extension SettingFeatureBuilderComponent: Registration {

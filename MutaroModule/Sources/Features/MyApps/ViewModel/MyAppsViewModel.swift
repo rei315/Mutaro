@@ -75,6 +75,13 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         environment.router.showRegisterJWT(from: viewController)
     }
 
+    func onTapMyApp(from viewController: UIViewController, index: Int) {
+        guard let appInfo = appInfosSubject[getOrNil: index] else {
+            return
+        }
+        environment.router.showMyAppTools(from: viewController, appId: appInfo.id)
+    }
+
     func prefetchItem(
         _ rowType: MyAppsViewController.MyAppsRow?
     ) {
