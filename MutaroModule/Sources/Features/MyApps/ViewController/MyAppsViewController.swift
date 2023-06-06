@@ -72,13 +72,14 @@ public class MyAppsViewController: UIViewController {
 
     private func setupSubscription() {
         viewModel.$appInfosSubject
+            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.updateAppsSnapshot(items: $0)
             }
             .store(in: &viewModel.cancellables)
 
-        viewModel.shouldShowRegisterJWTSubject
+        viewModel.$shouldShowRegisterJWTSubject
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -157,11 +158,15 @@ extension MyAppsViewController {
                         )
                     }
                     let section = NSCollectionLayoutSection(group: group)
-                    let backgroundItem = NSCollectionLayoutDecorationItem.background(
-                        elementKind: MyAppsRegisterJWTSectionDecorationView.simpleClassName()
-                    )
-                    section.decorationItems = [backgroundItem]
-                    section.contentInsets = .init(top: 12, leading: 20, bottom: 12, trailing: 20)
+                    let isEnabled = self.viewModel.shouldShowRegisterJWTSubject
+                    if isEnabled {
+                        let backgroundItem = NSCollectionLayoutDecorationItem.background(
+                            elementKind: MyAppsRegisterJWTSectionDecorationView.simpleClassName()
+                        )
+                        section.decorationItems = [backgroundItem]
+                        section.contentInsets = .init(top: 12, leading: 20, bottom: 12, trailing: 20)
+                    }
+
                     return section
                 case .app:
                     let item = NSCollectionLayoutItem(

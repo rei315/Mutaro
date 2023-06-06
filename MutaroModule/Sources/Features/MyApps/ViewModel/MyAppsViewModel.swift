@@ -21,7 +21,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     var currentJWTInfo: MutaroJWT.JWTRequestInfo?
     @currentPublished private(set) var appInfosSubject: [AppInfo] = []
     @currentPublished private(set) var myAppsSubject: [MyAppsEntity.MyAppsData] = []
-    let shouldShowRegisterJWTSubject = PassthroughSubject<Bool, Never>()
+    @currentPublished private(set) var shouldShowRegisterJWTSubject = false
     var cancellables: Set<AnyCancellable> = []
     let taskCancellable = TaskCancellable()
 
@@ -42,11 +42,11 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     func fetchMyApps() async {
         do {
             let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-            shouldShowRegisterJWTSubject.send(false)
+            shouldShowRegisterJWTSubject = false
             let myApps = try await environment.appInfoUseCase.fetchMyApps(storedJWTInfo: storedJWTInfo)
             myAppsSubject = myApps
         } catch {
-            shouldShowRegisterJWTSubject.send(true)
+            shouldShowRegisterJWTSubject = true
         }
     }
 
@@ -64,9 +64,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
                     }
                 let appInfos = try await environment.appInfoUseCase.fetchAppInfos(storedJWTInfo: storedJWTInfo, myApps: myAppsInfo)
                 appInfosSubject = appInfos
-            } catch {
-                shouldShowRegisterJWTSubject.send(true)
-            }
+            } catch {}
         }
         .store(in: taskCancellable)
     }
