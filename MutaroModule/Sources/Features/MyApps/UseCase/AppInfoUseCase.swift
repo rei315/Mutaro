@@ -13,6 +13,7 @@ import JWTGenerator
 public protocol AppInfoUseCase {
     func fetchAppInfos(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, myApps: [(id: String, name: String)]) async throws -> [AppInfo]
     func fetchMyApps(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async throws -> [MyAppsEntity.MyAppsData]
+    func test(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async
 }
 
 public final class AppInfoUseCaseImpl: AppInfoUseCase {
@@ -46,7 +47,7 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
 
     private func getMyApps(token: String) async throws -> [MyAppsEntity.MyAppsData] {
         let myAppsParameters = [
-            "fields[apps]": "name"
+            "fields[apps]": "name,builds,ciProduct"
         ]
         let myAppsEndpoint = MyAppsEndpoint.GetAllListMyApps(token: token, additionalParameters: myAppsParameters)
         let myAppsResult = await client.request(
@@ -100,5 +101,22 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
                 )
             }
             .compactMap { $0 }
+    }
+
+    public func test(storedJWTInfo _: JWTGenerator.MutaroJWT.JWTRequestInfo) async {
+//        do {
+//            let builder = MutaroJWT.AppstoreConnectJWTBuilder(
+//                keyId: storedJWTInfo.keyID,
+//                issuerId: storedJWTInfo.issuerID,
+//                pemString: storedJWTInfo.privateKey
+//            )
+//            let token = try builder.generateJWT()
+//            let endpoint = CIProductsEndpoint.GetAllProducts(token: token, additionalParameters: [:])
+//            let result = await client.request(endpoint: endpoint)
+//            let abc = try result.get().prettyPrintedJSONString
+//            print("Mins: \(abc)")
+//        } catch {
+//            print("Mins: use: \(error)")
+//        }
     }
 }

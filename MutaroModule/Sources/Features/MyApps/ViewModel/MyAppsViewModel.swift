@@ -42,13 +42,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     func fetchMyApps() async {
         do {
             let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-            if let currentJWTInfo, currentJWTInfo != storedJWTInfo {
-                shouldShowRegisterJWTSubject.send(true)
-                return
-            }
-
             shouldShowRegisterJWTSubject.send(false)
-            currentJWTInfo = storedJWTInfo
             let myApps = try await environment.appInfoUseCase.fetchMyApps(storedJWTInfo: storedJWTInfo)
             myAppsSubject = myApps
         } catch {
@@ -60,12 +54,6 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         Task {
             do {
                 let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-                if let currentJWTInfo, currentJWTInfo != storedJWTInfo {
-                    shouldShowRegisterJWTSubject.send(true)
-                    return
-                }
-                shouldShowRegisterJWTSubject.send(false)
-                currentJWTInfo = storedJWTInfo
                 let myAppsInfo = myApps
                     .compactMap { data -> (String, String)? in
                         guard let id = data.id,

@@ -73,7 +73,8 @@ public struct MyAppsDTO: Codable {
     // MARK: - MyAppsAppAvailabilityLinks
 
     public struct MyAppsLinksDetails: Codable {
-        public let related, linksSelf: String?
+        public let related: String?
+        public let linksSelf: String?
 
         enum CodingKeys: String, CodingKey {
             case related
