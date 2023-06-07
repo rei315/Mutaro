@@ -5,6 +5,7 @@
 //  Created by minguk-kim on 2023/06/07.
 //
 
+import Core
 import UIKit
 
 final class MyAppToolsViewController: UIViewController {
@@ -17,9 +18,9 @@ final class MyAppToolsViewController: UIViewController {
     private let viewModel: MyAppToolsViewModel
     private let dependency: Dependency
 
-    private lazy var cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, CellItem> { cell, _, _ in
+    private let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, CellItem> { cell, _, item in
         var configuration = cell.myAppToolCellConfiguration()
-        configuration.title = "hello"
+        configuration.title = item.title
         cell.contentConfiguration = configuration
     }
 
@@ -43,6 +44,11 @@ final class MyAppToolsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setSmallTitle()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,6 +69,8 @@ final class MyAppToolsViewController: UIViewController {
         collectionView.lets {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
+            $0.dataSource = dataSource
+            $0.delegate = self
             $0.fillConstraint(to: view)
         }
     }
@@ -130,10 +138,11 @@ extension MyAppToolsViewController {
     ) -> UICollectionViewCell {
         switch item {
         case let .tool(index):
+            let title = viewModel.items[getOrNil: index]?.title ?? ""
             let cell = collectionView.dequeueConfiguredReusableCell(
                 using: cellRegistration,
                 for: indexPath,
-                item: .init(title: "test \(index)")
+                item: .init(title: title)
             )
             return cell
         }
@@ -171,6 +180,12 @@ extension MyAppToolsViewController {
         }
 
         dataSource.apply(snapshot)
+    }
+}
+
+extension MyAppToolsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
 
