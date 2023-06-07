@@ -287,7 +287,10 @@ extension MyAppsViewController {
             collectionView: collectionView
         ) { [weak self] collectionView, indexPath, item in
             guard let self else {
-                return UICollectionViewCell()
+                return collectionView.dequeueReusableCell(
+                    withType: UICollectionViewCell.self,
+                    for: indexPath
+                )
             }
             return self.cellProvider(
                 collectionView: collectionView,
