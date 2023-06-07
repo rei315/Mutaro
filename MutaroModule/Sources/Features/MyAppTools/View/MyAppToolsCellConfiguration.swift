@@ -15,6 +15,7 @@ extension UICollectionViewCell {
 
 struct MyAppToolCellConfiguration: UIContentConfiguration, Hashable {
     var title: String?
+    var icon: UIImage?
 
     func makeContentView() -> UIView & UIContentView {
         MyAppToolCellView(configuration: self)
@@ -26,6 +27,7 @@ struct MyAppToolCellConfiguration: UIContentConfiguration, Hashable {
 }
 
 final class MyAppToolCellView: UIView, UIContentView {
+    private let iconView: UIImageView = .init()
     private let titleLabel: UILabel = .init()
 
     var configuration: UIContentConfiguration {
@@ -49,6 +51,19 @@ final class MyAppToolCellView: UIView, UIContentView {
     }
 
     private func setupView() {
+        iconView.lets {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+                $0.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+                $0.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28),
+                $0.widthAnchor.constraint(equalToConstant: 20),
+                $0.heightAnchor.constraint(equalTo: $0.widthAnchor)
+            ])
+        }
+
         titleLabel.lets {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
@@ -56,12 +71,13 @@ final class MyAppToolCellView: UIView, UIContentView {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: topAnchor, constant: 8),
                 $0.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-                $0.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12)
+                $0.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 12)
             ])
         }
     }
 
     private func bind(with configuration: MyAppToolCellConfiguration) {
         titleLabel.text = configuration.title
+        iconView.image = configuration.icon
     }
 }

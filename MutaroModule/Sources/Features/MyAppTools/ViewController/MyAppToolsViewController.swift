@@ -21,6 +21,7 @@ final class MyAppToolsViewController: UIViewController {
     private let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, CellItem> { cell, _, item in
         var configuration = cell.myAppToolCellConfiguration()
         configuration.title = item.title
+        configuration.icon = item.icon
         cell.contentConfiguration = configuration
     }
 
@@ -138,11 +139,13 @@ extension MyAppToolsViewController {
     ) -> UICollectionViewCell {
         switch item {
         case let .tool(index):
-            let title = viewModel.items[getOrNil: index]?.title ?? ""
+            let item = viewModel.items[getOrNil: index]
+            let title = item?.title ?? ""
+            let icon = item?.icon
             let cell = collectionView.dequeueConfiguredReusableCell(
                 using: cellRegistration,
                 for: indexPath,
-                item: .init(title: title)
+                item: .init(title: title, icon: icon)
             )
             return cell
         }
@@ -192,5 +195,6 @@ extension MyAppToolsViewController: UICollectionViewDelegate {
 extension MyAppToolsViewController {
     struct CellItem {
         let title: String
+        let icon: UIImage?
     }
 }

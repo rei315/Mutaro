@@ -10,6 +10,7 @@ import Core
 import Foundation
 import JWTGenerator
 import KeychainStore
+import UIKit
 
 actor MyAppToolsModel {
     private let appId: String
@@ -68,6 +69,13 @@ extension MyAppToolsModel {
             switch self {
             case .xcodeCloud:
                 return "XcodeCloud"
+            }
+        }
+
+        var icon: UIImage? {
+            switch self {
+            case .xcodeCloud:
+                return .init(systemName: "cloud")
             }
         }
     }
