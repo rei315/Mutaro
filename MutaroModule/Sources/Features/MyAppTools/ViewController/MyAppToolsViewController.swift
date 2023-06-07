@@ -44,6 +44,19 @@ final class MyAppToolsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupView()
+        setupDefaultSnapshot()
+
+        Task {
+            await viewModel.setupSubscription()
+        }
+        .store(in: viewModel.taskCancellable)
+
+        setupSubscription()
+    }
+
+    private func setupView() {
         view.backgroundColor = .white
 
         collectionView.lets {
@@ -51,6 +64,16 @@ final class MyAppToolsViewController: UIViewController {
             view.addSubview($0)
             $0.fillConstraint(to: view)
         }
+    }
+
+    private func setupSubscription() {
+        viewModel.$items
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.updateSnapshot(items: $0)
+            }
+            .store(in: &viewModel.cancellables)
     }
 }
 
@@ -113,6 +136,40 @@ extension MyAppToolsViewController {
             )
             return cell
         }
+    }
+
+    private func setupDefaultSnapshot() {
+        var snapshot = dataSource.snapshot()
+        snapshot.appendSections(MyAppToolsSection.allCases)
+        dataSource.apply(snapshot)
+    }
+
+    private func updateSnapshot(items: [MyAppToolsModel.ItemType]) {
+        var snapshot = dataSource.snapshot()
+        let currentRows = snapshot.itemIdentifiers(inSection: .tools)
+        items
+            .indices
+            .map {
+                MyAppToolsRow.tool(index: $0)
+            }
+            .forEach {
+                if currentRows.contains($0) {
+                    snapshot.reconfigureItems([$0])
+                } else {
+                    snapshot.appendItems([$0], toSection: .tools)
+                }
+            }
+
+        let itemCount = items.count
+        let itemCountDiff = currentRows.count - itemCount
+        if itemCountDiff > 0 {
+            let deleteTargets = (itemCount..<itemCount + itemCountDiff).map {
+                MyAppToolsRow.tool(index: $0)
+            }
+            snapshot.deleteItems(deleteTargets)
+        }
+
+        dataSource.apply(snapshot)
     }
 }
 
