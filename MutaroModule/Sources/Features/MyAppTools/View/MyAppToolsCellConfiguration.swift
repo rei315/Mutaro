@@ -14,6 +14,8 @@ extension UICollectionViewCell {
 }
 
 struct MyAppToolCellConfiguration: UIContentConfiguration, Hashable {
+    var title: String?
+
     func makeContentView() -> UIView & UIContentView {
         MyAppToolCellView(configuration: self)
     }
@@ -24,7 +26,16 @@ struct MyAppToolCellConfiguration: UIContentConfiguration, Hashable {
 }
 
 final class MyAppToolCellView: UIView, UIContentView {
-    var configuration: UIContentConfiguration
+    private let titleLabel: UILabel = .init()
+
+    var configuration: UIContentConfiguration {
+        didSet {
+            guard let configuration = configuration as? MyAppToolCellConfiguration else {
+                return
+            }
+            bind(with: configuration)
+        }
+    }
 
     init(configuration: UIContentConfiguration) {
         self.configuration = configuration
@@ -37,5 +48,20 @@ final class MyAppToolCellView: UIView, UIContentView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupView() {}
+    private func setupView() {
+        titleLabel.lets {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+                $0.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+                $0.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12)
+            ])
+        }
+    }
+
+    private func bind(with configuration: MyAppToolCellConfiguration) {
+        titleLabel.text = configuration.title
+    }
 }

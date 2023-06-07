@@ -14,52 +14,50 @@ public extension CIProductsDTO {
             links: .init(
                 linksSelf: links?.linksSelf
             ),
-            data: data?.compactMap {
-                CIProductsEntity.CIProductsData(
-                    id: $0.id,
-                    type: $0.type,
-                    attributes: .init(
-                        name: $0.attributes?.name,
-                        createdDate: $0.attributes?.createdDate,
-                        productType: $0.attributes?.productType
-                    ),
-                    relationships: .init(
-                        app: .init(
-                            links: .init(
-                                related: $0.relationships?.app?.links?.related,
-                                linksSelf: $0.relationships?.app?.links?.linksSelf
-                            )
-                        ),
-                        workflows: .init(
-                            links: .init(
-                                related: $0.relationships?.workflows?.links?.related,
-                                linksSelf: $0.relationships?.workflows?.links?.linksSelf
-                            )
-                        ),
-                        primaryRepositories: .init(
-                            links: .init(
-                                related: $0.relationships?.primaryRepositories?.links?.related,
-                                linksSelf: $0.relationships?.primaryRepositories?.links?.linksSelf
-                            )
-                        ),
-                        additionalRepositories: .init(
-                            links: .init(
-                                related: $0.relationships?.additionalRepositories?.links?.related,
-                                linksSelf: $0.relationships?.additionalRepositories?.links?.linksSelf
-                            )
-                        ),
-                        buildRuns: .init(
-                            links: .init(
-                                related: $0.relationships?.buildRuns?.links?.related,
-                                linksSelf: $0.relationships?.buildRuns?.links?.linksSelf
-                            )
+            data: .init(
+                id: data?.id,
+                type: data?.type,
+                attributes: .init(
+                    name: data?.attributes?.name,
+                    createdDate: data?.attributes?.createdDate,
+                    productType: data?.attributes?.productType
+                ),
+                relationships: .init(
+                    app: .init(
+                        links: .init(
+                            related: data?.relationships?.app?.links?.related,
+                            linksSelf: data?.relationships?.app?.links?.linksSelf
                         )
                     ),
-                    links: .init(
-                        linksSelf: $0.links?.linksSelf
+                    workflows: .init(
+                        links: .init(
+                            related: data?.relationships?.workflows?.links?.related,
+                            linksSelf: data?.relationships?.workflows?.links?.linksSelf
+                        )
+                    ),
+                    primaryRepositories: .init(
+                        links: .init(
+                            related: data?.relationships?.primaryRepositories?.links?.related,
+                            linksSelf: data?.relationships?.primaryRepositories?.links?.linksSelf
+                        )
+                    ),
+                    additionalRepositories: .init(
+                        links: .init(
+                            related: data?.relationships?.additionalRepositories?.links?.related,
+                            linksSelf: data?.relationships?.additionalRepositories?.links?.linksSelf
+                        )
+                    ),
+                    buildRuns: .init(
+                        links: .init(
+                            related: data?.relationships?.buildRuns?.links?.related,
+                            linksSelf: data?.relationships?.buildRuns?.links?.linksSelf
+                        )
                     )
+                ),
+                links: .init(
+                    linksSelf: data?.links?.linksSelf
                 )
-            }
+            )
         )
     }
 }

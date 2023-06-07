@@ -9,9 +9,9 @@ import Foundation
 
 public struct CIProductsEntity {
     public let links: CIProductsLinks?
-    public let data: [CIProductsData]?
+    public let data: CIProductsData?
 
-    public init(links: CIProductsLinks?, data: [CIProductsData]?) {
+    public init(links: CIProductsLinks?, data: CIProductsData?) {
         self.links = links
         self.data = data
     }
@@ -34,10 +34,10 @@ public struct CIProductsEntity {
 
     public struct CIProductsAttributes {
         public let name: String?
-        public let createdDate: Date?
+        public let createdDate: String?
         public let productType: String?
 
-        public init(name: String?, createdDate: Date?, productType: String?) {
+        public init(name: String?, createdDate: String?, productType: String?) {
             self.name = name
             self.createdDate = createdDate
             self.productType = productType

@@ -38,7 +38,7 @@ actor MyAppToolsModel {
     ) {
         var result: [ItemType] = []
 
-        let isEnabledXcodeCloud = !item.ciProductsData.isEmpty
+        let isEnabledXcodeCloud = item.ciProductsData != nil
         if isEnabledXcodeCloud {
             result.append(.xcodeCloud)
         }
@@ -46,7 +46,7 @@ actor MyAppToolsModel {
         itemTypeSubject.send(result)
     }
 
-    private func getCIProducts() async -> [CIProductsEntity.CIProductsData] {
+    private func getCIProducts() async -> CIProductsEntity.CIProductsData? {
         do {
             let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
             let ciProducts = try await ciProductUseCase.fetchCIProducts(
@@ -55,7 +55,7 @@ actor MyAppToolsModel {
             )
             return ciProducts
         } catch {
-            return []
+            return nil
         }
     }
 }
@@ -63,12 +63,19 @@ actor MyAppToolsModel {
 extension MyAppToolsModel {
     public enum ItemType: Equatable {
         case xcodeCloud
+
+        var title: String {
+            switch self {
+            case .xcodeCloud:
+                return "XcodeCloud"
+            }
+        }
     }
 
     struct ToolItem {
-        var ciProductsData: [CIProductsEntity.CIProductsData]
+        var ciProductsData: CIProductsEntity.CIProductsData?
 
-        init(ciProductsData: [CIProductsEntity.CIProductsData] = []) {
+        init(ciProductsData: CIProductsEntity.CIProductsData? = nil) {
             self.ciProductsData = ciProductsData
         }
     }

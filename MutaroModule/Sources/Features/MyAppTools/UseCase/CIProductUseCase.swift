@@ -11,7 +11,7 @@ import Foundation
 import JWTGenerator
 
 public protocol CIProductUseCase {
-    func fetchCIProducts(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, appId: String) async throws -> [CIProductsEntity.CIProductsData]
+    func fetchCIProducts(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, appId: String) async throws -> CIProductsEntity.CIProductsData?
 }
 
 public final class CIProductUseCaseImp: CIProductUseCase {
@@ -21,7 +21,7 @@ public final class CIProductUseCaseImp: CIProductUseCase {
         self.client = client
     }
 
-    public func fetchCIProducts(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, appId: String) async throws -> [CIProductsEntity.CIProductsData] {
+    public func fetchCIProducts(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, appId: String) async throws -> CIProductsEntity.CIProductsData? {
         let builder = MutaroJWT.AppstoreConnectJWTBuilder(
             keyId: storedJWTInfo.keyID,
             issuerId: storedJWTInfo.issuerID,
@@ -32,7 +32,7 @@ public final class CIProductUseCaseImp: CIProductUseCase {
         return ciProducts
     }
 
-    private func getCIProducts(token: String, appId: String) async throws -> [CIProductsEntity.CIProductsData] {
+    private func getCIProducts(token: String, appId: String) async throws -> CIProductsEntity.CIProductsData? {
         let ciProductsEndpoint = CIProductsEndpoint.GetAllProducts(
             token: token,
             appId: appId,
@@ -43,6 +43,6 @@ public final class CIProductUseCaseImp: CIProductUseCase {
             responseModel: CIProductsDTO.self
         )
         let ciProductsEntity = try ciProductsResult.get().toEntity()
-        return ciProductsEntity.data ?? []
+        return ciProductsEntity.data
     }
 }

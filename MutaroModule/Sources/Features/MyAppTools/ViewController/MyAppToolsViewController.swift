@@ -17,8 +17,9 @@ final class MyAppToolsViewController: UIViewController {
     private let viewModel: MyAppToolsViewModel
     private let dependency: Dependency
 
-    private let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, CellItem> { cell, _, _ in
+    private lazy var cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, CellItem> { cell, _, _ in
         var configuration = cell.myAppToolCellConfiguration()
+        configuration.title = "hello"
         cell.contentConfiguration = configuration
     }
 
@@ -47,13 +48,13 @@ final class MyAppToolsViewController: UIViewController {
 
         setupView()
         setupDefaultSnapshot()
+        setupSubscription()
 
         Task {
             await viewModel.setupSubscription()
+            await viewModel.fetch()
         }
         .store(in: viewModel.taskCancellable)
-
-        setupSubscription()
     }
 
     private func setupView() {

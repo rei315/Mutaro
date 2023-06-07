@@ -35,4 +35,8 @@ public class MyAppToolsViewModel {
             .assign(to: \.value, on: $items)
             .store(in: &cancellables)
     }
+
+    public func fetch() async {
+        await model.fetch()
+    }
 }
