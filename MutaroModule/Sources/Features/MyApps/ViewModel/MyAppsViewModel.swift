@@ -18,7 +18,6 @@ protocol MyAppsViewModelProtocol {}
 public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     private let environment: MyAppsFeatureEnvironment
 
-    var currentJWTInfo: MutaroJWT.JWTRequestInfo?
     @currentPublished private(set) var appInfosSubject: [AppInfo] = []
     @currentPublished private(set) var myAppsSubject: [MyAppsEntity.MyAppsData] = []
     @currentPublished private(set) var shouldShowRegisterJWTSubject = false
