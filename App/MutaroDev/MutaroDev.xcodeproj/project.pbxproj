@@ -12,7 +12,6 @@
 		713BA8812A317C9600B59A96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8802A317C9600B59A96 /* Assets.xcassets */; };
 		713BA8982A317E4C00B59A96 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8972A317E4C00B59A96 /* Settings.bundle */; };
 		713EA80D2A31D667004F9A39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */; };
-		713EA8152A31E229004F9A39 /* Production in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA8142A31E229004F9A39 /* Production */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				713EA8152A31E229004F9A39 /* Production in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +115,6 @@
 			);
 			name = MutaroDev;
 			packageProductDependencies = (
-				713EA8142A31E229004F9A39 /* Production */,
 			);
 			productName = MutaroDevApp;
 			productReference = 713BA8742A317C9200B59A96 /* MutaroDev.app */;
@@ -261,7 +258,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CI ]; then\n    #${CI_WORKSPACE}/scripts/run\n    echo \"TODO\"\nelse\n    ../../scripts/run\nfi\n";
+			shellScript = "if [ $CI ]; then\n    ${CI_WORKSPACE}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -482,10 +479,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		713EA8142A31E229004F9A39 /* Production */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Production;
-		};
 		71D24CC82A318E4000092101 /* LicensePlistPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:LicensePlistPlugin";
