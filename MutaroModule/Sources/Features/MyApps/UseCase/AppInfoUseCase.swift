@@ -11,7 +11,8 @@ import Foundation
 import JWTGenerator
 
 public protocol AppInfoUseCase {
-    func fetchAppInfos(storedJWTInfo: MutaroJWT.JWTRequestInfo) async throws -> [AppInfo]
+    func fetchAppInfos(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, myApps: [(id: String, name: String)]) async throws -> [AppInfo]
+    func fetchMyApps(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async throws -> [MyAppsEntity.MyAppsData]
 }
 
 public final class AppInfoUseCaseImpl: AppInfoUseCase {
@@ -21,7 +22,7 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
         self.client = client
     }
 
-    public func fetchAppInfos(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async throws -> [AppInfo] {
+    public func fetchMyApps(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async throws -> [MyAppsEntity.MyAppsData] {
         let builder = MutaroJWT.AppstoreConnectJWTBuilder(
             keyId: storedJWTInfo.keyID,
             issuerId: storedJWTInfo.issuerID,
@@ -29,11 +30,21 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
         )
         let token = try builder.generateJWT()
         let myApps = try await getMyApps(token: token)
+        return myApps
+    }
+
+    public func fetchAppInfos(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, myApps: [(id: String, name: String)]) async throws -> [AppInfo] {
+        let builder = MutaroJWT.AppstoreConnectJWTBuilder(
+            keyId: storedJWTInfo.keyID,
+            issuerId: storedJWTInfo.issuerID,
+            pemString: storedJWTInfo.privateKey
+        )
+        let token = try builder.generateJWT()
         let appInfos = try await getAppInfos(token: token, myApps: myApps)
         return appInfos
     }
 
-    private func getMyApps(token: String) async throws -> [(String, String)] {
+    private func getMyApps(token: String) async throws -> [MyAppsEntity.MyAppsData] {
         let myAppsParameters = [
             "fields[apps]": "name"
         ]
@@ -43,19 +54,11 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
             responseModel: MyAppsDTO.self
         )
         let myAppsResultEntity = try myAppsResult.get().toEntity()
-        let appInfos = myAppsResultEntity.data?
-            .compactMap { data -> (String, String)? in
-                guard let id = data.id,
-                      let name = data.attributes?.name else {
-                    return nil
-                }
-                return (id, name)
-            }
 
-        return appInfos ?? []
+        return myAppsResultEntity.data ?? []
     }
 
-    private func getAppInfos(token: String, myApps: [(String, String)]) async throws -> [AppInfo] {
+    private func getAppInfos(token: String, myApps: [(id: String, name: String)]) async throws -> [AppInfo] {
         try await myApps
             .concurrentMap { [weak self] app -> AppInfo? in
                 guard let self else {
@@ -64,22 +67,35 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
                 let appId = app.0
                 let appName = app.1
 
-                let buildsParametr: [String: Any] = [
-                    "filter[app]": appId,
-                    "sort": "-uploadedDate",
-                    "limit": 1
-                ]
-                let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, additionalParameters: buildsParametr)
+                let buildsEndpoint = BuildsEndpoint.GetAllBuilds(token: token, appId: appId, additionalParameters: [:])
                 let buildsResult = await self.client.request(endpoint: buildsEndpoint, responseModel: BuildsDTO.self)
+
                 guard let buildsResultEntity = try? buildsResult.get().toEntity(),
-                      let data = buildsResultEntity.data?.first else {
+                      let datas = buildsResultEntity.data else {
                     return .init(
                         id: appId,
                         name: appName,
                         iconUrl: nil
                     )
                 }
-                let iconAsset = data.attributes?.iconAssetToken
+                let filteredDatas = datas.filter { datum in
+                    datum.attributes?.uploadedDate != nil
+                }
+                guard let lastUploadedData = filteredDatas.sorted(by: { lhs, rhs in
+                    guard let lhsUploadedDate = lhs.attributes?.uploadedDate,
+                          let rhsUploadedDate = rhs.attributes?.uploadedDate else {
+                        return true
+                    }
+                    return lhsUploadedDate > rhsUploadedDate
+                }).first else {
+                    return .init(
+                        id: appId,
+                        name: appName,
+                        iconUrl: nil
+                    )
+                }
+
+                let iconAsset = lastUploadedData.attributes?.iconAssetToken
                 let width = iconAsset?.width ?? 167
                 let height = iconAsset?.height ?? 167
                 let imageUrl = iconAsset?.templateURL
@@ -88,7 +104,11 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
                     width: width,
                     height: height
                 ) else {
-                    return nil
+                    return .init(
+                        id: appId,
+                        name: appName,
+                        iconUrl: nil
+                    )
                 }
                 return .init(
                     id: appId,

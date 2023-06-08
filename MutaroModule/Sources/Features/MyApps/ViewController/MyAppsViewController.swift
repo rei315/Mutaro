@@ -46,13 +46,16 @@ public class MyAppsViewController: UIViewController {
         setupView()
         setupDefaultSnapshot()
         setupSubscription()
+        viewModel.setupSubscription()
     }
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         Task {
-            await viewModel.loadStoredJWTInfo()
+            await viewModel.fetchMyApps()
         }
+        .store(in: viewModel.taskCancellable)
     }
 
     private func setupView() {
@@ -69,13 +72,14 @@ public class MyAppsViewController: UIViewController {
 
     private func setupSubscription() {
         viewModel.$appInfosSubject
+            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.updateAppsSnapshot(items: $0)
             }
             .store(in: &viewModel.cancellables)
 
-        viewModel.shouldShowRegisterJWTSubject
+        viewModel.$shouldShowRegisterJWTSubject
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -88,6 +92,15 @@ public class MyAppsViewController: UIViewController {
 extension MyAppsViewController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        guard let item = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        switch item {
+        case .registerJWT:
+            break
+        case let .app(index):
+            viewModel.onTapMyApp(from: self, index: index)
+        }
     }
 }
 
@@ -145,11 +158,15 @@ extension MyAppsViewController {
                         )
                     }
                     let section = NSCollectionLayoutSection(group: group)
-                    let backgroundItem = NSCollectionLayoutDecorationItem.background(
-                        elementKind: MyAppsRegisterJWTSectionDecorationView.simpleClassName()
-                    )
-                    section.decorationItems = [backgroundItem]
-                    section.contentInsets = .init(top: 12, leading: 20, bottom: 12, trailing: 20)
+                    let isEnabled = self.viewModel.shouldShowRegisterJWTSubject
+                    if isEnabled {
+                        let backgroundItem = NSCollectionLayoutDecorationItem.background(
+                            elementKind: MyAppsRegisterJWTSectionDecorationView.simpleClassName()
+                        )
+                        section.decorationItems = [backgroundItem]
+                        section.contentInsets = .init(top: 12, leading: 20, bottom: 12, trailing: 20)
+                    }
+
                     return section
                 case .app:
                     let item = NSCollectionLayoutItem(
@@ -270,7 +287,10 @@ extension MyAppsViewController {
             collectionView: collectionView
         ) { [weak self] collectionView, indexPath, item in
             guard let self else {
-                return UICollectionViewCell()
+                return collectionView.dequeueReusableCell(
+                    withType: UICollectionViewCell.self,
+                    for: indexPath
+                )
             }
             return self.cellProvider(
                 collectionView: collectionView,

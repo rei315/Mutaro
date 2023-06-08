@@ -31,6 +31,7 @@ let productionFeatures: [PackageDescription.Target.Dependency] = [
     .myAppsFeature,
     .registerJWTFeature,
     .settingFeature,
+    .myAppToolsFeature,
     
     .firebaseSetup,    
     .client,
@@ -72,6 +73,7 @@ private extension PackageDescription.Target.Dependency {
     static let myAppsFeature: Self = .target(name: "MyAppsFeature")
     static let registerJWTFeature: Self = .target(name: "RegisterJWTFeature")
     static let settingFeature: Self = .target(name: "SettingFeature")
+    static let myAppToolsFeature: Self = .target(name: "MyAppToolsFeature")
 }
 
 private extension PackageDescription.Target.PluginUsage {
@@ -96,6 +98,7 @@ let package = Package(
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
         .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
         .library(name: "SettingFeature", targets: ["SettingFeature"]),
+        .library(name: "MyAppToolsFeature", targets: ["MyAppToolsFeature"])
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
@@ -144,6 +147,18 @@ let package = Package(
                 .client
             ],
             path: "./Sources/Features/MyApps",
+            swiftSettings: debugSwiftSettings
+        ),
+        .target(
+            name: "MyAppToolsFeature",
+            dependencies: [
+                .core,
+                .jwtGenerator,
+                .keychainStore,
+                .rSwift,
+                .client
+            ],
+            path: "./Sources/Features/MyAppTools",
             swiftSettings: debugSwiftSettings
         ),
         .target(

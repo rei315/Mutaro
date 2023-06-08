@@ -1,17 +1,17 @@
 //
-//  BuildsEndpoint.swift
+//  CIProductsEndpoint.swift
 //
 //
-//  Created by minguk-kim on 2023/05/04.
+//  Created by minguk-kim on 2023/06/06.
 //
 
 import Core
 import Foundation
 
-public enum BuildsEndpoint {}
+public enum CIProductsEndpoint {}
 
-public extension BuildsEndpoint {
-    struct GetAllBuilds: Endpoint {
+public extension CIProductsEndpoint {
+    struct GetAllProducts: Endpoint {
         private let token: String
         private let appId: String
         private let additionalParameters: [String: Any]
@@ -22,7 +22,8 @@ public extension BuildsEndpoint {
             self.additionalParameters = additionalParameters
         }
 
-        public var baseURL: BaseURL = .appstoreConnectAPI
+        public var baseURL: Core.BaseURL = .appstoreConnectAPI
+
         public var baseHeaders: [String: String]? {
             [
                 "Authorization": "Bearer \(token)",
@@ -31,10 +32,11 @@ public extension BuildsEndpoint {
         }
 
         public var path: String {
-            "/v1/apps/\(appId)/builds"
+            "/v1/apps/\(appId)/ciProduct"
         }
 
-        public var method: HTTPMethod = .get
+        public var method: Core.HTTPMethod = .get
+
         public var parameters: [String: Any]? {
             additionalParameters
         }

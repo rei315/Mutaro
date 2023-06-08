@@ -6,6 +6,7 @@ import Core
 import Foundation
 import HomeFeature
 import ImageLoader
+import MyAppToolsFeature
 import MyAppsFeature
 import NeedleFoundation
 import RegisterJWTFeature
@@ -36,6 +37,19 @@ private class HomeFeatureDependency8a76a83d24651fa35706Provider: HomeFeatureDepe
 private func factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
     return HomeFeatureDependency8a76a83d24651fa35706Provider()
 }
+private class MyAppToolsFeatureDependency808dcb776fac4cff0658Provider: MyAppToolsFeatureDependency {
+    var client: Providable {
+        return rootComponent.client
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
+    }
+}
+/// ^->RootComponent->MyAppToolsFeatureComponent
+private func factory8f024357306342a865feb3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return MyAppToolsFeatureDependency808dcb776fac4cff0658Provider(rootComponent: parent1(component) as! RootComponent)
+}
 private class RegisterJWTFeatureDependencyafcbabee5908dec1a2f7Provider: RegisterJWTFeatureDependency {
 
 
@@ -56,6 +70,9 @@ private class MyAppsFeatureDependencye7eedfbcc966a0098ee9Provider: MyAppsFeature
     }
     var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
         return rootComponent.registerJWTFeatureBuilder
+    }
+    var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable {
+        return rootComponent.myAppToolsFeatureBuilder
     }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
@@ -105,6 +122,11 @@ extension HomeFeatureBuilderComponent: Registration {
 
     }
 }
+extension MyAppToolsFeatureComponent: Registration {
+    public func registerItems() {
+        keyPathToName[\MyAppToolsFeatureDependency.client] = "client-Providable"
+    }
+}
 extension RegisterJWTFeatureBuilderComponent: Registration {
     public func registerItems() {
 
@@ -115,6 +137,7 @@ extension MyAppsFeatureBuilderComponent: Registration {
         keyPathToName[\MyAppsFeatureDependency.client] = "client-Providable"
         keyPathToName[\MyAppsFeatureDependency.imageDownloadService] = "imageDownloadService-ImageDownloadService"
         keyPathToName[\MyAppsFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
+        keyPathToName[\MyAppsFeatureDependency.myAppToolsFeatureBuilder] = "myAppToolsFeatureBuilder-MyAppToolsFeatureBuildable"
     }
 }
 extension SettingFeatureBuilderComponent: Registration {
@@ -152,6 +175,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 
 @inline(never) private func register1() {
     registerProviderFactory("^->RootComponent->HomeFeatureBuilderComponent", factory3efbd8a11f8c0b786572e3b0c44298fc1c149afb)
+    registerProviderFactory("^->RootComponent->MyAppToolsFeatureComponent", factory8f024357306342a865feb3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->RegisterJWTFeatureBuilderComponent", factorya0afd58e4976bcfb953ee3b0c44298fc1c149afb)
     registerProviderFactory("^->RootComponent->MyAppsFeatureBuilderComponent", factorybea64e632592e689d959b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->SettingFeatureBuilderComponent", factory78443b45858507b98a9db3a8f24c1d289f2c0f2e)
