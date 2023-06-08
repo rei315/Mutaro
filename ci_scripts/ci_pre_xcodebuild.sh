@@ -29,4 +29,4 @@ elif [[ $CI_WORKFLOW = "Archive-For-Release" ]]; then
     PlistBuddy -c "Set :CFBundleVersion $nextBuildNumber" "${mainInfoPlist}"
 fi
 
-sed -i "" "s/gitHubToken: \"\"/gitHubToken: \"$GITHUB_TOKEN\"/" ${CI_WORKSPACE}/App/${CI_PRODUCT}/${CI_PRODUCT}/license_plist.yml
+sed -i "" "s/gitHubToken: \"\"/gitHubToken: \"$GITHUB_TOKEN\"/" ${CI_WORKSPACE}/App/${CI_PRODUCT}/license_plist.yml
