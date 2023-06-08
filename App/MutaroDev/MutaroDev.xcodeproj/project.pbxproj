@@ -407,7 +407,7 @@
 				CODE_SIGN_ENTITLEMENTS = MutaroDev/MutaroDev.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PN7XF377XF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MutaroDev/Resources/Info.plist;
