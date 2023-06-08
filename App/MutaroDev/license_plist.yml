@@ -37,7 +37,7 @@ github:
     name: SwiftGenPlugin
 
 options:
-  xcworkspacePath: "MutaroDev.xcworkspace"
+  xcworkspacePath: "../../MutaroDev.xcworkspace"
   singlePage: false
   force: false
   gitHubToken: ""
