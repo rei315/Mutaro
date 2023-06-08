@@ -261,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CI ]; then\n    ${CI_WORKSPACE}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
+			shellScript = "if [ $CI ]; then\n    #${CI_WORKSPACE}/scripts/run\n    echo \"TODO\"\nelse\n    ../../scripts/run\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -89,16 +89,17 @@ let package = Package(
     products: [
         .library(
             name: "Production",
+            type: .static,
             targets: ["Production"]
         ),
         // For R.swift to generate resources codes by XcodeCommandPlugin
         // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
-        .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
-        .library(name: "HomeFeature", targets: ["HomeFeature"]),
-        .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
-        .library(name: "RegisterJWTFeature", targets: ["RegisterJWTFeature"]),
-        .library(name: "SettingFeature", targets: ["SettingFeature"]),
-        .library(name: "MyAppToolsFeature", targets: ["MyAppToolsFeature"])
+        .library(name: "AppIntroductionFeature", type: .static, targets: ["AppIntroductionFeature"]),
+        .library(name: "HomeFeature", type: .static, targets: ["HomeFeature"]),
+        .library(name: "MyAppsFeature", type: .static, targets: ["MyAppsFeature"]),
+        .library(name: "RegisterJWTFeature", type: .static, targets: ["RegisterJWTFeature"]),
+        .library(name: "SettingFeature", type: .static, targets: ["SettingFeature"]),
+        .library(name: "MyAppToolsFeature", type: .static, targets: ["MyAppToolsFeature"])
     ],
     dependencies: [
         .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
