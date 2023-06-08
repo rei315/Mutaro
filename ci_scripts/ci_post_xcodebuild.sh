@@ -12,11 +12,7 @@ upload_dsym() {
         echo "Found valid archive path, trying to upload dSYMs."
         echo "Start uploading dSYMs"
         basePath="${CI_WORKSPACE}/App/${CI_PRODUCT}/${CI_PRODUCT}/Resources/GoogleServicePlists"
-        if [[ $CI_XCODE_SCHEME == *"Development"* ]]; then
-            googleInfoPlistPath="$basePath/GoogleService-Info-dev.plist"
-        else
-            googleInfoPlistPath="$basePath/GoogleService-Info-prod.plist"
-        fi
+        googleInfoPlistPath="$basePath/GoogleService-Info.plist"
 
         echo "Mutaro: - Check app/google plist file"
         
