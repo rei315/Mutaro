@@ -8,7 +8,7 @@
 
 if [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
     PATH=/usr/libexec:$PATH
-    mainInfoPlist="${CI_WORKSPACE}/App/${CI_XCODE_PROJECT}/${CI_XCODE_PROJECT}/Resources/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/App/${CI_PRODUCT}/${CI_PRODUCT}/Resources/Info.plist"
     
     nextBuildNumber=$CI_BUILD_NUMBER
     originalVersion=$(PlistBuddy -c "print CFBundleShortVersionString" "${mainInfoPlist}")
@@ -22,7 +22,7 @@ if [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
 elif [[ $CI_WORKFLOW = "Archive-For-Release" ]]; then
     PATH=/usr/libexec:$PATH
     nextBuildNumber=$CI_BUILD_NUMBER
-    mainInfoPlist="${CI_WORKSPACE}/App/${CI_XCODE_PROJECT}/${CI_XCODE_PROJECT}/Resources/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/App/${CI_PRODUCT}/${CI_PRODUCT}/Resources/Info.plist"
     
     echo "Mutaro: - versionNumber is ${nextBuildNumber}"
     

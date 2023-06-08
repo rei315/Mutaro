@@ -12,7 +12,7 @@
 		713BA8812A317C9600B59A96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8802A317C9600B59A96 /* Assets.xcassets */; };
 		713BA8902A317CD100B59A96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713BA88E2A317CD000B59A96 /* GoogleService-Info.plist */; };
 		713BA8982A317E4C00B59A96 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8972A317E4C00B59A96 /* Settings.bundle */; };
-		713EA7FE2A31BA80004F9A39 /* AppIntroductionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA7FD2A31BA80004F9A39 /* AppIntroductionFeature */; };
+		713EA8022A31BE36004F9A39 /* Production in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA8012A31BE36004F9A39 /* Production */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				713EA7FE2A31BA80004F9A39 /* AppIntroductionFeature in Frameworks */,
+				713EA8022A31BE36004F9A39 /* Production in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,7 +119,7 @@
 			);
 			name = MutaroDev;
 			packageProductDependencies = (
-				713EA7FD2A31BA80004F9A39 /* AppIntroductionFeature */,
+				713EA8012A31BE36004F9A39 /* Production */,
 			);
 			productName = MutaroDevApp;
 			productReference = 713BA8742A317C9200B59A96 /* MutaroDev.app */;
@@ -482,9 +482,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		713EA7FD2A31BA80004F9A39 /* AppIntroductionFeature */ = {
+		713EA8012A31BE36004F9A39 /* Production */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = AppIntroductionFeature;
+			productName = Production;
 		};
 		71D24CC82A318E4000092101 /* LicensePlistPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
