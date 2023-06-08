@@ -24,7 +24,7 @@
 		713BA88E2A317CD000B59A96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		713BA8972A317E4C00B59A96 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		713BA8992A3181DF00B59A96 /* MutaroDevApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroDevApp.entitlements; sourceTree = "<group>"; };
-		71D24CC32A318E1A00092101 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../BuildTools; sourceTree = "<group>"; };
+		71D24CD22A31A24600092101 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../../BuildTools; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,7 @@
 		71D24CC22A318E1A00092101 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				71D24CC32A318E1A00092101 /* BuildTools */,
+				71D24CD22A31A24600092101 /* BuildTools */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
