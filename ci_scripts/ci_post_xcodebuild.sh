@@ -11,12 +11,8 @@ upload_dsym() {
     if [[ -n $CI_ARCHIVE_PATH ]]; then
         echo "Found valid archive path, trying to upload dSYMs."
         echo "Start uploading dSYMs"
-        basePath="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/GoogleServicePlists"
-        if [[ $CI_XCODE_SCHEME == *"Development"* ]]; then
-            googleInfoPlistPath="$basePath/GoogleService-Info-dev.plist"
-        else
-            googleInfoPlistPath="$basePath/GoogleService-Info-prod.plist"
-        fi
+        basePath="${CI_WORKSPACE}/App/${CI_PRODUCT}/${CI_PRODUCT}/Resources"
+        googleInfoPlistPath="$basePath/GoogleService-Info.plist"
 
         echo "Mutaro: - Check app/google plist file"
         
@@ -26,7 +22,7 @@ upload_dsym() {
 
 get_app_version() {
     PATH=/usr/libexec:$PATH
-    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/App/${CI_PRODUCT}/${CI_PRODUCT}/Resources/Info.plist"
     PlistBuddy -c "print CFBundleShortVersionString" "${mainInfoPlist}"
 }
 

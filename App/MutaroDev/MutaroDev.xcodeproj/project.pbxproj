@@ -1,0 +1,495 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		713BA8782A317C9200B59A96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713BA8772A317C9200B59A96 /* AppDelegate.swift */; };
+		713BA87A2A317C9200B59A96 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713BA8792A317C9200B59A96 /* SceneDelegate.swift */; };
+		713BA8812A317C9600B59A96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8802A317C9600B59A96 /* Assets.xcassets */; };
+		713BA8982A317E4C00B59A96 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8972A317E4C00B59A96 /* Settings.bundle */; };
+		713EA80D2A31D667004F9A39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */; };
+		713EA8192A321161004F9A39 /* Development in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA8182A321161004F9A39 /* Development */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		713BA8742A317C9200B59A96 /* MutaroDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MutaroDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		713BA8772A317C9200B59A96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		713BA8792A317C9200B59A96 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		713BA8802A317C9600B59A96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		713BA8852A317C9600B59A96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		713BA8972A317E4C00B59A96 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		713BA8992A3181DF00B59A96 /* MutaroDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroDev.entitlements; sourceTree = "<group>"; };
+		713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		71D24CD22A31A24600092101 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../../BuildTools; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		713BA8712A317C9200B59A96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				713EA8192A321161004F9A39 /* Development in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		713BA86B2A317C9200B59A96 = {
+			isa = PBXGroup;
+			children = (
+				71D24CC22A318E1A00092101 /* Packages */,
+				713BA8762A317C9200B59A96 /* MutaroDev */,
+				713BA8752A317C9200B59A96 /* Products */,
+				713BA8942A317D7800B59A96 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		713BA8752A317C9200B59A96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				713BA8742A317C9200B59A96 /* MutaroDev.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		713BA8762A317C9200B59A96 /* MutaroDev */ = {
+			isa = PBXGroup;
+			children = (
+				713BA8992A3181DF00B59A96 /* MutaroDev.entitlements */,
+				713BA88B2A317CB600B59A96 /* Resources */,
+				713BA8772A317C9200B59A96 /* AppDelegate.swift */,
+				713BA8792A317C9200B59A96 /* SceneDelegate.swift */,
+				713BA8802A317C9600B59A96 /* Assets.xcassets */,
+			);
+			path = MutaroDev;
+			sourceTree = "<group>";
+		};
+		713BA88B2A317CB600B59A96 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */,
+				713BA8852A317C9600B59A96 /* Info.plist */,
+				713BA8972A317E4C00B59A96 /* Settings.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		713BA8942A317D7800B59A96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		71D24CC22A318E1A00092101 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				71D24CD22A31A24600092101 /* BuildTools */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		713BA8732A317C9200B59A96 /* MutaroDev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 713BA8882A317C9600B59A96 /* Build configuration list for PBXNativeTarget "MutaroDev" */;
+			buildPhases = (
+				71D24CCA2A318EC100092101 /* Needle */,
+				71D24CCB2A318EC200092101 /* SwiftFormat */,
+				71D24CCC2A318EC300092101 /* [NEED FIRST RUN] register env */,
+				713BA8702A317C9200B59A96 /* Sources */,
+				713BA8712A317C9200B59A96 /* Frameworks */,
+				713BA8722A317C9200B59A96 /* Resources */,
+				71D24CCD2A318EC400092101 /* Add LicensePlist to Setting.bundle */,
+				71D24CCE2A318EC400092101 /* Run FirebaseCrashlytics */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71D24CC92A318E4000092101 /* PBXTargetDependency */,
+			);
+			name = MutaroDev;
+			packageProductDependencies = (
+				713EA8182A321161004F9A39 /* Development */,
+			);
+			productName = MutaroDevApp;
+			productReference = 713BA8742A317C9200B59A96 /* MutaroDev.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		713BA86C2A317C9200B59A96 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					713BA8732A317C9200B59A96 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 713BA86F2A317C9200B59A96 /* Build configuration list for PBXProject "MutaroDev" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 713BA86B2A317C9200B59A96;
+			productRefGroup = 713BA8752A317C9200B59A96 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				713BA8732A317C9200B59A96 /* MutaroDev */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		713BA8722A317C9200B59A96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				713BA8982A317E4C00B59A96 /* Settings.bundle in Resources */,
+				713BA8812A317C9600B59A96 /* Assets.xcassets in Resources */,
+				713EA80D2A31D667004F9A39 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		71D24CCA2A318EC100092101 /* Needle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Needle;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=${CI_WORKSPACE}/MutaroModule/Sources/\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=../../MutaroModule/Sources/\n    fi\n    \n    needle generate $NEEDLE_SWIFT_FILE_PATH $COMPONENT_PATH --exclude-paths /Production\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
+		};
+		71D24CCB2A318EC200092101 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! $CI ]; then\n    cd ../../MutaroModule\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory swiftformat\nfi\n";
+		};
+		71D24CCC2A318EC300092101 /* [NEED FIRST RUN] register env */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[NEED FIRST RUN] register env";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -f \"../../env-vars.sh\" ]; then \n    source \"../../env-vars.sh\"\nfi\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then    \n    ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true true $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nelse    \n    ../../scripts/update-google-service-plist.sh false true \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nfi\n";
+		};
+		71D24CCD2A318EC400092101 /* Add LicensePlist to Setting.bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add LicensePlist to Setting.bundle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ! $CI ]; then\n  ACKNOWLEDGEMENTS_DIR=${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/com.mono0926.LicensePlist.Output\n  \n  DESTINATION_PATH=MutaroDev/Resources/Settings.bundle/\n  cp -r ${ACKNOWLEDGEMENTS_DIR}/* ${DESTINATION_PATH}\n  rm -rf ${ACKNOWLEDGEMENTS_DIR}\nfi\n";
+		};
+		71D24CCE2A318EC400092101 /* Run FirebaseCrashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/${BUILD_PRODUCTS_DIR}/${INFOPLIST_PATH}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+			);
+			name = "Run FirebaseCrashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CI ]; then\n    ${CI_WORKSPACE}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		713BA8702A317C9200B59A96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				713BA8782A317C9200B59A96 /* AppDelegate.swift in Sources */,
+				713BA87A2A317C9200B59A96 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		71D24CC92A318E4000092101 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 71D24CC82A318E4000092101 /* LicensePlistPlugin */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		713BA8862A317C9600B59A96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		713BA8872A317C9600B59A96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		713BA8892A317C9600B59A96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MutaroDev/MutaroDev.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PN7XF377XF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MutaroDev/Resources/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Dev.MutaroApp.MGHouse.com;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		713BA88A2A317C9600B59A96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MutaroDev/MutaroDev.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PN7XF377XF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MutaroDev/Resources/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Dev.MutaroApp.MGHouse.com;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		713BA86F2A317C9200B59A96 /* Build configuration list for PBXProject "MutaroDev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				713BA8862A317C9600B59A96 /* Debug */,
+				713BA8872A317C9600B59A96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		713BA8882A317C9600B59A96 /* Build configuration list for PBXNativeTarget "MutaroDev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				713BA8892A317C9600B59A96 /* Debug */,
+				713BA88A2A317C9600B59A96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		713EA8182A321161004F9A39 /* Development */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Development;
+		};
+		71D24CC82A318E4000092101 /* LicensePlistPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:LicensePlistPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 713BA86C2A317C9200B59A96 /* Project object */;
+}

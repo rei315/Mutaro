@@ -33,7 +33,7 @@ actor MyAppToolsModel {
     func fetch() async {
         toolItems.ciProductsData = await getCIProducts()
     }
-    
+
     private func checkAvailableItems(
         item: ToolItem
     ) {
@@ -59,9 +59,9 @@ actor MyAppToolsModel {
             return nil
         }
     }
-    
+
     func getXcodeCloudData() -> CIProductsEntity.CIProductsData? {
-        return toolItems.ciProductsData
+        toolItems.ciProductsData
     }
 }
 

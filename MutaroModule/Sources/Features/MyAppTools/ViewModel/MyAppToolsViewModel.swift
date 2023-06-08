@@ -39,7 +39,7 @@ public class MyAppToolsViewModel {
     public func fetch() async {
         await model.fetch()
     }
-    
+
     func onTapItem(_ type: MyAppToolsModel.ItemType) {
         Task {
             switch type {
@@ -49,7 +49,7 @@ public class MyAppToolsViewModel {
         }
         .store(in: taskCancellable)
     }
-    
+
     private func showXcodeCloudDetail() async {
         let data = await model.getXcodeCloudData()
     }

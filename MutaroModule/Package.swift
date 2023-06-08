@@ -2,6 +2,7 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+import Foundation
 
 let firebaseCrashlyticsDependencies: [Target.Dependency] = [
     "GoogleDataTransport",
@@ -80,6 +81,13 @@ private extension PackageDescription.Target.PluginUsage {
     static let lintPlugin: Self = .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
 }
 
+private let developmentPlugins: [PackageDescription.Target.PluginUsage]
+if ProcessInfo.processInfo.environment["CI"] == "TRUE" {
+    developmentPlugins = []
+} else {
+    developmentPlugins = [.lintPlugin]
+}
+
 let package = Package(
     name: "MutaroModule",
     platforms: [
@@ -87,10 +95,9 @@ let package = Package(
         .macOS(.v13)
     ],
     products: [
-        .library(
-            name: "MutaroApp",
-            targets: ["MutaroApp"]
-        ),
+        .library(name: "Development", targets: ["Development"]),
+        .library(name: "Production", targets: ["Production"]),
+        
         // For R.swift to generate resources codes by XcodeCommandPlugin
         // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
         .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
@@ -112,11 +119,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "MutaroApp",
+            name: "Development",
             dependencies: productionFeatures,
-            plugins: [
-                .lintPlugin
-            ]
+            plugins: developmentPlugins
+        ),
+        .target(
+            name: "Production",
+            dependencies: productionFeatures
         ),
         .target(
             name: "AppIntroductionFeature",
