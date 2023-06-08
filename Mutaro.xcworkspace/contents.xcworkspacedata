@@ -7,9 +7,6 @@
    <FileRef
       location = "group:MutaroDevApp/MutaroDevApp.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:MutaroApp/MutaroApp.xcodeproj">
-   </FileRef>
    <Group
       location = "group:ci_scripts"
       name = "ci_scripts">
