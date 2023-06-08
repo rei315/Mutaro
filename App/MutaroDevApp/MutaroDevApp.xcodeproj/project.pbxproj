@@ -248,7 +248,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"",
+				"${SRCROOT}/${BUILD_PRODUCTS_DIR}/${INFOPLIST_PATH}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 			);
 			name = "Run FirebaseCrashlytics";
 			outputFileListPaths = (
@@ -257,7 +258,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CI ]; then\n    ${CI_WORKSPACE}/scripts/run\nelse\n    ../../scripts/run\nfi\necho ${SRCROOT}/${BUILD_PRODUCTS_DIR}/${INFOPLIST_PATH}\n#${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\n#${SRCROOT}/${BUILD_PRODUCTS_DIR}/MutaroDevApp/Resources/Info.plist\n";
+			shellScript = "if [ $CI ]; then\n    ${CI_WORKSPACE}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
