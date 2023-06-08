@@ -20,7 +20,4 @@
          location = "group:ci_post_clone.sh">
       </FileRef>
    </Group>
-   <FileRef
-      location = "group:MutaroModule">
-   </FileRef>
 </Workspace>
