@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MutaroApp
+import Production
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

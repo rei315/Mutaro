@@ -88,8 +88,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "MutaroApp",
-            targets: ["MutaroApp"]
+            name: "Production",
+            targets: ["Production"]
         ),
         // For R.swift to generate resources codes by XcodeCommandPlugin
         // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
@@ -112,7 +112,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "MutaroApp",
+            name: "Production",
             dependencies: productionFeatures,
             plugins: [
                 .lintPlugin

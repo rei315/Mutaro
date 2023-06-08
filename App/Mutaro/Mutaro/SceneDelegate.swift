@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MutaroApp
+import Production
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?

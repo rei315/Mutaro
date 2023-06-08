@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		713EA7F62A31B29A004F9A39 /* Production in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA7F52A31B29A004F9A39 /* Production */; };
 		71D24C9F2A318AD200092101 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D24C9E2A318AD200092101 /* AppDelegate.swift */; };
 		71D24CA12A318AD200092101 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D24CA02A318AD200092101 /* SceneDelegate.swift */; };
 		71D24CA82A318AD400092101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71D24CA72A318AD400092101 /* Assets.xcassets */; };
 		71D24CB92A318BBF00092101 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 71D24CB82A318BBF00092101 /* Settings.bundle */; };
-		71D24CBB2A318C7700092101 /* MutaroApp in Frameworks */ = {isa = PBXBuildFile; productRef = 71D24CBA2A318C7700092101 /* MutaroApp */; };
 		71D24CD02A31958300092101 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71D24CCF2A31958300092101 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71D24CBB2A318C7700092101 /* MutaroApp in Frameworks */,
+				713EA7F62A31B29A004F9A39 /* Production in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +117,7 @@
 			);
 			name = Mutaro;
 			packageProductDependencies = (
-				71D24CBA2A318C7700092101 /* MutaroApp */,
+				713EA7F52A31B29A004F9A39 /* Production */,
 			);
 			productName = Mutaro;
 			productReference = 71D24C9B2A318AD200092101 /* Mutaro.app */;
@@ -183,11 +183,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/MutaroModule/Sources/MutaroApp/DI/NeedleGenerated.swift,
+				$SRCROOT/MutaroModule/Sources/Production/DI/NeedleGenerated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/MutaroApp/DI/NeedleGenerated.swift\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/MutaroApp/DI/NeedleGenerated.swift\n    fi\n    needle generate $NEEDLE_SWIFT_FILE_PATH ../../\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/Production/DI/NeedleGenerated.swift\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/Production/DI/NeedleGenerated.swift\n    fi\n    needle generate $NEEDLE_SWIFT_FILE_PATH ../../\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
 		};
 		71D24CBE2A318D6A00092101 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -477,9 +477,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		71D24CBA2A318C7700092101 /* MutaroApp */ = {
+		713EA7F52A31B29A004F9A39 /* Production */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = MutaroApp;
+			productName = Production;
 		};
 		71D24CC62A318E3A00092101 /* LicensePlistPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
