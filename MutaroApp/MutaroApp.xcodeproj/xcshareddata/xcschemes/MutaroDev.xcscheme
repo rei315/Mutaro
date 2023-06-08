@@ -7,6 +7,20 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "715E9582295CC20800AD6331"
+               BuildableName = "MutaroApp.app"
+               BlueprintName = "MutaroApp"
+               ReferencedContainer = "container:MutaroApp.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
@@ -14,35 +28,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "715E9582295CC20800AD6331"
-               BuildableName = "Mutaro.app"
-               BlueprintName = "MutaroApp"
-               ReferencedContainer = "container:MutaroApp.xcodeproj">
+               BlueprintIdentifier = "713BA8732A317C9200B59A96"
+               BuildableName = "MutaroDevApp.app"
+               BlueprintName = "MutaroDevApp"
+               ReferencedContainer = "container:../MutaroDevApp/MutaroDevApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug(Development)"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "710C359A296C58AB00ED034F"
-               BuildableName = "MutaroUITests.xctest"
-               BlueprintName = "MutaroUITests"
-               ReferencedContainer = "container:MutaroApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug(Development)"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -55,15 +58,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "715E9582295CC20800AD6331"
-            BuildableName = "Mutaro.app"
-            BlueprintName = "MutaroApp"
-            ReferencedContainer = "container:MutaroApp.xcodeproj">
+            BlueprintIdentifier = "713BA8732A317C9200B59A96"
+            BuildableName = "MutaroDevApp.app"
+            BlueprintName = "MutaroDevApp"
+            ReferencedContainer = "container:../MutaroDevApp/MutaroDevApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release(Development)"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -72,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "715E9582295CC20800AD6331"
-            BuildableName = "Mutaro.app"
-            BlueprintName = "MutaroApp"
-            ReferencedContainer = "container:MutaroApp.xcodeproj">
+            BlueprintIdentifier = "713BA8732A317C9200B59A96"
+            BuildableName = "MutaroDevApp.app"
+            BlueprintName = "MutaroDevApp"
+            ReferencedContainer = "container:../MutaroDevApp/MutaroDevApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -158,11 +158,11 @@ extension MyAppToolsViewController {
 
     private func updateSnapshot(items: [MyAppToolsModel.ItemType]) {
         var snapshot = dataSource.snapshot()
-        
+
         let currentRows = snapshot.itemIdentifiers(inSection: .tools)
         let rowItems = items.map { MyAppToolsRow.tool(item: $0) }
         let deleteTargets = currentRows.filter { !rowItems.contains($0) }
-        
+
         snapshot.deleteItems(deleteTargets)
         dataSource.apply(snapshot)
     }
@@ -171,7 +171,7 @@ extension MyAppToolsViewController {
 extension MyAppToolsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        
+
         let item = dataSource.itemIdentifier(for: indexPath)
         switch item {
         case let .tool(type):
