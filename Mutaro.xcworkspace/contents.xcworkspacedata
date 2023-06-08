@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:MutaroDevApp/MutaroDevApp.xcodeproj">
+      location = "group:App/MutaroDevApp/MutaroDevApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Mutaro/Mutaro.xcodeproj">
