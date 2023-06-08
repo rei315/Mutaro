@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import MutaroApp
+//import MutaroApp
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        MutaroApp.shared.setup()
+//        MutaroApp.shared.setup()
         
         return true
     }
