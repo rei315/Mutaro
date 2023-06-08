@@ -24,7 +24,7 @@ public class SettingFeatureBuilder: Builder<SettingFeatureDependency>, SettingFe
             )
         )
         let navigationVC = UINavigationController(rootViewController: settingVC)
-        navigationVC.setLargeTitle()
+        navigationVC.view.backgroundColor = .white
         let imageName = "gear"
         let normalTabColor = R.color.navy() ?? .gray
         let normalTabImageConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: normalTabColor)

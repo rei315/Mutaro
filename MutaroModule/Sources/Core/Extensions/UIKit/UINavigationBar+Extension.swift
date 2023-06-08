@@ -10,11 +10,12 @@ import UIKit
 public extension UINavigationBar {
     static func setGlobalStyle() {
         let appearance = UINavigationBarAppearance().apply {
+            $0.backgroundColor = .white
+            $0.shadowColor = .clear
             $0.largeTitleTextAttributes = [
                 .foregroundColor: UIColor.black,
                 .font: UIFont.boldSystemFont(ofSize: 32)
             ]
-            $0.backgroundColor = .white
             $0.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: UIColor.black
             ]
@@ -22,8 +23,9 @@ public extension UINavigationBar {
 
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().clipsToBounds = true
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().barTintColor = .white
     }
 }

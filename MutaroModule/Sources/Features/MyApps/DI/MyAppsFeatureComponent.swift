@@ -29,7 +29,7 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
             )
         )
         let navigationVC = UINavigationController(rootViewController: myAppsVC)
-        navigationVC.setLargeTitle()
+        navigationVC.view.backgroundColor = .white
         let imageName = "app"
         let normalTabColor = R.color.navy() ?? .gray
         let normalTabImageConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: normalTabColor)
