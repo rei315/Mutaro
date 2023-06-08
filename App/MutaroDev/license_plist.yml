@@ -39,5 +39,5 @@ github:
 options:
   xcworkspacePath: "../../MutaroDev.xcworkspace"
   singlePage: false
-  force: false
+  force: true
   gitHubToken: ""
