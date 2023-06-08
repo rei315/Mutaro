@@ -8,7 +8,7 @@
 
 if [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
     PATH=/usr/libexec:$PATH
-    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/App/${CI_XCODE_PROJECT}/${CI_XCODE_PROJECT}/Resources/Info.plist"
     
     nextBuildNumber=$CI_BUILD_NUMBER
     originalVersion=$(PlistBuddy -c "print CFBundleShortVersionString" "${mainInfoPlist}")
@@ -22,11 +22,11 @@ if [[ $CI_WORKFLOW = "Archive-For-Testflight-Develop" ]]; then
 elif [[ $CI_WORKFLOW = "Archive-For-Release" ]]; then
     PATH=/usr/libexec:$PATH
     nextBuildNumber=$CI_BUILD_NUMBER
-    mainInfoPlist="${CI_WORKSPACE}/MutaroApp/MutaroApp/Resources/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/App/${CI_XCODE_PROJECT}/${CI_XCODE_PROJECT}/Resources/Info.plist"
     
     echo "Mutaro: - versionNumber is ${nextBuildNumber}"
     
     PlistBuddy -c "Set :CFBundleVersion $nextBuildNumber" "${mainInfoPlist}"
 fi
 
-sed -i "" "s/gitHubToken: \"\"/gitHubToken: \"$GITHUB_TOKEN\"/" ${CI_WORKSPACE}/MutaroApp/license_plist.yml
+sed -i "" "s/gitHubToken: \"\"/gitHubToken: \"$GITHUB_TOKEN\"/" ${CI_WORKSPACE}/App/${CI_XCODE_PROJECT}/${CI_XCODE_PROJECT}/license_plist.yml

@@ -9,17 +9,18 @@ GCM_SENDER_ID=$7
 GOOGLE_APP_ID=$8
 
 PATH=/usr/libexec:$PATH
+#${CI_WORKSPACE}/App/${CI_XCODE_PROJECT}/${CI_XCODE_PROJECT}
 
 if "${IS_DEV}"; then
     if "${IS_CI}"; then
-        plistPath="${CI_WORKSPACE}/MutaroApp/App/MutaroDevApp/MutaroDevApp"
+        plistPath="${CI_WORKSPACE}/App/MutaroDevApp/MutaroDevApp"
     else
         plistPath="MutaroDevApp"
     fi
 	plistFullPath="${plistPath}/Resources/GoogleService-Info.plist"
 else
     if "${IS_CI}"; then
-        plistPath="${CI_WORKSPACE}/MutaroApp/App/Mutaro/Mutaro"
+        plistPath="${CI_WORKSPACE}/App/Mutaro/Mutaro"
     else
         plistPath="Mutaro"
     fi
