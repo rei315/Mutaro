@@ -2,6 +2,7 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+import Foundation
 
 let firebaseCrashlyticsDependencies: [Target.Dependency] = [
     "GoogleDataTransport",
@@ -113,9 +114,13 @@ let package = Package(
         .target(
             name: "Development",
             dependencies: productionFeatures,
-            plugins: [
-                .lintPlugin
-            ]
+            plugins: {
+                var plugins: [PackageDescription.Target.PluginUsage] = []
+//                if ProcessInfo.processInfo.environment["CI"] == nil {
+//                    plugins.append(.lintPlugin)
+//                }
+                return plugins
+            }()
         ),
         .target(
             name: "Production",
