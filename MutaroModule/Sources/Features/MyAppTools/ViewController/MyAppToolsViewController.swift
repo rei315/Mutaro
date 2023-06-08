@@ -110,7 +110,7 @@ extension MyAppToolsViewController {
     }
 
     enum MyAppToolsRow: Hashable {
-        case tool(index: Int)
+        case tool(item: MyAppToolsModel.ItemType)
     }
 
     private func configureDataSource() -> DataSource {
@@ -138,10 +138,9 @@ extension MyAppToolsViewController {
         item: MyAppToolsRow
     ) -> UICollectionViewCell {
         switch item {
-        case let .tool(index):
-            let item = viewModel.items[getOrNil: index]
-            let title = item?.title ?? ""
-            let icon = item?.icon
+        case let .tool(item):
+            let title = item.title
+            let icon = item.icon
             let cell = collectionView.dequeueConfiguredReusableCell(
                 using: cellRegistration,
                 for: indexPath,
@@ -159,29 +158,12 @@ extension MyAppToolsViewController {
 
     private func updateSnapshot(items: [MyAppToolsModel.ItemType]) {
         var snapshot = dataSource.snapshot()
+        
         let currentRows = snapshot.itemIdentifiers(inSection: .tools)
-        items
-            .indices
-            .map {
-                MyAppToolsRow.tool(index: $0)
-            }
-            .forEach {
-                if currentRows.contains($0) {
-                    snapshot.reconfigureItems([$0])
-                } else {
-                    snapshot.appendItems([$0], toSection: .tools)
-                }
-            }
-
-        let itemCount = items.count
-        let itemCountDiff = currentRows.count - itemCount
-        if itemCountDiff > 0 {
-            let deleteTargets = (itemCount..<itemCount + itemCountDiff).map {
-                MyAppToolsRow.tool(index: $0)
-            }
-            snapshot.deleteItems(deleteTargets)
-        }
-
+        let rowItems = items.map { MyAppToolsRow.tool(item: $0) }
+        let deleteTargets = currentRows.filter { !rowItems.contains($0) }
+        
+        snapshot.deleteItems(deleteTargets)
         dataSource.apply(snapshot)
     }
 }
@@ -189,6 +171,14 @@ extension MyAppToolsViewController {
 extension MyAppToolsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let item = dataSource.itemIdentifier(for: indexPath)
+        switch item {
+        case let .tool(type):
+            viewModel.onTapItem(type)
+        case .none:
+            break
+        }
     }
 }
 
