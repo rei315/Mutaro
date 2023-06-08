@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Development
+import Production
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
