@@ -89,7 +89,6 @@ let package = Package(
     products: [
         .library(
             name: "Production",
-            type: .static,
             targets: ["Production"]
         ),
         // For R.swift to generate resources codes by XcodeCommandPlugin
