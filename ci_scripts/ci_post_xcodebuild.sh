@@ -11,7 +11,7 @@ upload_dsym() {
     if [[ -n $CI_ARCHIVE_PATH ]]; then
         echo "Found valid archive path, trying to upload dSYMs."
         echo "Start uploading dSYMs"
-        basePath="${CI_WORKSPACE}/App/${CI_XCODE_PROJECT}/${CI_XCODE_PROJECT}/Resources/GoogleServicePlists"
+        basePath="${CI_WORKSPACE}/App/${CI_PRODUCT}/${CI_PRODUCT}/Resources/GoogleServicePlists"
         if [[ $CI_XCODE_SCHEME == *"Development"* ]]; then
             googleInfoPlistPath="$basePath/GoogleService-Info-dev.plist"
         else
@@ -26,7 +26,7 @@ upload_dsym() {
 
 get_app_version() {
     PATH=/usr/libexec:$PATH
-    mainInfoPlist="${CI_WORKSPACE}/App/${CI_XCODE_PROJECT}/${CI_XCODE_PROJECT}/Resources/Info.plist"
+    mainInfoPlist="${CI_WORKSPACE}/App/${CI_PRODUCT}/${CI_PRODUCT}/Resources/Info.plist"
     PlistBuddy -c "print CFBundleShortVersionString" "${mainInfoPlist}"
 }
 
