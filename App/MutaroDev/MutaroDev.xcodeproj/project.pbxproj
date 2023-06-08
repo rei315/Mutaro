@@ -12,7 +12,7 @@
 		713BA8812A317C9600B59A96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8802A317C9600B59A96 /* Assets.xcassets */; };
 		713BA8902A317CD100B59A96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713BA88E2A317CD000B59A96 /* GoogleService-Info.plist */; };
 		713BA8982A317E4C00B59A96 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8972A317E4C00B59A96 /* Settings.bundle */; };
-		713EA8022A31BE36004F9A39 /* Production in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA8012A31BE36004F9A39 /* Production */; };
+		713EA8052A31C44F004F9A39 /* Production in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA8042A31C44F004F9A39 /* Production */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +24,6 @@
 		713BA88E2A317CD000B59A96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		713BA8972A317E4C00B59A96 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		713BA8992A3181DF00B59A96 /* MutaroDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroDev.entitlements; sourceTree = "<group>"; };
-		713EA8002A31BB0A004F9A39 /* MutaroModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MutaroModule; path = ../../MutaroModule; sourceTree = "<group>"; };
 		71D24CD22A31A24600092101 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../../BuildTools; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				713EA8022A31BE36004F9A39 /* Production in Frameworks */,
+				713EA8052A31C44F004F9A39 /* Production in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				71D24CD22A31A24600092101 /* BuildTools */,
-				713EA8002A31BB0A004F9A39 /* MutaroModule */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -119,7 +117,7 @@
 			);
 			name = MutaroDev;
 			packageProductDependencies = (
-				713EA8012A31BE36004F9A39 /* Production */,
+				713EA8042A31C44F004F9A39 /* Production */,
 			);
 			productName = MutaroDevApp;
 			productReference = 713BA8742A317C9200B59A96 /* MutaroDev.app */;
@@ -482,7 +480,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		713EA8012A31BE36004F9A39 /* Production */ = {
+		713EA8042A31C44F004F9A39 /* Production */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Production;
 		};
