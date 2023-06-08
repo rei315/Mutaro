@@ -1,8 +1,8 @@
 //
-//  RootComponent.swift
+//  DevRootComponent.swift
 //
 //
-//  Created by minguk-kim on 2023/05/06.
+//  Created by minguk-kim on 2023/06/08.
 //
 
 import Client
@@ -17,7 +17,7 @@ import MyAppToolsFeature
 import RegisterJWTFeature
 import SettingFeature
 
-final class RootComponent: BootstrapComponent {
+final class DevRootComponent: BootstrapComponent {
     var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
         shared {
             AppIntroductionFeatureBuilderComponent(parent: self)

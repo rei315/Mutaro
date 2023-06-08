@@ -87,10 +87,9 @@ let package = Package(
         .macOS(.v13)
     ],
     products: [
-        .library(
-            name: "Production",
-            targets: ["Production"]
-        ),
+        .library(name: "Development", targets: ["Development"]),
+        .library(name: "Production", targets: ["Production"]),
+        
         // For R.swift to generate resources codes by XcodeCommandPlugin
         // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
         .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
@@ -112,11 +111,15 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Production",
+            name: "Development",
             dependencies: productionFeatures,
             plugins: [
                 .lintPlugin
             ]
+        ),
+        .target(
+            name: "Production",
+            dependencies: productionFeatures
         ),
         .target(
             name: "AppIntroductionFeature",

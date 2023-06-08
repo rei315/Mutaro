@@ -1,8 +1,8 @@
 //
-//  MutaroApp.swift
+//  MutaroDevApp.swift
 //
 //
-//  Created by minguk-kim on 2023/05/06.
+//  Created by minguk-kim on 2023/06/08.
 //
 
 import Core
@@ -10,14 +10,14 @@ import FirebaseSetup
 import NeedleFoundation
 import UIKit
 
-public final class MutaroApp {
-    public static let shared = MutaroApp()
+public final class MutaroDevApp {
+    public static let shared = MutaroDevApp()
 
-    private(set) var rootComponent: RootComponent!
+    private(set) var devRootComponent: DevRootComponent!
 
     public func setup() {
         registerProviderFactories()
-        rootComponent = RootComponent()
+        devRootComponent = DevRootComponent()
         FirebaseSetup.configure()
     }
 
@@ -31,11 +31,11 @@ public final class MutaroApp {
         )
         let mainVC: UIViewController
         if isNotFirstAppLaunching {
-            let myApps = rootComponent.myAppsFeatureBuilder.build()
-            let settings = rootComponent.settingFeatureBuilder.build()
-            mainVC = rootComponent.homeFeatureBuilder.build(viewControllers: [myApps, settings])
+            let myApps = devRootComponent.myAppsFeatureBuilder.build()
+            let settings = devRootComponent.settingFeatureBuilder.build()
+            mainVC = devRootComponent.homeFeatureBuilder.build(viewControllers: [myApps, settings])
         } else {
-            mainVC = rootComponent.appIntroductionFeatureBuilder.build()
+            mainVC = devRootComponent.appIntroductionFeatureBuilder.build()
         }
         window?.rootViewController = mainVC
         window?.makeKeyAndVisible()
