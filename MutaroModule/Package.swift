@@ -82,10 +82,10 @@ private extension PackageDescription.Target.PluginUsage {
 }
 
 private let developmentPlugins: [PackageDescription.Target.PluginUsage]
-if ProcessInfo.processInfo.environment["CI"] != "TRUE" {
-    developmentPlugins = [.lintPlugin]
-} else {
+if ProcessInfo.processInfo.environment["CI"] == "TRUE" {
     developmentPlugins = []
+} else {
+    developmentPlugins = [.lintPlugin]
 }
 
 let package = Package(
