@@ -183,7 +183,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/MutaroModule/Sources/Development/DI/NeedleGenerated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
