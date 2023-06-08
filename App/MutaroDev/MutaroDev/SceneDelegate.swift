@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import MutaroApp
+import Development
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         sleep(1)
         window = UIWindow(windowScene: windowScene)
-//        MutaroApp.shared.start(window: window)
+        MutaroApp.shared.start(window: window)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
