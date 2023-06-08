@@ -10,9 +10,9 @@
 		713BA8782A317C9200B59A96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713BA8772A317C9200B59A96 /* AppDelegate.swift */; };
 		713BA87A2A317C9200B59A96 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713BA8792A317C9200B59A96 /* SceneDelegate.swift */; };
 		713BA8812A317C9600B59A96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8802A317C9600B59A96 /* Assets.xcassets */; };
-		713BA8902A317CD100B59A96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713BA88E2A317CD000B59A96 /* GoogleService-Info.plist */; };
 		713BA8982A317E4C00B59A96 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 713BA8972A317E4C00B59A96 /* Settings.bundle */; };
 		713EA8052A31C44F004F9A39 /* Production in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA8042A31C44F004F9A39 /* Production */; };
+		713EA80D2A31D667004F9A39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,9 +21,9 @@
 		713BA8792A317C9200B59A96 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		713BA8802A317C9600B59A96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		713BA8852A317C9600B59A96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		713BA88E2A317CD000B59A96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		713BA8972A317E4C00B59A96 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		713BA8992A3181DF00B59A96 /* MutaroDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroDev.entitlements; sourceTree = "<group>"; };
+		713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		71D24CD22A31A24600092101 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../../BuildTools; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +72,7 @@
 		713BA88B2A317CB600B59A96 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				713BA88E2A317CD000B59A96 /* GoogleService-Info.plist */,
+				713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */,
 				713BA8852A317C9600B59A96 /* Info.plist */,
 				713BA8972A317E4C00B59A96 /* Settings.bundle */,
 			);
@@ -162,8 +162,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				713BA8982A317E4C00B59A96 /* Settings.bundle in Resources */,
-				713BA8902A317CD100B59A96 /* GoogleService-Info.plist in Resources */,
 				713BA8812A317C9600B59A96 /* Assets.xcassets in Resources */,
+				713EA80D2A31D667004F9A39 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		713EA7F62A31B29A004F9A39 /* Production in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA7F52A31B29A004F9A39 /* Production */; };
+		713EA80F2A31D6B7004F9A39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713EA80E2A31D6B7004F9A39 /* GoogleService-Info.plist */; };
 		71D24C9F2A318AD200092101 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D24C9E2A318AD200092101 /* AppDelegate.swift */; };
 		71D24CA12A318AD200092101 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D24CA02A318AD200092101 /* SceneDelegate.swift */; };
 		71D24CA82A318AD400092101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71D24CA72A318AD400092101 /* Assets.xcassets */; };
 		71D24CB92A318BBF00092101 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 71D24CB82A318BBF00092101 /* Settings.bundle */; };
-		71D24CD02A31958300092101 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71D24CCF2A31958300092101 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		713EA80E2A31D6B7004F9A39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		71D24C9B2A318AD200092101 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71D24C9E2A318AD200092101 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71D24CA02A318AD200092101 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -23,7 +24,6 @@
 		71D24CAC2A318AD400092101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71D24CB82A318BBF00092101 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		71D24CBC2A318D3900092101 /* Mutaro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mutaro.entitlements; sourceTree = "<group>"; };
-		71D24CCF2A31958300092101 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		71D24CD12A31A23A00092101 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../../BuildTools; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +71,7 @@
 		71D24CB22A318B3800092101 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				71D24CCF2A31958300092101 /* GoogleService-Info.plist */,
+				713EA80E2A31D6B7004F9A39 /* GoogleService-Info.plist */,
 				71D24CAC2A318AD400092101 /* Info.plist */,
 				71D24CA72A318AD400092101 /* Assets.xcassets */,
 				71D24CB82A318BBF00092101 /* Settings.bundle */,
@@ -163,7 +163,7 @@
 			files = (
 				71D24CA82A318AD400092101 /* Assets.xcassets in Resources */,
 				71D24CB92A318BBF00092101 /* Settings.bundle in Resources */,
-				71D24CD02A31958300092101 /* GoogleService-Info.plist in Resources */,
+				713EA80F2A31D6B7004F9A39 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
