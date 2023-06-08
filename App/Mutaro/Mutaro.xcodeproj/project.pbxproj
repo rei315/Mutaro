@@ -16,7 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		713EA7FF2A31BAFA004F9A39 /* MutaroModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MutaroModule; path = ../../MutaroModule; sourceTree = "<group>"; };
 		71D24C9B2A318AD200092101 /* Mutaro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mutaro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71D24C9E2A318AD200092101 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71D24CA02A318AD200092101 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				71D24CD12A31A23A00092101 /* BuildTools */,
-				713EA7FF2A31BAFA004F9A39 /* MutaroModule */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
