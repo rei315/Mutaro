@@ -81,6 +81,13 @@ private extension PackageDescription.Target.PluginUsage {
     static let lintPlugin: Self = .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
 }
 
+private let developmentPlugins: [PackageDescription.Target.PluginUsage]
+if ProcessInfo.processInfo.environment["CI"] != "TRUE" {
+    developmentPlugins = [.lintPlugin]
+} else {
+    developmentPlugins = []
+}
+
 let package = Package(
     name: "MutaroModule",
     platforms: [
@@ -114,13 +121,7 @@ let package = Package(
         .target(
             name: "Development",
             dependencies: productionFeatures,
-            plugins: {
-                var plugins: [PackageDescription.Target.PluginUsage] = []
-//                if ProcessInfo.processInfo.environment["CI"] == nil {
-//                    plugins.append(.lintPlugin)
-//                }
-                return plugins
-            }()
+            plugins: developmentPlugins
         ),
         .target(
             name: "Production",
