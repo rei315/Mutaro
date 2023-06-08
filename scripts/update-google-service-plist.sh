@@ -26,10 +26,8 @@ else
 	plistFullPath="${plistPath}/Resources/GoogleService-Info.plist"
 fi
 
-PlistBuddy -c "print CFBundleShortVersionString" "Mutaro/Mutaro/Resources/GoogleService-Info.plist"
-
-#PlistBuddy -c "Set :CLIENT_ID $CLIENT_ID" "${plistFullPath}"
-#PlistBuddy -c "Set :API_KEY $API_KEY" "${plistFullPath}"
-#PlistBuddy -c "Set :REVERSED_CLIENT_ID $REVERSED_CLIENT_ID" "${plistFullPath}"
-#PlistBuddy -c "Set :GCM_SENDER_ID $GCM_SENDER_ID" "${plistFullPath}"
-#PlistBuddy -c "Set :GOOGLE_APP_ID $GOOGLE_APP_ID" "${plistFullPath}"
+PlistBuddy -c "Set :CLIENT_ID $CLIENT_ID" "${plistFullPath}"
+PlistBuddy -c "Set :API_KEY $API_KEY" "${plistFullPath}"
+PlistBuddy -c "Set :REVERSED_CLIENT_ID $REVERSED_CLIENT_ID" "${plistFullPath}"
+PlistBuddy -c "Set :GCM_SENDER_ID $GCM_SENDER_ID" "${plistFullPath}"
+PlistBuddy -c "Set :GOOGLE_APP_ID $GOOGLE_APP_ID" "${plistFullPath}"

@@ -7,11 +7,11 @@
 	<key>BUNDLE_ID</key>
 	<string>MutaroApp.MGHouse.com</string>
 	<key>CLIENT_ID</key>
-	<string>623877494670-lgjvsvq0i9o6e42ai312ca266tsgmc4o.apps.googleusercontent.com</string>
+	<string>623877494670-use7sjiet3i5hvsqve56hpcdmqv41oh4.apps.googleusercontent.com</string>
 	<key>GCM_SENDER_ID</key>
 	<string>623877494670</string>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:623877494670:ios:a37f5219e67510217076df</string>
+	<string>1:623877494670:ios:45456085c7a360767076df</string>
 	<key>IS_ADS_ENABLED</key>
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -27,7 +27,7 @@
 	<key>PROJECT_ID</key>
 	<string>mutaro-2941f</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.623877494670-lgjvsvq0i9o6e42ai312ca266tsgmc4o</string>
+	<string>com.googleusercontent.apps.623877494670-use7sjiet3i5hvsqve56hpcdmqv41oh4</string>
 	<key>STORAGE_BUCKET</key>
 	<string>mutaro-2941f.appspot.com</string>
 </dict>
