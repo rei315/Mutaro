@@ -163,6 +163,7 @@ extension MyAppToolsViewController {
         let rowItems = items.map { MyAppToolsRow.tool(item: $0) }
         let deleteTargets = currentRows.filter { !rowItems.contains($0) }
 
+        snapshot.appendItems(rowItems)
         snapshot.deleteItems(deleteTargets)
         dataSource.apply(snapshot)
     }
