@@ -13,9 +13,9 @@ PATH=/usr/libexec:$PATH
 
 if "${IS_DEV}"; then
     if "${IS_CI}"; then
-        plistPath="${CI_WORKSPACE}/App/MutaroDevApp/MutaroDevApp"
+        plistPath="${CI_WORKSPACE}/App/MutaroDev/MutaroDev"
     else
-        plistPath="MutaroDevApp"
+        plistPath="MutaroDev"
     fi
 	plistFullPath="${plistPath}/Resources/GoogleService-Info.plist"
 else

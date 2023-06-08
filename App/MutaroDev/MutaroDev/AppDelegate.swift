@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  MutaroDevApp
+//  MutaroApp
 //
 //  Created by minguk-kim on 2023/06/08.
 //

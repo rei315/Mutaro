@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  MutaroDevApp
+//  MutaroDev
 //
 //  Created by minguk-kim on 2023/06/08.
 //
