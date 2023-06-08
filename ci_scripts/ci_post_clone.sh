@@ -8,3 +8,8 @@
 
 brew install needle
 defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+
+echo "Mins: ----------"
+ls ${CI_WORKSPACE}
+echo "Mins: ----------"
+exit 1
