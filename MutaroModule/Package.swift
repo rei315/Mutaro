@@ -125,7 +125,8 @@ let package = Package(
         ),
         .target(
             name: "Production",
-            dependencies: productionFeatures
+            dependencies: productionFeatures,
+            path: "./Sources/App/Production"
         ),
         .target(
             name: "AppIntroductionFeature",
