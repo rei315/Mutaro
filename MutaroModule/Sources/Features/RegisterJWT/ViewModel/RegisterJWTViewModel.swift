@@ -15,11 +15,27 @@ public protocol RegisterJWTRoute {
     func openRegisterJWTRoute()
 }
 
-public final class RegisterJWTViewModel {
-    let showAlertSubject = PassthroughSubject<AlertState, Never>()
-    let showSavedInfoSubject = PassthroughSubject<MutaroJWT.JWTRequestInfo, Never>()
-    let didPickPrivateKeyFileSubject = PassthroughSubject<String, Never>()
-    var cancellables: Set<AnyCancellable> = []
+protocol RegisterJWTViewModelProtocol {
+    func transform(input: RegisterJWTViewModel.Input) -> RegisterJWTViewModel.Output
+}
+
+extension RegisterJWTViewModel {
+    struct Input {
+        let viewDidLoad: AnyPublisher<Void, Never>
+        let didPickedPrivateKeyFile: AnyPublisher<[URL], Never>
+        let didTapRegister: AnyPublisher<RegisterItem, Never>
+    }
+
+    struct Output {
+        let showAlert: AnyPublisher<AlertState, Never>
+        let onUpdateSavedInfo: AnyPublisher<MutaroJWT.JWTRequestInfo, Never>
+        let didPickPrivateKeyFile: AnyPublisher<String, Never>
+    }
+}
+
+public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
+    private let showAlertSubject = PassthroughSubject<AlertState, Never>()
+    private var cancellables: Set<AnyCancellable> = []
 
     private let environment: RegisterJWTFeatureEnvironment
 
@@ -27,25 +43,46 @@ public final class RegisterJWTViewModel {
         self.environment = environment
     }
 
-    func onTapRegister(
-        from viewController: UIViewController,
-        issuerID: String?,
-        keyID: String?,
-        privateKey: String?
+    func transform(input: Input) -> Output {
+        let registeredInfo = input
+            .viewDidLoad
+            .compactMap { self.loadRegisteredInfo() }
+
+        let privateKey = input
+            .didPickedPrivateKeyFile
+            .compactMap { self.didPickDocuments(urls: $0) }
+
+        input
+            .didTapRegister
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.onTapRegister(item: $0)
+            }
+            .store(in: &cancellables)
+
+        return .init(
+            showAlert: showAlertSubject.eraseToAnyPublisher(),
+            onUpdateSavedInfo: registeredInfo.eraseToAnyPublisher(),
+            didPickPrivateKeyFile: privateKey.eraseToAnyPublisher()
+        )
+    }
+
+    private func onTapRegister(
+        item: RegisterItem
     ) {
-        guard let issuerID,
+        guard let issuerID = item.issuerID,
               !issuerID.isEmpty else {
             showAlertSubject.send(.invalidIssuerID)
             return
         }
 
-        guard let keyID,
+        guard let keyID = item.keyID,
               !keyID.isEmpty else {
             showAlertSubject.send(.invalidKeyID)
             return
         }
 
-        guard let privateKey,
+        guard let privateKey = item.privateKey,
               !privateKey.isEmpty else {
             showAlertSubject.send(.invalidPrivateKey)
             return
@@ -72,29 +109,24 @@ public final class RegisterJWTViewModel {
             try KeychainStore.shared.deleteValue(forKey: .jwt)
             try KeychainStore.shared.saveValue(info, forKey: .jwt)
             showAlertSubject.send(.successedSavingJWTReuqestInfo)
-            environment.router.close(from: viewController)
+            environment.router.close(from: item.viewController)
         } catch {
             showAlertSubject.send(.failedSavingJWTRequestInfo)
         }
     }
 
-    func loadRegisteredInfo() {
-        do {
-            let savedElement: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-            showSavedInfoSubject.send(savedElement)
-        } catch {
-            // TODO: - error
-        }
+    private func loadRegisteredInfo() -> MutaroJWT.JWTRequestInfo? {
+        try? KeychainStore.shared.loadValue(forKey: .jwt)
     }
 
-    func didPickDocuments(urls: [URL]) {
+    private func didPickDocuments(urls: [URL]) -> String? {
         guard let url = urls.first,
               let data = try? Data(contentsOf: url) else {
-            return
+            return nil
         }
 
         let privateKey = String(decoding: data, as: UTF8.self)
-        didPickPrivateKeyFileSubject.send(privateKey)
+        return privateKey
     }
 }
 
@@ -127,5 +159,12 @@ extension RegisterJWTViewModel {
 
             return string
         }
+    }
+
+    struct RegisterItem {
+        let viewController: UIViewController
+        let issuerID: String?
+        let keyID: String?
+        let privateKey: String?
     }
 }

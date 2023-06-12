@@ -5,6 +5,7 @@
 //  Created by minguk-kim on 2023/05/03.
 //
 
+import Combine
 import Core
 import JWTGenerator
 import UIKit
@@ -29,6 +30,11 @@ public final class RegisterJWTViewController: UIViewController {
     private let dependency: Dependency
 
     private var keyboardHeightConstraint: NSLayoutConstraint?
+
+    private let viewDidLoadSubject: PassthroughSubject<Void, Never> = .init()
+    private let didPickedPrivateKeyFile: PassthroughSubject<[URL], Never> = .init()
+    private let didTapRegister: PassthroughSubject<RegisterJWTViewModel.RegisterItem, Never> = .init()
+    private var cancellables: Set<AnyCancellable> = []
 
     public struct Dependency {
         let viewModel: RegisterJWTViewModel
@@ -57,9 +63,8 @@ public final class RegisterJWTViewController: UIViewController {
         title = "JWT生成"
         setupView()
         setupRegisterButton()
-        setupSubcription()
-        setupNotification()
-        viewModel.loadRegisteredInfo()
+        bind()
+        viewDidLoadSubject.send()
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -67,37 +72,46 @@ public final class RegisterJWTViewController: UIViewController {
         setSmallTitle()
     }
 
-    private func setupNotification() {
-        NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] in
-            self?.handleKeyboardState($0)
-        }
-    }
+    private func bind() {
+        let output = viewModel.transform(
+            input: .init(
+                viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
+                didPickedPrivateKeyFile: didPickedPrivateKeyFile.eraseToAnyPublisher(),
+                didTapRegister: didTapRegister.eraseToAnyPublisher()
+            )
+        )
 
-    private func setupSubcription() {
-        viewModel.showAlertSubject
-            .receive(on: DispatchQueue.main)
+        output
+            .showAlert
             .sink { [weak self] in
                 self?.showAlert(state: $0)
             }
-            .store(in: &viewModel.cancellables)
+            .store(in: &cancellables)
 
-        viewModel.showSavedInfoSubject
+        output
+            .onUpdateSavedInfo
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.configureInfoTextViews(info: $0)
             }
-            .store(in: &viewModel.cancellables)
+            .store(in: &cancellables)
 
-        viewModel.didPickPrivateKeyFileSubject
+        output
+            .didPickPrivateKeyFile
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.configurePrivateKeyTextViews(value: $0)
             }
-            .store(in: &viewModel.cancellables)
+            .store(in: &cancellables)
+
+        NotificationCenter
+            .default
+            .publisher(for: UIResponder.keyboardWillChangeFrameNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.handleKeyboardState($0)
+            }
+            .store(in: &cancellables)
     }
 
     private func setupView() {
@@ -225,11 +239,13 @@ public final class RegisterJWTViewController: UIViewController {
         let keyID = keyIDTextView.text
         let privateKey = privateKeyTextView.text
 
-        viewModel.onTapRegister(
-            from: self,
-            issuerID: issuerID,
-            keyID: keyID,
-            privateKey: privateKey
+        didTapRegister.send(
+            .init(
+                viewController: self,
+                issuerID: issuerID,
+                keyID: keyID,
+                privateKey: privateKey
+            )
         )
     }
 
@@ -270,7 +286,7 @@ public final class RegisterJWTViewController: UIViewController {
 
 extension RegisterJWTViewController: UIDocumentPickerDelegate {
     public func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        viewModel.didPickDocuments(urls: urls)
+        didPickedPrivateKeyFile.send(urls)
     }
 }
 

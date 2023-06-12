@@ -79,7 +79,7 @@ public class MyAppToolsViewModel: MyAppToolsViewModelProtocol {
                 await self?.onTapItem($0)
             }
             .store(in: &cancellables)
-        
+
         return .init(
             onUpdateItems: items.eraseToAnyPublisher()
         )

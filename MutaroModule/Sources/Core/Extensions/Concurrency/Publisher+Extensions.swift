@@ -37,15 +37,15 @@ public extension Publisher {
             }
         }
     }
-    
+
     func asyncSink(
         taskCancellable: TaskCancellable,
         receiveCompletion: @escaping (Subscribers.Completion<Failure>) -> Void,
         receiveValue: @escaping (Output) async -> Void
     ) -> AnyCancellable {
         let subject = PassthroughSubject<Output, Failure>()
-        let cancellable = self.subscribe(subject)
-        
+        let cancellable = subscribe(subject)
+
         return subject.sink(
             receiveCompletion: { completion in
                 receiveCompletion(completion)
@@ -59,13 +59,13 @@ public extension Publisher {
             }
         )
     }
-    
+
     func asyncSink(
         taskCancellable: TaskCancellable,
         receiveValue: @escaping (Output) async -> Void
     ) -> AnyCancellable {
         let subject = PassthroughSubject<Output, Never>()
-        
+
         return subject.sink(
             receiveValue: { value in
                 Task {

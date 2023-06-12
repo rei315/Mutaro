@@ -36,7 +36,7 @@ final class MyAppToolsViewController: UIViewController {
 
     private let viewDidLoadSubject: PassthroughSubject<Void, Never> = .init()
     private let didTapItemSubject: PassthroughSubject<MyAppToolsModel.ItemType, Never> = .init()
-    
+
     public init(dependency: Dependency) {
         self.dependency = dependency
         viewModel = dependency.viewModel
