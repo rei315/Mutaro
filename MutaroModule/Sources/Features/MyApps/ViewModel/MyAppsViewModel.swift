@@ -15,12 +15,17 @@ import UIKit
 
 protocol MyAppsViewModelProtocol {
     func transform(input: MyAppsViewModel.Input) -> MyAppsViewModel.Output
+    func getAppInfos(_ index: Int) -> AppInfo?
 }
 
 extension MyAppsViewModel {
     struct Input {
         let viewWillAppear: AnyPublisher<Void, Never>
         let viewDidLoad: AnyPublisher<Void, Never>
+        let didTapMyApp: AnyPublisher<(from: UIViewController, index: Int), Never>
+        let didTapRegisterJWT: AnyPublisher<UIViewController, Never>
+        let prefetchItem: AnyPublisher<MyAppsViewController.MyAppsRow?, Never>
+        let cancelPrefetch: AnyPublisher<MyAppsViewController.MyAppsRow?, Never>
     }
 
     struct Output {
@@ -82,6 +87,36 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
             .assign(to: \.value, on: appInfosSubject)
             .store(in: &cancellables)
 
+        input
+            .didTapMyApp
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.onTapMyApp(from: $0.from, index: $0.index)
+            }
+            .store(in: &cancellables)
+
+        input
+            .didTapRegisterJWT
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.onTapRegisterJWT(from: $0)
+            }
+            .store(in: &cancellables)
+
+        input
+            .prefetchItem
+            .sink { [weak self] in
+                self?.prefetchItem($0)
+            }
+            .store(in: &cancellables)
+
+        input
+            .cancelPrefetch
+            .sink { [weak self] in
+                self?.cancelPrefrechItem($0)
+            }
+            .store(in: &cancellables)
+
         return .init(
             showJWTRegister: showRegisterJWT.eraseToAnyPublisher(),
             onUpdateAppInfos: appInfosSubject.eraseToAnyPublisher()
@@ -112,18 +147,18 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         return appInfos
     }
 
-    func onTapRegisterJWT(from viewController: UIViewController) {
+    private func onTapRegisterJWT(from viewController: UIViewController) {
         environment.router.showRegisterJWT(from: viewController)
     }
 
-    func onTapMyApp(from viewController: UIViewController, index: Int) {
+    private func onTapMyApp(from viewController: UIViewController, index: Int) {
         guard let appInfo = appInfosSubject.value[getOrNil: index] else {
             return
         }
         environment.router.showMyAppTools(from: viewController, appId: appInfo.id)
     }
 
-    func prefetchItem(
+    private func prefetchItem(
         _ rowType: MyAppsViewController.MyAppsRow?
     ) {
         switch rowType {
@@ -138,7 +173,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         }
     }
 
-    func cancelPrefrechItem(
+    private func cancelPrefrechItem(
         _ rowType: MyAppsViewController.MyAppsRow?
     ) {
         switch rowType {

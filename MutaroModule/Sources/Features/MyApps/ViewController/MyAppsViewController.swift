@@ -22,6 +22,10 @@ public class MyAppsViewController: UIViewController {
 
     private let viewDidLoadSubject: PassthroughSubject<Void, Never> = .init()
     private let viewWillAppearSubject: PassthroughSubject<Void, Never> = .init()
+    private let didTapMyAppSubject: PassthroughSubject<(from: UIViewController, index: Int), Never> = .init()
+    private let didTapRegisterJWTSubject: PassthroughSubject<UIViewController, Never> = .init()
+    private let prefetchItemSubject: PassthroughSubject<MyAppsRow?, Never> = .init()
+    private let cancelPrefetchItemSubject: PassthroughSubject<MyAppsRow?, Never> = .init()
     private var cancellables: Set<AnyCancellable> = []
 
     public struct Dependency {
@@ -76,7 +80,11 @@ public class MyAppsViewController: UIViewController {
         let output = viewModel.transform(
             input: .init(
                 viewWillAppear: viewWillAppearSubject.eraseToAnyPublisher(),
-                viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher()
+                viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
+                didTapMyApp: didTapMyAppSubject.eraseToAnyPublisher(),
+                didTapRegisterJWT: didTapRegisterJWTSubject.eraseToAnyPublisher(),
+                prefetchItem: prefetchItemSubject.eraseToAnyPublisher(),
+                cancelPrefetch: cancelPrefetchItemSubject.eraseToAnyPublisher()
             )
         )
 
@@ -110,7 +118,7 @@ extension MyAppsViewController: UICollectionViewDelegate {
         case .registerJWT:
             break
         case let .app(index):
-            viewModel.onTapMyApp(from: self, index: index)
+            didTapMyAppSubject.send((from: self, index: index))
         }
     }
 }
@@ -119,14 +127,14 @@ extension MyAppsViewController: UICollectionViewDataSourcePrefetching {
     public func collectionView(_: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             let item = dataSource.itemIdentifier(for: indexPath)
-            viewModel.prefetchItem(item)
+            prefetchItemSubject.send(item)
         }
     }
 
     public func collectionView(_: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             let item = dataSource.itemIdentifier(for: indexPath)
-            viewModel.cancelPrefrechItem(item)
+            cancelPrefetchItemSubject.send(item)
         }
     }
 }
@@ -343,7 +351,7 @@ extension MyAppsViewController {
                     guard let self else {
                         return
                     }
-                    self.viewModel.onTapRegisterJWT(from: self)
+                    self.didTapRegisterJWTSubject.send(self)
                 }
             }
             return cell
