@@ -121,6 +121,7 @@ let package = Package(
         .target(
             name: "Development",
             dependencies: productionFeatures,
+            path: "./Sources/App/Development",
             plugins: developmentPlugins
         ),
         .target(
