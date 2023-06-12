@@ -5,6 +5,7 @@
 //  Created by minguk-kim on 2022/12/29.
 //
 
+import Combine
 import Core
 import ImageLoader
 import JWTGenerator
@@ -18,6 +19,14 @@ public class MyAppsViewController: UIViewController {
     private lazy var dataSource: DataSource = self.configureDataSource()
     private let viewModel: MyAppsViewModel
     private let dependency: Dependency
+
+    private let viewDidLoadSubject: PassthroughSubject<Void, Never> = .init()
+    private let viewWillAppearSubject: PassthroughSubject<Void, Never> = .init()
+    private let didTapMyAppSubject: PassthroughSubject<(from: UIViewController, index: Int), Never> = .init()
+    private let didTapRegisterJWTSubject: PassthroughSubject<UIViewController, Never> = .init()
+    private let prefetchItemSubject: PassthroughSubject<MyAppsRow?, Never> = .init()
+    private let cancelPrefetchItemSubject: PassthroughSubject<MyAppsRow?, Never> = .init()
+    private var cancellables: Set<AnyCancellable> = []
 
     public struct Dependency {
         let viewModel: MyAppsViewModel
@@ -45,17 +54,14 @@ public class MyAppsViewController: UIViewController {
 
         setupView()
         setupDefaultSnapshot()
-        setupSubscription()
-        viewModel.setupSubscription()
+        bind()
+        viewDidLoadSubject.send()
     }
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        Task {
-            await viewModel.fetchMyApps()
-        }
-        .store(in: viewModel.taskCancellable)
+        viewWillAppearSubject.send()
     }
 
     private func setupView() {
@@ -70,22 +76,35 @@ public class MyAppsViewController: UIViewController {
         }
     }
 
-    private func setupSubscription() {
-        viewModel.$appInfosSubject
-            .removeDuplicates()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.updateAppsSnapshot(items: $0)
-            }
-            .store(in: &viewModel.cancellables)
+    private func bind() {
+        let output = viewModel.transform(
+            input: .init(
+                viewWillAppear: viewWillAppearSubject.eraseToAnyPublisher(),
+                viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
+                didTapMyApp: didTapMyAppSubject.eraseToAnyPublisher(),
+                didTapRegisterJWT: didTapRegisterJWTSubject.eraseToAnyPublisher(),
+                prefetchItem: prefetchItemSubject.eraseToAnyPublisher(),
+                cancelPrefetch: cancelPrefetchItemSubject.eraseToAnyPublisher()
+            )
+        )
 
-        viewModel.$shouldShowRegisterJWTSubject
+        output
+            .showJWTRegister
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.updateRegisterJWTSnapshot(shuoldShow: $0)
             }
-            .store(in: &viewModel.cancellables)
+            .store(in: &cancellables)
+
+        output
+            .onUpdateAppInfos
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.updateAppsSnapshot(items: $0)
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -99,7 +118,7 @@ extension MyAppsViewController: UICollectionViewDelegate {
         case .registerJWT:
             break
         case let .app(index):
-            viewModel.onTapMyApp(from: self, index: index)
+            didTapMyAppSubject.send((from: self, index: index))
         }
     }
 }
@@ -108,14 +127,14 @@ extension MyAppsViewController: UICollectionViewDataSourcePrefetching {
     public func collectionView(_: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             let item = dataSource.itemIdentifier(for: indexPath)
-            viewModel.prefetchItem(item)
+            prefetchItemSubject.send(item)
         }
     }
 
     public func collectionView(_: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             let item = dataSource.itemIdentifier(for: indexPath)
-            viewModel.cancelPrefrechItem(item)
+            cancelPrefetchItemSubject.send(item)
         }
     }
 }
@@ -158,8 +177,13 @@ extension MyAppsViewController {
                         )
                     }
                     let section = NSCollectionLayoutSection(group: group)
-                    let isEnabled = self.viewModel.shouldShowRegisterJWTSubject
-                    if isEnabled {
+
+                    let isEnabledToShowRegisterJWTSection = !self.dataSource
+                        .snapshot()
+                        .itemIdentifiers(inSection: .registerJWT)
+                        .isEmpty
+
+                    if isEnabledToShowRegisterJWTSection {
                         let backgroundItem = NSCollectionLayoutDecorationItem.background(
                             elementKind: MyAppsRegisterJWTSectionDecorationView.simpleClassName()
                         )
@@ -312,7 +336,7 @@ extension MyAppsViewController {
                 withType: MyAppsAppCell.self,
                 for: indexPath
             ).apply {
-                if let item = viewModel.appInfosSubject[getOrNil: index] {
+                if let item = viewModel.getAppInfos(index) {
                     $0.bind(url: item.iconUrl, title: item.name)
                 }
             }
@@ -327,7 +351,7 @@ extension MyAppsViewController {
                     guard let self else {
                         return
                     }
-                    self.viewModel.onTapRegisterJWT(from: self)
+                    self.didTapRegisterJWTSubject.send(self)
                 }
             }
             return cell

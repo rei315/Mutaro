@@ -12,42 +12,29 @@ import JWTGenerator
 import KeychainStore
 import UIKit
 
-actor MyAppToolsModel {
+struct MyAppToolsModel {
     private let appId: String
-    private var toolItems: ToolItem {
-        didSet {
-            checkAvailableItems(item: toolItems)
-        }
-    }
-
     private let ciProductUseCase: CIProductUseCase
-
-    public let itemTypeSubject = PassthroughSubject<[ItemType], Never>()
 
     init(appId: String, ciProductUseCase: CIProductUseCase) {
         self.appId = appId
-        toolItems = .init()
         self.ciProductUseCase = ciProductUseCase
     }
 
-    func fetch() async {
-        toolItems.ciProductsData = await getCIProducts()
-    }
-
-    private func checkAvailableItems(
-        item: ToolItem
-    ) {
+    func checkAvailableItems(
+        ciProduct: CIProductsEntity.CIProductsData?
+    ) -> [ItemType] {
         var result: [ItemType] = []
 
-        let isEnabledXcodeCloud = item.ciProductsData != nil
+        let isEnabledXcodeCloud = ciProduct != nil
         if isEnabledXcodeCloud {
             result.append(.xcodeCloud)
         }
 
-        itemTypeSubject.send(result)
+        return result
     }
 
-    private func getCIProducts() async -> CIProductsEntity.CIProductsData? {
+    func getCIProducts() async -> CIProductsEntity.CIProductsData? {
         do {
             let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
             let ciProducts = try await ciProductUseCase.fetchCIProducts(
@@ -58,10 +45,6 @@ actor MyAppToolsModel {
         } catch {
             return nil
         }
-    }
-
-    func getXcodeCloudData() -> CIProductsEntity.CIProductsData? {
-        toolItems.ciProductsData
     }
 }
 
@@ -81,14 +64,6 @@ extension MyAppToolsModel {
             case .xcodeCloud:
                 return .init(systemName: "cloud")
             }
-        }
-    }
-
-    struct ToolItem {
-        var ciProductsData: CIProductsEntity.CIProductsData?
-
-        init(ciProductsData: CIProductsEntity.CIProductsData? = nil) {
-            self.ciProductsData = ciProductsData
         }
     }
 }

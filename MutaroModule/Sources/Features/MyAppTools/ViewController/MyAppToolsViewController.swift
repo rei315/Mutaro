@@ -5,6 +5,7 @@
 //  Created by minguk-kim on 2023/06/07.
 //
 
+import Combine
 import Core
 import UIKit
 
@@ -33,6 +34,9 @@ final class MyAppToolsViewController: UIViewController {
         }
     }
 
+    private let viewDidLoadSubject: PassthroughSubject<Void, Never> = .init()
+    private let didTapItemSubject: PassthroughSubject<MyAppToolsModel.ItemType, Never> = .init()
+
     public init(dependency: Dependency) {
         self.dependency = dependency
         viewModel = dependency.viewModel
@@ -55,13 +59,9 @@ final class MyAppToolsViewController: UIViewController {
 
         setupView()
         setupDefaultSnapshot()
-        setupSubscription()
+        bind()
 
-        Task {
-            await viewModel.setupSubscription()
-            await viewModel.fetch()
-        }
-        .store(in: viewModel.taskCancellable)
+        viewDidLoadSubject.send()
     }
 
     private func setupView() {
@@ -76,8 +76,16 @@ final class MyAppToolsViewController: UIViewController {
         }
     }
 
-    private func setupSubscription() {
-        viewModel.$items
+    private func bind() {
+        let output = viewModel.transform(
+            input: .init(
+                viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
+                didTapItem: didTapItemSubject.eraseToAnyPublisher()
+            )
+        )
+
+        output
+            .onUpdateItems
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -176,7 +184,7 @@ extension MyAppToolsViewController: UICollectionViewDelegate {
         let item = dataSource.itemIdentifier(for: indexPath)
         switch item {
         case let .tool(type):
-            viewModel.onTapItem(type)
+            didTapItemSubject.send(type)
         case .none:
             break
         }
