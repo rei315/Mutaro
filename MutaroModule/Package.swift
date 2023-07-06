@@ -97,8 +97,6 @@ let package = Package(
         .library(name: "Development", targets: ["Development"]),
         .library(name: "Production", targets: ["Production"]),
         
-        // For R.swift to generate resources codes by XcodeCommandPlugin
-        // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
         .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
         .library(name: "HomeFeature", targets: ["HomeFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
