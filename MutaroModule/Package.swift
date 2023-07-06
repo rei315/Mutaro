@@ -48,7 +48,6 @@ let unittestDependencies: [Target.Dependency] = [
 // MARK: - Dependencies
 
 private extension PackageDescription.Target.Dependency {
-    static let rSwift: Self = .product(name: "RswiftLibrary", package: "R.swift")
     static let needle: Self = .product(name: "NeedleFoundation", package: "needle")
     
     static let kingfisher: Self = .product(name: "Kingfisher", package: "Kingfisher")
@@ -132,8 +131,7 @@ let package = Package(
         .target(
             name: "AppIntroductionFeature",
             dependencies: [
-                .core,
-                .rSwift
+                .core
             ],
             path: "./Sources/Features/AppIntroduction",
             swiftSettings: debugSwiftSettings
@@ -141,8 +139,7 @@ let package = Package(
         .target(
             name: "HomeFeature",
             dependencies: [
-                .core,
-                .rSwift
+                .core
             ],
             path: "./Sources/Features/Home",
             swiftSettings: debugSwiftSettings
@@ -154,7 +151,6 @@ let package = Package(
                 .imageLoader,
                 .jwtGenerator,
                 .keychainStore,
-                .rSwift,
                 .client
             ],
             path: "./Sources/Features/MyApps",
@@ -166,7 +162,6 @@ let package = Package(
                 .core,
                 .jwtGenerator,
                 .keychainStore,
-                .rSwift,
                 .client
             ],
             path: "./Sources/Features/MyAppTools",
@@ -177,8 +172,7 @@ let package = Package(
             dependencies: [
                 .jwtGenerator,
                 .keychainStore,
-                .core,
-                .rSwift
+                .core
             ],
             path: "./Sources/Features/RegisterJWT",
             swiftSettings: debugSwiftSettings
@@ -186,8 +180,7 @@ let package = Package(
         .target(
             name: "SettingFeature",
             dependencies: [
-                .core,
-                .rSwift
+                .core
             ],
             path: "./Sources/Features/Setting",
             swiftSettings: debugSwiftSettings
