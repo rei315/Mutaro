@@ -4,8 +4,8 @@
 # Development
 
 ## Environment
-- macOS 13+
-- Xcode 14.1 (Swift 5)
+- macOS 14+
+- Xcode 15
 
 ## Configuration
 - UI Imp: Programmatically UI
