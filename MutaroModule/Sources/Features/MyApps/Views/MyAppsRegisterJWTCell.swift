@@ -33,7 +33,7 @@ final class MyAppsRegisterJWTCell: UICollectionViewCell {
         titleLabel.lets {
             $0.numberOfLines = 2
             $0.font = FontSize.base.ofBoldFont()
-            $0.textColor = R.color.black() ?? .black
+            $0.textColor = UIColor(resource: .black)
             $0.text = "JWTトークン生成するための情報を入力して\nXcodeCloud機能を使う！"
             $0.textAlignment = .center
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,7 @@ final class MyAppsRegisterJWTCell: UICollectionViewCell {
         descriptionLabel.lets {
             $0.numberOfLines = 2
             $0.font = FontSize.minus1.ofFont()
-            $0.textColor = R.color.navy40() ?? .systemGray4
+            $0.textColor = UIColor(resource: .navy40)
             $0.text = "AppstoreConnect API機能を使うにはJWTトークンを生成するための情報を入力する必要があります"
             $0.textAlignment = .center
             $0.translatesAutoresizingMaskIntoConstraints = false

@@ -35,7 +35,7 @@ class SettingDefaultCollectionViewCell: UICollectionViewCell {
         labelView.lets {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.font = FontSize.plus1.ofFont()
-            $0.textColor = R.color.navy()
+            $0.textColor = UIColor(resource: .navy)
             contentView.addSubview($0)
         }
 

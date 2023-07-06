@@ -29,16 +29,16 @@ public final class HomeTabViewController: UITabBarController {
             let itemAppearance = UITabBarItemAppearance().apply {
                 $0.normal.iconColor = .brown
                 $0.normal.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor: R.color.navy()
+                    NSAttributedString.Key.foregroundColor: UIColor(resource: .navy)
                 ]
-                $0.selected.iconColor = R.color.black()
+                $0.selected.iconColor = UIColor(resource: .black)
                 $0.selected.titleTextAttributes = [
-                    NSAttributedString.Key.foregroundColor: R.color.black()
+                    NSAttributedString.Key.foregroundColor: UIColor(resource: .black)
                 ]
             }
             let barAppearance = UITabBarAppearance().apply {
                 $0.configureWithOpaqueBackground()
-                $0.backgroundColor = R.color.white()
+                $0.backgroundColor = UIColor(resource: .white)
                 $0.inlineLayoutAppearance = itemAppearance
                 $0.stackedLayoutAppearance = itemAppearance
                 $0.compactInlineLayoutAppearance = itemAppearance
@@ -74,12 +74,12 @@ public enum HomeTabPage: Int {
     }
 
     public var normalTabIconConfiguration: UIImage.SymbolConfiguration {
-        let normalTabImageColor = R.color.navy() ?? .gray
+        let normalTabImageColor = UIColor(resource: .navy)
         return UIImage.SymbolConfiguration(hierarchicalColor: normalTabImageColor)
     }
 
     public var selectedTabIconConfiguration: UIImage.SymbolConfiguration {
-        let normalTabImageColor = R.color.turquoise() ?? .orange
+        let normalTabImageColor = UIColor(resource: .turquoise)
         return UIImage.SymbolConfiguration(hierarchicalColor: normalTabImageColor)
     }
 

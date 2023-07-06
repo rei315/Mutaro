@@ -48,7 +48,6 @@ let unittestDependencies: [Target.Dependency] = [
 // MARK: - Dependencies
 
 private extension PackageDescription.Target.Dependency {
-    static let rSwift: Self = .product(name: "RswiftLibrary", package: "R.swift")
     static let needle: Self = .product(name: "NeedleFoundation", package: "needle")
     
     static let kingfisher: Self = .product(name: "Kingfisher", package: "Kingfisher")
@@ -98,8 +97,6 @@ let package = Package(
         .library(name: "Development", targets: ["Development"]),
         .library(name: "Production", targets: ["Production"]),
         
-        // For R.swift to generate resources codes by XcodeCommandPlugin
-        // TODO: - remove features from library when XcodeCloud's permission bug has benn resolved
         .library(name: "AppIntroductionFeature", targets: ["AppIntroductionFeature"]),
         .library(name: "HomeFeature", targets: ["HomeFeature"]),
         .library(name: "MyAppsFeature", targets: ["MyAppsFeature"]),
@@ -108,7 +105,6 @@ let package = Package(
         .library(name: "MyAppToolsFeature", targets: ["MyAppToolsFeature"])
     ],
     dependencies: [
-        .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.3.2"),
         .package(url: "https://github.com/realm/SwiftLint", from: "0.51.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.51.8"),
         .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
@@ -132,8 +128,7 @@ let package = Package(
         .target(
             name: "AppIntroductionFeature",
             dependencies: [
-                .core,
-                .rSwift
+                .core
             ],
             path: "./Sources/Features/AppIntroduction",
             swiftSettings: debugSwiftSettings
@@ -141,8 +136,7 @@ let package = Package(
         .target(
             name: "HomeFeature",
             dependencies: [
-                .core,
-                .rSwift
+                .core
             ],
             path: "./Sources/Features/Home",
             swiftSettings: debugSwiftSettings
@@ -154,7 +148,6 @@ let package = Package(
                 .imageLoader,
                 .jwtGenerator,
                 .keychainStore,
-                .rSwift,
                 .client
             ],
             path: "./Sources/Features/MyApps",
@@ -166,7 +159,6 @@ let package = Package(
                 .core,
                 .jwtGenerator,
                 .keychainStore,
-                .rSwift,
                 .client
             ],
             path: "./Sources/Features/MyAppTools",
@@ -177,8 +169,7 @@ let package = Package(
             dependencies: [
                 .jwtGenerator,
                 .keychainStore,
-                .core,
-                .rSwift
+                .core
             ],
             path: "./Sources/Features/RegisterJWT",
             swiftSettings: debugSwiftSettings
@@ -186,8 +177,7 @@ let package = Package(
         .target(
             name: "SettingFeature",
             dependencies: [
-                .core,
-                .rSwift
+                .core
             ],
             path: "./Sources/Features/Setting",
             swiftSettings: debugSwiftSettings

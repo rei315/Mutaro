@@ -187,7 +187,7 @@ extension SettingViewController {
         var icon: UIImage? {
             switch self {
             case .registerJWT:
-                return R.image.dev_setting()
+                return UIImage(resource: .devSetting)
             }
         }
     }
@@ -208,9 +208,9 @@ extension SettingViewController {
         var icon: UIImage? {
             switch self {
             case .info:
-                return R.image.info()
+                return UIImage(resource: .info)
             case .setting:
-                return R.image.setting()
+                return UIImage(resource: .setting)
             }
         }
     }

@@ -164,14 +164,14 @@ public final class RegisterJWTViewController: UIViewController {
         issuerIDTitleLabel.lets {
             $0.text = "Issuer ID"
             $0.font = FontSize.minus1.ofBoldFont()
-            $0.textColor = R.color.navy70()
+            $0.textColor = UIColor(resource: .navy70)
         }
         issuerIDTextView.lets {
             $0.textPadding = .init(top: 12, left: 12, bottom: 12, right: 12)
             $0.placeholder = "Issuer IDを入力してください"
             $0.font = FontSize.minus1.ofFont()
-            $0.textColor = R.color.navy40()
-            $0.layer.borderColor = R.color.navy20()?.cgColor
+            $0.textColor = UIColor(resource: .navy40)
+            $0.layer.borderColor = UIColor(resource: .navy20).cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -181,14 +181,14 @@ public final class RegisterJWTViewController: UIViewController {
         keyIDTitleLabel.lets {
             $0.text = "Key ID"
             $0.font = FontSize.minus1.ofBoldFont()
-            $0.textColor = R.color.navy70()
+            $0.textColor = UIColor(resource: .navy70)
         }
         keyIDTextView.lets {
             $0.textPadding = .init(top: 12, left: 12, bottom: 12, right: 12)
             $0.placeholder = "Key IDを入力してください"
             $0.font = FontSize.minus1.ofFont()
-            $0.textColor = R.color.navy40()
-            $0.layer.borderColor = R.color.navy20()?.cgColor
+            $0.textColor = UIColor(resource: .navy40)
+            $0.layer.borderColor = UIColor(resource: .navy20).cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
             $0.clearButtonMode = .always
@@ -197,12 +197,12 @@ public final class RegisterJWTViewController: UIViewController {
         privateKeyTitleLabel.lets {
             $0.text = "Private Key"
             $0.font = FontSize.minus1.ofBoldFont()
-            $0.textColor = R.color.navy70()
+            $0.textColor = UIColor(resource: .navy70)
         }
         privateKeyTextView.lets {
             $0.font = FontSize.minus1.ofBoldFont()
-            $0.textColor = R.color.navy70()
-            $0.layer.borderColor = R.color.navy20()?.cgColor
+            $0.textColor = UIColor(resource: .navy70)
+            $0.layer.borderColor = UIColor(resource: .navy20).cgColor
             $0.layer.borderWidth = 1
             $0.layer.cornerRadius = 8
             $0.clipsToBounds = true
@@ -252,9 +252,9 @@ public final class RegisterJWTViewController: UIViewController {
     private func showAlert(state: RegisterJWTViewModel.AlertState) {
         AlertHUD.show(
             state.title,
-            backgroundColor: R.color.grey() ?? .gray,
+            backgroundColor: UIColor(resource: .grey),
             font: FontSize.base.ofBoldFont(),
-            textColor: R.color.white() ?? .white
+            textColor: UIColor(resource: .white)
         )
     }
 

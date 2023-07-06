@@ -51,7 +51,7 @@ final class MyAppsAppCell: UICollectionViewCell {
 
         titleLabel.lets {
             $0.font = FontSize.base.ofFont()
-            $0.textColor = R.color.navy()
+            $0.textColor = UIColor(resource: .navy)
             $0.textAlignment = .center
         }
     }

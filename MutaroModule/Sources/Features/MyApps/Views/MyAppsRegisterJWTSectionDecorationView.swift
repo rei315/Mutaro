@@ -11,7 +11,7 @@ import UIKit
 final class MyAppsRegisterJWTSectionDecorationView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = R.color.navy10() ?? .systemGray4
+        backgroundColor = UIColor(resource: .navy10)
     }
 
     @available(*, unavailable)
