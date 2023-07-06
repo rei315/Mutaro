@@ -31,10 +31,10 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
         let navigationVC = UINavigationController(rootViewController: myAppsVC)
         navigationVC.view.backgroundColor = .white
         let imageName = "app"
-        let normalTabColor = R.color.navy() ?? .gray
+        let normalTabColor = UIColor(resource: .navy)
         let normalTabImageConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: normalTabColor)
         let normalTabImage = UIImage(systemName: imageName, withConfiguration: normalTabImageConfiguration)
-        let selectedTabColor = R.color.turquoise() ?? .orange
+        let selectedTabColor = UIColor(resource: .turquoise)
         let selectedTabImageConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: selectedTabColor)
         let selectedTabImage = UIImage(systemName: imageName, withConfiguration: selectedTabImageConfiguration)
 
