@@ -13,7 +13,7 @@ import UIKit
 public final class MutaroDevApp {
     public static let shared = MutaroDevApp()
 
-    private(set) var devRootComponent: DevRootComponent!
+    public var devRootComponent: DevRootComponent!
 
     public func setup() {
         registerProviderFactories()

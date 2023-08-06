@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1430"
+   LastUpgradeVersion = "1500"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "713BA8732A317C9200B59A96"
-               BuildableName = "MutaroDev.app"
-               BlueprintName = "MutaroDev"
-               ReferencedContainer = "container:MutaroDev.xcodeproj">
+               BlueprintIdentifier = "MutaroModule"
+               BuildableName = "MutaroModule"
+               BlueprintName = "MutaroModule"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,19 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "71D9F61F2A7FC1BA00B6B089"
-               BuildableName = "SnapshotTests.xctest"
-               BlueprintName = "SnapshotTests"
-               ReferencedContainer = "container:MutaroDev.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -52,16 +39,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "713BA8732A317C9200B59A96"
-            BuildableName = "MutaroDev.app"
-            BlueprintName = "MutaroDev"
-            ReferencedContainer = "container:MutaroDev.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -69,16 +46,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "713BA8732A317C9200B59A96"
-            BuildableName = "MutaroDev.app"
-            BlueprintName = "MutaroDev"
-            ReferencedContainer = "container:MutaroDev.xcodeproj">
+            BlueprintIdentifier = "MutaroModule"
+            BuildableName = "MutaroModule"
+            BlueprintName = "MutaroModule"
+            ReferencedContainer = "container:">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -45,6 +45,10 @@ let unittestDependencies: [Target.Dependency] = [
     .product(name: "Nimble", package: "Nimble")
 ]
 
+let snapshotDependencies: [Target.Dependency] = [
+    .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+]
+
 // MARK: - Dependencies
 
 private extension PackageDescription.Target.Dependency {
@@ -111,7 +115,8 @@ let package = Package(
         .package(url: "https://github.com/Quick/Quick", from: "6.1.0"),
         .package(url: "https://github.com/Quick/Nimble", from: "12.0.0"),
         .package(url: "https://github.com/onevcat/Kingfisher", from: "7.6.2"),
-        .package(url: "https://github.com/uber/needle.git", from: "0.23.0")
+        .package(url: "https://github.com/uber/needle.git", from: "0.23.0"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.11.0")
     ],
     targets: [
         .target(
@@ -119,6 +124,14 @@ let package = Package(
             dependencies: productionFeatures,
             path: "./Sources/App/Development",
             plugins: developmentPlugins
+        ),
+        .testTarget(
+            name: "AppSnapshotTests",
+            dependencies: ["Development"] + snapshotDependencies,
+            path: "./Tests/App/AppSnapshotTests",
+            resources: [
+                .process("__Snapshots__")
+            ]
         ),
         .target(
             name: "Production",
