@@ -17,7 +17,7 @@ import MyAppToolsFeature
 import RegisterJWTFeature
 import SettingFeature
 
-final public class DevRootComponent: BootstrapComponent {
+public final class DevRootComponent: BootstrapComponent {
     public var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
         shared {
             AppIntroductionFeatureBuilderComponent(parent: self)

@@ -5,14 +5,13 @@
 //  Created by minguk-kim on 2023/08/06.
 //
 
-#if os(iOS)
-    import Foundation
+import Foundation
+import SnapshotTesting
+import SwiftUI
+import XCTest
 
-    import SnapshotTesting
-    import SwiftUI
-    import XCTest
-
-    public extension XCTestCase {
+public extension XCTestCase {
+    #if os(iOS)
         func assertPreviewSnapshot<T: PreviewProvider>(
             _: T.Type,
             file: StaticString = #file,
@@ -30,8 +29,24 @@
                 )
             }
         }
-        
-        func assertCustomSnapshot<Value>(
+
+        func assertCustomSnapshot(
+            viewController: UIViewController,
+            file: StaticString = #file,
+            testName: String = #function,
+            line: UInt = #line
+        ) {
+            assertCustomSnapshot(
+                matching: viewController,
+                as: .image(on: .iPhone13),
+                testBundleResourceURL: Bundle.module.resourceURL!,
+                file: file,
+                testName: testName,
+                line: line
+            )
+        }
+
+        private func assertCustomSnapshot<Value>(
             matching value: @autoclosure () throws -> Value,
             as snapshotting: Snapshotting<Value, some Any>,
             testBundleResourceURL: URL,
@@ -45,7 +60,7 @@
 
                 let folderCandidates = [
                     testBundleResourceURL.appending(path: "__Snapshots__").appending(path: testClassName),
-                    
+
                     testBundleResourceURL.appending(path: testClassName)
                 ]
 
@@ -79,6 +94,5 @@
                 .replacingOccurrences(of: "\\W+", with: "-", options: .regularExpression)
                 .replacingOccurrences(of: "^-|-$", with: "", options: .regularExpression)
         }
-    }
-
-#endif
+    #endif
+}

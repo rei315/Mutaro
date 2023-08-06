@@ -1,12 +1,12 @@
 //
 //  SnapshotTests.swift
-//  
+//
 //
 //  Created by minguk-kim on 2023/08/06.
 //
 
-import XCTest
 import SnapshotTesting
+import XCTest
 
 import Client
 import Core
@@ -21,13 +21,12 @@ import RegisterJWTFeature
 import SettingFeature
 
 final class SnapshotTests: XCTestCase {
-
     override func setUpWithError() throws {
-        MutaroSpyApp.shared.setup()
+        // Something Setup
     }
 
     @MainActor
     func testSettingFeature() throws {
-        assertPreviewSnapshot(SettingFeaturePreview.self)        
+        assertPreviewSnapshot(SettingFeaturePreview.self)
     }
 }

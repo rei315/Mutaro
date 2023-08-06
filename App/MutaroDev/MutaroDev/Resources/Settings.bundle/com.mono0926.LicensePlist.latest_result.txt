@@ -48,8 +48,6 @@ name: Nimble, nameSpecified: Nimble, owner: Quick, version: 12.0.1, source: http
 
 name: Quick, nameSpecified: Quick, owner: Quick, version: 6.1.0, source: https://github.com/Quick/Quick
 
-name: R.swift, nameSpecified: Rswift, owner: mac-cain13, version: 7.3.2, source: https://github.com/mac-cain13/R.swift
-
 name: SourceKitten, nameSpecified: SourceKitten, owner: jpsim, version: 0.34.1, source: https://github.com/jpsim/SourceKitten
 
 name: swift-argument-parser, nameSpecified: swift-argument-parser, owner: apple, version: 1.2.2, source: https://github.com/apple/swift-argument-parser
@@ -57,6 +55,8 @@ name: swift-argument-parser, nameSpecified: swift-argument-parser, owner: apple,
 name: Swift-JWT, nameSpecified: SwiftJWT, owner: Kitura, version: 4.0.1, source: https://github.com/Kitura/Swift-JWT
 
 name: swift-log, nameSpecified: swift-log, owner: apple, version: 1.5.2, source: https://github.com/apple/swift-log
+
+name: swift-snapshot-testing, nameSpecified: swift-snapshot-testing, owner: pointfreeco, version: 1.11.0, source: https://github.com/pointfreeco/swift-snapshot-testing
 
 name: swift-syntax, nameSpecified: SwiftSyntax, owner: apple, version: 509.0.0-swift-DEVELOPMENT-SNAPSHOT-2023-05-02-a, source: https://github.com/apple/swift-syntax
 
@@ -67,8 +67,6 @@ name: SwiftLint, nameSpecified: SwiftLint, owner: realm, version: 0.52.2, source
 name: SwiftyTextTable, nameSpecified: SwiftyTextTable, owner: scottrhoyt, version: 0.9.0, source: https://github.com/scottrhoyt/SwiftyTextTable
 
 name: SWXMLHash, nameSpecified: SWXMLHash, owner: drmohundro, version: 7.0.2, source: https://github.com/drmohundro/SWXMLHash
-
-name: XcodeEdit, nameSpecified: XcodeEdit, owner: tomlokhorst, version: 2.9.0, source: https://github.com/tomlokhorst/XcodeEdit
 
 name: Yams, nameSpecified: Yams, owner: jpsim, version: 5.0.5, source: https://github.com/jpsim/Yams
 
