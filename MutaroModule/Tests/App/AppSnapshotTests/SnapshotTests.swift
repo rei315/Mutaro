@@ -27,6 +27,13 @@ final class SnapshotTests: XCTestCase {
 
     @MainActor
     func testSettingFeature() throws {
-        assertPreviewSnapshot(SettingFeaturePreview.self)
+        let vc = SettingViewController(
+            dependency: .init(
+                viewModel: .init(
+                    environment: .init(router: SettingRouterSpy())
+                )
+            )
+        )
+        assertCustomSnapshot(viewController: vc)
     }
 }

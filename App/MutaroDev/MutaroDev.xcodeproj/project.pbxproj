@@ -15,16 +15,6 @@
 		713EA8192A321161004F9A39 /* Development in Frameworks */ = {isa = PBXBuildFile; productRef = 713EA8182A321161004F9A39 /* Development */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		71D9F6242A7FC1BA00B6B089 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 713BA86C2A317C9200B59A96 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 713BA8732A317C9200B59A96;
-			remoteInfo = MutaroDev;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		713BA8742A317C9200B59A96 /* MutaroDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MutaroDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		713BA8772A317C9200B59A96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +25,6 @@
 		713BA8992A3181DF00B59A96 /* MutaroDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroDev.entitlements; sourceTree = "<group>"; };
 		713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		71D24CD22A31A24600092101 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../../BuildTools; sourceTree = "<group>"; };
-		71D9F6202A7FC1BA00B6B089 /* SnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71D9F6222A7FC1BA00B6B089 /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,13 +34,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				713EA8192A321161004F9A39 /* Development in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71D9F61D2A7FC1BA00B6B089 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				713BA8742A317C9200B59A96 /* MutaroDev.app */,
-				71D9F6202A7FC1BA00B6B089 /* SnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,24 +133,6 @@
 			productReference = 713BA8742A317C9200B59A96 /* MutaroDev.app */;
 			productType = "com.apple.product-type.application";
 		};
-		71D9F61F2A7FC1BA00B6B089 /* SnapshotTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 71D9F6282A7FC1BA00B6B089 /* Build configuration list for PBXNativeTarget "SnapshotTests" */;
-			buildPhases = (
-				71D9F62A2A7FF6A900B6B089 /* Needle */,
-				71D9F61D2A7FC1BA00B6B089 /* Frameworks */,
-				71D9F61E2A7FC1BA00B6B089 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				71D9F6252A7FC1BA00B6B089 /* PBXTargetDependency */,
-			);
-			name = SnapshotTests;
-			productName = SnapshotTests;
-			productReference = 71D9F6202A7FC1BA00B6B089 /* SnapshotTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -182,10 +145,6 @@
 				TargetAttributes = {
 					713BA8732A317C9200B59A96 = {
 						CreatedOnToolsVersion = 14.3.1;
-					};
-					71D9F61F2A7FC1BA00B6B089 = {
-						CreatedOnToolsVersion = 15.0;
-						TestTargetID = 713BA8732A317C9200B59A96;
 					};
 				};
 			};
@@ -203,7 +162,6 @@
 			projectRoot = "";
 			targets = (
 				713BA8732A317C9200B59A96 /* MutaroDev */,
-				71D9F61F2A7FC1BA00B6B089 /* SnapshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +174,6 @@
 				713BA8982A317E4C00B59A96 /* Settings.bundle in Resources */,
 				713BA8812A317C9600B59A96 /* Assets.xcassets in Resources */,
 				713EA80D2A31D667004F9A39 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71D9F61E2A7FC1BA00B6B089 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,24 +272,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ $CI ]; then\n    ${CI_WORKSPACE}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
 		};
-		71D9F62A2A7FF6A900B6B089 /* Needle */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Needle;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=${CI_WORKSPACE}/MutaroModule/Sources/\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=../../MutaroModule/Sources/\n    fi\n    \n    needle generate $NEEDLE_SWIFT_FILE_PATH $COMPONENT_PATH --exclude-paths /Production\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -357,11 +290,6 @@
 		71D24CC92A318E4000092101 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 71D24CC82A318E4000092101 /* LicensePlistPlugin */;
-		};
-		71D9F6252A7FC1BA00B6B089 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 713BA8732A317C9200B59A96 /* MutaroDev */;
-			targetProxy = 71D9F6242A7FC1BA00B6B089 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -541,53 +469,6 @@
 			};
 			name = Release;
 		};
-		71D9F6262A7FC1BA00B6B089 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.SnapshotTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MutaroDev.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MutaroDev";
-			};
-			name = Debug;
-		};
-		71D9F6272A7FC1BA00B6B089 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMB9V9594R;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = MGHouse.com.SnapshotTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MutaroDev.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MutaroDev";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -605,15 +486,6 @@
 			buildConfigurations = (
 				713BA8892A317C9600B59A96 /* Debug */,
 				713BA88A2A317C9600B59A96 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		71D9F6282A7FC1BA00B6B089 /* Build configuration list for PBXNativeTarget "SnapshotTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				71D9F6262A7FC1BA00B6B089 /* Debug */,
-				71D9F6272A7FC1BA00B6B089 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
