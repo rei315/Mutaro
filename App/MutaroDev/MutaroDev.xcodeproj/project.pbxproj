@@ -25,6 +25,7 @@
 		713BA8992A3181DF00B59A96 /* MutaroDev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MutaroDev.entitlements; sourceTree = "<group>"; };
 		713EA80C2A31D667004F9A39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		71D24CD22A31A24600092101 /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildTools; path = ../../BuildTools; sourceTree = "<group>"; };
+		71D9F6222A7FC1BA00B6B089 /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +45,7 @@
 			children = (
 				71D24CC22A318E1A00092101 /* Packages */,
 				713BA8762A317C9200B59A96 /* MutaroDev */,
+				71D9F6212A7FC1BA00B6B089 /* SnapshotTests */,
 				713BA8752A317C9200B59A96 /* Products */,
 				713BA8942A317D7800B59A96 /* Frameworks */,
 			);
@@ -94,6 +96,14 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
+		71D9F6212A7FC1BA00B6B089 /* SnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				71D9F6222A7FC1BA00B6B089 /* SnapshotTests.swift */,
+			);
+			path = SnapshotTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,7 +140,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					713BA8732A317C9200B59A96 = {

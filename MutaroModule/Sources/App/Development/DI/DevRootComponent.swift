@@ -17,56 +17,56 @@ import MyAppToolsFeature
 import RegisterJWTFeature
 import SettingFeature
 
-final class DevRootComponent: BootstrapComponent {
-    var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
+public final class DevRootComponent: BootstrapComponent {
+    public var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
         shared {
             AppIntroductionFeatureBuilderComponent(parent: self)
                 .appIntroductionBuilder()
         }
     }
 
-    var settingFeatureBuilder: SettingFeatureBuildable {
+    public var settingFeatureBuilder: SettingFeatureBuildable {
         shared {
             SettingFeatureBuilderComponent(parent: self)
                 .settingFeatureBuilder()
         }
     }
 
-    var homeFeatureBuilder: HomeFeatureBuildable {
+    public var homeFeatureBuilder: HomeFeatureBuildable {
         shared {
             HomeFeatureBuilderComponent(parent: self)
                 .homeFeatureBuilder()
         }
     }
 
-    var myAppsFeatureBuilder: MyAppsFeatureBuildable {
+    public var myAppsFeatureBuilder: MyAppsFeatureBuildable {
         shared {
             MyAppsFeatureBuilderComponent(parent: self)
                 .myAppsFeatureBuilder()
         }
     }
 
-    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+    public var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
         shared {
             RegisterJWTFeatureBuilderComponent(parent: self)
                 .registerJWTFeatureBuilder()
         }
     }
 
-    var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable {
+    public var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable {
         shared {
             MyAppToolsFeatureComponent(parent: self)
                 .myAppToolsFeatureBuilder()
         }
     }
 
-    var client: Providable {
+    public var client: Providable {
         shared {
             Provider()
         }
     }
 
-    var imageDownloadService: ImageDownloadService {
+    public var imageDownloadService: ImageDownloadService {
         shared {
             ImageDownloadServiceImp()
         }

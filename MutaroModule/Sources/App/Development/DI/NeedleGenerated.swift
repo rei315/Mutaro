@@ -120,7 +120,14 @@ private func factorya635079052b624173c15295202051d8ff8d8a13a(_ component: Needle
 extension DevRootComponent: Registration {
     public func registerItems() {
 
-
+        localTable["appIntroductionFeatureBuilder-AppIntroductionFeatureBuildable"] = { [unowned self] in self.appIntroductionFeatureBuilder as Any }
+        localTable["settingFeatureBuilder-SettingFeatureBuildable"] = { [unowned self] in self.settingFeatureBuilder as Any }
+        localTable["homeFeatureBuilder-HomeFeatureBuildable"] = { [unowned self] in self.homeFeatureBuilder as Any }
+        localTable["myAppsFeatureBuilder-MyAppsFeatureBuildable"] = { [unowned self] in self.myAppsFeatureBuilder as Any }
+        localTable["registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"] = { [unowned self] in self.registerJWTFeatureBuilder as Any }
+        localTable["myAppToolsFeatureBuilder-MyAppToolsFeatureBuildable"] = { [unowned self] in self.myAppToolsFeatureBuilder as Any }
+        localTable["client-Providable"] = { [unowned self] in self.client as Any }
+        localTable["imageDownloadService-ImageDownloadService"] = { [unowned self] in self.imageDownloadService as Any }
     }
 }
 extension HomeFeatureBuilderComponent: Registration {

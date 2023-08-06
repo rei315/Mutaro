@@ -14,7 +14,7 @@ public final class SettingViewModel: NSObject {
 
     var cancellables: Set<AnyCancellable> = []
 
-    init(environment: SettingFeatureEnvironment) {
+    public init(environment: SettingFeatureEnvironment) {
         self.environment = environment
     }
 
