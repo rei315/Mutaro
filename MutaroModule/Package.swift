@@ -109,13 +109,13 @@ let package = Package(
         .library(name: "MyAppToolsFeature", targets: ["MyAppToolsFeature"])
     ],
     dependencies: [
-        .package(url: "https://github.com/realm/SwiftLint", from: "0.51.0"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.51.8"),
-        .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
-        .package(url: "https://github.com/Quick/Quick", from: "6.1.0"),
-        .package(url: "https://github.com/Quick/Nimble", from: "12.0.0"),
-        .package(url: "https://github.com/onevcat/Kingfisher", from: "7.6.2"),
-        .package(url: "https://github.com/uber/needle.git", from: "0.23.0"),
+        .package(url: "https://github.com/realm/SwiftLint", exact: "0.51.0"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", exact: "0.51.8"),
+        .package(url: "https://github.com/Kitura/Swift-JWT", exact: "4.0.1"),
+        .package(url: "https://github.com/Quick/Quick", exact: "6.1.0"),
+        .package(url: "https://github.com/Quick/Nimble", exact: "12.0.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher", exact: "7.6.2"),
+        .package(url: "https://github.com/uber/needle.git", exact: "0.23.0"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.11.0")
     ],
     targets: [
