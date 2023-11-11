@@ -109,7 +109,7 @@ let package = Package(
         .library(name: "MyAppToolsFeature", targets: ["MyAppToolsFeature"])
     ],
     dependencies: [
-        .package(url: "https://github.com/realm/SwiftLint", from: "0.51.0"),
+        .package(url: "https://github.com/realm/SwiftLint", from: "0.54.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.51.8"),
         .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
         .package(url: "https://github.com/Quick/Quick", from: "6.1.0"),
