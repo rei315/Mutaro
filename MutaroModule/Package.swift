@@ -116,7 +116,7 @@ let package = Package(
         .package(url: "https://github.com/Quick/Nimble", from: "12.0.0"),
         .package(url: "https://github.com/onevcat/Kingfisher", from: "7.6.2"),
         .package(url: "https://github.com/uber/needle.git", from: "0.23.0"),
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.11.0")
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.15.3")
     ],
     targets: [
         .target(
