@@ -10,9 +10,9 @@ import UIKit
 
 public protocol MyAppsRoutable {
     @MainActor
-    func showRegisterJWT(from viewController: UIViewController) async
+    func showRegisterJWT(from viewController: UIViewController)
     @MainActor
-    func showMyAppTools(from viewController: UIViewController, appId: String) async
+    func showMyAppTools(from viewController: UIViewController, appId: String)
 }
 
 public class MyAppsRouter: MyAppsRoutable {

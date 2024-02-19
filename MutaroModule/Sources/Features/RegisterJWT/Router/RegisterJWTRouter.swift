@@ -9,7 +9,7 @@ import UIKit
 
 public protocol RegisterJWTFeatureRoutable {
     @MainActor
-    func close(from viewController: UIViewController) async
+    func close(from viewController: UIViewController)
 }
 
 public class RegisterJWTFeatureRouter: RegisterJWTFeatureRoutable {

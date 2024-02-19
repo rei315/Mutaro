@@ -54,14 +54,15 @@ public extension AlertHUD {
                     height: view.frame.height
                 )
             } completion: { _ in
-                Task { @MainActor in
+                Task {
                     try await Task.sleep(seconds: 3)
-                    hide()
+                    await hide()
                 }
             }
         }
     }
 
+    @MainActor
     static func hide() {
         guard shared.alertView.superview != nil else {
             return
@@ -81,6 +82,7 @@ public extension AlertHUD {
         }
     }
 
+    @MainActor
     @objc static func onTapView() {
         hide()
     }
