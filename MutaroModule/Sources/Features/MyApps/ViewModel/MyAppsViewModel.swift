@@ -42,6 +42,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     private let showRegisterJWT: PassthroughSubject<Bool, Never> = .init()
 
     private var cancellables: Set<AnyCancellable> = []
+    private let taskCancellables: TaskCancellable = .init()
 
     public init(
         environment: MyAppsFeatureEnvironment
@@ -90,17 +91,23 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         input
             .didTapMyApp
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.onTapMyApp(from: $0.from, index: $0.index)
-            }
+            .asyncSink(
+                taskCancellable: taskCancellables,
+                receiveValue: { [weak self] in
+                    await self?.onTapMyApp(from: $0.from, index: $0.index)
+                }
+            )
             .store(in: &cancellables)
 
         input
             .didTapRegisterJWT
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.onTapRegisterJWT(from: $0)
-            }
+            .asyncSink(
+                taskCancellable: taskCancellables,
+                receiveValue: { [weak self] in
+                    await self?.onTapRegisterJWT(from: $0)
+                }
+            )
             .store(in: &cancellables)
 
         input
@@ -147,15 +154,15 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         return appInfos
     }
 
-    private func onTapRegisterJWT(from viewController: UIViewController) {
-        environment.router.showRegisterJWT(from: viewController)
+    private func onTapRegisterJWT(from viewController: UIViewController) async {
+        await environment.router.showRegisterJWT(from: viewController)
     }
 
-    private func onTapMyApp(from viewController: UIViewController, index: Int) {
+    private func onTapMyApp(from viewController: UIViewController, index: Int) async {
         guard let appInfo = appInfosSubject.value[getOrNil: index] else {
             return
         }
-        environment.router.showMyAppTools(from: viewController, appId: appInfo.id)
+        await environment.router.showMyAppTools(from: viewController, appId: appInfo.id)
     }
 
     private func prefetchItem(

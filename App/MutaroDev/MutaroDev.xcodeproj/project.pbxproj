@@ -112,7 +112,6 @@
 			buildConfigurationList = 713BA8882A317C9600B59A96 /* Build configuration list for PBXNativeTarget "MutaroDev" */;
 			buildPhases = (
 				71D24CCA2A318EC100092101 /* Needle */,
-				71D24CCB2A318EC200092101 /* SwiftFormat */,
 				71D24CCC2A318EC300092101 /* [NEED FIRST RUN] register env */,
 				713BA8702A317C9200B59A96 /* Sources */,
 				713BA8712A317C9200B59A96 /* Frameworks */,
@@ -141,7 +140,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					713BA8732A317C9200B59A96 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -196,25 +195,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=${CI_WORKSPACE}/MutaroModule/Sources/\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=../../MutaroModule/Sources/\n    fi\n    \n    needle generate $NEEDLE_SWIFT_FILE_PATH $COMPONENT_PATH --exclude-paths /Production\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
-		};
-		71D24CCB2A318EC200092101 /* SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftFormat;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! $CI ]; then\n    cd ../../MutaroModule\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory swiftformat\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_PRIMARY_REPOSITORY_PATH}/MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=${CI_PRIMARY_REPOSITORY_PATH}/MutaroModule/Sources/\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=../../MutaroModule/Sources/\n    fi\n    \n    needle generate $NEEDLE_SWIFT_FILE_PATH $COMPONENT_PATH --exclude-paths /Production\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
 		};
 		71D24CCC2A318EC300092101 /* [NEED FIRST RUN] register env */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -232,7 +213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f \"../../env-vars.sh\" ]; then \n    source \"../../env-vars.sh\"\nfi\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then    \n    ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true true $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nelse    \n    ../../scripts/update-google-service-plist.sh false true \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nfi\n";
+			shellScript = "if [ -f \"../../env-vars.sh\" ]; then \n    source \"../../env-vars.sh\"\nfi\n\nif [ $CI ] && [[ ! -z $CI_PRIMARY_REPOSITORY_PATH ]]; then    \n    ${CI_PRIMARY_REPOSITORY_PATH}/scripts/update-google-service-plist.sh true true $CI_PRIMARY_REPOSITORY_PATH $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nelse    \n    ../../scripts/update-google-service-plist.sh false true \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nfi\n";
 		};
 		71D24CCD2A318EC400092101 /* Add LicensePlist to Setting.bundle */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -247,6 +228,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -270,7 +252,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CI ]; then\n    ${CI_WORKSPACE}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
+			shellScript = "if [ $CI ]; then\n    ${CI_PRIMARY_REPOSITORY_PATH}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -298,6 +280,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -330,6 +313,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -358,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -390,6 +375,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -419,6 +405,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PN7XF377XF;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MutaroDev/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -434,6 +421,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Dev.MutaroApp.MGHouse.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -449,6 +437,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PN7XF377XF;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MutaroDev/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -464,6 +453,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Dev.MutaroApp.MGHouse.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

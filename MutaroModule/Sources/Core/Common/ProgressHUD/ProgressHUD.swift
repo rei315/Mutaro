@@ -13,6 +13,7 @@ public final class ProgressHUD {
 }
 
 public extension ProgressHUD {
+    @MainActor
     static func show() {
         shared.loadingView.alpha = 0
         KeyWindowProvider().getKeyWindow()?.addSubview(shared.loadingView)
@@ -24,6 +25,7 @@ public extension ProgressHUD {
         )
     }
 
+    @MainActor
     static func hide() {
         UIView.animate(
             withDuration: 0.2,

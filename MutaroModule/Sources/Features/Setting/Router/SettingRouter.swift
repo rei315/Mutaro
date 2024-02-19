@@ -9,6 +9,7 @@ import Core
 import UIKit
 
 public protocol SettingRoutable {
+    @MainActor
     func showRegisterJWT(from viewController: UIViewController)
 }
 

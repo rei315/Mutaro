@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/uber/needle.git",
       "state" : {
-        "revision" : "2f2856d4fbe8f8828ebda86e69960007f5577f37",
-        "version" : "0.23.0"
+        "revision" : "6db73ae873952794b94fd6bb5111554e23c160af",
+        "version" : "0.24.0"
       }
     },
     {
@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Quick/Nimble",
       "state" : {
-        "revision" : "ecade0f20e58e55ba3e5f110b701dad88fd40170",
-        "version" : "12.0.0"
+        "revision" : "edaedc1ec86f14ac6e2ca495b94f0ff7150d98d0",
+        "version" : "12.3.0"
       }
     },
     {
@@ -158,8 +158,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
       "state" : {
-        "revision" : "cef5b3f6f11781dd4591bdd1dd0a3d22bd609334",
-        "version" : "1.11.0"
+        "revision" : "e7b77228b34057041374ebef00c0fd7739d71a2b",
+        "version" : "1.15.3"
       }
     },
     {

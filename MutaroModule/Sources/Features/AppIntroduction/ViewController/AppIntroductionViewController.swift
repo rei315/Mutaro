@@ -54,7 +54,9 @@ public final class AppIntroductionViewController: UIViewController {
 
             $0.configuration = configuration
             $0.updateAction(.touchUpInside) { [weak self] in
-                self?.viewModel.onTapAgree()
+                Task {
+                    await self?.viewModel.onTapAgree()
+                }
             }
             view.addSubview($0)
 

@@ -23,7 +23,8 @@ let firebaseAnalyticsDependencies: [Target.Dependency] = [
 ]
 
 let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
-    .define("DEV", .when(configuration: .debug))
+    .define("DEV", .when(configuration: .debug)),
+    .unsafeFlags(["-strict-concurrency=complete"])
 ]
 
 let productionFeatures: [PackageDescription.Target.Dependency] = [
@@ -94,8 +95,7 @@ if ProcessInfo.processInfo.environment["CI"] == "TRUE" {
 let package = Package(
     name: "MutaroModule",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v13)
+        .iOS(.v15)
     ],
     products: [
         .library(name: "Development", targets: ["Development"]),

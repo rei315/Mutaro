@@ -166,7 +166,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/swift-syntax</string>
 			<key>Title</key>
-			<string>SwiftSyntax</string>
+			<string>swift-syntax</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

@@ -9,7 +9,9 @@ import Core
 import UIKit
 
 public protocol MyAppsRoutable {
+    @MainActor
     func showRegisterJWT(from viewController: UIViewController)
+    @MainActor
     func showMyAppTools(from viewController: UIViewController, appId: String)
 }
 

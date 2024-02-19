@@ -10,6 +10,7 @@ import UIKit
 public struct KeyWindowProvider {
     public init() {}
 
+    @MainActor
     public func getKeyWindow() -> UIWindow? {
         UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }

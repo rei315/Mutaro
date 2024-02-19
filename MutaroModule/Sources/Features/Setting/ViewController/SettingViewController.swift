@@ -163,10 +163,12 @@ extension SettingViewController: UICollectionViewDelegate {
     public func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = dataSource.itemIdentifier(for: indexPath)
         switch item {
-        case let .defaultSetting(index):
+        case .defaultSetting:
             break
         case .registerJWT:
-            viewModel.routeToRegisterJWT(from: self)
+            Task {
+                await viewModel.routeToRegisterJWT(from: self)
+            }
         case .none:
             break
         }

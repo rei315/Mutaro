@@ -91,7 +91,7 @@ public class MyAppsViewController: UIViewController {
         output
             .showJWTRegister
             .removeDuplicates()
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.updateRegisterJWTSnapshot(shuoldShow: $0)
             }
@@ -100,7 +100,7 @@ public class MyAppsViewController: UIViewController {
         output
             .onUpdateAppInfos
             .removeDuplicates()
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.updateAppsSnapshot(items: $0)
             }

@@ -87,7 +87,7 @@ final class MyAppToolsViewController: UIViewController {
         output
             .onUpdateItems
             .removeDuplicates()
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.updateSnapshot(items: $0)
             }

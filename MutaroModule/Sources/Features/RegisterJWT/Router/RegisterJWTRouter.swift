@@ -8,6 +8,7 @@
 import UIKit
 
 public protocol RegisterJWTFeatureRoutable {
+    @MainActor
     func close(from viewController: UIViewController)
 }
 

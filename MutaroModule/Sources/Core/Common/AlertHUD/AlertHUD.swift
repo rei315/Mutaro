@@ -15,6 +15,7 @@ public final class AlertHUD: NSObject {
 }
 
 public extension AlertHUD {
+    @MainActor
     static func show(
         _ title: String,
         backgroundColor: UIColor,
@@ -54,7 +55,7 @@ public extension AlertHUD {
                     height: view.frame.height
                 )
             } completion: { _ in
-                Task { @MainActor in
+                Task {
                     try await Task.sleep(seconds: 3)
                     hide()
                 }
@@ -62,6 +63,7 @@ public extension AlertHUD {
         }
     }
 
+    @MainActor
     static func hide() {
         guard shared.alertView.superview != nil else {
             return
@@ -81,6 +83,7 @@ public extension AlertHUD {
         }
     }
 
+    @MainActor
     @objc static func onTapView() {
         hide()
     }
