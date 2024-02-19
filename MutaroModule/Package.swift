@@ -23,7 +23,8 @@ let firebaseAnalyticsDependencies: [Target.Dependency] = [
 ]
 
 let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
-    .define("DEV", .when(configuration: .debug))
+    .define("DEV", .when(configuration: .debug)),
+    .unsafeFlags(["-strict-concurrency=complete"])
 ]
 
 let productionFeatures: [PackageDescription.Target.Dependency] = [
