@@ -83,6 +83,7 @@ public final class RegisterJWTViewController: UIViewController {
 
         output
             .showAlert
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.showAlert(state: $0)
             }
@@ -90,7 +91,7 @@ public final class RegisterJWTViewController: UIViewController {
 
         output
             .onUpdateSavedInfo
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.configureInfoTextViews(info: $0)
             }
@@ -98,7 +99,7 @@ public final class RegisterJWTViewController: UIViewController {
 
         output
             .didPickPrivateKeyFile
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.configurePrivateKeyTextViews(value: $0)
             }
@@ -107,7 +108,7 @@ public final class RegisterJWTViewController: UIViewController {
         NotificationCenter
             .default
             .publisher(for: UIResponder.keyboardWillChangeFrameNotification)
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.handleKeyboardState($0)
             }

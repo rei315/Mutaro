@@ -91,17 +91,23 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         input
             .didTapMyApp
             .receive(on: DispatchQueue.main)
-            .asyncSink(taskCancellable: taskCancellables) { [weak self] in
-                await self?.onTapMyApp(from: $0.from, index: $0.index)
-            }
+            .asyncSink(
+                taskCancellable: taskCancellables,
+                receiveValue: { [weak self] in
+                    await self?.onTapMyApp(from: $0.from, index: $0.index)
+                }
+            )
             .store(in: &cancellables)
 
         input
             .didTapRegisterJWT
             .receive(on: DispatchQueue.main)
-            .asyncSink(taskCancellable: taskCancellables) { [weak self] in
-                await self?.onTapRegisterJWT(from: $0)
-            }
+            .asyncSink(
+                taskCancellable: taskCancellables,
+                receiveValue: { [weak self] in
+                    await self?.onTapRegisterJWT(from: $0)
+                }
+            )
             .store(in: &cancellables)
 
         input

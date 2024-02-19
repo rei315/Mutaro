@@ -57,9 +57,12 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
         input
             .didTapRegister
             .receive(on: DispatchQueue.main)
-            .asyncSink(taskCancellable: taskCancellables) { [weak self] in
-                await self?.onTapRegister(item: $0)
-            }
+            .asyncSink(
+                taskCancellable: taskCancellables,
+                receiveValue: { [weak self] in
+                    await self?.onTapRegister(item: $0)
+                }
+            )
             .store(in: &cancellables)
 
         return .init(

@@ -15,6 +15,7 @@ public final class AlertHUD: NSObject {
 }
 
 public extension AlertHUD {
+    @MainActor
     static func show(
         _ title: String,
         backgroundColor: UIColor,
@@ -56,7 +57,7 @@ public extension AlertHUD {
             } completion: { _ in
                 Task {
                     try await Task.sleep(seconds: 3)
-                    await hide()
+                    hide()
                 }
             }
         }
