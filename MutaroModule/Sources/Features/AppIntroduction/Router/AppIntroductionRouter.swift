@@ -9,7 +9,7 @@ import Core
 import UIKit
 
 public protocol AppIntroductionRoutable {
-    func showHomeAsRoot()
+    func showHomeAsRoot() async
 }
 
 public class AppIntroductionRouter: AppIntroductionRoutable {

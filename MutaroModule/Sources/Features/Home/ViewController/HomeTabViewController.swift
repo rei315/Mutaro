@@ -83,6 +83,7 @@ public enum HomeTabPage: Int {
         return UIImage.SymbolConfiguration(hierarchicalColor: normalTabImageColor)
     }
 
+    @MainActor
     public var item: UITabBarItem {
         .init(
             title: title,

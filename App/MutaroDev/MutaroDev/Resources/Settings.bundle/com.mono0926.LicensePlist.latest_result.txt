@@ -30,23 +30,23 @@ name: BlueRSA, nameSpecified: CryptorRSA, owner: Kitura, version: 1.0.201, sourc
 
 name: CollectionConcurrencyKit, nameSpecified: CollectionConcurrencyKit, owner: JohnSundell, version: 0.2.0, source: https://github.com/JohnSundell/CollectionConcurrencyKit
 
-name: CryptoSwift, nameSpecified: CryptoSwift, owner: krzyzanowskim, version: 1.7.2, source: https://github.com/krzyzanowskim/CryptoSwift
+name: CryptoSwift, nameSpecified: CryptoSwift, owner: krzyzanowskim, version: 1.8.1, source: https://github.com/krzyzanowskim/CryptoSwift
 
 name: CwlCatchException, nameSpecified: CwlCatchException, owner: mattgallagher, version: 2.1.2, source: https://github.com/mattgallagher/CwlCatchException
 
 name: CwlPreconditionTesting, nameSpecified: CwlPreconditionTesting, owner: mattgallagher, version: 2.1.2, source: https://github.com/mattgallagher/CwlPreconditionTesting
 
-name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.7.0, source: https://github.com/onevcat/Kingfisher
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.11.0, source: https://github.com/onevcat/Kingfisher
 
 name: KituraContracts, nameSpecified: KituraContracts, owner: Kitura, version: 2.0.1, source: https://github.com/Kitura/KituraContracts
 
 name: LoggerAPI, nameSpecified: LoggerAPI, owner: Kitura, version: 2.0.0, source: https://github.com/Kitura/LoggerAPI
 
-name: needle, nameSpecified: NeedleFoundation, owner: uber, version: 0.23.0, source: https://github.com/uber/needle
+name: needle, nameSpecified: NeedleFoundation, owner: uber, version: 0.24.0, source: https://github.com/uber/needle
 
-name: Nimble, nameSpecified: Nimble, owner: Quick, version: 12.0.1, source: https://github.com/Quick/Nimble
+name: Nimble, nameSpecified: Nimble, owner: Quick, version: 12.3.0, source: https://github.com/Quick/Nimble
 
-name: Quick, nameSpecified: Quick, owner: Quick, version: 6.1.0, source: https://github.com/Quick/Quick
+name: Quick, nameSpecified: Quick, owner: Quick, version: 7.4.0, source: https://github.com/Quick/Quick
 
 name: SourceKitten, nameSpecified: SourceKitten, owner: jpsim, version: 0.34.1, source: https://github.com/jpsim/SourceKitten
 
@@ -56,19 +56,19 @@ name: Swift-JWT, nameSpecified: SwiftJWT, owner: Kitura, version: 4.0.1, source:
 
 name: swift-log, nameSpecified: swift-log, owner: apple, version: 1.5.2, source: https://github.com/apple/swift-log
 
-name: swift-snapshot-testing, nameSpecified: swift-snapshot-testing, owner: pointfreeco, version: 1.11.0, source: https://github.com/pointfreeco/swift-snapshot-testing
+name: swift-snapshot-testing, nameSpecified: swift-snapshot-testing, owner: pointfreeco, version: 1.15.3, source: https://github.com/pointfreeco/swift-snapshot-testing
 
-name: swift-syntax, nameSpecified: SwiftSyntax, owner: apple, version: 509.0.0-swift-DEVELOPMENT-SNAPSHOT-2023-05-02-a, source: https://github.com/apple/swift-syntax
+name: swift-syntax, nameSpecified: swift-syntax, owner: apple, version: 509.0.2, source: https://github.com/apple/swift-syntax
 
-name: SwiftFormat, nameSpecified: SwiftFormat, owner: nicklockwood, version: 0.51.15, source: https://github.com/nicklockwood/SwiftFormat
+name: SwiftFormat, nameSpecified: SwiftFormat, owner: nicklockwood, version: 0.53.2, source: https://github.com/nicklockwood/SwiftFormat
 
-name: SwiftLint, nameSpecified: SwiftLint, owner: realm, version: 0.52.2, source: https://github.com/realm/SwiftLint
+name: SwiftLint, nameSpecified: SwiftLint, owner: realm, version: 0.54.0, source: https://github.com/realm/SwiftLint
 
 name: SwiftyTextTable, nameSpecified: SwiftyTextTable, owner: scottrhoyt, version: 0.9.0, source: https://github.com/scottrhoyt/SwiftyTextTable
 
 name: SWXMLHash, nameSpecified: SWXMLHash, owner: drmohundro, version: 7.0.2, source: https://github.com/drmohundro/SWXMLHash
 
-name: Yams, nameSpecified: Yams, owner: jpsim, version: 5.0.5, source: https://github.com/jpsim/Yams
+name: Yams, nameSpecified: Yams, owner: jpsim, version: 5.0.6, source: https://github.com/jpsim/Yams
 
 name: LicensePlist, nameSpecified: , version: 
 body: MIT License
