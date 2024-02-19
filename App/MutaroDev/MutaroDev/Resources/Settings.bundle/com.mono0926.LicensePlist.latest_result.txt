@@ -60,7 +60,7 @@ name: swift-snapshot-testing, nameSpecified: swift-snapshot-testing, owner: poin
 
 name: swift-syntax, nameSpecified: SwiftSyntax, owner: apple, version: 509.0.0-swift-DEVELOPMENT-SNAPSHOT-2023-05-02-a, source: https://github.com/apple/swift-syntax
 
-name: SwiftFormat, nameSpecified: SwiftFormat, owner: nicklockwood, version: 0.51.11, source: https://github.com/nicklockwood/SwiftFormat
+name: SwiftFormat, nameSpecified: SwiftFormat, owner: nicklockwood, version: 0.51.15, source: https://github.com/nicklockwood/SwiftFormat
 
 name: SwiftLint, nameSpecified: SwiftLint, owner: realm, version: 0.52.2, source: https://github.com/realm/SwiftLint
 
