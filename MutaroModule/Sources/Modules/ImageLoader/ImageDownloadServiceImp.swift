@@ -24,7 +24,7 @@ public final class ImageDownloadServiceImp: ImageDownloadService {
             return
         }
 
-        let resource = ImageResource(downloadURL: url)
+        let resource = KF.ImageResource(downloadURL: url)
 
         KingfisherManager.shared.retrieveImage(
             with: resource,
