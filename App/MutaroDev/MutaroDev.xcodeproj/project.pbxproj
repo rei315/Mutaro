@@ -112,7 +112,6 @@
 			buildConfigurationList = 713BA8882A317C9600B59A96 /* Build configuration list for PBXNativeTarget "MutaroDev" */;
 			buildPhases = (
 				71D24CCA2A318EC100092101 /* Needle */,
-				71D24CCB2A318EC200092101 /* SwiftFormat */,
 				71D24CCC2A318EC300092101 /* [NEED FIRST RUN] register env */,
 				713BA8702A317C9200B59A96 /* Sources */,
 				713BA8712A317C9200B59A96 /* Frameworks */,
@@ -197,24 +196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=${CI_WORKSPACE}/MutaroModule/Sources/\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=../../MutaroModule/Sources/\n    fi\n    \n    needle generate $NEEDLE_SWIFT_FILE_PATH $COMPONENT_PATH --exclude-paths /Production\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
-		};
-		71D24CCB2A318EC200092101 /* SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftFormat;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ ! $CI ]; then\n    cd ../../MutaroModule\n    xcrun --sdk macosx swift package plugin --allow-writing-to-package-directory swiftformat\nfi\n";
 		};
 		71D24CCC2A318EC300092101 /* [NEED FIRST RUN] register env */ = {
 			isa = PBXShellScriptBuildPhase;
