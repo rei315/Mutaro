@@ -195,7 +195,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_WORKSPACE}/MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=${CI_WORKSPACE}/MutaroModule/Sources/\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=../../MutaroModule/Sources/\n    fi\n    \n    needle generate $NEEDLE_SWIFT_FILE_PATH $COMPONENT_PATH --exclude-paths /Production\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CI ]; then\n    export PATH=\"$PATH:/usr/local/bin\"\nelse\n    export PATH=\"$PATH:/opt/homebrew/bin\"    \nfi\n\nif which needle; then\n    echo \"Mins: Create Needle\"\n    if [ $CI ]; then\n        NEEDLE_SWIFT_FILE_PATH=${CI_PRIMARY_REPOSITORY_PATH}/MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=${CI_PRIMARY_REPOSITORY_PATH}/MutaroModule/Sources/\n    else\n        NEEDLE_SWIFT_FILE_PATH=../../MutaroModule/Sources/App/Development/DI/NeedleGenerated.swift\n        COMPONENT_PATH=../../MutaroModule/Sources/\n    fi\n    \n    needle generate $NEEDLE_SWIFT_FILE_PATH $COMPONENT_PATH --exclude-paths /Production\nelse\n    echo \"warning: Needle not installed\"\nfi\n";
 		};
 		71D24CCC2A318EC300092101 /* [NEED FIRST RUN] register env */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -213,7 +213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f \"../../env-vars.sh\" ]; then \n    source \"../../env-vars.sh\"\nfi\n\nif [ $CI ] && [[ ! -z $CI_WORKFLOW ]]; then    \n    ${CI_WORKSPACE}/scripts/update-google-service-plist.sh true true $CI_WORKSPACE $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nelse    \n    ../../scripts/update-google-service-plist.sh false true \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nfi\n";
+			shellScript = "if [ -f \"../../env-vars.sh\" ]; then \n    source \"../../env-vars.sh\"\nfi\n\nif [ $CI ] && [[ ! -z $CI_PRIMARY_REPOSITORY_PATH ]]; then    \n    ${CI_PRIMARY_REPOSITORY_PATH}/scripts/update-google-service-plist.sh true true $CI_PRIMARY_REPOSITORY_PATH $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nelse    \n    ../../scripts/update-google-service-plist.sh false true \"\" $G_PROD_CLIENT_ID $G_PROD_API_KEY $G_PROD_REVERSED_CLIENT_ID $G_PROD_GCM_SENDER_ID $G_PROD_GOOGLE_APP_ID\nfi\n";
 		};
 		71D24CCD2A318EC400092101 /* Add LicensePlist to Setting.bundle */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -252,7 +252,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CI ]; then\n    ${CI_WORKSPACE}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
+			shellScript = "if [ $CI ]; then\n    ${CI_PRIMARY_REPOSITORY_PATH}/scripts/run\nelse\n    ../../scripts/run\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
