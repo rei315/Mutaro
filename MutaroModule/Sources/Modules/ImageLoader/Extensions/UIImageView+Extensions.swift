@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UIImageView+Extensions.swift
 //
 //
 //  Created by minguk-kim on 2023/05/05.
@@ -35,8 +35,8 @@ public extension UIImageView {
             .placeholder(placeholderImage)
             .fade(duration: fade)
 
-        processors.forEach {
-            _ = kf.setProcessor($0)
+        for processor in processors {
+            _ = kf.setProcessor(processor)
         }
 
         kf.set(to: self)

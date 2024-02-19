@@ -1,5 +1,5 @@
 //
-//  XCTestCase+Extensions.swift
+//  XCTestCase+Exntensions.swift
 //
 //
 //  Created by minguk-kim on 2023/08/06.
