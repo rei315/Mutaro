@@ -9,6 +9,7 @@ import Core
 import UIKit
 
 public protocol AppIntroductionRoutable {
+    @MainActor
     func showHomeAsRoot() async
 }
 

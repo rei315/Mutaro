@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Core
 import Foundation
 import JWTGenerator
 import KeychainStore
@@ -36,6 +37,7 @@ extension RegisterJWTViewModel {
 public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
     private let showAlertSubject = PassthroughSubject<AlertState, Never>()
     private var cancellables: Set<AnyCancellable> = []
+    private let taskCancellables: TaskCancellable = .init()
 
     private let environment: RegisterJWTFeatureEnvironment
 
@@ -55,8 +57,8 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
         input
             .didTapRegister
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.onTapRegister(item: $0)
+            .asyncSink(taskCancellable: taskCancellables) { [weak self] in
+                await self?.onTapRegister(item: $0)
             }
             .store(in: &cancellables)
 
@@ -69,7 +71,7 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
 
     private func onTapRegister(
         item: RegisterItem
-    ) {
+    ) async {
         guard let issuerID = item.issuerID,
               !issuerID.isEmpty else {
             showAlertSubject.send(.invalidIssuerID)
@@ -109,7 +111,7 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
             try KeychainStore.shared.deleteValue(forKey: .jwt)
             try KeychainStore.shared.saveValue(info, forKey: .jwt)
             showAlertSubject.send(.successedSavingJWTReuqestInfo)
-            environment.router.close(from: item.viewController)
+            await environment.router.close(from: item.viewController)
         } catch {
             showAlertSubject.send(.failedSavingJWTRequestInfo)
         }
@@ -161,7 +163,7 @@ extension RegisterJWTViewModel {
         }
     }
 
-    struct RegisterItem {
+    struct RegisterItem: Sendable {
         let viewController: UIViewController
         let issuerID: String?
         let keyID: String?

@@ -18,7 +18,7 @@ public final class SettingViewModel: NSObject {
         self.environment = environment
     }
 
-    public func routeToRegisterJWT(from viewController: UIViewController) {
-        environment.router.showRegisterJWT(from: viewController)
+    public func routeToRegisterJWT(from viewController: UIViewController) async {
+        await environment.router.showRegisterJWT(from: viewController)
     }
 }
