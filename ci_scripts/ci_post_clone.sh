@@ -7,4 +7,5 @@
 #  Copyright © 2022 MGHouse, Inc. All rights reserved.
 
 brew install needle
+brew install jq
 defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
