@@ -12,7 +12,7 @@ import UIKit
 
 public protocol SettingFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
-    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable { get }
+    var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable { get }
 }
 
 public class SettingFeatureBuilder: Builder<SettingFeatureDependency>, SettingFeatureBuildable {
@@ -45,7 +45,7 @@ public class SettingFeatureBuilder: Builder<SettingFeatureDependency>, SettingFe
         .init(router: router)
     }
 
-    private var router: SettingRoutable {
+    private var router: any SettingRoutable {
         SettingRouter(
             dependency: .init(
                 registerJWTFeatureBuilder: dependency.registerJWTFeatureBuilder
@@ -55,7 +55,7 @@ public class SettingFeatureBuilder: Builder<SettingFeatureDependency>, SettingFe
 }
 
 public class SettingFeatureBuilderComponent: Component<SettingFeatureDependency>, FeatureSetting {
-    public func settingFeatureBuilder() -> SettingFeatureBuildable {
+    public func settingFeatureBuilder() -> any SettingFeatureBuildable {
         SettingFeatureBuilder(dependency: dependency)
     }
 }

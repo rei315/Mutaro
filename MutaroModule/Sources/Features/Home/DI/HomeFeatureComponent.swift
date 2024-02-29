@@ -22,7 +22,7 @@ class HomeFeatureBuilder: Builder<HomeFeatureDependency>, HomeFeatureBuildable {
 }
 
 public class HomeFeatureBuilderComponent: Component<HomeFeatureDependency>, FeatureHomeView {
-    public func homeFeatureBuilder() -> Core.HomeFeatureBuildable {
+    public func homeFeatureBuilder() -> any Core.HomeFeatureBuildable {
         HomeFeatureBuilder(dependency: dependency)
     }
 }

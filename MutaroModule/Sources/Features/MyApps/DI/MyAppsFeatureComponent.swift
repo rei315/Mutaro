@@ -12,10 +12,10 @@ import NeedleFoundation
 import UIKit
 
 public protocol MyAppsFeatureDependency: Dependency {
-    var client: Providable { get }
-    var imageDownloadService: ImageDownloadService { get }
-    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable { get }
-    var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable { get }
+    var client: any Providable { get }
+    var imageDownloadService: any ImageDownloadService { get }
+    var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable { get }
+    var myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable { get }
 }
 
 class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuildable {
@@ -54,7 +54,7 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
         )
     }
 
-    private var router: MyAppsRoutable {
+    private var router: any MyAppsRoutable {
         MyAppsRouter(
             dependency: .init(
                 registerJWTFeatureBuilder: dependency.registerJWTFeatureBuilder,
@@ -63,13 +63,13 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
         )
     }
 
-    private var appInfoUseCase: AppInfoUseCase {
+    private var appInfoUseCase: any AppInfoUseCase {
         AppInfoUseCaseImpl(client: dependency.client)
     }
 }
 
 public class MyAppsFeatureBuilderComponent: Component<MyAppsFeatureDependency>, FeatureMyApps {
-    public func myAppsFeatureBuilder() -> Core.MyAppsFeatureBuildable {
+    public func myAppsFeatureBuilder() -> any Core.MyAppsFeatureBuildable {
         MyAppsFeatureBuilder(dependency: dependency)
     }
 }

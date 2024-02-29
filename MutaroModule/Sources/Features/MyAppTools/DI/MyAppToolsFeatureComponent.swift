@@ -11,7 +11,7 @@ import NeedleFoundation
 import UIKit
 
 public protocol MyAppToolsFeatureDependency: Dependency {
-    var client: Providable { get }
+    var client: any Providable { get }
 }
 
 class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppToolsFeatureBuildable {
@@ -35,19 +35,19 @@ class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppTools
         )
     }
 
-    private var router: MyAppToolsRoutable {
+    private var router: any MyAppToolsRoutable {
         MyAppToolsRouter(
             dependency: .init()
         )
     }
 
-    private var ciProductUseCase: CIProductUseCase {
+    private var ciProductUseCase: any CIProductUseCase {
         CIProductUseCaseImp(client: dependency.client)
     }
 }
 
 public class MyAppToolsFeatureComponent: Component<MyAppToolsFeatureDependency>, FeatureMyAppTools {
-    public func myAppToolsFeatureBuilder() -> MyAppToolsFeatureBuildable {
+    public func myAppToolsFeatureBuilder() -> any MyAppToolsFeatureBuildable {
         MyAppToolsFeatureBuilder(dependency: dependency)
     }
 }

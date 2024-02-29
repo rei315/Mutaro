@@ -12,9 +12,9 @@ import UIKit
 
 public protocol AppIntroductionFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
-    var myAppsFeatureBuilder: MyAppsFeatureBuildable { get }
-    var settingFeatureBuilder: SettingFeatureBuildable { get }
-    var homeFeatureBuilder: HomeFeatureBuildable { get }
+    var myAppsFeatureBuilder: any MyAppsFeatureBuildable { get }
+    var settingFeatureBuilder: any SettingFeatureBuildable { get }
+    var homeFeatureBuilder: any HomeFeatureBuildable { get }
 }
 
 public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDependency>, AppIntroductionFeatureBuildable {
@@ -32,7 +32,7 @@ public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDepend
         .init(router: router)
     }
 
-    private var router: AppIntroductionRoutable {
+    private var router: any AppIntroductionRoutable {
         // TODO: - dependency initの中で遷移するBModuleのBuilderを入れる
         AppIntroductionRouter(
             dependency: .init(
@@ -45,7 +45,7 @@ public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDepend
 }
 
 public class AppIntroductionFeatureBuilderComponent: Component<AppIntroductionFeatureDependency>, FeatureAppIntroduction {
-    public func appIntroductionBuilder() -> Core.AppIntroductionFeatureBuildable {
+    public func appIntroductionBuilder() -> any Core.AppIntroductionFeatureBuildable {
         AppIntroductionFeatureBuilder(dependency: dependency)
     }
 }

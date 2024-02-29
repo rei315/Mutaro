@@ -9,14 +9,14 @@ import Core
 import Foundation
 
 public struct MyAppsFeatureEnvironment {
-    public let appInfoUseCase: AppInfoUseCase
-    public let imageDownloadService: ImageDownloadService
-    public let router: MyAppsRoutable
+    public let appInfoUseCase: any AppInfoUseCase
+    public let imageDownloadService: any ImageDownloadService
+    public let router: any MyAppsRoutable
 
     public init(
-        appInfoUseCase: AppInfoUseCase,
-        imageDownloadService: ImageDownloadService,
-        router: MyAppsRoutable
+        appInfoUseCase: any AppInfoUseCase,
+        imageDownloadService: any ImageDownloadService,
+        router: any MyAppsRoutable
     ) {
         self.appInfoUseCase = appInfoUseCase
         self.imageDownloadService = imageDownloadService

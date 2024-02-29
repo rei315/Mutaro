@@ -38,7 +38,7 @@ private func factory61c9a65d91c54126627be3b0c44298fc1c149afb(_ component: Needle
     return HomeFeatureDependency7d2b3cafa1a26787323bProvider()
 }
 private class MyAppToolsFeatureDependency8819cdcb20ff8ed502dcProvider: MyAppToolsFeatureDependency {
-    var client: Providable {
+    var client: any Providable {
         return devRootComponent.client
     }
     private let devRootComponent: DevRootComponent
@@ -62,16 +62,16 @@ private func factory3027719ba7197de4dae7e3b0c44298fc1c149afb(_ component: Needle
     return RegisterJWTFeatureDependencyb8fd3e5e6507e3cea0d9Provider()
 }
 private class MyAppsFeatureDependency6e3d99de62d490ee639fProvider: MyAppsFeatureDependency {
-    var client: Providable {
+    var client: any Providable {
         return devRootComponent.client
     }
-    var imageDownloadService: ImageDownloadService {
+    var imageDownloadService: any ImageDownloadService {
         return devRootComponent.imageDownloadService
     }
-    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+    var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable {
         return devRootComponent.registerJWTFeatureBuilder
     }
-    var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable {
+    var myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable {
         return devRootComponent.myAppToolsFeatureBuilder
     }
     private let devRootComponent: DevRootComponent
@@ -84,7 +84,7 @@ private func factory7c6a8079ee013eb6ac6c295202051d8ff8d8a13a(_ component: Needle
     return MyAppsFeatureDependency6e3d99de62d490ee639fProvider(devRootComponent: parent1(component) as! DevRootComponent)
 }
 private class SettingFeatureDependencya3733705422ddb073e76Provider: SettingFeatureDependency {
-    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+    var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable {
         return devRootComponent.registerJWTFeatureBuilder
     }
     private let devRootComponent: DevRootComponent
@@ -97,13 +97,13 @@ private func factory5d4e408a43798995182c295202051d8ff8d8a13a(_ component: Needle
     return SettingFeatureDependencya3733705422ddb073e76Provider(devRootComponent: parent1(component) as! DevRootComponent)
 }
 private class AppIntroductionFeatureDependencyec2688ffe4048af7f26dProvider: AppIntroductionFeatureDependency {
-    var myAppsFeatureBuilder: MyAppsFeatureBuildable {
+    var myAppsFeatureBuilder: any MyAppsFeatureBuildable {
         return devRootComponent.myAppsFeatureBuilder
     }
-    var settingFeatureBuilder: SettingFeatureBuildable {
+    var settingFeatureBuilder: any SettingFeatureBuildable {
         return devRootComponent.settingFeatureBuilder
     }
-    var homeFeatureBuilder: HomeFeatureBuildable {
+    var homeFeatureBuilder: any HomeFeatureBuildable {
         return devRootComponent.homeFeatureBuilder
     }
     private let devRootComponent: DevRootComponent
@@ -120,14 +120,14 @@ private func factorya635079052b624173c15295202051d8ff8d8a13a(_ component: Needle
 extension DevRootComponent: Registration {
     public func registerItems() {
 
-        localTable["appIntroductionFeatureBuilder-AppIntroductionFeatureBuildable"] = { [unowned self] in self.appIntroductionFeatureBuilder as Any }
-        localTable["settingFeatureBuilder-SettingFeatureBuildable"] = { [unowned self] in self.settingFeatureBuilder as Any }
-        localTable["homeFeatureBuilder-HomeFeatureBuildable"] = { [unowned self] in self.homeFeatureBuilder as Any }
-        localTable["myAppsFeatureBuilder-MyAppsFeatureBuildable"] = { [unowned self] in self.myAppsFeatureBuilder as Any }
-        localTable["registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"] = { [unowned self] in self.registerJWTFeatureBuilder as Any }
-        localTable["myAppToolsFeatureBuilder-MyAppToolsFeatureBuildable"] = { [unowned self] in self.myAppToolsFeatureBuilder as Any }
-        localTable["client-Providable"] = { [unowned self] in self.client as Any }
-        localTable["imageDownloadService-ImageDownloadService"] = { [unowned self] in self.imageDownloadService as Any }
+        localTable["appIntroductionFeatureBuilder-any AppIntroductionFeatureBuildable"] = { [unowned self] in self.appIntroductionFeatureBuilder as Any }
+        localTable["settingFeatureBuilder-any SettingFeatureBuildable"] = { [unowned self] in self.settingFeatureBuilder as Any }
+        localTable["homeFeatureBuilder-any HomeFeatureBuildable"] = { [unowned self] in self.homeFeatureBuilder as Any }
+        localTable["myAppsFeatureBuilder-any MyAppsFeatureBuildable"] = { [unowned self] in self.myAppsFeatureBuilder as Any }
+        localTable["registerJWTFeatureBuilder-any RegisterJWTFeatureBuildable"] = { [unowned self] in self.registerJWTFeatureBuilder as Any }
+        localTable["myAppToolsFeatureBuilder-any MyAppToolsFeatureBuildable"] = { [unowned self] in self.myAppToolsFeatureBuilder as Any }
+        localTable["client-any Providable"] = { [unowned self] in self.client as Any }
+        localTable["imageDownloadService-any ImageDownloadService"] = { [unowned self] in self.imageDownloadService as Any }
     }
 }
 extension HomeFeatureBuilderComponent: Registration {
@@ -137,7 +137,7 @@ extension HomeFeatureBuilderComponent: Registration {
 }
 extension MyAppToolsFeatureComponent: Registration {
     public func registerItems() {
-        keyPathToName[\MyAppToolsFeatureDependency.client] = "client-Providable"
+        keyPathToName[\MyAppToolsFeatureDependency.client] = "client-any Providable"
     }
 }
 extension RegisterJWTFeatureBuilderComponent: Registration {
@@ -147,22 +147,22 @@ extension RegisterJWTFeatureBuilderComponent: Registration {
 }
 extension MyAppsFeatureBuilderComponent: Registration {
     public func registerItems() {
-        keyPathToName[\MyAppsFeatureDependency.client] = "client-Providable"
-        keyPathToName[\MyAppsFeatureDependency.imageDownloadService] = "imageDownloadService-ImageDownloadService"
-        keyPathToName[\MyAppsFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
-        keyPathToName[\MyAppsFeatureDependency.myAppToolsFeatureBuilder] = "myAppToolsFeatureBuilder-MyAppToolsFeatureBuildable"
+        keyPathToName[\MyAppsFeatureDependency.client] = "client-any Providable"
+        keyPathToName[\MyAppsFeatureDependency.imageDownloadService] = "imageDownloadService-any ImageDownloadService"
+        keyPathToName[\MyAppsFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-any RegisterJWTFeatureBuildable"
+        keyPathToName[\MyAppsFeatureDependency.myAppToolsFeatureBuilder] = "myAppToolsFeatureBuilder-any MyAppToolsFeatureBuildable"
     }
 }
 extension SettingFeatureBuilderComponent: Registration {
     public func registerItems() {
-        keyPathToName[\SettingFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-RegisterJWTFeatureBuildable"
+        keyPathToName[\SettingFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-any RegisterJWTFeatureBuildable"
     }
 }
 extension AppIntroductionFeatureBuilderComponent: Registration {
     public func registerItems() {
-        keyPathToName[\AppIntroductionFeatureDependency.myAppsFeatureBuilder] = "myAppsFeatureBuilder-MyAppsFeatureBuildable"
-        keyPathToName[\AppIntroductionFeatureDependency.settingFeatureBuilder] = "settingFeatureBuilder-SettingFeatureBuildable"
-        keyPathToName[\AppIntroductionFeatureDependency.homeFeatureBuilder] = "homeFeatureBuilder-HomeFeatureBuildable"
+        keyPathToName[\AppIntroductionFeatureDependency.myAppsFeatureBuilder] = "myAppsFeatureBuilder-any MyAppsFeatureBuildable"
+        keyPathToName[\AppIntroductionFeatureDependency.settingFeatureBuilder] = "settingFeatureBuilder-any SettingFeatureBuildable"
+        keyPathToName[\AppIntroductionFeatureDependency.homeFeatureBuilder] = "homeFeatureBuilder-any HomeFeatureBuildable"
     }
 }
 

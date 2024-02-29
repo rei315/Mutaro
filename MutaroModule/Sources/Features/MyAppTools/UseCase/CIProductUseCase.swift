@@ -15,9 +15,9 @@ public protocol CIProductUseCase {
 }
 
 public final class CIProductUseCaseImp: CIProductUseCase {
-    private let client: Providable
+    private let client: any Providable
 
-    public init(client: Providable) {
+    public init(client: any Providable) {
         self.client = client
     }
 

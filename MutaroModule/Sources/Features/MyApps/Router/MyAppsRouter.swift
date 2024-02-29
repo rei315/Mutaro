@@ -17,12 +17,12 @@ public protocol MyAppsRoutable {
 
 public class MyAppsRouter: MyAppsRoutable {
     public struct Dependency {
-        public let registerJWTFeatureBuilder: RegisterJWTFeatureBuildable
-        public let myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable
+        public let registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable
+        public let myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable
 
         public init(
-            registerJWTFeatureBuilder: RegisterJWTFeatureBuildable,
-            myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable
+            registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable,
+            myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable
         ) {
             self.registerJWTFeatureBuilder = registerJWTFeatureBuilder
             self.myAppToolsFeatureBuilder = myAppToolsFeatureBuilder

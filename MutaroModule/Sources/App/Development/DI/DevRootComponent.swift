@@ -18,55 +18,55 @@ import RegisterJWTFeature
 import SettingFeature
 
 public final class DevRootComponent: BootstrapComponent {
-    public var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
+    public var appIntroductionFeatureBuilder: any AppIntroductionFeatureBuildable {
         shared {
             AppIntroductionFeatureBuilderComponent(parent: self)
                 .appIntroductionBuilder()
         }
     }
 
-    public var settingFeatureBuilder: SettingFeatureBuildable {
+    public var settingFeatureBuilder: any SettingFeatureBuildable {
         shared {
             SettingFeatureBuilderComponent(parent: self)
                 .settingFeatureBuilder()
         }
     }
 
-    public var homeFeatureBuilder: HomeFeatureBuildable {
+    public var homeFeatureBuilder: any HomeFeatureBuildable {
         shared {
             HomeFeatureBuilderComponent(parent: self)
                 .homeFeatureBuilder()
         }
     }
 
-    public var myAppsFeatureBuilder: MyAppsFeatureBuildable {
+    public var myAppsFeatureBuilder: any MyAppsFeatureBuildable {
         shared {
             MyAppsFeatureBuilderComponent(parent: self)
                 .myAppsFeatureBuilder()
         }
     }
 
-    public var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+    public var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable {
         shared {
             RegisterJWTFeatureBuilderComponent(parent: self)
                 .registerJWTFeatureBuilder()
         }
     }
 
-    public var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable {
+    public var myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable {
         shared {
             MyAppToolsFeatureComponent(parent: self)
                 .myAppToolsFeatureBuilder()
         }
     }
 
-    public var client: Providable {
+    public var client: any Providable {
         shared {
             Provider()
         }
     }
 
-    public var imageDownloadService: ImageDownloadService {
+    public var imageDownloadService: any ImageDownloadService {
         shared {
             ImageDownloadServiceImp()
         }

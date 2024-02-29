@@ -8,9 +8,9 @@
 import Foundation
 
 public struct RegisterJWTFeatureEnvironment {
-    public let router: RegisterJWTFeatureRoutable
+    public let router: any RegisterJWTFeatureRoutable
 
-    public init(router: RegisterJWTFeatureRoutable) {
+    public init(router: any RegisterJWTFeatureRoutable) {
         self.router = router
     }
 }

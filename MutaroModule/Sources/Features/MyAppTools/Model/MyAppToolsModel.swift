@@ -14,9 +14,9 @@ import UIKit
 
 struct MyAppToolsModel {
     private let appId: String
-    private let ciProductUseCase: CIProductUseCase
+    private let ciProductUseCase: any CIProductUseCase
 
-    init(appId: String, ciProductUseCase: CIProductUseCase) {
+    init(appId: String, ciProductUseCase: any CIProductUseCase) {
         self.appId = appId
         self.ciProductUseCase = ciProductUseCase
     }
