@@ -7,11 +7,9 @@ on:
 jobs:
   distribute:
     if: contains(github.event.comment.html_url, '/pull/') && startsWith(github.event.comment.body, '/testflight')
-    runs-on: self-hosted
+    runs-on: macos-latest-xlarge
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: get pull request info
         uses: octokit/request-action@v2.x
         id: pull_request
