@@ -7,7 +7,7 @@ on:
 jobs:
   distribute:
     if: contains(github.event.comment.html_url, '/pull/') && startsWith(github.event.comment.body, '/testflight')
-    runs-on: macos-latest-xlarge
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: get pull request info

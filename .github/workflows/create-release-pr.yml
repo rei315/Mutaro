@@ -9,7 +9,7 @@ on:
         
 jobs:
   make_pull_request:
-    runs-on: macos-latest-xlarge
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: "update version"
