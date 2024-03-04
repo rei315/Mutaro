@@ -8,9 +8,9 @@
 import Foundation
 
 public struct AppIntroductionFeatureEnvironment {
-    public let router: AppIntroductionRoutable
+    public let router: any AppIntroductionRoutable
 
-    public init(router: AppIntroductionRoutable) {
+    public init(router: any AppIntroductionRoutable) {
         self.router = router
     }
 }

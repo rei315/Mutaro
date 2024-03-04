@@ -28,7 +28,7 @@ class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, Register
         .init(router: router)
     }
 
-    private var router: RegisterJWTFeatureRoutable {
+    private var router: any RegisterJWTFeatureRoutable {
         RegisterJWTFeatureRouter(
             dependency: .init()
         )
@@ -36,7 +36,7 @@ class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, Register
 }
 
 public class RegisterJWTFeatureBuilderComponent: Component<RegisterJWTFeatureDependency>, FeatureRegisterJWT {
-    public func registerJWTFeatureBuilder() -> Core.RegisterJWTFeatureBuildable {
+    public func registerJWTFeatureBuilder() -> any Core.RegisterJWTFeatureBuildable {
         RegisterJWTFeatureBuilder(dependency: dependency)
     }
 }

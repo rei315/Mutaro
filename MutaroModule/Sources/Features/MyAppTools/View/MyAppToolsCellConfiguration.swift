@@ -17,11 +17,11 @@ struct MyAppToolCellConfiguration: UIContentConfiguration, Hashable {
     var title: String?
     var icon: UIImage?
 
-    func makeContentView() -> UIView & UIContentView {
+    func makeContentView() -> any UIView & UIContentView {
         MyAppToolCellView(configuration: self)
     }
 
-    func updated(for _: UIConfigurationState) -> MyAppToolCellConfiguration {
+    func updated(for _: any UIConfigurationState) -> MyAppToolCellConfiguration {
         self
     }
 }
@@ -30,7 +30,7 @@ final class MyAppToolCellView: UIView, UIContentView {
     private let iconView: UIImageView = .init()
     private let titleLabel: UILabel = .init()
 
-    var configuration: UIContentConfiguration {
+    var configuration: any UIContentConfiguration {
         didSet {
             guard let configuration = configuration as? MyAppToolCellConfiguration else {
                 return
@@ -39,7 +39,7 @@ final class MyAppToolCellView: UIView, UIContentView {
         }
     }
 
-    init(configuration: UIContentConfiguration) {
+    init(configuration: any UIContentConfiguration) {
         self.configuration = configuration
         super.init(frame: .null)
         setupView()

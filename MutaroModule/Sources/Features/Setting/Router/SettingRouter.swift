@@ -15,9 +15,9 @@ public protocol SettingRoutable {
 
 public class SettingRouter: SettingRoutable {
     public struct Dependency {
-        public let registerJWTFeatureBuilder: RegisterJWTFeatureBuildable
+        public let registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable
 
-        init(registerJWTFeatureBuilder: RegisterJWTFeatureBuildable) {
+        init(registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable) {
             self.registerJWTFeatureBuilder = registerJWTFeatureBuilder
         }
     }

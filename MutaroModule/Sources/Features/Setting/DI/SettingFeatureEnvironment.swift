@@ -8,9 +8,9 @@
 import Foundation
 
 public struct SettingFeatureEnvironment {
-    public let router: SettingRoutable
+    public let router: any SettingRoutable
 
-    public init(router: SettingRoutable) {
+    public init(router: any SettingRoutable) {
         self.router = router
     }
 }

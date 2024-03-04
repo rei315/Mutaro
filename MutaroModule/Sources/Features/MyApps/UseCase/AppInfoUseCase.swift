@@ -16,9 +16,9 @@ public protocol AppInfoUseCase {
 }
 
 public final class AppInfoUseCaseImpl: AppInfoUseCase {
-    private let client: Providable
+    private let client: any Providable
 
-    public init(client: Providable) {
+    public init(client: any Providable) {
         self.client = client
     }
 
