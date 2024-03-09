@@ -9,7 +9,7 @@ import Combine
 import Core
 import UIKit
 
-public final class SettingViewModel: NSObject {
+public final class SettingViewModel: NSObject, Sendable {
     private let environment: SettingFeatureEnvironment
 
     var cancellables: Set<AnyCancellable> = []

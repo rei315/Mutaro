@@ -8,7 +8,7 @@
 import Core
 import Foundation
 
-public struct MyAppsFeatureEnvironment {
+public struct MyAppsFeatureEnvironment: Sendable {
     public let appInfoUseCase: any AppInfoUseCase
     public let imageDownloadService: any ImageDownloadService
     public let router: any MyAppsRoutable

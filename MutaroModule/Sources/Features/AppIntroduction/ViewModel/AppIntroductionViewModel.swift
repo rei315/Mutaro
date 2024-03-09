@@ -8,7 +8,7 @@
 import Core
 import UIKit
 
-public final class AppIntroductionViewModel: NSObject {
+public final class AppIntroductionViewModel: NSObject, Sendable {
     private let environment: AppIntroductionFeatureEnvironment
 
     public init(environment: AppIntroductionFeatureEnvironment) {

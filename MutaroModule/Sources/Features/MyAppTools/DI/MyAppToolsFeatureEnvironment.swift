@@ -8,7 +8,7 @@
 import Core
 import Foundation
 
-public struct MyAppToolsFeatureEnvironment {
+public struct MyAppToolsFeatureEnvironment: Sendable {
     public let ciProductUseCase: any CIProductUseCase
     public let router: any MyAppToolsRoutable
 

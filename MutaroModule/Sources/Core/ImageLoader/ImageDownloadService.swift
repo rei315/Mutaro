@@ -8,7 +8,7 @@
 import Foundation
 import Kingfisher
 
-public protocol ImageDownloadService {
+public protocol ImageDownloadService: Sendable {
     func downloadImage(with urlString: String, cache targetCache: ImageCache)
     func cancelDownloadImage(with urlString: String)
 }

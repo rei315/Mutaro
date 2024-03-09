@@ -10,7 +10,7 @@ import Core
 import Foundation
 import JWTGenerator
 
-public protocol AppInfoUseCase {
+public protocol AppInfoUseCase: Sendable {
     func fetchAppInfos(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, myApps: [(id: String, name: String)]) async throws -> [AppInfo]
     func fetchMyApps(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async throws -> [MyAppsEntity.MyAppsData]
 }

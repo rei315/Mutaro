@@ -34,7 +34,7 @@ extension RegisterJWTViewModel {
     }
 }
 
-public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
+public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol, Sendable {
     private let showAlertSubject = PassthroughSubject<AlertState, Never>()
     private var cancellables: Set<AnyCancellable> = []
     private let taskCancellables: TaskCancellable = .init()

@@ -10,7 +10,7 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
-public protocol AppIntroductionFeatureDependency: Dependency {
+public protocol AppIntroductionFeatureDependency: Dependency, Sendable {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var myAppsFeatureBuilder: any MyAppsFeatureBuildable { get }
     var settingFeatureBuilder: any SettingFeatureBuildable { get }

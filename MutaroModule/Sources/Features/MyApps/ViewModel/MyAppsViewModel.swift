@@ -34,7 +34,7 @@ extension MyAppsViewModel {
     }
 }
 
-public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
+public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable {
     private let environment: MyAppsFeatureEnvironment
 
     private let appInfosSubject: CurrentValueSubject<[AppInfo], Never> = .init([])

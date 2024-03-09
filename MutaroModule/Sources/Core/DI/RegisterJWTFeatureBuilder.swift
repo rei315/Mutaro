@@ -8,7 +8,7 @@
 import NeedleFoundation
 import UIKit
 
-public protocol RegisterJWTFeatureBuildable: Buildable {
+public protocol RegisterJWTFeatureBuildable: Buildable, Sendable {
     @MainActor
     func build() -> UIViewController
 }

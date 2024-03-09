@@ -10,7 +10,7 @@ import Core
 import Foundation
 import JWTGenerator
 
-public protocol CIProductUseCase {
+public protocol CIProductUseCase: Sendable {
     func fetchCIProducts(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, appId: String) async throws -> CIProductsEntity.CIProductsData?
 }
 

@@ -24,7 +24,7 @@ extension MyAppToolsViewModel {
     }
 }
 
-public class MyAppToolsViewModel: MyAppToolsViewModelProtocol {
+public final class MyAppToolsViewModel: MyAppToolsViewModelProtocol, Sendable {
     private let appId: String
     private let environment: MyAppToolsFeatureEnvironment
     var cancellables: Set<AnyCancellable> = []
