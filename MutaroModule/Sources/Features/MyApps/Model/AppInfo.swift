@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AppInfo: Equatable {
+public struct AppInfo: Equatable, Sendable {
     let id: String
     let name: String
     let iconUrl: String?

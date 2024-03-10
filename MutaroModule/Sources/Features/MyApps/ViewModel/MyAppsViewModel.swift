@@ -13,6 +13,7 @@ import JWTGenerator
 import KeychainStore
 import UIKit
 
+@MainActor
 protocol MyAppsViewModelProtocol {
     func transform(input: MyAppsViewModel.Input) -> MyAppsViewModel.Output
     func getAppInfos(_ index: Int) -> AppInfo?
@@ -34,6 +35,7 @@ extension MyAppsViewModel {
     }
 }
 
+@MainActor
 public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable {
     private let environment: MyAppsFeatureEnvironment
 
@@ -91,23 +93,17 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable 
         input
             .didTapMyApp
             .receive(on: DispatchQueue.main)
-            .asyncSink(
-                taskCancellable: taskCancellables,
-                receiveValue: { [weak self] in
-                    await self?.onTapMyApp(from: $0.from, index: $0.index)
-                }
-            )
+            .sink { [weak self] in
+                self?.onTapMyApp(from: $0.from, index: $0.index)
+            }
             .store(in: &cancellables)
 
         input
             .didTapRegisterJWT
             .receive(on: DispatchQueue.main)
-            .asyncSink(
-                taskCancellable: taskCancellables,
-                receiveValue: { [weak self] in
-                    await self?.onTapRegisterJWT(from: $0)
-                }
-            )
+            .sink { [weak self] in
+                self?.onTapRegisterJWT(from: $0)
+            }
             .store(in: &cancellables)
 
         input
@@ -154,15 +150,15 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable 
         return appInfos
     }
 
-    private func onTapRegisterJWT(from viewController: UIViewController) async {
-        await environment.router.showRegisterJWT(from: viewController)
+    private func onTapRegisterJWT(from viewController: UIViewController) {
+        environment.router.showRegisterJWT(from: viewController)
     }
 
-    private func onTapMyApp(from viewController: UIViewController, index: Int) async {
+    private func onTapMyApp(from viewController: UIViewController, index: Int) {
         guard let appInfo = appInfosSubject.value[getOrNil: index] else {
             return
         }
-        await environment.router.showMyAppTools(from: viewController, appId: appInfo.id)
+        environment.router.showMyAppTools(from: viewController, appId: appInfo.id)
     }
 
     private func prefetchItem(
