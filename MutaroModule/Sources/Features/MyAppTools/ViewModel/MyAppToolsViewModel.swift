@@ -9,6 +9,7 @@ import Combine
 import Core
 import Foundation
 
+@MainActor
 protocol MyAppToolsViewModelProtocol {
     func transform(input: MyAppToolsViewModel.Input) -> MyAppToolsViewModel.Output
 }
@@ -24,6 +25,7 @@ extension MyAppToolsViewModel {
     }
 }
 
+@MainActor
 public final class MyAppToolsViewModel: MyAppToolsViewModelProtocol, Sendable {
     private let appId: String
     private let environment: MyAppToolsFeatureEnvironment

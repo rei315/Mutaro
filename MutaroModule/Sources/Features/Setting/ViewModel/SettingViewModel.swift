@@ -9,6 +9,7 @@ import Combine
 import Core
 import UIKit
 
+@MainActor
 public final class SettingViewModel: NSObject, Sendable {
     private let environment: SettingFeatureEnvironment
 
@@ -18,7 +19,7 @@ public final class SettingViewModel: NSObject, Sendable {
         self.environment = environment
     }
 
-    public func routeToRegisterJWT(from viewController: UIViewController) async {
-        await environment.router.showRegisterJWT(from: viewController)
+    public func routeToRegisterJWT(from viewController: UIViewController) {
+        environment.router.showRegisterJWT(from: viewController)
     }
 }

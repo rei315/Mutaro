@@ -8,6 +8,7 @@
 import Core
 import UIKit
 
+@MainActor
 public final class AppIntroductionViewModel: NSObject, Sendable {
     private let environment: AppIntroductionFeatureEnvironment
 
@@ -15,8 +16,8 @@ public final class AppIntroductionViewModel: NSObject, Sendable {
         self.environment = environment
     }
 
-    func onTapAgree() async {
+    func onTapAgree() {
         UserDefaults.standard.set(true, forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
-        await environment.router.showHomeAsRoot()
+        environment.router.showHomeAsRoot()
     }
 }
