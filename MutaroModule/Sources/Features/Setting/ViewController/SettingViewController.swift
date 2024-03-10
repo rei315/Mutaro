@@ -166,9 +166,7 @@ extension SettingViewController: UICollectionViewDelegate {
         case .defaultSetting:
             break
         case .registerJWT:
-            Task { @MainActor in
-                await viewModel.routeToRegisterJWT(from: self)
-            }
+            viewModel.routeToRegisterJWT(from: self)
         case .none:
             break
         }
