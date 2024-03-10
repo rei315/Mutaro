@@ -179,7 +179,7 @@ public struct BuildsEntity: Sendable {
 
     // MARK: - BuildsPaging
 
-    public struct BuildsPaging {
+    public struct BuildsPaging: Sendable {
         public let total, limit: Int?
 
         public init(total: Int?, limit: Int?) {
