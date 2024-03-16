@@ -8,6 +8,7 @@
 import Client
 import Core
 import ImageLoader
+import KeychainStore
 import NeedleFoundation
 
 import AppIntroductionFeature
@@ -69,6 +70,12 @@ public final class DevRootComponent: BootstrapComponent {
     public var imageDownloadService: any ImageDownloadService {
         shared {
             ImageDownloadServiceImp()
+        }
+    }
+
+    public var keychainDataStore: any KeychainDataStoreProtocol {
+        shared {
+            KeychainDataStore()
         }
     }
 }

@@ -14,6 +14,7 @@ import UIKit
 public protocol MyAppsFeatureDependency: Dependency, Sendable {
     var client: any Providable { get }
     var imageDownloadService: any ImageDownloadService { get }
+    var keychainDataStore: any KeychainDataStoreProtocol { get }
     var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable { get }
     var myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable { get }
 }
@@ -50,6 +51,7 @@ public class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatu
         .init(
             appInfoUseCase: appInfoUseCase,
             imageDownloadService: dependency.imageDownloadService,
+            keychainDataStore: dependency.keychainDataStore,
             router: router
         )
     }

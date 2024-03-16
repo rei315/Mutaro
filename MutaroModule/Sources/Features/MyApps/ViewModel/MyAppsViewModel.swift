@@ -128,7 +128,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable 
 
     private func fetchMyApps() async throws -> [MyAppsEntity.MyAppsData] {
         do {
-            let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainDataStore.shared.loadValue(forKey: .jwt)
+            let storedJWTInfo: MutaroJWT.JWTRequestInfo = try environment.keychainDataStore.loadValue(forKey: .jwt)
             let myApps = try? await environment.appInfoUseCase.fetchMyApps(storedJWTInfo: storedJWTInfo)
             return myApps ?? []
         } catch {
@@ -137,7 +137,7 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable 
     }
 
     private func fetchAppInfos(myApps: [MyAppsEntity.MyAppsData]) async throws -> [AppInfo] {
-        let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainDataStore.shared.loadValue(forKey: .jwt)
+        let storedJWTInfo: MutaroJWT.JWTRequestInfo = try environment.keychainDataStore.loadValue(forKey: .jwt)
         let myAppsInfo = myApps
             .compactMap { data -> (String, String)? in
                 guard let id = data.id,

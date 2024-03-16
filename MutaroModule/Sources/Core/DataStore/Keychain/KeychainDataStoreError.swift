@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import Security
+
+public enum KeychainError: Error {
+    case saveError(OSStatus)
+    case loadError(OSStatus)
+    case deleteError(OSStatus)
+}

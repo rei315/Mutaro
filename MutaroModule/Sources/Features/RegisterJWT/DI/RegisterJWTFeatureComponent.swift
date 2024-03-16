@@ -11,7 +11,7 @@ import NeedleFoundation
 import UIKit
 
 public protocol RegisterJWTFeatureDependency: Dependency, Sendable {
-    // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
+    var keychainDataStore: any KeychainDataStoreProtocol { get }
 }
 
 public class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, RegisterJWTFeatureBuildable {
@@ -25,7 +25,10 @@ public class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, R
     }
 
     private var environment: RegisterJWTFeatureEnvironment {
-        .init(router: router)
+        .init(
+            keychainDataStore: dependency.keychainDataStore,
+            router: router
+        )
     }
 
     private var router: any RegisterJWTFeatureRoutable {

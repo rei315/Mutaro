@@ -11,12 +11,15 @@ import Foundation
 public struct MyAppToolsFeatureEnvironment: Sendable {
     public let ciProductUseCase: any CIProductUseCase
     public let router: any MyAppToolsRoutable
+    public let keychainDataStore: any KeychainDataStoreProtocol
 
     public init(
         ciProductUseCase: any CIProductUseCase,
-        router: any MyAppToolsRoutable
+        router: any MyAppToolsRoutable,
+        keychainDataStore: any KeychainDataStoreProtocol
     ) {
         self.ciProductUseCase = ciProductUseCase
         self.router = router
+        self.keychainDataStore = keychainDataStore
     }
 }

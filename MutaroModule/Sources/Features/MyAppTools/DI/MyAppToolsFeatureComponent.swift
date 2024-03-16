@@ -12,6 +12,7 @@ import UIKit
 
 public protocol MyAppToolsFeatureDependency: Dependency, Sendable {
     var client: any Providable { get }
+    var keychainDataStore: any KeychainDataStoreProtocol { get }
 }
 
 public class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppToolsFeatureBuildable {
@@ -31,7 +32,8 @@ public class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyA
     private var environment: MyAppToolsFeatureEnvironment {
         .init(
             ciProductUseCase: ciProductUseCase,
-            router: router
+            router: router,
+            keychainDataStore: dependency.keychainDataStore
         )
     }
 

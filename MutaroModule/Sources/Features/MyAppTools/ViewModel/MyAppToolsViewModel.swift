@@ -34,7 +34,8 @@ public final class MyAppToolsViewModel: MyAppToolsViewModelProtocol, Sendable {
 
     private lazy var model: MyAppToolsModel = .init(
         appId: appId,
-        ciProductUseCase: environment.ciProductUseCase
+        ciProductUseCase: environment.ciProductUseCase, 
+        keychainDataStore: environment.keychainDataStore
     )
 
     private let items: CurrentValueSubject<[MyAppToolsModel.ItemType], Never> = .init([])

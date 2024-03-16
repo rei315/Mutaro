@@ -244,7 +244,9 @@ let package = Package(
         ),
         .target(
             name: "KeychainStore",
-            dependencies: [],
+            dependencies: [
+                .core
+            ],
             path: "./Sources/Modules/KeychainStore"
         ),
         .target(
