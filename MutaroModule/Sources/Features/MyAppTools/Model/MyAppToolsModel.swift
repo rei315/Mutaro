@@ -36,7 +36,7 @@ struct MyAppToolsModel {
 
     func getCIProducts() async -> CIProductsEntity.CIProductsData? {
         do {
-            let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
+            let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainDataStore.shared.loadValue(forKey: .jwt)
             let ciProducts = try await ciProductUseCase.fetchCIProducts(
                 storedJWTInfo: storedJWTInfo,
                 appId: appId

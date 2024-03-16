@@ -111,8 +111,8 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol, Sendable 
         )
 
         do {
-            try KeychainStore.shared.deleteValue(forKey: .jwt)
-            try KeychainStore.shared.saveValue(info, forKey: .jwt)
+            try KeychainDataStore.shared.deleteValue(forKey: .jwt)
+            try KeychainDataStore.shared.saveValue(info, forKey: .jwt)
             showAlertSubject.send(.successedSavingJWTReuqestInfo)
             environment.router.close(from: item.viewController)
         } catch {
@@ -121,7 +121,7 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol, Sendable 
     }
 
     private func loadRegisteredInfo() -> MutaroJWT.JWTRequestInfo? {
-        try? KeychainStore.shared.loadValue(forKey: .jwt)
+        try? KeychainDataStore.shared.loadValue(forKey: .jwt)
     }
 
     private func didPickDocuments(urls: [URL]) -> String? {

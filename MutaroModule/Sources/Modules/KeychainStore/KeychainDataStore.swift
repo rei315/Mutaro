@@ -8,8 +8,8 @@
 import Foundation
 import Security
 
-public final class KeychainStore {
-    public static let shared = KeychainStore()
+public final class KeychainDataStore {
+    public static let shared = KeychainDataStore()
 
     private let service = Bundle.main.bundleIdentifier ?? "Mutaro.com"
 
