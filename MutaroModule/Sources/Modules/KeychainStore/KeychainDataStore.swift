@@ -9,7 +9,7 @@ import Foundation
 import Security
 import Core
 
-public struct KeychainDataStore: KeychainDataStoreProtocol {
+public struct KeychainDataStore: KeychainDataStoreProtocol, Sendable {
     private let service = Bundle.main.bundleIdentifier ?? "Mutaro.com"
 
     public init() {}

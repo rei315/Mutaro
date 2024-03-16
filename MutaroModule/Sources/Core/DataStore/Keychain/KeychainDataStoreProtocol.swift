@@ -8,7 +8,7 @@
 import Foundation
 import Security
 
-public protocol KeychainDataStoreProtocol {
+public protocol KeychainDataStoreProtocol: Sendable {
     func saveValue(_ value: some Codable, forKey key: KeychainStoreKey) throws
     func loadValue<T: Codable>(forKey key: KeychainStoreKey) throws -> T
     func deleteValue(forKey key: KeychainStoreKey) throws
