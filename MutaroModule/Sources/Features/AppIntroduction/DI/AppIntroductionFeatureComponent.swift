@@ -10,6 +10,7 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
+@MainActor
 public protocol AppIntroductionFeatureDependency: Dependency, Sendable {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var myAppsFeatureBuilder: any MyAppsFeatureBuildable { get }
@@ -17,8 +18,8 @@ public protocol AppIntroductionFeatureDependency: Dependency, Sendable {
     var homeFeatureBuilder: any HomeFeatureBuildable { get }
 }
 
+@MainActor
 public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDependency>, AppIntroductionFeatureBuildable {
-    @MainActor
     public func build() -> UIViewController {
         let vc = AppIntroductionViewController(
             dependency: .init(

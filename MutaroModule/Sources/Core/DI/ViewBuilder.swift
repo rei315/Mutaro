@@ -8,9 +8,10 @@
 import Foundation
 import NeedleFoundation
 
+@MainActor
 public protocol Buildable {}
 
-open class Builder<Dependency: Sendable>: Buildable, @unchecked Sendable {
+open class Builder<Dependency>: Buildable {
     public let dependency: Dependency
 
     public init(dependency: Dependency) {

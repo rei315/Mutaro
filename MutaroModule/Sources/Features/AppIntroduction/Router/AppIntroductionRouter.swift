@@ -8,13 +8,13 @@
 import Core
 import UIKit
 
-public protocol AppIntroductionRoutable: Sendable {
+public protocol AppIntroductionRoutable {
     @MainActor
     func showHomeAsRoot()
 }
 
 public final class AppIntroductionRouter: AppIntroductionRoutable {
-    public struct Dependency: Sendable {
+    public struct Dependency {
         // TODO: - ここから遷移するfeatureのbuilder
         public let homeFeatureBuilder: any HomeFeatureBuildable
         public let myAppsFeatureBuilder: any MyAppsFeatureBuildable

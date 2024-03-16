@@ -11,15 +11,16 @@ import ImageLoader
 import NeedleFoundation
 import UIKit
 
-public protocol MyAppsFeatureDependency: Dependency, Sendable {
+@MainActor
+public protocol MyAppsFeatureDependency: Dependency {
     var client: any Providable { get }
     var imageDownloadService: any ImageDownloadService { get }
     var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable { get }
     var myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable { get }
 }
 
+@MainActor
 public class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuildable {
-    @MainActor
     public func build() -> UIViewController {
         let myAppsVC = MyAppsViewController(
             dependency: .init(

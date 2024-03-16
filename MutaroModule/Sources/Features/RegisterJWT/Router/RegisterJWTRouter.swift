@@ -7,13 +7,13 @@
 
 import UIKit
 
-public protocol RegisterJWTFeatureRoutable: Sendable {
+public protocol RegisterJWTFeatureRoutable {
     @MainActor
     func close(from viewController: UIViewController)
 }
 
 public final class RegisterJWTFeatureRouter: RegisterJWTFeatureRoutable {
-    public struct Dependency: Sendable {}
+    public struct Dependency {}
 
     private let dependency: Dependency
 

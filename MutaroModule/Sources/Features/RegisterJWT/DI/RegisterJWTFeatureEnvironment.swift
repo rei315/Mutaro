@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RegisterJWTFeatureEnvironment: Sendable {
+public struct RegisterJWTFeatureEnvironment {
     public let router: any RegisterJWTFeatureRoutable
 
     public init(router: any RegisterJWTFeatureRoutable) {

@@ -10,12 +10,13 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
-public protocol HomeFeatureDependency: Dependency, Sendable {
+@MainActor
+public protocol HomeFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
 }
 
+@MainActor
 public class HomeFeatureBuilder: Builder<HomeFeatureDependency>, HomeFeatureBuildable {
-    @MainActor
     public func build(viewControllers: [UIViewController]) -> UIViewController {
         HomeTabViewController(viewControllers: viewControllers)
     }

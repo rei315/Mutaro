@@ -8,10 +8,10 @@
 import Core
 import Foundation
 
-public protocol MyAppToolsRoutable: Sendable {}
+public protocol MyAppToolsRoutable {}
 
 public final class MyAppToolsRouter: MyAppToolsRoutable {
-    public struct Dependency: Sendable {}
+    public struct Dependency {}
 
     private let dependency: Dependency
 

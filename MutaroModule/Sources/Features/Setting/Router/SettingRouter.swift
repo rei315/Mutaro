@@ -8,13 +8,13 @@
 import Core
 import UIKit
 
-public protocol SettingRoutable: Sendable {
+public protocol SettingRoutable {
     @MainActor
     func showRegisterJWT(from viewController: UIViewController)
 }
 
 public final class SettingRouter: SettingRoutable {
-    public struct Dependency: Sendable {
+    public struct Dependency {
         public let registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable
 
         init(registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable) {

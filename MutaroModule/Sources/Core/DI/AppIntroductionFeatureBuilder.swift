@@ -8,7 +8,7 @@
 import NeedleFoundation
 import UIKit
 
-public protocol AppIntroductionFeatureBuildable: Buildable, Sendable {
+public protocol AppIntroductionFeatureBuildable: Buildable {
     @MainActor
     func build() -> UIViewController
 }

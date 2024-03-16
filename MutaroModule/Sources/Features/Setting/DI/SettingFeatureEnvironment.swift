@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SettingFeatureEnvironment: Sendable {
+public struct SettingFeatureEnvironment {
     public let router: any SettingRoutable
 
     public init(router: any SettingRoutable) {
