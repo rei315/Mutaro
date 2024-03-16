@@ -10,13 +10,14 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
+@MainActor
 public protocol SettingFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable { get }
 }
 
+@MainActor
 public class SettingFeatureBuilder: Builder<SettingFeatureDependency>, SettingFeatureBuildable {
-    @MainActor
     public func build() -> UIViewController {
         let settingVC = SettingViewController(
             dependency: .init(

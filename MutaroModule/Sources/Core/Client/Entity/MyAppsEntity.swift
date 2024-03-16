@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - MyAppsEntity
 
-public struct MyAppsEntity {
+public struct MyAppsEntity: Sendable {
     public let links: MyAppsLinks?
     public let data: [MyAppsData]?
     public let meta: MyAppsMeta?
@@ -22,7 +22,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsDatum
 
-    public struct MyAppsData {
+    public struct MyAppsData: Sendable {
         public let id: String?
         public let relationships: MyAppsRelationships?
         public let links: MyAppsLinks?
@@ -40,7 +40,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsAttributes
 
-    public struct MyAppsAttributes {
+    public struct MyAppsAttributes: Sendable {
         public let subscriptionStatusURLVersionForSandbox, subscriptionStatusURLVersion: JSONNull?
         public let availableInNewTerritories: Bool?
         public let sku: String?
@@ -67,7 +67,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsRelationships
 
-    public struct MyAppsRelationships {
+    public struct MyAppsRelationships: Sendable {
         public let reviewSubmissions, betaAppLocalizations, promotedPurchases, ciProduct: MyAppsLinksElement?
         public let appClips: MyAppsLinksElement?
         public let betaTesters: MyAppsBetaTesters?
@@ -115,7 +115,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsAppAvailability
 
-    public struct MyAppsLinksElement {
+    public struct MyAppsLinksElement: Sendable {
         public let links: MyAppsLinksDetails?
 
         public init(links: MyAppsLinksDetails?) {
@@ -125,7 +125,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsAppAvailabilityLinks
 
-    public struct MyAppsLinksDetails {
+    public struct MyAppsLinksDetails: Sendable {
         public let related, linksSelf: String?
 
         public init(related: String?, linksSelf: String?) {
@@ -136,7 +136,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsLinks
 
-    public struct MyAppsLinks {
+    public struct MyAppsLinks: Sendable {
         public let linksSelf: String?
 
         public init(linksSelf: String?) {
@@ -146,7 +146,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsBetaTesters
 
-    public struct MyAppsBetaTesters {
+    public struct MyAppsBetaTesters: Sendable {
         public let links: MyAppsLinks?
 
         public init(links: MyAppsLinks?) {
@@ -156,7 +156,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsPerfPowerMetrics
 
-    public struct MyAppsPerfPowerMetrics {
+    public struct MyAppsPerfPowerMetrics: Sendable {
         public let links: MyAppsPerfPowerMetricsLinks?
 
         public init(links: MyAppsPerfPowerMetricsLinks?) {
@@ -166,7 +166,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsPerfPowerMetricsLinks
 
-    public struct MyAppsPerfPowerMetricsLinks {
+    public struct MyAppsPerfPowerMetricsLinks: Sendable {
         public let related: String?
 
         public init(related: String?) {
@@ -176,7 +176,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsMeta
 
-    public struct MyAppsMeta {
+    public struct MyAppsMeta: Sendable {
         public let paging: MyAppsPaging?
 
         public init(paging: MyAppsPaging?) {
@@ -186,7 +186,7 @@ public struct MyAppsEntity {
 
     // MARK: - MyAppsPaging
 
-    public struct MyAppsPaging {
+    public struct MyAppsPaging: Sendable {
         public let total, limit: Int?
 
         public init(total: Int?, limit: Int?) {

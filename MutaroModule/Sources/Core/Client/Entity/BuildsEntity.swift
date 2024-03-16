@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - BuildsEntity
 
-public struct BuildsEntity {
+public struct BuildsEntity: Sendable {
     public let links: BuildsLinks?
     public let data: [BuildsDatum]?
     public let meta: BuildsMeta?
@@ -22,7 +22,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsDatum
 
-    public struct BuildsDatum {
+    public struct BuildsDatum: Sendable {
         public let id: String?
         public let relationships: BuildsRelationships?
         public let links: BuildsLinks?
@@ -40,7 +40,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsAttributes
 
-    public struct BuildsAttributes {
+    public struct BuildsAttributes: Sendable {
         public let expirationDate: Date?
         public let expired: Bool?
         public let processingState, buildAudienceType, minOSVersion: String?
@@ -68,7 +68,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsIconAssetToken
 
-    public struct BuildsIconAssetToken {
+    public struct BuildsIconAssetToken: Sendable {
         public let width: Int?
         public let templateURL: String?
         public let height: Int?
@@ -82,7 +82,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsLinks
 
-    public struct BuildsLinks {
+    public struct BuildsLinks: Sendable {
         public let linksSelf: String?
 
         public init(linksSelf: String?) {
@@ -92,7 +92,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsRelationships
 
-    public struct BuildsRelationships {
+    public struct BuildsRelationships: Sendable {
         public let betaAppReviewSubmission, appStoreVersion, appEncryptionDeclaration, individualTesters: BuildsLinksElement?
         public let perfPowerMetrics: BuildsPerfPowerMetrics?
         public let betaBuildLocalizations: BuildsLinksElement?
@@ -118,7 +118,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsLinksElement
 
-    public struct BuildsLinksElement {
+    public struct BuildsLinksElement: Sendable {
         public let links: BuildsLinksDetails?
 
         public init(links: BuildsLinksDetails?) {
@@ -128,7 +128,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsLinksDetails
 
-    public struct BuildsLinksDetails {
+    public struct BuildsLinksDetails: Sendable {
         public let related, linksSelf: String?
 
         public init(related: String?, linksSelf: String?) {
@@ -139,7 +139,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsBetaGroups
 
-    public struct BuildsBetaGroups {
+    public struct BuildsBetaGroups: Sendable {
         public let links: BuildsLinks?
 
         public init(links: BuildsLinks?) {
@@ -149,7 +149,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsPerfPowerMetrics
 
-    public struct BuildsPerfPowerMetrics {
+    public struct BuildsPerfPowerMetrics: Sendable {
         public let links: BuildsPerfPowerMetricsLinks?
 
         public init(links: BuildsPerfPowerMetricsLinks?) {
@@ -159,7 +159,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsPerfPowerMetricsLinks
 
-    public struct BuildsPerfPowerMetricsLinks {
+    public struct BuildsPerfPowerMetricsLinks: Sendable {
         public let related: String?
 
         public init(related: String?) {
@@ -169,7 +169,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsMeta
 
-    public struct BuildsMeta {
+    public struct BuildsMeta: Sendable {
         public let paging: BuildsPaging?
 
         public init(paging: BuildsPaging?) {
@@ -179,7 +179,7 @@ public struct BuildsEntity {
 
     // MARK: - BuildsPaging
 
-    public struct BuildsPaging {
+    public struct BuildsPaging: Sendable {
         public let total, limit: Int?
 
         public init(total: Int?, limit: Int?) {

@@ -10,13 +10,14 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
+@MainActor
 public protocol MyAppToolsFeatureDependency: Dependency {
     var client: any Providable { get }
 }
 
-class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppToolsFeatureBuildable {
-    @MainActor
-    func build(appId: String) -> UIViewController {
+@MainActor
+public class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppToolsFeatureBuildable {
+    public func build(appId: String) -> UIViewController {
         let myAppTools = MyAppToolsViewController(
             dependency: .init(
                 viewModel: .init(

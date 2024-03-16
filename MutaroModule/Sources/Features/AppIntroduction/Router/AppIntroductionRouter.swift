@@ -13,7 +13,7 @@ public protocol AppIntroductionRoutable {
     func showHomeAsRoot()
 }
 
-public class AppIntroductionRouter: AppIntroductionRoutable {
+public final class AppIntroductionRouter: AppIntroductionRoutable {
     public struct Dependency {
         // TODO: - ここから遷移するfeatureのbuilder
         public let homeFeatureBuilder: any HomeFeatureBuildable

@@ -9,7 +9,8 @@ import Combine
 import Core
 import UIKit
 
-public final class SettingViewModel: NSObject {
+@MainActor
+public final class SettingViewModel: NSObject, Sendable {
     private let environment: SettingFeatureEnvironment
 
     var cancellables: Set<AnyCancellable> = []
@@ -18,7 +19,7 @@ public final class SettingViewModel: NSObject {
         self.environment = environment
     }
 
-    public func routeToRegisterJWT(from viewController: UIViewController) async {
-        await environment.router.showRegisterJWT(from: viewController)
+    public func routeToRegisterJWT(from viewController: UIViewController) {
+        environment.router.showRegisterJWT(from: viewController)
     }
 }

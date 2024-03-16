@@ -12,7 +12,7 @@ public protocol RegisterJWTFeatureRoutable {
     func close(from viewController: UIViewController)
 }
 
-public class RegisterJWTFeatureRouter: RegisterJWTFeatureRoutable {
+public final class RegisterJWTFeatureRouter: RegisterJWTFeatureRoutable {
     public struct Dependency {}
 
     private let dependency: Dependency

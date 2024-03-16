@@ -10,7 +10,7 @@ import Foundation
 
 public protocol MyAppToolsRoutable {}
 
-public class MyAppToolsRouter: MyAppToolsRoutable {
+public final class MyAppToolsRouter: MyAppToolsRoutable {
     public struct Dependency {}
 
     private let dependency: Dependency

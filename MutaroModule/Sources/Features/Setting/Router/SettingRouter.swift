@@ -13,7 +13,7 @@ public protocol SettingRoutable {
     func showRegisterJWT(from viewController: UIViewController)
 }
 
-public class SettingRouter: SettingRoutable {
+public final class SettingRouter: SettingRoutable {
     public struct Dependency {
         public let registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable
 

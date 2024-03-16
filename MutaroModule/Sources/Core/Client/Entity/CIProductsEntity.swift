@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CIProductsEntity {
+public struct CIProductsEntity: Sendable {
     public let links: CIProductsLinks?
     public let data: CIProductsData?
 
@@ -16,7 +16,7 @@ public struct CIProductsEntity {
         self.data = data
     }
 
-    public struct CIProductsData {
+    public struct CIProductsData: Sendable {
         public let id: String?
         public let type: String?
         public let attributes: CIProductsAttributes?
@@ -32,7 +32,7 @@ public struct CIProductsEntity {
         }
     }
 
-    public struct CIProductsAttributes {
+    public struct CIProductsAttributes: Sendable {
         public let name: String?
         public let createdDate: String?
         public let productType: String?
@@ -44,7 +44,7 @@ public struct CIProductsEntity {
         }
     }
 
-    public struct CIProductsRelationships {
+    public struct CIProductsRelationships: Sendable {
         public let app, workflows, primaryRepositories, additionalRepositories, buildRuns: CIProductsLinksElement?
 
         public init(app: CIProductsLinksElement?, workflows: CIProductsLinksElement?, primaryRepositories: CIProductsLinksElement?, additionalRepositories: CIProductsLinksElement?, buildRuns: CIProductsLinksElement?) {
@@ -58,7 +58,7 @@ public struct CIProductsEntity {
 
     // MARK: - CIProductsLinksElement
 
-    public struct CIProductsLinksElement {
+    public struct CIProductsLinksElement: Sendable {
         public let links: CIProductsLinksDetails?
 
         public init(links: CIProductsLinksDetails?) {
@@ -68,7 +68,7 @@ public struct CIProductsEntity {
 
     // MARK: - CIProductsLinksDetails
 
-    public struct CIProductsLinksDetails {
+    public struct CIProductsLinksDetails: Sendable {
         public let related, linksSelf: String?
 
         public init(related: String?, linksSelf: String?) {
@@ -79,7 +79,7 @@ public struct CIProductsEntity {
 
     // MARK: - CIProductsLinks
 
-    public struct CIProductsLinks {
+    public struct CIProductsLinks: Sendable {
         public let linksSelf: String?
 
         public init(linksSelf: String?) {

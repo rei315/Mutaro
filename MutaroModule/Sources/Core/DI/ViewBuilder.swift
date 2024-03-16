@@ -8,7 +8,8 @@
 import Foundation
 import NeedleFoundation
 
-public protocol Buildable: AnyObject {}
+@MainActor
+public protocol Buildable {}
 
 open class Builder<Dependency>: Buildable {
     public let dependency: Dependency

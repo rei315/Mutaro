@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Providable {
+public protocol Providable: Sendable {
     func request<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async -> Result<
         T, RequestError
     >

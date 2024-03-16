@@ -15,7 +15,7 @@ public protocol MyAppsRoutable {
     func showMyAppTools(from viewController: UIViewController, appId: String)
 }
 
-public class MyAppsRouter: MyAppsRoutable {
+public final class MyAppsRouter: MyAppsRoutable {
     public struct Dependency {
         public let registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable
         public let myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable

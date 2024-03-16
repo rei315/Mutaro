@@ -8,6 +8,7 @@
 import Core
 import Foundation
 
+@MainActor
 public struct MyAppToolsFeatureEnvironment {
     public let ciProductUseCase: any CIProductUseCase
     public let router: any MyAppToolsRoutable

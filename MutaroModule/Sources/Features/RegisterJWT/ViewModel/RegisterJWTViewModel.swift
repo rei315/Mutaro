@@ -12,10 +12,12 @@ import JWTGenerator
 import KeychainStore
 import UIKit
 
+@MainActor
 public protocol RegisterJWTRoute {
     func openRegisterJWTRoute()
 }
 
+@MainActor
 protocol RegisterJWTViewModelProtocol {
     func transform(input: RegisterJWTViewModel.Input) -> RegisterJWTViewModel.Output
 }
@@ -34,7 +36,8 @@ extension RegisterJWTViewModel {
     }
 }
 
-public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
+@MainActor
+public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol, Sendable {
     private let showAlertSubject = PassthroughSubject<AlertState, Never>()
     private var cancellables: Set<AnyCancellable> = []
     private let taskCancellables: TaskCancellable = .init()
@@ -57,12 +60,9 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
         input
             .didTapRegister
             .receive(on: DispatchQueue.main)
-            .asyncSink(
-                taskCancellable: taskCancellables,
-                receiveValue: { [weak self] in
-                    await self?.onTapRegister(item: $0)
-                }
-            )
+            .sink { [weak self] in
+                self?.onTapRegister(item: $0)
+            }
             .store(in: &cancellables)
 
         return .init(
@@ -74,7 +74,7 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
 
     private func onTapRegister(
         item: RegisterItem
-    ) async {
+    ) {
         guard let issuerID = item.issuerID,
               !issuerID.isEmpty else {
             showAlertSubject.send(.invalidIssuerID)
@@ -114,7 +114,7 @@ public final class RegisterJWTViewModel: RegisterJWTViewModelProtocol {
             try KeychainStore.shared.deleteValue(forKey: .jwt)
             try KeychainStore.shared.saveValue(info, forKey: .jwt)
             showAlertSubject.send(.successedSavingJWTReuqestInfo)
-            await environment.router.close(from: item.viewController)
+            environment.router.close(from: item.viewController)
         } catch {
             showAlertSubject.send(.failedSavingJWTRequestInfo)
         }

@@ -10,12 +10,13 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
+@MainActor
 public protocol RegisterJWTFeatureDependency: Dependency {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
 }
 
-class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, RegisterJWTFeatureBuildable {
-    @MainActor
+@MainActor
+public class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, RegisterJWTFeatureBuildable {
     public func build() -> UIViewController {
         RegisterJWTViewController(
             dependency: .init(
