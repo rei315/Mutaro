@@ -36,7 +36,7 @@ let firebaseAnalyticsDependencies: [Target.Dependency] = [
 
 let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
     .define("DEV", .when(configuration: .debug)),
-    .unsafeFlags(["-strict-concurrency=complete"]),
+    .unsafeFlags(["-strict-concurrency=complete", "-warn-concurrency", "-enable-actor-data-race-checks"]),
     .forwardTrailingClosures,
     .existentialAny,
     .bareSlashRegexLiterals,
