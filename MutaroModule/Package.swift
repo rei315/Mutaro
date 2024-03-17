@@ -17,21 +17,23 @@ extension PackageDescription.SwiftSetting {
 }
 
 let firebaseCrashlyticsDependencies: [Target.Dependency] = [
-    "GoogleDataTransport",
+    "FirebaseCoreExtension",
     "FirebaseCrashlytics",
+    "FirebaseSessions",
+    "GoogleDataTransport",
+    "Promises"
 ]
 
 let firebaseAnalyticsDependencies: [Target.Dependency] = [
     "FBLPromises",
     "FirebaseAnalytics",
-    "FirebaseAnalyticsSwift",
     "FirebaseCore",
     "FirebaseCoreInternal",
     "FirebaseInstallations",
     "GoogleAppMeasurement",
     "GoogleAppMeasurementIdentitySupport",
     "GoogleUtilities",
-    "nanopb",
+    "nanopb"
 ]
 
 let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
@@ -266,29 +268,32 @@ let package = Package(
             path: "./Sources/Modules/ImageLoader"
         ),
         .binaryTarget(
+            name: "FirebaseCoreExtension",
+            path: "XCFrameworks/Firebase/FirebaseCrashlytics/FirebaseCoreExtension.xcframework"
+        ),
+        .binaryTarget(
             name: "FirebaseCrashlytics",
             path: "XCFrameworks/Firebase/FirebaseCrashlytics/FirebaseCrashlytics.xcframework"
+        ),
+        .binaryTarget(
+            name: "FirebaseSessions",
+            path: "XCFrameworks/Firebase/FirebaseCrashlytics/FirebaseSessions.xcframework"
         ),
         .binaryTarget(
             name: "GoogleDataTransport",
             path: "XCFrameworks/Firebase/FirebaseCrashlytics/GoogleDataTransport.xcframework"
         ),
         .binaryTarget(
+            name: "Promises",
+            path: "XCFrameworks/Firebase/FirebaseCrashlytics/Promises.xcframework"
+        ),
+        .binaryTarget(
+            name: "FBLPromises",
+            path: "XCFrameworks/Firebase/FirebaseAnalytics/FBLPromises.xcframework"
+        ),
+        .binaryTarget(
             name: "FirebaseAnalytics",
             path: "XCFrameworks/Firebase/FirebaseAnalytics/FirebaseAnalytics.xcframework"
-        ),
-        .binaryTarget(
-            name: "FirebaseAnalyticsSwift",
-            path: "XCFrameworks/Firebase/FirebaseAnalytics/FirebaseAnalyticsSwift.xcframework"
-        ),
-        .binaryTarget(
-            name: "GoogleAppMeasurement",
-            path: "XCFrameworks/Firebase/FirebaseAnalytics/GoogleAppMeasurement.xcframework"
-        ),
-        .binaryTarget(
-            name: "GoogleAppMeasurementIdentitySupport",
-            path:
-                "XCFrameworks/Firebase/FirebaseAnalytics/GoogleAppMeasurementIdentitySupport.xcframework"
         ),
         .binaryTarget(
             name: "FirebaseCore",
@@ -296,19 +301,24 @@ let package = Package(
         ),
         .binaryTarget(
             name: "FirebaseCoreInternal",
-            path: "XCFrameworks/Firebase/FirebaseAnalytics/FirebaseCoreInternal.xcframework"
+            path:
+                "XCFrameworks/Firebase/FirebaseAnalytics/FirebaseCoreInternal.xcframework"
         ),
         .binaryTarget(
             name: "FirebaseInstallations",
             path: "XCFrameworks/Firebase/FirebaseAnalytics/FirebaseInstallations.xcframework"
         ),
         .binaryTarget(
-            name: "GoogleUtilities",
-            path: "XCFrameworks/Firebase/FirebaseAnalytics/GoogleUtilities.xcframework"
+            name: "GoogleAppMeasurement",
+            path: "XCFrameworks/Firebase/FirebaseAnalytics/GoogleAppMeasurement.xcframework"
         ),
         .binaryTarget(
-            name: "FBLPromises",
-            path: "XCFrameworks/Firebase/FirebaseAnalytics/FBLPromises.xcframework"
+            name: "GoogleAppMeasurementIdentitySupport",
+            path: "XCFrameworks/Firebase/FirebaseAnalytics/GoogleAppMeasurementIdentitySupport.xcframework"
+        ),
+        .binaryTarget(
+            name: "GoogleUtilities",
+            path: "XCFrameworks/Firebase/FirebaseAnalytics/GoogleUtilities.xcframework"
         ),
         .binaryTarget(
             name: "nanopb",
