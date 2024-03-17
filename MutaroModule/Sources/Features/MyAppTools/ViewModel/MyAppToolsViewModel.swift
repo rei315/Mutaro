@@ -49,37 +49,33 @@ public final class MyAppToolsViewModel: MyAppToolsViewModelProtocol, Sendable {
         self.environment = environment
     }
 
+    private func fetch() async {
+        let ciProducts = await model.getCIProducts()
+        ciProductsItem.send(ciProducts)
+        
+        if !items.value.contains(.xcodeCloud) {
+            var results = self.items.value
+            results.append(.xcodeCloud)
+            self.items.send(results)
+        }
+    }
+
     func transform(input: Input) -> Output {
-        let viewDidLoad = input
+        input
             .viewDidLoad
-            .share()
-
-        let ciProducts = viewDidLoad
-            .asyncMap { await self.model.getCIProducts() }
-            .eraseToAnyPublisher()
-            .share()
-
-        ciProducts
-            .assign(to: \.value, on: ciProductsItem)
-            .store(in: &cancellables)
-
-        ciProducts
-            .compactMap { _ in MyAppToolsModel.ItemType.xcodeCloud }
-            .sink { [weak self] type in
-                guard let self,
-                      !self.items.value.contains(type) else {
-                    return
+            .sink { [weak self] in
+                Task {
+                    await self?.fetch()
                 }
-                var results = self.items.value
-                results.append(type)
-                self.items.send(results)
             }
             .store(in: &cancellables)
 
         input
             .didTapItem
-            .asyncSink(taskCancellable: taskCancellable) { [weak self] in
-                await self?.onTapItem($0)
+            .sink { [weak self] item in
+                Task {
+                    await self?.onTapItem(item)
+                }
             }
             .store(in: &cancellables)
 

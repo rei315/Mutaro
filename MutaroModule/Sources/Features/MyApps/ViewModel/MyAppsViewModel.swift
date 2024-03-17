@@ -53,41 +53,13 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable 
     }
 
     func transform(input: Input) -> Output {
-        let viewWillAppear = input
+        input
             .viewWillAppear
-            .share()
-
-        let myApps = viewWillAppear
-            .asyncMapThrows { try await self.fetchMyApps() }
-            .eraseToAnyPublisher()
-            .share()
-
-        myApps
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished:
-                    self?.showRegisterJWT.send(false)
-                case .failure:
-                    self?.showRegisterJWT.send(true)
+            .sink { [weak self] in
+                Task {
+                    await self?.fetch()
                 }
-            } receiveValue: { _ in }
-            .store(in: &cancellables)
-
-        myApps
-            .replaceError(with: [])
-            .assign(to: \.value, on: myAppsSubject)
-            .store(in: &cancellables)
-
-        let appInfos = myApps
-            .replaceError(with: [])
-            .eraseToAnyPublisher()
-            .asyncMapThrows { try await self.fetchAppInfos(myApps: $0) }
-            .replaceError(with: [])
-            .eraseToAnyPublisher()
-            .share()
-
-        appInfos
-            .assign(to: \.value, on: appInfosSubject)
+            }
             .store(in: &cancellables)
 
         input
@@ -124,6 +96,19 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable 
             showJWTRegister: showRegisterJWT.eraseToAnyPublisher(),
             onUpdateAppInfos: appInfosSubject.eraseToAnyPublisher()
         )
+    }
+
+    private func fetch() async {
+        do {
+            let myApps = try await fetchMyApps()
+            showRegisterJWT.send(false)
+            myAppsSubject.send(myApps)
+            let appInfos = try await fetchAppInfos(myApps: myApps)
+            appInfosSubject.send(appInfos)
+        } catch {
+            showRegisterJWT.send(true)
+            myAppsSubject.send([])
+        }
     }
 
     private func fetchMyApps() async throws -> [MyAppsEntity.MyAppsData] {
