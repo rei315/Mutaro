@@ -9,6 +9,7 @@ import Combine
 import Core
 import Foundation
 
+@MainActor
 protocol MyAppToolsViewModelProtocol {
     func transform(input: MyAppToolsViewModel.Input) -> MyAppToolsViewModel.Output
 }
@@ -24,7 +25,8 @@ extension MyAppToolsViewModel {
     }
 }
 
-public class MyAppToolsViewModel: MyAppToolsViewModelProtocol {
+@MainActor
+public final class MyAppToolsViewModel: MyAppToolsViewModelProtocol, Sendable {
     private let appId: String
     private let environment: MyAppToolsFeatureEnvironment
     var cancellables: Set<AnyCancellable> = []
@@ -32,7 +34,8 @@ public class MyAppToolsViewModel: MyAppToolsViewModelProtocol {
 
     private lazy var model: MyAppToolsModel = .init(
         appId: appId,
-        ciProductUseCase: environment.ciProductUseCase
+        ciProductUseCase: environment.ciProductUseCase,
+        keychainDataStore: environment.keychainDataStore
     )
 
     private let items: CurrentValueSubject<[MyAppToolsModel.ItemType], Never> = .init([])
@@ -46,37 +49,33 @@ public class MyAppToolsViewModel: MyAppToolsViewModelProtocol {
         self.environment = environment
     }
 
+    private func fetch() async {
+        let ciProducts = await model.getCIProducts()
+        ciProductsItem.send(ciProducts)
+
+        if !items.value.contains(.xcodeCloud) {
+            var results = items.value
+            results.append(.xcodeCloud)
+            items.send(results)
+        }
+    }
+
     func transform(input: Input) -> Output {
-        let viewDidLoad = input
+        input
             .viewDidLoad
-            .share()
-
-        let ciProducts = viewDidLoad
-            .asyncMap { await self.model.getCIProducts() }
-            .eraseToAnyPublisher()
-            .share()
-
-        ciProducts
-            .assign(to: \.value, on: ciProductsItem)
-            .store(in: &cancellables)
-
-        ciProducts
-            .compactMap { _ in MyAppToolsModel.ItemType.xcodeCloud }
-            .sink { [weak self] type in
-                guard let self,
-                      !self.items.value.contains(type) else {
-                    return
+            .sink { [weak self] in
+                Task {
+                    await self?.fetch()
                 }
-                var results = self.items.value
-                results.append(type)
-                self.items.send(results)
             }
             .store(in: &cancellables)
 
         input
             .didTapItem
-            .asyncSink(taskCancellable: taskCancellable) { [weak self] in
-                await self?.onTapItem($0)
+            .sink { [weak self] item in
+                Task {
+                    await self?.onTapItem(item)
+                }
             }
             .store(in: &cancellables)
 

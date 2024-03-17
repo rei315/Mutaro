@@ -15,10 +15,16 @@ import UIKit
 struct MyAppToolsModel {
     private let appId: String
     private let ciProductUseCase: any CIProductUseCase
+    private let keychainDataStore: any KeychainDataStoreProtocol
 
-    init(appId: String, ciProductUseCase: any CIProductUseCase) {
+    init(
+        appId: String,
+        ciProductUseCase: any CIProductUseCase,
+        keychainDataStore: any KeychainDataStoreProtocol
+    ) {
         self.appId = appId
         self.ciProductUseCase = ciProductUseCase
+        self.keychainDataStore = keychainDataStore
     }
 
     func checkAvailableItems(
@@ -36,7 +42,7 @@ struct MyAppToolsModel {
 
     func getCIProducts() async -> CIProductsEntity.CIProductsData? {
         do {
-            let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
+            let storedJWTInfo: MutaroJWT.JWTRequestInfo = try keychainDataStore.loadValue(forKey: .jwt)
             let ciProducts = try await ciProductUseCase.fetchCIProducts(
                 storedJWTInfo: storedJWTInfo,
                 appId: appId

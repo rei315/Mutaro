@@ -10,13 +10,14 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
-public protocol MyAppToolsFeatureDependency: Dependency {
+public protocol MyAppToolsFeatureDependency: Dependency, Sendable {
     var client: any Providable { get }
+    var keychainDataStore: any KeychainDataStoreProtocol { get }
 }
 
-class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppToolsFeatureBuildable {
+public class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppToolsFeatureBuildable {
     @MainActor
-    func build(appId: String) -> UIViewController {
+    public func build(appId: String) -> UIViewController {
         let myAppTools = MyAppToolsViewController(
             dependency: .init(
                 viewModel: .init(
@@ -31,7 +32,8 @@ class MyAppToolsFeatureBuilder: Builder<MyAppToolsFeatureDependency>, MyAppTools
     private var environment: MyAppToolsFeatureEnvironment {
         .init(
             ciProductUseCase: ciProductUseCase,
-            router: router
+            router: router,
+            keychainDataStore: dependency.keychainDataStore
         )
     }
 

@@ -1,17 +1,18 @@
 //
-//  KeychainStore.swift
+//  KeychainDataStore.swift
 //
 //
 //  Created by minguk-kim on 2023/05/04.
 //
 
+import Core
 import Foundation
 import Security
 
-public final class KeychainStore {
-    public static let shared = KeychainStore()
-
+public struct KeychainDataStore: KeychainDataStoreProtocol, Sendable {
     private let service = Bundle.main.bundleIdentifier ?? "Mutaro.com"
+
+    public init() {}
 
     public func saveValue(_ value: some Codable, forKey key: KeychainStoreKey) throws {
         let data = try JSONEncoder().encode(value)
@@ -79,10 +80,4 @@ public final class KeychainStore {
             throw KeychainError.deleteError(status)
         }
     }
-}
-
-enum KeychainError: Error {
-    case saveError(OSStatus)
-    case loadError(OSStatus)
-    case deleteError(OSStatus)
 }

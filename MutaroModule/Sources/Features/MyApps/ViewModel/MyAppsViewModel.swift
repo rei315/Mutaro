@@ -13,6 +13,7 @@ import JWTGenerator
 import KeychainStore
 import UIKit
 
+@MainActor
 protocol MyAppsViewModelProtocol {
     func transform(input: MyAppsViewModel.Input) -> MyAppsViewModel.Output
     func getAppInfos(_ index: Int) -> AppInfo?
@@ -34,7 +35,8 @@ extension MyAppsViewModel {
     }
 }
 
-public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
+@MainActor
+public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol, Sendable {
     private let environment: MyAppsFeatureEnvironment
 
     private let appInfosSubject: CurrentValueSubject<[AppInfo], Never> = .init([])
@@ -51,63 +53,29 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
     }
 
     func transform(input: Input) -> Output {
-        let viewWillAppear = input
+        input
             .viewWillAppear
-            .share()
-
-        let myApps = viewWillAppear
-            .asyncMapThrows { try await self.fetchMyApps() }
-            .eraseToAnyPublisher()
-            .share()
-
-        myApps
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished:
-                    self?.showRegisterJWT.send(false)
-                case .failure:
-                    self?.showRegisterJWT.send(true)
+            .sink { [weak self] in
+                Task {
+                    await self?.fetch()
                 }
-            } receiveValue: { _ in }
-            .store(in: &cancellables)
-
-        myApps
-            .replaceError(with: [])
-            .assign(to: \.value, on: myAppsSubject)
-            .store(in: &cancellables)
-
-        let appInfos = myApps
-            .replaceError(with: [])
-            .eraseToAnyPublisher()
-            .asyncMapThrows { try await self.fetchAppInfos(myApps: $0) }
-            .replaceError(with: [])
-            .eraseToAnyPublisher()
-            .share()
-
-        appInfos
-            .assign(to: \.value, on: appInfosSubject)
+            }
             .store(in: &cancellables)
 
         input
             .didTapMyApp
             .receive(on: DispatchQueue.main)
-            .asyncSink(
-                taskCancellable: taskCancellables,
-                receiveValue: { [weak self] in
-                    await self?.onTapMyApp(from: $0.from, index: $0.index)
-                }
-            )
+            .sink { [weak self] in
+                self?.onTapMyApp(from: $0.from, index: $0.index)
+            }
             .store(in: &cancellables)
 
         input
             .didTapRegisterJWT
             .receive(on: DispatchQueue.main)
-            .asyncSink(
-                taskCancellable: taskCancellables,
-                receiveValue: { [weak self] in
-                    await self?.onTapRegisterJWT(from: $0)
-                }
-            )
+            .sink { [weak self] in
+                self?.onTapRegisterJWT(from: $0)
+            }
             .store(in: &cancellables)
 
         input
@@ -130,39 +98,38 @@ public final class MyAppsViewModel: NSObject, MyAppsViewModelProtocol {
         )
     }
 
-    private func fetchMyApps() async throws -> [MyAppsEntity.MyAppsData] {
+    private func fetch() async {
         do {
-            let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-            let myApps = try? await environment.appInfoUseCase.fetchMyApps(storedJWTInfo: storedJWTInfo)
-            return myApps ?? []
+            let myApps = try await fetchMyApps()
+            showRegisterJWT.send(false)
+            myAppsSubject.send(myApps)
+            let appInfos = try await fetchAppInfos(myApps: myApps)
+            appInfosSubject.send(appInfos)
         } catch {
-            throw JWTError.loadError
+            showRegisterJWT.send(true)
+            myAppsSubject.send([])
         }
+    }
+
+    private func fetchMyApps() async throws -> [MyAppsEntity.MyAppsData] {
+        let myApps = try await environment.appInfoUseCase.fetchMyApps()
+        return myApps
     }
 
     private func fetchAppInfos(myApps: [MyAppsEntity.MyAppsData]) async throws -> [AppInfo] {
-        let storedJWTInfo: MutaroJWT.JWTRequestInfo = try KeychainStore.shared.loadValue(forKey: .jwt)
-        let myAppsInfo = myApps
-            .compactMap { data -> (String, String)? in
-                guard let id = data.id,
-                      let name = data.attributes?.name else {
-                    return nil
-                }
-                return (id, name)
-            }
-        let appInfos = try await environment.appInfoUseCase.fetchAppInfos(storedJWTInfo: storedJWTInfo, myApps: myAppsInfo)
+        let appInfos = try await environment.appInfoUseCase.fetchAppInfos(myApps: myApps)
         return appInfos
     }
 
-    private func onTapRegisterJWT(from viewController: UIViewController) async {
-        await environment.router.showRegisterJWT(from: viewController)
+    private func onTapRegisterJWT(from viewController: UIViewController) {
+        environment.router.showRegisterJWT(from: viewController)
     }
 
-    private func onTapMyApp(from viewController: UIViewController, index: Int) async {
+    private func onTapMyApp(from viewController: UIViewController, index: Int) {
         guard let appInfo = appInfosSubject.value[getOrNil: index] else {
             return
         }
-        await environment.router.showMyAppTools(from: viewController, appId: appInfo.id)
+        environment.router.showMyAppTools(from: viewController, appId: appInfo.id)
     }
 
     private func prefetchItem(

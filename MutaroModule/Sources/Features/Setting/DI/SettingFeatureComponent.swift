@@ -10,7 +10,7 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
-public protocol SettingFeatureDependency: Dependency {
+public protocol SettingFeatureDependency: Dependency, Sendable {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable { get }
 }

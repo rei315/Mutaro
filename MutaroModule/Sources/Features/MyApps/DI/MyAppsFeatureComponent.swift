@@ -11,14 +11,15 @@ import ImageLoader
 import NeedleFoundation
 import UIKit
 
-public protocol MyAppsFeatureDependency: Dependency {
+public protocol MyAppsFeatureDependency: Dependency, Sendable {
     var client: any Providable { get }
     var imageDownloadService: any ImageDownloadService { get }
+    var keychainDataStore: any KeychainDataStoreProtocol { get }
     var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable { get }
     var myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable { get }
 }
 
-class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuildable {
+public class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuildable {
     @MainActor
     public func build() -> UIViewController {
         let myAppsVC = MyAppsViewController(
@@ -50,6 +51,7 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
         .init(
             appInfoUseCase: appInfoUseCase,
             imageDownloadService: dependency.imageDownloadService,
+            keychainDataStore: dependency.keychainDataStore,
             router: router
         )
     }
@@ -64,7 +66,10 @@ class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatureBuild
     }
 
     private var appInfoUseCase: any AppInfoUseCase {
-        AppInfoUseCaseImpl(client: dependency.client)
+        AppInfoUseCaseImpl(
+            client: dependency.client,
+            keychainDataStore: dependency.keychainDataStore
+        )
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
-public protocol AppIntroductionFeatureDependency: Dependency {
+public protocol AppIntroductionFeatureDependency: Dependency, Sendable {
     // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
     var myAppsFeatureBuilder: any MyAppsFeatureBuildable { get }
     var settingFeatureBuilder: any SettingFeatureBuildable { get }
@@ -29,7 +29,10 @@ public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDepend
     }
 
     private var environment: AppIntroductionFeatureEnvironment {
-        .init(router: router)
+        .init(
+            router: router,
+            dataStore: dataStore
+        )
     }
 
     private var router: any AppIntroductionRoutable {
@@ -41,6 +44,10 @@ public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDepend
                 settingFeatureBuilder: dependency.settingFeatureBuilder
             )
         )
+    }
+
+    private var dataStore: any AppIntroductionDataStoreProtocol {
+        AppIntroductionDataStore()
     }
 }
 

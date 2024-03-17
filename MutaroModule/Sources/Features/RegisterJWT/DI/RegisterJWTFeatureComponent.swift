@@ -10,11 +10,11 @@ import Foundation
 import NeedleFoundation
 import UIKit
 
-public protocol RegisterJWTFeatureDependency: Dependency {
-    // TODO: - var 遷移するB FeatureのBuilder: BModuleBuildable { get }
+public protocol RegisterJWTFeatureDependency: Dependency, Sendable {
+    var keychainDataStore: any KeychainDataStoreProtocol { get }
 }
 
-class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, RegisterJWTFeatureBuildable {
+public class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, RegisterJWTFeatureBuildable {
     @MainActor
     public func build() -> UIViewController {
         RegisterJWTViewController(
@@ -25,7 +25,10 @@ class RegisterJWTFeatureBuilder: Builder<RegisterJWTFeatureDependency>, Register
     }
 
     private var environment: RegisterJWTFeatureEnvironment {
-        .init(router: router)
+        .init(
+            keychainDataStore: dependency.keychainDataStore,
+            router: router
+        )
     }
 
     private var router: any RegisterJWTFeatureRoutable {

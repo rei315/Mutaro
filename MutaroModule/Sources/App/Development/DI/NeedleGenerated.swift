@@ -6,6 +6,7 @@ import Core
 import Foundation
 import HomeFeature
 import ImageLoader
+import KeychainStore
 import MyAppToolsFeature
 import MyAppsFeature
 import NeedleFoundation
@@ -41,6 +42,9 @@ private class MyAppToolsFeatureDependency8819cdcb20ff8ed502dcProvider: MyAppTool
     var client: any Providable {
         return devRootComponent.client
     }
+    var keychainDataStore: any KeychainDataStoreProtocol {
+        return devRootComponent.keychainDataStore
+    }
     private let devRootComponent: DevRootComponent
     init(devRootComponent: DevRootComponent) {
         self.devRootComponent = devRootComponent
@@ -51,15 +55,17 @@ private func factory1cd9013174eed344cbd4295202051d8ff8d8a13a(_ component: Needle
     return MyAppToolsFeatureDependency8819cdcb20ff8ed502dcProvider(devRootComponent: parent1(component) as! DevRootComponent)
 }
 private class RegisterJWTFeatureDependencyb8fd3e5e6507e3cea0d9Provider: RegisterJWTFeatureDependency {
-
-
-    init() {
-
+    var keychainDataStore: any KeychainDataStoreProtocol {
+        return devRootComponent.keychainDataStore
+    }
+    private let devRootComponent: DevRootComponent
+    init(devRootComponent: DevRootComponent) {
+        self.devRootComponent = devRootComponent
     }
 }
 /// ^->DevRootComponent->RegisterJWTFeatureBuilderComponent
-private func factory3027719ba7197de4dae7e3b0c44298fc1c149afb(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return RegisterJWTFeatureDependencyb8fd3e5e6507e3cea0d9Provider()
+private func factory3027719ba7197de4dae7295202051d8ff8d8a13a(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return RegisterJWTFeatureDependencyb8fd3e5e6507e3cea0d9Provider(devRootComponent: parent1(component) as! DevRootComponent)
 }
 private class MyAppsFeatureDependency6e3d99de62d490ee639fProvider: MyAppsFeatureDependency {
     var client: any Providable {
@@ -67,6 +73,9 @@ private class MyAppsFeatureDependency6e3d99de62d490ee639fProvider: MyAppsFeature
     }
     var imageDownloadService: any ImageDownloadService {
         return devRootComponent.imageDownloadService
+    }
+    var keychainDataStore: any KeychainDataStoreProtocol {
+        return devRootComponent.keychainDataStore
     }
     var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable {
         return devRootComponent.registerJWTFeatureBuilder
@@ -128,6 +137,7 @@ extension DevRootComponent: Registration {
         localTable["myAppToolsFeatureBuilder-any MyAppToolsFeatureBuildable"] = { [unowned self] in self.myAppToolsFeatureBuilder as Any }
         localTable["client-any Providable"] = { [unowned self] in self.client as Any }
         localTable["imageDownloadService-any ImageDownloadService"] = { [unowned self] in self.imageDownloadService as Any }
+        localTable["keychainDataStore-any KeychainDataStoreProtocol"] = { [unowned self] in self.keychainDataStore as Any }
     }
 }
 extension HomeFeatureBuilderComponent: Registration {
@@ -138,17 +148,19 @@ extension HomeFeatureBuilderComponent: Registration {
 extension MyAppToolsFeatureComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyAppToolsFeatureDependency.client] = "client-any Providable"
+        keyPathToName[\MyAppToolsFeatureDependency.keychainDataStore] = "keychainDataStore-any KeychainDataStoreProtocol"
     }
 }
 extension RegisterJWTFeatureBuilderComponent: Registration {
     public func registerItems() {
-
+        keyPathToName[\RegisterJWTFeatureDependency.keychainDataStore] = "keychainDataStore-any KeychainDataStoreProtocol"
     }
 }
 extension MyAppsFeatureBuilderComponent: Registration {
     public func registerItems() {
         keyPathToName[\MyAppsFeatureDependency.client] = "client-any Providable"
         keyPathToName[\MyAppsFeatureDependency.imageDownloadService] = "imageDownloadService-any ImageDownloadService"
+        keyPathToName[\MyAppsFeatureDependency.keychainDataStore] = "keychainDataStore-any KeychainDataStoreProtocol"
         keyPathToName[\MyAppsFeatureDependency.registerJWTFeatureBuilder] = "registerJWTFeatureBuilder-any RegisterJWTFeatureBuildable"
         keyPathToName[\MyAppsFeatureDependency.myAppToolsFeatureBuilder] = "myAppToolsFeatureBuilder-any MyAppToolsFeatureBuildable"
     }
@@ -184,7 +196,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->DevRootComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->DevRootComponent->HomeFeatureBuilderComponent", factory61c9a65d91c54126627be3b0c44298fc1c149afb)
     registerProviderFactory("^->DevRootComponent->MyAppToolsFeatureComponent", factory1cd9013174eed344cbd4295202051d8ff8d8a13a)
-    registerProviderFactory("^->DevRootComponent->RegisterJWTFeatureBuilderComponent", factory3027719ba7197de4dae7e3b0c44298fc1c149afb)
+    registerProviderFactory("^->DevRootComponent->RegisterJWTFeatureBuilderComponent", factory3027719ba7197de4dae7295202051d8ff8d8a13a)
     registerProviderFactory("^->DevRootComponent->MyAppsFeatureBuilderComponent", factory7c6a8079ee013eb6ac6c295202051d8ff8d8a13a)
     registerProviderFactory("^->DevRootComponent->SettingFeatureBuilderComponent", factory5d4e408a43798995182c295202051d8ff8d8a13a)
     registerProviderFactory("^->DevRootComponent->AppIntroductionFeatureBuilderComponent", factorya635079052b624173c15295202051d8ff8d8a13a)

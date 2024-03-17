@@ -8,6 +8,7 @@
 import Client
 import Core
 import ImageLoader
+import KeychainStore
 import NeedleFoundation
 
 import AppIntroductionFeature
@@ -18,57 +19,63 @@ import RegisterJWTFeature
 import SettingFeature
 
 final class RootComponent: BootstrapComponent {
-    var appIntroductionFeatureBuilder: AppIntroductionFeatureBuildable {
+    public var appIntroductionFeatureBuilder: any AppIntroductionFeatureBuildable {
         shared {
             AppIntroductionFeatureBuilderComponent(parent: self)
                 .appIntroductionBuilder()
         }
     }
 
-    var settingFeatureBuilder: SettingFeatureBuildable {
+    public var settingFeatureBuilder: any SettingFeatureBuildable {
         shared {
             SettingFeatureBuilderComponent(parent: self)
                 .settingFeatureBuilder()
         }
     }
 
-    var homeFeatureBuilder: HomeFeatureBuildable {
+    public var homeFeatureBuilder: any HomeFeatureBuildable {
         shared {
             HomeFeatureBuilderComponent(parent: self)
                 .homeFeatureBuilder()
         }
     }
 
-    var myAppsFeatureBuilder: MyAppsFeatureBuildable {
+    public var myAppsFeatureBuilder: any MyAppsFeatureBuildable {
         shared {
             MyAppsFeatureBuilderComponent(parent: self)
                 .myAppsFeatureBuilder()
         }
     }
 
-    var registerJWTFeatureBuilder: RegisterJWTFeatureBuildable {
+    public var registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable {
         shared {
             RegisterJWTFeatureBuilderComponent(parent: self)
                 .registerJWTFeatureBuilder()
         }
     }
 
-    var myAppToolsFeatureBuilder: MyAppToolsFeatureBuildable {
+    public var myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable {
         shared {
             MyAppToolsFeatureComponent(parent: self)
                 .myAppToolsFeatureBuilder()
         }
     }
 
-    var client: Providable {
+    public var client: any Providable {
         shared {
             Provider()
         }
     }
 
-    var imageDownloadService: ImageDownloadService {
+    public var imageDownloadService: any ImageDownloadService {
         shared {
             ImageDownloadServiceImp()
+        }
+    }
+
+    public var keychainDataStore: any KeychainDataStoreProtocol {
+        shared {
+            KeychainDataStore()
         }
     }
 }

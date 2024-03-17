@@ -8,15 +8,16 @@
 import Core
 import UIKit
 
-public final class AppIntroductionViewModel: NSObject {
+@MainActor
+public final class AppIntroductionViewModel: NSObject, Sendable {
     private let environment: AppIntroductionFeatureEnvironment
 
     public init(environment: AppIntroductionFeatureEnvironment) {
         self.environment = environment
     }
 
-    func onTapAgree() async {
-        UserDefaults.standard.set(true, forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
-        await environment.router.showHomeAsRoot()
+    func onTapAgree() {
+        environment.dataStore.storeFirstLaunchStatus(with: true)
+        environment.router.showHomeAsRoot()
     }
 }

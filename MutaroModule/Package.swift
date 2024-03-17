@@ -1,4 +1,4 @@
-// swift-tools-version: 5.8
+// swift-tools-version: 5.10
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -36,7 +36,7 @@ let firebaseAnalyticsDependencies: [Target.Dependency] = [
 
 let debugSwiftSettings: [PackageDescription.SwiftSetting] = [
     .define("DEV", .when(configuration: .debug)),
-    .unsafeFlags(["-strict-concurrency=complete"]),
+    .unsafeFlags(["-strict-concurrency=complete", "-warn-concurrency", "-enable-actor-data-race-checks"]),
     .forwardTrailingClosures,
     .existentialAny,
     .bareSlashRegexLiterals,
@@ -244,7 +244,9 @@ let package = Package(
         ),
         .target(
             name: "KeychainStore",
-            dependencies: [],
+            dependencies: [
+                .core
+            ],
             path: "./Sources/Modules/KeychainStore"
         ),
         .target(

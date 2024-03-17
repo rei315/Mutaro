@@ -8,15 +8,15 @@
 import Core
 import UIKit
 
-public protocol MyAppsRoutable {
+public protocol MyAppsRoutable: Sendable {
     @MainActor
     func showRegisterJWT(from viewController: UIViewController)
     @MainActor
     func showMyAppTools(from viewController: UIViewController, appId: String)
 }
 
-public class MyAppsRouter: MyAppsRoutable {
-    public struct Dependency {
+public final class MyAppsRouter: MyAppsRoutable {
+    public struct Dependency: Sendable {
         public let registerJWTFeatureBuilder: any RegisterJWTFeatureBuildable
         public let myAppToolsFeatureBuilder: any MyAppToolsFeatureBuildable
 
