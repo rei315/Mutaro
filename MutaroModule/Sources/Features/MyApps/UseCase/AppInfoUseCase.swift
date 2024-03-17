@@ -11,18 +11,24 @@ import Foundation
 import JWTGenerator
 
 public protocol AppInfoUseCase: Sendable {
-    func fetchAppInfos(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, myApps: [(id: String, name: String)]) async throws -> [AppInfo]
-    func fetchMyApps(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async throws -> [MyAppsEntity.MyAppsData]
+    func fetchAppInfos(myApps: [MyAppsEntity.MyAppsData]) async throws -> [AppInfo]
+    func fetchMyApps() async throws -> [MyAppsEntity.MyAppsData]
 }
 
 public final class AppInfoUseCaseImpl: AppInfoUseCase {
     private let client: any Providable
+    private let keychainDataStore: any KeychainDataStoreProtocol
 
-    public init(client: any Providable) {
+    public init(
+        client: any Providable,
+        keychainDataStore: any KeychainDataStoreProtocol
+    ) {
         self.client = client
+        self.keychainDataStore = keychainDataStore
     }
 
-    public func fetchMyApps(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo) async throws -> [MyAppsEntity.MyAppsData] {
+    public func fetchMyApps() async throws -> [MyAppsEntity.MyAppsData] {
+        let storedJWTInfo: MutaroJWT.JWTRequestInfo = try keychainDataStore.loadValue(forKey: .jwt)
         let builder = MutaroJWT.AppstoreConnectJWTBuilder(
             keyId: storedJWTInfo.keyID,
             issuerId: storedJWTInfo.issuerID,
@@ -33,14 +39,23 @@ public final class AppInfoUseCaseImpl: AppInfoUseCase {
         return myApps
     }
 
-    public func fetchAppInfos(storedJWTInfo: JWTGenerator.MutaroJWT.JWTRequestInfo, myApps: [(id: String, name: String)]) async throws -> [AppInfo] {
+    public func fetchAppInfos(myApps: [MyAppsEntity.MyAppsData]) async throws -> [AppInfo] {
+        let myAppsInfo = myApps
+            .compactMap { data -> (String, String)? in
+                guard let id = data.id,
+                      let name = data.attributes?.name else {
+                    return nil
+                }
+                return (id, name)
+            }
+        let storedJWTInfo: MutaroJWT.JWTRequestInfo = try keychainDataStore.loadValue(forKey: .jwt)
         let builder = MutaroJWT.AppstoreConnectJWTBuilder(
             keyId: storedJWTInfo.keyID,
             issuerId: storedJWTInfo.issuerID,
             pemString: storedJWTInfo.privateKey
         )
         let token = try builder.generateJWT()
-        let appInfos = try await getAppInfos(token: token, myApps: myApps)
+        let appInfos = try await getAppInfos(token: token, myApps: myAppsInfo)
         return appInfos
     }
 

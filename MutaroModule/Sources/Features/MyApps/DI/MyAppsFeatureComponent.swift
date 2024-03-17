@@ -66,7 +66,10 @@ public class MyAppsFeatureBuilder: Builder<MyAppsFeatureDependency>, MyAppsFeatu
     }
 
     private var appInfoUseCase: any AppInfoUseCase {
-        AppInfoUseCaseImpl(client: dependency.client)
+        AppInfoUseCaseImpl(
+            client: dependency.client,
+            keychainDataStore: dependency.keychainDataStore
+        )
     }
 }
 
