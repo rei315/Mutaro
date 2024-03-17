@@ -17,7 +17,7 @@ public final class AppIntroductionViewModel: NSObject, Sendable {
     }
 
     func onTapAgree() {
-        UserDefaults.standard.set(true, forKey: UserDefaultsKey.notFirstAppLaunching.rawValue)
+        environment.dataStore.storeFirstLaunchStatus(with: true)
         environment.router.showHomeAsRoot()
     }
 }

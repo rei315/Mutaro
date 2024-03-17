@@ -29,7 +29,10 @@ public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDepend
     }
 
     private var environment: AppIntroductionFeatureEnvironment {
-        .init(router: router)
+        .init(
+            router: router,
+            dataStore: dataStore
+        )
     }
 
     private var router: any AppIntroductionRoutable {
@@ -41,6 +44,10 @@ public class AppIntroductionFeatureBuilder: Builder<AppIntroductionFeatureDepend
                 settingFeatureBuilder: dependency.settingFeatureBuilder
             )
         )
+    }
+
+    private var dataStore: any AppIntroductionDataStoreProtocol {
+        AppIntroductionDataStore()
     }
 }
 
