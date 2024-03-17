@@ -1,19 +1,19 @@
 //
-//  KeychainStore.swift
+//  KeychainDataStore.swift
 //
 //
 //  Created by minguk-kim on 2023/05/04.
 //
 
+import Core
 import Foundation
 import Security
-import Core
 
 public struct KeychainDataStore: KeychainDataStoreProtocol, Sendable {
     private let service = Bundle.main.bundleIdentifier ?? "Mutaro.com"
 
     public init() {}
-    
+
     public func saveValue(_ value: some Codable, forKey key: KeychainStoreKey) throws {
         let data = try JSONEncoder().encode(value)
 

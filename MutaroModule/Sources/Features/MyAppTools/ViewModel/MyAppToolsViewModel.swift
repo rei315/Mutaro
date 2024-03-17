@@ -34,7 +34,7 @@ public final class MyAppToolsViewModel: MyAppToolsViewModelProtocol, Sendable {
 
     private lazy var model: MyAppToolsModel = .init(
         appId: appId,
-        ciProductUseCase: environment.ciProductUseCase, 
+        ciProductUseCase: environment.ciProductUseCase,
         keychainDataStore: environment.keychainDataStore
     )
 
@@ -52,11 +52,11 @@ public final class MyAppToolsViewModel: MyAppToolsViewModelProtocol, Sendable {
     private func fetch() async {
         let ciProducts = await model.getCIProducts()
         ciProductsItem.send(ciProducts)
-        
+
         if !items.value.contains(.xcodeCloud) {
-            var results = self.items.value
+            var results = items.value
             results.append(.xcodeCloud)
-            self.items.send(results)
+            items.send(results)
         }
     }
 

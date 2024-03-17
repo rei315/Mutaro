@@ -5,8 +5,8 @@
 //  Created by minguk-kim on 2023/05/07.
 //
 
-import Foundation
 import Core
+import Foundation
 
 public struct RegisterJWTFeatureEnvironment: Sendable {
     public let keychainDataStore: any KeychainDataStoreProtocol
