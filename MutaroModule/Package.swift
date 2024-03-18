@@ -133,7 +133,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/realm/SwiftLint", from: "0.54.0"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.53.2"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.53.5"),
         .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
         .package(url: "https://github.com/Quick/Quick", from: "7.4.0"),
         .package(url: "https://github.com/Quick/Nimble", from: "12.3.0"),
