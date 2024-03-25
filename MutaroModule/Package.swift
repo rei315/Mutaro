@@ -135,7 +135,7 @@ let package = Package(
         .package(url: "https://github.com/realm/SwiftLint", from: "0.54.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.53.2"),
         .package(url: "https://github.com/Kitura/Swift-JWT", from: "4.0.1"),
-        .package(url: "https://github.com/Quick/Quick", from: "7.4.0"),
+        .package(url: "https://github.com/Quick/Quick", from: "7.5.0"),
         .package(url: "https://github.com/Quick/Nimble", from: "12.3.0"),
         .package(url: "https://github.com/onevcat/Kingfisher", from: "7.11.0"),
         .package(url: "https://github.com/uber/needle.git", from: "0.24.0"),
